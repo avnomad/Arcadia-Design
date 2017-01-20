@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title</key><string>Trash</string>
+  <key>nodeid</key><string>62adef28-84c5-4967-a304-9ef97b831b9b</string>
+  <key>modified_time</key><integer>1484914071</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>application/x-notebook-trash</string>
+  <key>created_time</key><integer>1484914071</integer>
+  <key>order</key><integer>0</integer>
+</dict>
+</node>
