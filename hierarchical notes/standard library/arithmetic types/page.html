@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Arithmetic Types</title>
+</head><body><ul><li><b>Integer Types</b></li>
+<li style="list-style-type: none"><ul><li>natural and unsigned int need '<tt>−</tt>' to behave differently (e.g. in 6<tt>−</tt>8) so I might need both types.</li>
+<li>Ability to parameterize typed with the intended behaviour in case of overflow. e.g.</li>
+<li style="list-style-type: none"><ul><li>saturate</li>
+<li>throw</li>
+<li>wrap</li>
+</ul>
+</li>
+<li>Support integers of different endianess. Unusual integer types?</li>
+<li>int[space(e.g. small) | time(e.g. fast)][≥N] e.g. int[fast][≥32] i;</li>
+<li>Like those in &lt;stdint.h&gt;</li>
+</ul>
+</li>
+<li><b>Floating Point Types</b></li>
+<li style="list-style-type: none"><ul><li>Support functionality similar to &lt;fpenv.h&gt;</li>
+<li>Comparison of two floating-point numbers (or two points for that matter), when based on whether their distance is lower than a threshold is not transitive!</li>
+<li style="list-style-type: none">A suggestion is to split the space into equivalence classes (e.g. with trunc or round)</li>
+</ul>
+</li>
+</ul>
+</body></html>

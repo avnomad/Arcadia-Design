@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Data Types</title>
+</head><body><ul><li><b>Scalar</b></li>
+<li style="list-style-type: none"><ul><li>List</li>
+</ul>
+</li>
+<li><b>Compound</b></li>
+<li style="list-style-type: none"><ul><li>tuples, arrays, vectors, etc. will be different types with (implicit?) conversions between them.</li>
+<li>List</li>
+<li><b>Arrays</b></li>
+<li style="list-style-type: none"><ul><li>Support variable-length or "one-size-per-instance" arrays.</li>
+<li>My arrays will probably not shrink from either side, but my ranges (that correspond to slices) will!</li>
+<li>D's statically-sized arrays are more or less like my arrays (except the dynamic size) (from a memory layout perspective etc.). D's dynamically-sized arrays are similar to ranges...</li>
+<li>Should the range type produced by an array (T[15] or T[n]) be a vector or similar type at the same time? (T[*])</li>
+</ul>
+</li>
+<li><b>Associative Arrays</b></li>
+<li style="list-style-type: none"><ul><li>int ⇒ string e.g. [5 ⇒ "five", 3 ⇒ "three", 10 ⇒ "ten"]</li>
+<li>string ⇒ bool e.g. ["on" ⇒ true, "off" ⇒ false]</li>
+</ul>
+</li>
+<li><b>Pointers</b></li>
+<li style="list-style-type: none"><ul><li>Support restrict pointer (and restrict references?)</li>
+</ul>
+</li>
+<li><b>Functions</b></li>
+<li style="list-style-type: none"><ul><li>Since named parameters will be supported, it might be logical to include parameter names as part of the function type (e.g. for pointer to function types).</li>
+</ul>
+</li>
+<li><b>Structures</b></li>
+<li style="list-style-type: none"><ul><li>Support pattern matching through a deconstructor.</li>
+<li>The above pattern matching should be available for foreach loops as well.</li>
+<li>I'll probably need something like C++'s mutable (e.g. for cached data).</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Include a keyword for specifying whether the compiler can change the order of the fields in the structure or not.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Labels</b></li>
+<li style="list-style-type: none"><ul><li>I might need to support variables of 'label' type that will store jump destinations. </li>
+<li>The allowed values for these variables can be limited to local labels.</li>
+<li>Use cases</li>
+<li style="list-style-type: none"><ul><li>Support handwritten and automatically generated implementations of finite automata, where they will replace 'status' variables of enum type that were used in conjunction with switch statements.</li>
+<li>Replace calls to local closures in some cases.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>View array of strings as 3-dimentional matrix of bits?</li>
+<li>Define a common interface for using functions, maps and arrays.</li>
+<li>You can view the array a[10] as an emelemt of A¹⁰ or a function 0..10→A or as a block of memory.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</body></html>

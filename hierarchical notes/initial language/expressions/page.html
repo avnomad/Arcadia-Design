@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Expressions</title>
+</head><body><ul><li><b>Identifiers</b></li>
+<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Use backquote '`' for identifiers that contain "strange" characters? e.g. `hello\0world`.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Literals</b></li>
+<li style="list-style-type: none"><ul><li>Allow reference to Unicode characters using their Unicode name in addition to their Unicode code point.</li>
+<li>Compound literals will be replaced by a more general and uniform mechanism.</li>
+<li>If I want to present literals as data (quadruples) too, I can use the lexime as their name. e.g. 123 → ("123", int, 123, temp address). I might need to add source line and column to avoid name classes...</li>
+<li>I'll probably use postfix operators instead of user-defined literals.</li>
+<li>If I do support user-defined literals I'll probably need <i>disambiguators</i>&nbsp;for literals in addition to operators.</li>
+<li>∅ for empty set.</li>
+<li><b>Character</b></li>
+<li style="list-style-type: none"><ul><li>Support multicharacter literals such as 'forall', 'amp', 'GREEK CAPITAL LETTER A'.</li>
+</ul>
+</li>
+<li><b>String</b></li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Literals could have an abstract type.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Variables</b></li>
+<li style="list-style-type: none"><ul><li>I'll probably not use prefixes like Perl does (e.g. $name, @names).</li>
+</ul>
+</li>
+<li><b>Operators</b></li>
+<li style="list-style-type: none"><ul><li>Include both symbolic operators and easy-to-type aliases for them.</li>
+<li>List</li>
+<li style="list-style-type: none"><ul><li>function call ()</li>
+<li>pointers to members? (.*, .-&gt;)</li>
+<li>∧ (and), ∨ (or), ¬ (not)</li>
+<li>∈ (in), ∉ (not in), ⊆ (subset), ⊈ (not subset), = (equals), ≠ (not equals)</li>
+<li>Also ⊂ and ⊄?</li>
+</ul>
+</li>
+<li><b>Assignment</b></li>
+<li style="list-style-type: none"><ul><li>Use the ↜ and &lt;~ operators.</li>
+<li>Will support modification-assignments</li>
+<li>Will support expressions like <tt>(temp -= 32) *= 5/9</tt>.</li>
+</ul>
+</li>
+<li><b>Array Subscript</b></li>
+<li style="list-style-type: none"><ul><li>I might not need $ (from D), if I adopt Python's approach of using negative offsets (added to the array's length).</li>
+</ul>
+</li>
+<li><b>Comprehensions</b></li>
+<li style="list-style-type: none"><ul><li>Expand the mathematical syntax for creating sets as subsets of other sets to lists and maps. Python calls this 'comprehension'.</li>
+</ul>
+</li>
+<li><b>nothrow</b>&nbsp;(or likewise named) operator takes an expression and returns false iff the expression could never throw an exception.</li>
+<li><b>precedenceof</b>&nbsp;for defining an operator with the same precedence as another one.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Allow indexing of arrays, maps, vectors, matrices and random access ranges (everything that supports the index-of operator) using ranges of indices! (this superceeds the {i₁, i₂,...,iₙ} notation)</li>
+<li>The .x, .y, .xy, .zxy, etc. OpenCL notation can still apply for a finite number of indices.</li>
+<li>Should <b>a || b</b>&nbsp;and <b>a &amp;&amp; b </b>return one of a, b instead of a truth value like they do in Python?</li>
+<li>Should I include sed commands in addition to regular expressions? (s/foo/bar in addition to /(foo|bar)*/)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Implicit conversions</b></li>
+<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>What would happen if I allowed implicit conversions of the form T→S iff T and S implemented a common interface? Is it implementable? Useful? Acceptable?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Disambiguation</b></li>
+<li style="list-style-type: none"><ul><li>Refering to different namespaces, modules, etc.</li>
+<li>Choosing between functions of the same name and namespace.</li>
+</ul>
+</li>
+</ul>
+</body></html>

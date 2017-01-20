@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Name Lookup</title>
+</head><body><ul><li>Generally speaking, every rules for looking up names, (e.g. ADL, 2-phase lookup, dependent names, function hijack prevention) effects different things. I probably need only some of them...</li>
+<li>A developer A should be able to import type/data declarations from a library written by developer B and algorithms from a library written by developer C and use them writting at most a few concept maps, even though developers B and C were oblivious of the existance and interfaces used by each other and developer A.</li>
+<li><img src="import-diagram.png" width="300" height="212" /></li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Should I support both static and dynamic scopes?</li>
+<li>Should I use argument-dependent lookup?</li>
+<li>The absence of argument-dependent lookup creates a seperate set of problems than the ban of function hijacks.</li>
+<li>Should I use two-phase lookup?</li>
+<li>Custom lookup rules?</li>
+<li>How will default arguments and concepts interact with lookup rules?</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Define the semantics of name lookup.</li>
+<li>Will I need something similar to typename in conjunction with 2-phase lookup?</li>
+<li style="list-style-type: none">Is typename needed because otherwise C++ wouldn't know if something is a declaration or expression statement?</li>
+<li style="list-style-type: none">C++ uses semantic information to parse!</li>
+<li style="list-style-type: none">C++ distinguishes between dependent and non-dependent names in template definitions. +two phase lookup +argument dependent lookup.</li>
+<li style="list-style-type: none">non-dependent are looked up at the point of definition.</li>
+<li style="list-style-type: none">dependent are looked up at the point of definition <i>and</i>&nbsp;at the point of instantiation!</li>
+<li style="list-style-type: none">Whether the errors that can be found without instantiation will be found without instantiation is a matter of "quality of implementation".</li>
+</ul>
+</li>
+</ul>
+</body></html>

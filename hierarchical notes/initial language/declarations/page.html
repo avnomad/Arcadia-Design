@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Declarations</title>
+</head><body><ul><li>In contexts where expression statements are needed I need <b>auto</b>&nbsp;(or <b>var</b>&nbsp;or something similar) to distinguish between declarations/definitions and expression statements. In contexts like global declarations or field declarations it might not be needed, but I may want to maintain usiformity anyway...</li>
+<li><b>Variables</b></li>
+<li style="list-style-type: none"><ul><li>Also applies to structure field declarations.</li>
+<li><b>Initializers</b></li>
+<li style="list-style-type: none"><ul><li>Designated initializers will be replaced by a more general mechanism.</li>
+<li>Use of Value Range Propagation to check statically whether the value of the expression used as the initializer is within the allowed values for the variable's type.</li>
+<li>D uses VRP only within a single expression, but I could do it between expressions as well.</li>
+<li>Allow initializing with 'nothing' to leave a variable uninitialized.</li>
+<li>If a variable declaration has no initializer I can:</li>
+<li style="list-style-type: none"><ul><li>Leave it uninitialized (C, C++).</li>
+<li>Initialize it with some type-dependent default (Java, D, Protobuf).</li>
+<li>Issue an error message.</li>
+<li>Try to prove it gets initialized between declaration and first use, and if I can't, then issue an error message.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Qualifiers</b></li>
+<li style="list-style-type: none"><ul><li><b>Mutability</b></li>
+<li style="list-style-type: none"><ul><li><b>const</b>&nbsp;T won't be a type, it will be type T, qualified. <b>const</b>&nbsp;T and T don't represent different value sets! On the other hand, they support different operation sets!</li>
+<li>D's <b>inout</b>&nbsp;wildcard qualifier is nice, but I think I'll prefer my solution with the special named template parameter (some static checkers for Java use a similar approach!) that can be different for the various parts of a type and various function parameters. e.g. <tt>(T) int *(S) fun((T) int *(S) p);</tt></li>
+<li>Imagine a kind of <i>transitive const</i>&nbsp;that, when applied to an object, makes it const and moreover makes the objects pointed to by the object transitive const. That could e.g. be used in a function that accepts the head of a linked list (pointer) and guarantees that no list element will change.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Consider the following example:</li>
+<tt><li style="list-style-type: none">struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">int n;</li>
+<li style="list-style-type: none">int* p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">const T a;</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none"><tt>a.n</tt>&nbsp;and <tt>a.p</tt>&nbsp;will be <tt>const</tt>&nbsp;but what about <tt>*a.p</tt>? Should it be const or not?</li>
+<li style="list-style-type: none"></li>
+<tt><li style="list-style-type: none">struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">int n;</li>
+<li style="list-style-type: none">(this.type.qualifier) int *p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none">could give to the int pointed to by p the qualifier of the type of <b>this</b>, whatever that is.</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">If not with <b>this</b>, I should have another way to refer to the exact type of the instance.</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">What if I allow template parameters in the type declaration? e.g.</li>
+<tt><li style="list-style-type: none">const struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">const int n;</li>
+<li style="list-style-type: none">const int *const p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none">or</li>
+<tt><li style="list-style-type: none"></li>
+<li style="list-style-type: none">(qual) struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">(qual) int n;</li>
+<li style="list-style-type: none">(qual) int *(qual) p;</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>};</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Storage Classes</b></li>
+<li style="list-style-type: none"><ul><li><b>List</b></li>
+<li style="list-style-type: none"><ul><li><b>By increasing lifetime</b>&nbsp;(affects location of storage)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>register</li>
+<li>stack</li>
+<li>heap?</li>
+<li>static</li>
+<li>disk (persistent)</li>
+</ul>
+</li>
+<li><b>By increased sharing</b>&nbsp;(affects instance visibility)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>function</li>
+<li>thread (Thread Local Storage)</li>
+<li>process</li>
+<li>application</li>
+</ul>
+</li>
+<li><b>By increasing visibility</b>&nbsp;(affects lexical scope)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>local</li>
+<li>global</li>
+<li>exported</li>
+</ul>
+</li>
+<li><b>Valid Combinations</b></li>
+<li style="list-style-type: none"><ul><li>(local, function, register)</li>
+<li>(local, function, stack)</li>
+<li>(local, thread, static)</li>
+<li>(local, thread, disk)?</li>
+<li>(local, process, static)</li>
+<li>(local, process, disk)?</li>
+<li>(local, application, static)</li>
+<li>(local, application, disk)?</li>
+<li>(global, thread, static)</li>
+<li>(global, thread, disk)?</li>
+</ul>
+</li>
+<li><b>Valid Combinations </b>(alternative form)</li>
+<li style="list-style-type: none"><ul><li>(†global | export)(†static | disk)(†thread | process | application | shared? | universan?)</li>
+<li>† marks defaults.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Process (static)</b></li>
+<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Will I allow:</li>
+<tt><li style="list-style-type: none">int f(int x)</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">static int n = x;</li>
+<li style="list-style-type: none">n++;</li>
+<li style="list-style-type: none">return n;</li>
+</ul>
+</li>
+<li style="list-style-type: none">}</li>
+</tt><li>Explain how the different cases will be compiled.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Defaults</b></li>
+<li style="list-style-type: none"><ul><li>The default storage class for globals with probably be "process" according to the "if you don't use it, you don't pay for it" principle since I expect to use parallelism instead of concurrency and don't expect to have many threads. Or will I?</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Should there be an option to redirect stack allocations bigger than a configurable amount to the heap?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Alignment</b></li>
+<li style="list-style-type: none"><ul><li>An alignment significantly larger than a variables' size, can be useful to force it to occupy a caché line by itself, so that writes in that line wouldn't invalidate others in a multiprocessor!</li>
+</ul>
+</li>
+<li><b>Endianess</b></li>
+<li><b>Offset</b></li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Should variables be immutable by default? Search open-source code to see which is most common!</li>
+<li>Should all variables, or a subset of them (e.g. statics are initialized to 0 in ELF and EXE anyway), be initialized to zero by default?</li>
+<li><b>RAII</b></li>
+<li style="list-style-type: none"><ul><li>Should I allow the definition of nameless variables? e.g. for calling the constructor and destructor.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Types</b></li>
+<li><b>Aliases</b></li>
+<li style="list-style-type: none"><ul><li>Allow type aliases.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Clarify semantics of <tt>auto aNewName = transmogrify;</tt>&nbsp;in the case where transmogrify is an overloaded function.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</body></html>

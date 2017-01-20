@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Statements</title>
+</head><body><ul><li><b>Control Structures</b></li>
+<li style="list-style-type: none"><ul><li><b>Foreach</b>&nbsp;loops are able to modify elements (by default?).</li>
+<li>Support '<b>else</b>' clause in loop statements like in Python.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Include <b>unless</b>, <b>until</b>, etc?</li>
+<li>Should it be possible to overload the foreach loop with <i>iteration primitives</i>&nbsp;and <i>internal iteration</i>&nbsp;like in D?</li>
+<li style="list-style-type: none">Basically what D does isn't operator overload, but expression rewrites and lowering like those of an AST preprocessor!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Labels</b></li>
+<li style="list-style-type: none"><ul><li>Support labeling statements for use with <b>goto</b>, <b>break</b>&nbsp;and <b>continue</b>.</li>
+</ul>
+</li>
+<li><b>Blocks</b></li>
+<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Perhaps I can view blocks as lists (or sets, or maps, but they need to be ordered) that contain the entities they lexically enclose.</li>
+<li>Support a special type of blocks (e.g. <tt>+iblock</tt>, <tt>−iblock</tt>) that don't allow "falling off" their end.</li>
+<li style="list-style-type: none"><ul><li><b>Use cases</b></li>
+<li style="list-style-type: none"><ul><li>These can be useful in implementing finite automata by hand.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Synchronized</b></li>
+<li style="list-style-type: none"><ul><li>Should it be supported?</li>
+</ul>
+</li>
+<li><b>With</b></li>
+<li style="list-style-type: none"><ul><li><tt>+with(...), −</tt>with</li>
+<li>Am I interested in <b>with</b>&nbsp;statement that 'opens' a struct/record like the one in Pascal that got copied by D?</li>
+<li>Is <b>with</b>&nbsp;statement implementable from compile-time for and alias declarations?</li>
+</ul>
+</li>
+<li><b>Scope</b></li>
+<li style="list-style-type: none"><ul><li>D's <tt>scope(exit)</tt>&nbsp;should be easily implementable by using a predefined class (with a destructor) and lambda functions.</li>
+<li>But what about <tt>scope(success)</tt>&nbsp;and <tt>scope(failure)</tt>?</li>
+</ul>
+</li>
+<li><b>Assert </b>(and <b>static assert</b>)</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Should Perl-like statement modifiers be supported?</li>
+<li>Use 'pass' statements instead of empty statement (';') like in Python?</li>
+</ul>
+</li>
+</ul>
+</body></html>
