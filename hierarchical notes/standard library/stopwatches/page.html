@@ -3,6 +3,90 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Stopwatches</title>
-</head><body><ul><li>Generalized Tic-Toc!</li>
+</head><body><ul><li>Generalized Tic-Toc! (inspired from Matlab)</li>
+<li>A global function takes parameters that should be equal for tic and toc and returns a pair of functions (tic,toc). Those parameters can include:</li>
+<li style="list-style-type: none"><ul><li>Which clock to use.</li>
+<li>Which output stream to use.</li>
+<li>The units of measurement to use for output.</li>
+<li>The container(s) to use for internal data structure(s). (Default to linked list? Iterators must remain valid after push/pop.)</li>
+<li>How to handle errors: throw? ignore? don't check? e.g. calling toc without first calling tic.</li>
+</ul>
+</li>
+<li>The returned functions will have reasonable defaults and can be further parameterized by partial evaluation and/or applications. Those parameters can include:</li>
+<li style="list-style-type: none"><ul><li>Option to suppress output.</li>
+<li>Option to customize output using your own function or format string. (do I need both?)</li>
+<li style="list-style-type: none"><ul><li>For tic include arguments like:</li>
+<li style="list-style-type: none"><ul><li>site number ∈ int</li>
+<li>site name ∈ string</li>
+<li>stack size ∈ int?</li>
+<li><i>e.g.</i>&nbsp;<tt>cout "Call site #" $siteNumber</tt>&nbsp;" (" $siteName ")\n";</li>
+</ul>
+</li>
+<li>For toc include arguments like:</li>
+<li style="list-style-type: none"><ul><li>site number ∈ int</li>
+<li>site name ∈ string</li>
+<li>stack size ∈ int?</li>
+<li>elapsed time ∈ duration</li>
+<li>special value for token-based tocs or the value it would have if it was put on the stack?</li>
+<li><i>e.g.</i>&nbsp;<tt>cout $elapsedTime.count() "seconds passed since call #" $siteNumber " (" $siteName ")\n";</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Another option would be to just have two global functions (tic and toc) that get parameterized independently using partial evaluation and/or application.</li>
+<li>After parameterization the typical signatures will be:</li>
+<li style="list-style-type: none"><ul><li>tic ∈ call site name ⟶ stopwatch token (basically a wrapped iterator)</li>
+<li>toc ∈ stopwatch token ⟶ duration</li>
+</ul>
+</li>
+<li>stopwatch tokens will point to records containing things like:</li>
+<li style="list-style-type: none"><ul><li>time point</li>
+<li>site number</li>
+<li>site name</li>
+</ul>
+</li>
+<li>A typical use relying on the implicit stack will look like:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">tic() // #1</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">tic() // #2</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">toc() // logs time elapsed since tic #2</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">tic() // #3</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">toc() // logs time elapsed since tic #3</li>
+</ul>
+</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">toc() // logs time elapsed since tic #1</li>
+</tt></ul>
+</li>
+<li>A typical use relying on returned tokens will look like:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">var token1 = tic();</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">var token2 = tic();</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">toc(token1); // by default it would have been paired with token2</li>
+<li style="list-style-type: none">...</li>
+</tt><li style="list-style-type: none"><tt>toc(token2); // by default it would have been paired with token1</tt></li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>What happens if client mixes tocs using tokens with tocs using stack? They are resolve independently. (Don't interact)</li>
+<li>Should I save stack-based and random-access tic records seperately? yes</li>
+<li>Should underlying datastructures be selectable or hidden? hidden</li>
+<li>Should client be able to refer to the same tic record through both stack and token or only one of them? only one</li>
+<li>Should client be able to call a stack toc and not remove the record from the stack? no</li>
+<li><strike>Write a snippet in all four potential libraries produced by combining the design decition about not removing stack frames and referring to same tics in both ways and compare the results.</strike></li>
+<li>Should it be possible to call a toc without removing the tic frame from the stack.</li>
+<li>Include some predefined callbacks? no</li>
+<li>How will I assure thread safety?</li>
+<li>Should I allow an arbitrary number of extra arguments to be forwarded to the callbacks?</li>
+<li>Should tic and toc be removable in certain modes or when certain symbols are defined?</li>
+<li>Help avoid mistakes from mismatching tic-toc types?</li>
+</ul>
+</li>
 </ul>
 </body></html>
