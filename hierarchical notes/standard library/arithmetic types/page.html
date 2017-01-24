@@ -14,6 +14,8 @@
 <li>Support integers of different endianess. Unusual integer types?</li>
 <li>int[space(e.g. small) | time(e.g. fast)][≥N] e.g. int[fast][≥32] i;</li>
 <li>Like those in &lt;stdint.h&gt;</li>
+<li>Perhaps supply an integer type that can be used by default (e.g. int or ℤ) and allow changing its meaning (by redeclaring it?) to change the default.</li>
+<li style="list-style-type: none">e.g. the initial int type can throw in case of overflow, but some applications might want to use big integers by default.</li>
 </ul>
 </li>
 <li><b>Floating Point Types</b></li>

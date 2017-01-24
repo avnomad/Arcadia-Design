@@ -49,6 +49,9 @@
 </ul>
 </li>
 <li><b>Default Arguments</b></li>
+<li style="list-style-type: none"><ul><li>Should I be able to change default arguments when I create an alias for a function?</li>
+</ul>
+</li>
 <li><b>Variadic functions</b></li>
 <li style="list-style-type: none"><ul><li>Use of a unpack operator for arrays and maps like in Python (more generic than Java's mechanism).</li>
 </ul>
@@ -88,7 +91,13 @@
 <li>Support for polymorphic lambdas.</li>
 <li>Maybe I can couple <i>placeholder arguments</i>&nbsp;with type inference to concisely define functions like in functional programming languages. e.g. </li>
 <li style="list-style-type: none"><tt>auto fact = $0 ≥ 1 ? fact($0-1)*$0 : 1;</tt></li>
-<li></li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Should placeholder arguments be extended to work with named arguments as well as positional ones? (The names could be inferred from context)? e.g.</li>
+<tt><li style="list-style-type: none">fun combine ∈ (leftRange ∈ range(T), rightRange ∈ range(S), combiner ∈ (left ∈ T, right ∈ S) ⟶ U) ⟶ range(U);</li>
+<li style="list-style-type: none">...</li>
+</tt><li style="list-style-type: none"><tt>combine([1,2,3,4],[0.1,0.2,0.3,0.4],2*$left + $right);</tt></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

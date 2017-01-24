@@ -22,7 +22,7 @@
   <key>title</key><string>Arcadia</string>
   <key>column_widths</key><dict>
     <key>created_time</key><integer>150</integer>
-    <key>modified_time</key><integer>210</integer>
+    <key>modified_time</key><integer>994</integer>
     <key>title</key><integer>247</integer>
   </dict>
   <key>attr_defs</key><array>

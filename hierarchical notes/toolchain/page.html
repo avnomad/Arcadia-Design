@@ -24,6 +24,19 @@
 <li style="list-style-type: none"><ul><li>Must detect pure function calls whose return value is never used and remove them, maintaining the order of evaluation of its arguments. e.g. (p++,q++);</li>
 </ul>
 </li>
+<li><b>Diagnostics</b></li>
+<li style="list-style-type: none"><ul><li><b>Errors</b></li>
+<li style="list-style-type: none"><ul><li>Support supplementing <i>undefined symbol</i>&nbsp;errors with suggestions of look-alike Unicode characters. e.g. "Undefined reference to '→'. Did you mean '⟶'? (Since those can look alike in some fonts!)</li>
+</ul>
+</li>
+<li><b>Warnings</b></li>
+<li>Support <i>expressive diagnostics</i>. (based on clang++ output)</li>
+</ul>
+</li>
+<li><b>Multifile compilations</b></li>
+<li style="list-style-type: none"><ul><li>Topologically sort the module inclusion graph and compare timestamps?</li>
+</ul>
+</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Provide option to keep maximum loop iteration / recursive call checks during run-time?</li>
 <li>Produce LLVM byte-code in first implementation?</li>
