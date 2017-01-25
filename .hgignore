@@ -1,0 +1,4 @@
+syntax: regexp
+__NOTEBOOK__/*
+syntax: glob
+.directory
