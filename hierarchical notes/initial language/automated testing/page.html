@@ -4,5 +4,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Automated Testing</title>
 </head><body><ul><li><tt>+unittest, −</tt>unittest</li>
+<li>provide way to automatically feed implementations and child classes to tests of functions with interface and abstract argument parameters.</li>
+<li>Perhaps provide a way to add tests to the function definition? e.g.</li>
+<tt><li style="list-style-type: none">+fun factorial ∈ (n uint) → uint</li>
+<li style="list-style-type: none">=code</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none">retval &lt;~ 1;</li>
+<li style="list-style-type: none">while n &gt; 1:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval *&lt;~ n--;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">=tests</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">0 return 1,</li>
+<li style="list-style-type: none">1 return 1,</li>
+<li style="list-style-type: none">2 return 2,</li>
+<li style="list-style-type: none">3 return 6,</li>
+<li style="list-style-type: none">10 return 3628800</li>
+<li style="list-style-type: none">1000 throw Overflow(message,1000)</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−</tt>fun</li>
 </ul>
 </body></html>

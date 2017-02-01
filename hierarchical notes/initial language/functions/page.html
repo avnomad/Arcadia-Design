@@ -68,6 +68,10 @@
 <li style="list-style-type: none">In those cases, the initial and final type must implement the same interface. But what if I already have obtained a pointer to the variable of the old type?</li>
 <li>Support for forwarding the return type. f()→auto&amp;, will deduce a reference return type (in general you'll be able to specify a pattern for the return type).</li>
 <li>Allow deducing the return type even in functions with multiple return statements and recursive calls.</li>
+<li><b>Polymorphism</b></li>
+<li style="list-style-type: none"><ul><li>We can see a "polymorphic function" either as a set of monomorphic functions or as a function taking a number of type parameters.</li>
+</ul>
+</li>
 <li><b>Overload Resolution</b></li>
 <li style="list-style-type: none"><ul><li>In C++ when you declare a function in a scope, it hides all the functions with the same name in enclosing scopes, not only the one with the same signature. I don't think I wan't that...</li>
 <li style="list-style-type: none">On the other hand, I might need to explicitly remove names and signatures from selected scopes. (delete foo&lt;int&gt;?)</li>

@@ -5,7 +5,7 @@
 <title>Arithmetic Types</title>
 </head><body><ul><li><b>Integer Types</b></li>
 <li style="list-style-type: none"><ul><li>natural and unsigned int need '<tt>−</tt>' to behave differently (e.g. in 6<tt>−</tt>8) so I might need both types.</li>
-<li>Ability to parameterize typed with the intended behaviour in case of overflow. e.g.</li>
+<li>Ability to parameterize types with the intended behaviour in case of overflow. e.g.</li>
 <li style="list-style-type: none"><ul><li>saturate</li>
 <li>throw</li>
 <li>wrap</li>
@@ -16,12 +16,14 @@
 <li>Like those in &lt;stdint.h&gt;</li>
 <li>Perhaps supply an integer type that can be used by default (e.g. int or ℤ) and allow changing its meaning (by redeclaring it?) to change the default.</li>
 <li style="list-style-type: none">e.g. the initial int type can throw in case of overflow, but some applications might want to use big integers by default.</li>
+<li>Include min and max members (or a limits member) in objects representing integer types.</li>
 </ul>
 </li>
 <li><b>Floating Point Types</b></li>
 <li style="list-style-type: none"><ul><li>Support functionality similar to &lt;fpenv.h&gt;</li>
 <li>Comparison of two floating-point numbers (or two points for that matter), when based on whether their distance is lower than a threshold is not transitive!</li>
 <li style="list-style-type: none">A suggestion is to split the space into equivalence classes (e.g. with trunc or round)</li>
+<li>Include members like min, max, min_positive, etc. in objects representing floating point types.</li>
 </ul>
 </li>
 </ul>
