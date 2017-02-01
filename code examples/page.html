@@ -4,16 +4,184 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Code Examples</title>
 </head><body><tt>+∀ (element, index) ∈ zip(array, array.indices)<br/>
-&nbsp; &nbsp; element = index;<br/>
+&nbsp; &nbsp; element &lt;~ index;<br/>
 −∀<br/>
 <br/>
 +∀ line ∈ ifstream("input.txt").lines) # lines is a range<br/>
-&nbsp; &nbsp; element = index;<br/>
+&nbsp; &nbsp; element &lt;~ index;<br/>
 −∀<br/>
 <br/>
 # Wrapping functions will be easier in Arcadia:<br/>
 +fun transmogrify ∈ (int, string) → vector<br/>
 &nbsp; &nbsp; ....<br/>
-−fun<br/>
+−fun transmogrify<br/>
 <br/>
-auto aNewName = transmogrify;</tt></body></html>
+auto aNewName &lt;~ transmogrify;<br/>
+<br/>
+0..lenght-1<br/>
+a..b-a<br/>
+a..(b-a)<br/>
+<br/>
+# Adding arrays<br/>
++fun add ∈ <ul><li style="list-style-type: none">(ref a ∈ const int[n], ref b ∈ const int[n]) ⟶ external ref int[n]</li>
+</ul>
+=code<ul><li style="list-style-type: none">∀(i ∈ retval.indices)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i] &lt;~ a[i] + b[i];</li>
+</ul>
+</li>
+</ul>
+−fun add<br/>
+<br/>
+# Adding a scalar to an array<br/>
++fun mult ∈ <ul><li style="list-style-type: none">(c ∈ int, ref v ∈ const int[n]) ⟶ external ref int[n]</li>
+</ul>
+=code<ul><li style="list-style-type: none">∀(i ∈ retval.indices)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i] &lt;~ c * v[i];</li>
+</ul>
+</li>
+</ul>
+−fun mult<br/>
+<br/>
+# Multiplying matrices<br/>
++fun mult ∈ <ul><li style="list-style-type: none">(ref a ∈ int[n,l], ref b ∈ int[l,m]) ⟶ extref int[n,m]</li>
+</ul>
+=code<ul><li style="list-style-type: none">+∀i ∈ retval.indices[0]:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+∀j ∈ retval.indices[1]:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i,j] &lt;~ 0;</li>
+<li style="list-style-type: none">∀k ∈ 0..l-1:</li>
+<li style="list-style-type: none">&nbsp; &nbsp; retval[i,j] +&lt;~ a[i,k] * b[k,j];</li>
+</ul>
+</li>
+<li style="list-style-type: none">−∀</li>
+</ul>
+</li>
+<li style="list-style-type: none">−∀</li>
+</ul>
+−fun mult<br/>
+<br/>
+# Appending a string to another<br/>
++fun append ∈ <ul><li style="list-style-type: none">(ref a ∈ const int[an], ref b ∈ const int[bn]) ⟶ extref int[an+bn]</li>
+</ul>
+=code<ul><li style="list-style-type: none">val i &lt;~ 0;</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+if &amp;a ≠ &amp;retval:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">∀element ∈ a:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i++] &lt;~ element;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">i = a.length;</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">∀element ∈ b:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i++] = element;</li>
+</ul>
+</li>
+</ul>
+−fun append<br/>
+<br/>
+a.subarray(begin,end)<br/>
+<br/>
+# Getting a subarray of an existing array (just to showcase the type system).<br/>
++fun subarray ∈ <ul><li style="list-style-type: none">(ref a ∈ const int[n], first ∈ uint, afterLast ∈ uint) ⟶ extref int[afterLast − first]</li>
+</ul>
+=code<ul><li style="list-style-type: none">return a.subarray(fist,afterLast);</li>
+</ul>
+−fun subarray<br/>
+<br/>
+@ Find a key within an array<br/>
++fun find ∈ <ul><li style="list-style-type: none">(ref a ∈ const int[], key ∈ int) ⟶ uint</li>
+</ul>
+=code<ul><li style="list-style-type: none">+∀i ∈ a.indices:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">if a[i] = key:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">return i;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">−∀</li>
+<li style="list-style-type: none">return a.length;</li>
+</ul>
+−fun find<br/>
+<br/>
+@ Find a key within a range<br/>
++fun find ∈ <ul><li style="list-style-type: none">(iBegin ∈ IIter, iEnd ∈ IIter, key ∈ int) ⟶ IIter</li>
+</ul>
+=code<ul><li style="list-style-type: none">+while iBegin ≠ iEnd:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">if *iBegin = key:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">break;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">−while</li>
+<li style="list-style-type: none">return iBegin;</li>
+</ul>
+−fun find<br/>
+<br/>
+@ Merge two arrays.<br/>
++fun merge ∈ <ul><li style="list-style-type: none">(a ∈ const int[na], b ∈ const int[nb]) ⟶ extref int[na+nb]</li>
+</ul>
+=code<ul><li style="list-style-type: none">val ia &lt;~ 0;</li>
+<li style="list-style-type: none">val ib &lt;~ 0;</li>
+<li style="list-style-type: none">val ic &lt;~ 0;</li>
+</ul>
+<ul><li style="list-style-type: none">+while ia &lt; a.length ∧ ib &lt; b.length:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+if a[ia] &lt; b[ib]:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[ic++] = a[ia++];</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[ic++] = b[ib++];</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+</ul>
+</li>
+<li style="list-style-type: none">−while</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">while ia &lt; a.length:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[ic++] = a[ia++];</li>
+</ul>
+</li>
+<li style="list-style-type: none">while ib &lt; b.length:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[ic++] = b[ib++];</li>
+</ul>
+</li>
+</ul>
+−fun merge<br/>
+<br/>
+@ Sort an array using mergesort.<br/>
++fun mergesort ∈ <ul><li style="list-style-type: none">(a ∈ const int[n]) ⟶ extref int[n]</li>
+</ul>
+=code<ul><li style="list-style-type: none">+if n ≤ 1:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">return a;</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">val m = n/2+1;</li>
+<li style="list-style-type: none">return merge(mergesort(a[0..m], mergesort(a[m..$]));</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+</ul>
+−fun mergesort<br/>
+<br/>
+@ Alternative mergesort implementation.<br/>
++fun mergesort ∈ <ul><li style="list-style-type: none">(ref v ∈ int[n]) ⊣</li>
+</ul>
+=code<ul><li style="list-style-type: none">val m = n/2 + 1 ∈ int;</li>
+<li style="list-style-type: none">mergesort(v.subarray(0,m));</li>
+<li style="list-style-type: none">mergesort(v.subarray(m,n));</li>
+<li style="list-style-type: none">val temp = merge(v.subarray(0,m), v.subarray(m,n)) ∈ int[];</li>
+<li style="list-style-type: none">v = temp;</li>
+</ul>
+−fun mergesort<br/>
+<br/>
+@ v.subarray make a copy or returns a reference?<br/>
+<br/>
+</tt></body></html>

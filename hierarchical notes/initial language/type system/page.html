@@ -10,6 +10,30 @@
 <li>As the expression tree used to create it.</li>
 </ul>
 </li>
+<li>Types may be parameterized by expressions that need to be checked statically, evaluated at run-time and affect the type's size.</li>
+<li style="list-style-type: none"><ul><li>An example is array types.</li>
+<li style="list-style-type: none"><ul><li><b>Use cases</b></li>
+<li style="list-style-type: none"><ul><li>string operations (e.g. concatenation)</li>
+<li>vector operations (e.g. addition)</li>
+<li>spline operations (e.g. raise or lower degree, evaluate, etc.)</li>
+<li>OS APIs (e.g. functions that need you to call them once to get the size of an array, allocate the array and call them again with the array)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Matching array types may require solving systems of linear equations.</li>
+<li style="list-style-type: none">e.g. If <tt>f ∈ T ⟶ (int[n], uint[n+10])</tt>&nbsp;and <tt>g ∈ (int[m−10], uint[m])</tt>, then g(f(x)) might need to solve the system</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">l1 = n</li>
+<li style="list-style-type: none">l2 = n+10</li>
+<li style="list-style-type: none">l3 = m-10</li>
+<li style="list-style-type: none">l4 = m</li>
+<li style="list-style-type: none">n = m-10</li>
+<li style="list-style-type: none">n+10 = m</li>
+</ul>
+</li>
+<li style="list-style-type: none">assuming l1, l2 and n are known and l3, l4 and m are unknowns. It should conclude that the system has exactly one solution (expressed as a function of one of the knowns), namely l4=m=n+10 and l3 = n.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>What are the operations required from a type?</li>
 <li style="list-style-type: none"><ul><li>Size, alignment, default value, etc.? (for allocation)</li>

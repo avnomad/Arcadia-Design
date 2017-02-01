@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Grammar</title>
+</head><body><ul><li>Use black font for Simplified, <span style="color: #007f7f">dark cyan font</span>&nbsp;for Extended and <span style="color: #7f0000">dark red font </span>for Comments.</li>
+<li>Source character set: ascii, <span style="color: #007f7f">unicode</span></li>
+<li><i>tokens</i>:</li>
+<li style="list-style-type: none"><ul><i><li style="list-style-type: none">keywords</li>
+<li style="list-style-type: none">identifiers</li>
+</i><li style="list-style-type: none"><i>integral-literals</i><span style="color: #7f0000">&nbsp;(codify like in notes in extended version)</span></li>
+<i><li style="list-style-type: none">floating-point-literals</li>
+<li style="list-style-type: none">character-literals</li>
+<li style="list-style-type: none">string-literals</li>
+<li style="list-style-type: none"><span style="color: #007f7f">regular-expression-literals</span></li>
+<li style="list-style-type: none">comments</li>
+</i><li style="list-style-type: none"><i>operators</i></li>
+</ul>
+</li>
+<li><i>keywords</i>: one of</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">bool single double <span style="color: #007f7f">half quad</span></li>
+<li style="list-style-type: none">byte short int long native</li>
+<li style="list-style-type: none">ubyte ushort uint ulong unative</li>
+<li style="list-style-type: none">in const <span style="color: #007f7f">temp pure volatile</span></li>
+<li style="list-style-type: none">byval byref byres byvalres byname bymacro byneed</li>
+<li style="list-style-type: none">external internal retval <span style="color: #007f7f">export import</span></li>
+<li style="list-style-type: none">return continue break fallthrough</li>
+</tt><li style="list-style-type: none"><tt>if +if −if =elif =else<span style="color: #7f0000">&nbsp;</span></tt><span style="color: #7f0000">(I don't want to allow whitespace between +/−/= and if, foreach, etc.)</span></li>
+<tt><li style="list-style-type: none">foreach +foreach −foreach</li>
+<li style="list-style-type: none">while +while −while</li>
+</tt><li style="list-style-type: none"><tt>+switch −switch =case =default<span style="color: #7f0000">&nbsp;</span></tt><span style="color: #7f0000">(should I use 'case' instead of 'switch'?)</span></li>
+<tt><li style="list-style-type: none">+block −block</li>
+<li style="list-style-type: none">goto begin end</li>
+<li style="list-style-type: none">type alias<span style="color: #007f7f">&nbsp;unit</span></li>
+<li style="list-style-type: none">entry global</li>
+<li style="list-style-type: none">+do-while −do-while</li>
+<li style="list-style-type: none">forever +forever −forever</li>
+<li style="list-style-type: none">+fun −fun</li>
+</tt></ul>
+</li>
+<li><i>intergral-literals</i>:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">b ub</li>
+<li style="list-style-type: none">s us</li>
+<li style="list-style-type: none">i ui</li>
+</tt><li style="list-style-type: none"><tt>l ul</tt></li>
+<li style="list-style-type: none"><span style="color: #7f0000">(at the end of integer constants)</span></li>
+</ul>
+</li>
+<li><i>floating-point-literals</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>s d q</tt></li>
+<li style="list-style-type: none"><span style="color: #7f0000">(at the end of floating point constants)</span></li>
+</ul>
+</li>
+</ul>
+</body></html>
