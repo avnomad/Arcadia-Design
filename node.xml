@@ -14,16 +14,16 @@
     </dict>
   </array>
   <key>expanded</key><true/>
-  <key>nodeid</key><string>2b6059b1-e005-4072-bc4b-0ed1d95fc4e0</string>
-  <key>modified_time</key><integer>1483959003</integer>
+  <key>nodeid</key><string>28c3bac1-da00-4b70-8519-6422421e00e9</string>
+  <key>modified_time</key><integer>1485344627</integer>
   <key>content_type</key><string>application/x-notebook-dir</string>
-  <key>created_time</key><integer>1483959003</integer>
+  <key>created_time</key><integer>1485344627</integer>
   <key>info_sort_dir</key><integer>1</integer>
   <key>title</key><string>Arcadia</string>
   <key>column_widths</key><dict>
     <key>created_time</key><integer>150</integer>
-    <key>modified_time</key><integer>994</integer>
-    <key>title</key><integer>247</integer>
+    <key>modified_time</key><integer>1411</integer>
+    <key>title</key><integer>150</integer>
   </dict>
   <key>attr_defs</key><array>
     <dict>

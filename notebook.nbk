@@ -63,31 +63,31 @@
         </array>
         <key>windows</key><dict>
             <key>ids</key><dict>
-                <key>53ab0f40-9063-417d-9f45-b0a06dbf117d</key><dict>
-                    <key>viewerid</key><string>c0f41944-7f24-4319-9d01-7394ceffbf8c</string>
+                <key>5ec43183-9905-4ca7-9340-f449600485b9</key><dict>
+                    <key>viewerid</key><string>850336cd-cd0a-463b-a7eb-6a5ce0241082</string>
                     <key>viewer_type</key><string>tabbed_viewer</string>
                 </dict>
             </dict>
         </dict>
         <key>viewers</key><dict>
             <key>ids</key><dict>
-                <key>da3a9c84-e1f8-4d94-873e-4bd08d799ab2</key><dict>
+                <key>c187bba4-e573-4d71-9abd-2237379f5358</key><dict>
                     <key>selected_treeview_nodes</key><array>
-                        <string>a81a578b-a165-43ae-a8d2-6b822154dda4</string>
+                        <string>09f1cb60-f9f4-4ad6-b259-924d56d1e247</string>
                     </array>
                     <key>selected_listview_nodes</key><array>
-                        <string>a81a578b-a165-43ae-a8d2-6b822154dda4</string>
+                        <string>09f1cb60-f9f4-4ad6-b259-924d56d1e247</string>
                     </array>
                 </dict>
-                <key>c0f41944-7f24-4319-9d01-7394ceffbf8c</key><dict>
+                <key>850336cd-cd0a-463b-a7eb-6a5ce0241082</key><dict>
                     <key>tabs</key><array>
                         <dict>
-                            <key>viewerid</key><string>da3a9c84-e1f8-4d94-873e-4bd08d799ab2</string>
+                            <key>viewerid</key><string>c187bba4-e573-4d71-9abd-2237379f5358</string>
                             <key>viewer_type</key><string>three_pane_viewer</string>
                             <key>name</key><string></string>
                         </dict>
                     </array>
-                    <key>current_viewer</key><string>da3a9c84-e1f8-4d94-873e-4bd08d799ab2</string>
+                    <key>current_viewer</key><string>c187bba4-e573-4d71-9abd-2237379f5358</string>
                 </dict>
             </dict>
         </dict>
