@@ -5,6 +5,9 @@
 <title>Functions</title>
 </head><body><ul><li><b>Function call</b></li>
 <li style="list-style-type: none"><ul><li>When you bind one or more function parameters to specific arguments, there will be an option to either create an object that stores those arguments until the rest of the arguments become known, or create a specialization of the function for these specific argument values. <i>Partial application</i>&nbsp;vs <i>partial evaluation</i>?</li>
+<li>Support for currying and bind in some way.</li>
+<li>Different function calls (with corresponding syntaxes?) to evaluate a function at compile and run-time.</li>
+<li>Different function calls (with corresponding syntaxes?) to evaluate a function in a new (or existing?) thread and/or process.</li>
 <li><b>Parameter pass modes (evaluation strategies?)</b></li>
 <li style="list-style-type: none"><ul><li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Perhaps I can supply only the most generic parameter pass mode as build-in (tree?) and allow the rest to be created with constructors and convrtions... e.g. every expression will be automatically converted into a tree and then converted into something else as needed.</li>
@@ -102,6 +105,17 @@
 </tt><li style="list-style-type: none"><tt>combine([1,2,3,4],[0.1,0.2,0.3,0.4],2*$left + $right);</tt></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><b>Anonymous Functions</b>&nbsp;(lambda)</li>
+<li style="list-style-type: none"><ul><li>Will support nesting. (unlike placeholder arguments?)</li>
+<li>⟶ and λ functions. x ⟶ f() where x ∈ Identity(A⟶A)</li>
+<li>polymorphic and variadic.</li>
+<li>conversion to function pointer suitable for use as a callback.</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Support a meta-object protocol?</li>
 </ul>
 </li>
 </ul>

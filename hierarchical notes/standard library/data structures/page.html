@@ -6,12 +6,38 @@
 </head><body><ul><li>Should have an <i>nElements</i>&nbsp;member that returns the number of elements in the structure. This might need to return infinite for some structures!</li>
 <li>The same checks that are present in checked STL in debug mode should also be available here.</li>
 <li>Those checks should be split into categories that can be enabled/disabled independently in a way that is available to client code.</li>
+<li>Support 'views' or containers as other containers. (ReferenceList class?)</li>
+<li><b>Bounded Data Structures</b></li>
+<li style="list-style-type: none"><ul><li>bounded vector ⟹ bounded stack</li>
+<li>bounded deque ⟹ bounded queue</li>
+</ul>
+</li>
+<li><b>Arrays</b></li>
+<li style="list-style-type: none"><ul><li>Array implementation that supports initialization and all-elements assignment in O(1).</li>
+<li>ListArray implementation (probably interface too. This refers to the data structure I used in Sieve of Eratosthenes).</li>
+</ul>
+</li>
 <li><b>Lists</b></li>
 <li style="list-style-type: none"><ul><li>Support pattern-matching in definitions and assignments. e.g. [a,b] = [1,2].</li>
 </ul>
 </li>
 <li><b>Heaps</b></li>
 <li style="list-style-type: none"><ul><li>A heap must support key reduction and returning iterators to the heap elements, that don't get invalidated when elements are added/removed from the heap, for use with key reduction. (this is useful for implementing shortest paths, A*, etc. see CLRS for details)</li>
+</ul>
+</li>
+<li><b>Hash Tables</b></li>
+<li style="list-style-type: none"><ul><li>hash table ≈ hash function + direct-address table + association lists</li>
+<li>optimized implementations?</li>
+<li>support for iteration?</li>
+</ul>
+</li>
+<li><b>Trees</b></li>
+<li><b>Graphs</b></li>
+<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Perhaps I can use my ListArrays (from sieving) for storing the adjacency lists of a graph implementation. That way I won't need a new/delete per edge.</li>
+<li style="list-style-type: none">I could move to a larger/smaller array using a <i>load factor</i>. Maybe I could have empty columns between the used ones without problem.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

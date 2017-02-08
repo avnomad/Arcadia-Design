@@ -4,12 +4,13 @@
 <dict>
   <key>title</key><string>Matrices</string>
   <key>nodeid</key><string>02f794fb-86c5-4d7d-95de-22f037aca464</string>
-  <key>modified_time</key><integer>1484732747</integer>
+  <key>modified_time</key><integer>1486119197</integer>
+  <key>expanded2</key><true/>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
   <key>created_time</key><integer>1484732747</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>2</integer>
+  <key>order</key><integer>3</integer>
   <key>info_sort</key><string>order</string>
 </dict>
 </node>

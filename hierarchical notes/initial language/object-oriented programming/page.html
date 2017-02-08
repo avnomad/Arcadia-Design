@@ -9,6 +9,14 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at difference between chaining and cascading. (also see fluent interface and builder pattern)</li>
+<li>Look at Common List Object System (CLOS).</li>
+</ul>
+</li>
+<li><b>Class Definition</b></li>
+<li style="list-style-type: none"><ul><li>Do I want to have both value and reference types (like C#)?</li>
+<li style="list-style-type: none"><ul><li>If yes, I can also provide <i>nullable types</i>&nbsp;denoted by <tt>T?</tt>&nbsp;or <tt>Nullable&lt;T&gt;</tt>&nbsp;for a value class T.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Self-reference</b></li>
@@ -19,11 +27,16 @@
 <li><b>Construction</b></li>
 <li style="list-style-type: none"><ul><li>Am I interested in defining more implicitly-defined constructors like D?</li>
 <li>I'll probably use the good old-fashioned copy constructor and assignment operator combination instead of D's postblit constructor this(this).</li>
+<li>I can have static, dynamic and automatic constructors that will be called for for variables of the respective storage duration.</li>
 </ul>
 </li>
 <li><b>Encapsulation</b></li>
 <li style="list-style-type: none"><ul><li><b>Access Specifiers</b></li>
 <li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+<li><b>Friends</b></li>
+<li style="list-style-type: none"><ul><li>Since I don't make a distinction between methods and global functions (the syntax is given as an attribute), I probably don't need <i>friends</i>. All functions declared in the class, and only those, will have access to the private members.</li>
 </ul>
 </li>
 <li>The choice of visibility for the private members will effect compilation times and overload resolution.</li>
@@ -47,12 +60,17 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will <i>covariant return types</i>&nbsp;and <i>dynamic dispatch</i>&nbsp;be handled?</li>
+<li>Do I need multiple dispatch?</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><b>Nesting</b></li>
 <li style="list-style-type: none"><ul><li>Support static and non-static nested classes. Allow nesting in both other classes and functions.</li>
+</ul>
+</li>
+<li><b>Properties</b></li>
+<li style="list-style-type: none"><ul><li></li>
 </ul>
 </li>
 </ul>

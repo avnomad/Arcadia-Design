@@ -10,6 +10,25 @@
 <li>As the expression tree used to create it.</li>
 </ul>
 </li>
+<li>Allow using a type as a set of values and vice versa! e.g.</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">array ⟷ enumeration</li>
+<li style="list-style-type: none">range ⟷ subrange type</li>
+<li style="list-style-type: none">etc.</li>
+</ul>
+</li>
+<li>Support for subrange types does not necessarily mean that the following cases will be supported out-of-the-box:</li>
+<li style="list-style-type: none"><ul><li><tt>val a ∈ −∞..−1 ∪ 1..∞ = 15;</tt></li>
+<tt><li style="list-style-type: none">val b ∈ {x ∈ ℤ : x ≠ 0};</li>
+<li style="list-style-type: none">b = a;</li>
+</tt><li><tt>val a ∈ ℤ;</tt></li>
+<tt><li style="list-style-type: none">val b ∈ {x ∈ ℤ : x ≠ 0};</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">if a ≠ 0:</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>b = a;</tt></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Types may be parameterized by expressions that need to be checked statically, evaluated at run-time and affect the type's size.</li>
 <li style="list-style-type: none"><ul><li>An example is array types.</li>
 <li style="list-style-type: none"><ul><li><b>Use cases</b></li>
@@ -34,6 +53,23 @@
 <li style="list-style-type: none">assuming l1, l2 and n are known and l3, l4 and m are unknowns. It should conclude that the system has exactly one solution (expressed as a function of one of the knowns), namely l4=m=n+10 and l3 = n.</li>
 </ul>
 </li>
+<li>It might be necessary to include prefix, postfix, infix, function, method, etc. as part of the (function) type.</li>
+<li>Should be able to check various attributes like:</li>
+<li style="list-style-type: none"><ul><li>thrown exceptions</li>
+<li>pureness</li>
+<li>other?</li>
+</ul>
+</li>
+<li><b>Type Inference</b></li>
+<li style="list-style-type: none"><ul><li>Haskell is probably capable of inferring type classes. Can I use something like that?</li>
+<li>Ability to infer various attributes like:</li>
+<li style="list-style-type: none"><ul><li>thrown exceptions</li>
+<li>pureness</li>
+<li>other?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>What are the operations required from a type?</li>
 <li style="list-style-type: none"><ul><li>Size, alignment, default value, etc.? (for allocation)</li>
@@ -51,6 +87,7 @@
 </ul>
 </li>
 <li>There must be a theory (lambda calculus?) that describes values, types, polymorphism, type constructors (of higher-order too), types that depend on values and all the above together!</li>
+<li>Learn more about <i>liquid types</i>.</li>
 </ul>
 </li>
 </ul>

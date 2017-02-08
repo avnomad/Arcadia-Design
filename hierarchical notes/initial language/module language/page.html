@@ -3,8 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Module Language</title>
-</head><body><ul><li><b>Imports</b></li>
-<li style="list-style-type: none"><ul><li>The difference between a using <i>declaration</i>&nbsp;and a using <i>directive</i>, isn't only that the former introduces a single name, while the latter all names, but that the former introduces only currently known names, while the latter introduces future names as well.</li>
+</head><body><ul><li><b>Namespaces</b></li>
+<li style="list-style-type: none"><ul><li>Use the containing source file's path (URI?) to identify the namespace.</li>
+<li>namespace &lt;alias&gt; &lt;URI&gt; declaration.</li>
+<li>using &lt;alias&gt; | &lt;URI&gt; : &lt;identifier&gt;</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Should I merge the concepts of namespaces and includes like Java does?</li>
+<li>Should I allow using <i>includes</i>&nbsp;to break large files into smaller ones?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Imports</b></li>
+<li style="list-style-type: none"><ul><li>import/using &lt;alias&gt; | &lt;URI&gt;</li>
+<li><tt>+import, −</tt>import</li>
+<li><tt>export import</tt>&nbsp;(for transitive imports)</li>
+<li>The difference between a using <i>declaration</i>&nbsp;and a using <i>directive</i>, isn't only that the former introduces a single name, while the latter all names, but that the former introduces only currently known names, while the latter introduces future names as well.</li>
 <li>I'll probably not need something like <b>static import</b>&nbsp;(include) because my "includes" are done implicitly.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>I can use dissambiguators with patterns in both imports and exports.</li>
@@ -12,6 +26,7 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do I need <i>renaming imports</i>&nbsp;(from D), or will simple imports plus aliases suffice?</li>
+<li>Will I need something like C++'s extern "C" to import unmangled names?</li>
 </ul>
 </li>
 </ul>
@@ -24,6 +39,7 @@
 <li style="list-style-type: none"><ul><li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Define a standard ABI for communication across module boundaries. e.g. for propagating exceptions.</li>
 <li style="list-style-type: none">Or maybe an automatic translation from exceptions to error codes and back.</li>
+<li>Define a standard name mangling so that modules compiled by different compilers can communicate.</li>
 <li>How will my rules for <i>cross-module overloading</i>&nbsp;look like?</li>
 </ul>
 </li>

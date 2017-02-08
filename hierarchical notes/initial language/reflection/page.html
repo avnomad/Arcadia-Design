@@ -3,14 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Reflection</title>
-</head><body><ul><li>Allow asking for a variable's or field's:</li>
+</head><body><ul><li>Support static and dynamic reflection.</li>
+<li>Allow asking for a variable's or field's:</li>
 <li style="list-style-type: none"><ul><li>Size</li>
-<li>Type</li>
+<li>Type (and from that the min/max value)</li>
+<li>Name</li>
 <li>Alignment</li>
 <li>Endianess</li>
 <li>Offset</li>
 </ul>
 </li>
+<li>Allow asking for a function's code. (source? intermediate? machine? code. source as string or AST?)</li>
 <li>Compile-time environment</li>
 <li style="list-style-type: none"><ul><li>Allow getting the set of (currently?) known types as an iterable.</li>
 <li style="list-style-type: none">May also make sense for run-time after a class is dynamically loaded.</li>
@@ -24,6 +27,7 @@
 </li>
 <li>Run-time environment</li>
 <li style="list-style-type: none"><ul><li>Allow getting the set of local variables as an iterable.</li>
+<li>Allow getting the set of function arguments as an iterable.</li>
 </ul>
 </li>
 </ul>

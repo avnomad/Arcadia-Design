@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Toolchain</title>
 </head><body><ul><li><b>Compiler</b></li>
-<li style="list-style-type: none"><ul><li><b>Command-line options</b></li>
+<li style="list-style-type: none"><ul><li>Allow calling the compiler implicitly by using the #! notation in the first source line.</li>
+<li><b>Command-line options</b></li>
 <li style="list-style-type: none"><ul><li>To add instrumentation that enables logging of entry/exit input/output of any method</li>
 <li>To change the maximum number of loop iterations / function recursive calls for code executed at compile-time.</li>
 <li>To enable/disable the following checks, independent of debug/release mode. These are mandatory for compile-time evaluation, can only be disabled for run-time evaluation and are enabled by default in debug mode):</li>
@@ -49,6 +50,17 @@
 <li><b>Documentation Tool</b></li>
 <li><b>Benchmarking Tool</b></li>
 <li style="list-style-type: none"><ul><li>Support grouping benchmarked functions by implemented interface and ploting results in the same graph.</li>
+</ul>
+</li>
+<li><b>Editor</b>&nbsp;(not included)</li>
+<li style="list-style-type: none"><ul><li>substitutions (e.g. foreach becomes ∀).</li>
+<li style="list-style-type: none"><ul><li>The editor could analyze code as you type to e.g. substitute <tt>−</tt>&nbsp;for - in "a-b", but not in "letter-like". This might need semantic analysis, besides parsing and scanning.</li>
+</ul>
+</li>
+<li>typeset contexts.</li>
+<li style="list-style-type: none"><ul><li>The editor could have rules to present certain lexical and syntactic structures, like mathematical formulas, in a typeset way instead of using a fixed width font everywhere.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -3,7 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Expressions</title>
-</head><body><ul><li><b>Identifiers</b></li>
+</head><body><ul><li>Types should be 1st class citizens: they should be usable as function arguments and return values.</li>
+<li>Expressions evaluating to types and values should be mixable.</li>
+<li style="list-style-type: none">e.g. <tt>var x </tt>∈ *int<tt>⁵;</tt>&nbsp;where "*int<tt>⁵</tt>" is a type expression.</li>
+<li><b>Identifiers</b></li>
 <li style="list-style-type: none"><ul><li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Use backquote '`' for identifiers that contain "strange" characters? e.g. `hello\0world`.</li>
 </ul>
@@ -11,17 +14,35 @@
 </ul>
 </li>
 <li><b>Literals</b></li>
-<li style="list-style-type: none"><ul><li>Allow reference to Unicode characters using their Unicode name in addition to their Unicode code point.</li>
-<li>Compound literals will be replaced by a more general and uniform mechanism.</li>
+<li style="list-style-type: none"><ul><li>Compound literals will be replaced by a more general and uniform mechanism.</li>
 <li>If I want to present literals as data (quadruples) too, I can use the lexime as their name. e.g. 123 → ("123", int, 123, temp address). I might need to add source line and column to avoid name classes...</li>
 <li>I'll probably use postfix operators instead of user-defined literals.</li>
 <li>If I do support user-defined literals I'll probably need <i>disambiguators</i>&nbsp;for literals in addition to operators.</li>
 <li>∅ for empty set.</li>
+<li><b>Integer</b></li>
+<li style="list-style-type: none"><ul><li>Support literals of base 2, 8, 10, 16. (Others?)</li>
+<li>Support group seperator.</li>
+</ul>
+</li>
+<li><b>Floating-point</b></li>
+<li style="list-style-type: none"><ul><li>Support hexadecimal floating-point literals.</li>
+<li>Support group seperator.</li>
+</ul>
+</li>
 <li><b>Character</b></li>
 <li style="list-style-type: none"><ul><li>Support multicharacter literals such as 'forall', 'amp', 'GREEK CAPITAL LETTER A'.</li>
+<li>Allow reference to Unicode characters using their Unicode name in addition to their Unicode code point.</li>
 </ul>
 </li>
 <li><b>String</b></li>
+<li><b>Regular Expression</b></li>
+<li style="list-style-type: none"><ul><li>Regular Expression literals could evaluate to something that implementes the Set&lt;String&gt; interface.</li>
+<li>Could be of the form /.../ used in Awk and Perl, but this is not necessary.</li>
+</ul>
+</li>
+<li><b>Array</b></li>
+<li><b>Tuple</b></li>
+<li><b>Record</b></li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Literals could have an abstract type.</li>
 </ul>
@@ -40,12 +61,15 @@
 <li>∧ (and), ∨ (or), ¬ (not)</li>
 <li>∈ (in), ∉ (not in), ⊆ (subset), ⊈ (not subset), = (equals), ≠ (not equals)</li>
 <li>Also ⊂ and ⊄?</li>
+<li>In typeset contexts ∑ and ∏ should be available and they might have higher precendence thatn + and * respectively.</li>
 </ul>
 </li>
 <li><b>Assignment</b></li>
 <li style="list-style-type: none"><ul><li>Use the ↜ and &lt;~ operators.</li>
 <li>Will support modification-assignments</li>
 <li>Will support expressions like <tt>(temp -= 32) *= 5/9</tt>.</li>
+<li>Support simultaneous assignment.</li>
+<li>Should be ellidable.</li>
 </ul>
 </li>
 <li><b>Array Subscript</b></li>
@@ -56,14 +80,22 @@
 <li style="list-style-type: none"><ul><li>Expand the mathematical syntax for creating sets as subsets of other sets to lists and maps. Python calls this 'comprehension'.</li>
 </ul>
 </li>
+<li><b>~</b>&nbsp;for regular expression matching?</li>
 <li><b>nothrow</b>&nbsp;(or likewise named) operator takes an expression and returns false iff the expression could never throw an exception.</li>
 <li><b>precedenceof</b>&nbsp;for defining an operator with the same precedence as another one.</li>
+<li><b>is</b>&nbsp;or <b>instanceof</b>&nbsp;operator to check the dynamic type of an expression against a static type or interface.</li>
+<li style="list-style-type: none"><ul><li>Always returns false for null expressions.</li>
+<li>Causes a compile-time warning if the expression is known to always be <tt>true</tt>&nbsp;or to always be <tt>false</tt>, but typically evaluates type compatibility at run time.</li>
+</ul>
+</li>
+<li><b>as</b>&nbsp;operator </li>
 <li><b>ring operator </b>(∘) for function composition and appending sequences.</li>
 <li><b>range operator</b>&nbsp;(..) for specifying ranges a..b returns a range containing the numbers from a to but not including b. 3..5 := [3,4]</li>
 <li><b>sequence operator</b>&nbsp;(, ,..., ) for specifying sequences and progressions. Automatically recognises arithmetic and geometric progressions. e.g.</li>
 <li style="list-style-type: none">1,2,...,10 := [1,2,3,4,5,6,7,8,9,10] (two initial terms means arithmetic progression)</li>
 <li style="list-style-type: none">1,2,4,...,64 := [1,2,4,8,16,32,64] (three initial terms means geometric progression)</li>
 <li style="list-style-type: none">1, 3, 2*$x+1,..., 9 := [1,3,5,7,9] (a function after initial terms is used for computing all terms. No equation is solved. Checks are done to ensure the function maps 0 to the first term, 1 to the second term and so on)</li>
+<li><b>mixin</b>&nbsp;(from D) or similar operator (Python and Javascript have <i>eval</i>) to take a string an compile it as if it was code. </li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Allow indexing of arrays, maps, vectors, matrices and random access ranges (everything that supports the index-of operator) using ranges of indices! (this superceeds the {i₁, i₂,...,iₙ} notation)</li>
 <li>The .x, .y, .xy, .zxy, etc. OpenCL notation can still apply for a finite number of indices.</li>
@@ -78,16 +110,23 @@
 </li>
 </ul>
 </li>
-<li><b>Implicit conversions</b></li>
+<li><b>Implicit Conversions</b></li>
 <li style="list-style-type: none"><ul><li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>What would happen if I allowed implicit conversions of the form T→S iff T and S implemented a common interface? Is it implementable? Useful? Acceptable?</li>
 </ul>
 </li>
 </ul>
 </li>
+<li><b>Explicit Conversions</b></li>
+<li style="list-style-type: none"><ul><li><i>Conversion casts</i>&nbsp;should be distinguished from <i>reinterpretation casts</i>. (no relationship with reinterpret_cast)</li>
+<li><i>Dynamic casts</i>&nbsp;should throw an exception to signal failure instead of returning 0. (like C++/CLI's safe_cast)</li>
+<li>Can also provide a complementary <b>as</b>&nbsp;operator that returns <tt>null</tt>&nbsp;to signal failure. (like C# does)</li>
+</ul>
+</li>
 <li><b>Disambiguation</b></li>
 <li style="list-style-type: none"><ul><li>Refering to different namespaces, modules, etc.</li>
 <li>Choosing between functions of the same name and namespace.</li>
+<li>Unified way to refer to any entity (whether named or not) in any file. (URL? "::", ".", ":"?)</li>
 </ul>
 </li>
 </ul>
