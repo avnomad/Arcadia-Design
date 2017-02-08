@@ -18,10 +18,10 @@
 <li>Should the range type produced by an array (T[15] or T[n]) be a vector or similar type at the same time? (T[*])</li>
 <li>Support taking slices of an arrays that will evaluate to ranges.</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>What about multidimentional arrays? How will they interact with ranges and slices?</li>
-<li style="list-style-type: none">For all arrays (whether multidimentional or not) <tt>a[2..9][3..5]</tt>&nbsp;should probably mean the same as <tt>b &lt;~ a[2..9], b[3..5]</tt>, that is "make the initial slice even smaller"</li>
+<li style="list-style-type: none"><ul><li>What about multidimensional arrays? How will they interact with ranges and slices?</li>
+<li style="list-style-type: none">For all arrays (whether multidimensional or not) <tt>a[2..9][3..5]</tt>&nbsp;should probably mean the same as <tt>b &lt;~ a[2..9], b[3..5]</tt>, that is "make the initial slice even smaller"</li>
 <li style="list-style-type: none">In other words, a[2..9] is still an array, so you can take a slice of it. We don't treat sequences of slice expressions any differently.</li>
-<li style="list-style-type: none">I can follow C++/CLI's approach and make <tt>a[11][8]</tt>&nbsp;different from <tt>a[11, 8]</tt>&nbsp;in definitions. Moreover multidimentional arrays of the second kind could support multidimentional slices like <tt>a[2..9, 3..5]</tt>.</li>
+<li style="list-style-type: none">I can follow C++/CLI's approach and make <tt>a[11][8]</tt>&nbsp;different from <tt>a[11, 8]</tt>&nbsp;in definitions. Moreover multidimensional arrays of the second kind could support multidimensional slices like <tt>a[2..9, 3..5]</tt>.</li>
 <li>Should I allow assignment to the array's length member?</li>
 </ul>
 </li>
@@ -67,9 +67,9 @@
 </ul>
 </li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>View array of strings as 3-dimentional matrix of bits?</li>
+<li style="list-style-type: none"><ul><li>View array of strings as 3-dimensional matrix of bits?</li>
 <li>Define a common interface for using functions, maps and arrays.</li>
-<li>You can view the array a[10] as an emelemt of A¹⁰ or a function 0..10→A or as a block of memory.</li>
+<li>You can view the array a[10] as an element of A¹⁰ or a function 0..10→A or as a block of memory.</li>
 </ul>
 </li>
 </ul>

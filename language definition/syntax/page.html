@@ -53,7 +53,7 @@
 <li style="list-style-type: none"><tt>+case ( <i>expression </i>) </tt><b>{</b><tt>=:: </tt><i>constant-expression</i><tt>&nbsp;:: </tt><i>declaration-statement-seq</i><tt>&nbsp;</tt><b>[</b><tt>fallthrough;</tt><b>]} [</b><tt>=default </tt><i>declaration-statement-seq</i><b>] </b>−case</li>
 <li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">Every <tt>=::</tt>&nbsp;<tt>::</tt>&nbsp;and <tt>=default</tt>&nbsp;defines its own scope.</li>
 <li style="list-style-type: none"><tt>break</tt>&nbsp;has no special meaning in a <tt>case</tt>&nbsp;statement.</li>
-<li style="list-style-type: none">If <tt>fallthrough;</tt>&nbsp;is present, control is transfered to the next <tt>=:: ::</tt>&nbsp;or <tt>=default</tt>&nbsp;block instead of just after the end of the <tt>case </tt>statement.</li>
+<li style="list-style-type: none">If <tt>fallthrough;</tt>&nbsp;is present, control is transferred to the next <tt>=:: ::</tt>&nbsp;or <tt>=default</tt>&nbsp;block instead of just after the end of the <tt>case </tt>statement.</li>
 <li style="list-style-type: none">Execution of the <tt>fallthrough;</tt>&nbsp;statement exits the current scope and enters the next.</li>
 <li style="list-style-type: none"></li>
 </span></ul>
@@ -71,14 +71,14 @@
 <li style="list-style-type: none">If <i>type-expression</i>&nbsp;is absent, the type of <i>expression</i>&nbsp;is used instead, with a transitive immutability attribute. Otherwise the type computed by <i>type-expression,</i>&nbsp;with any constness or immutability attributes it may contain, is used verbatim.</li>
 </tt></span></ul>
 </li>
-<span style="color: #007f00"><tt><span style="color: #7f0000"><li style="list-style-type: none">Another canditate form was:</li>
+<span style="color: #007f00"><tt><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
 </span></tt></span><li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt><span style="color: #7f0000"><b>(</b>var <b>|</b>&nbsp;const<b>)</b></span></tt><span style="color: #7f0000"><i>&nbsp;identifier </i><b>[</b><tt>(</tt><i>&nbsp;unit-expression </i><tt>)</tt><b>][</b><tt>= </tt><i>expression</i><b>][</b><tt>in <i>static-expression</i><b>]</b>&nbsp;;</tt></span></li>
 </span><tt><li style="list-style-type: none"></li>
 </tt></ul>
 </li>
 </ul>
 <i>alias-declaration</i>:<ul><li style="list-style-type: none"><tt>type</tt><b>&nbsp;</b><tt>alias</tt>&nbsp;<i>identifier</i>&nbsp;<tt>=</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>;</tt><span style="color: #007f00">&nbsp;Declares <i>identifier</i>&nbsp;as a new name for the type denoted by <i>type-expression.</i></span></li>
-<li style="list-style-type: none"><ul><span style="color: #7f0000"><li style="list-style-type: none">May also include <tt>var, function</tt>&nbsp;and <tt>namespace alias</tt>&nbsp;delcarations.</li>
+<li style="list-style-type: none"><ul><span style="color: #7f0000"><li style="list-style-type: none">May also include <tt>var, function</tt>&nbsp;and <tt>namespace alias</tt>&nbsp;declarations.</li>
 </span></ul>
 </li>
 <span style="color: #7f0000"><li style="list-style-type: none"></li>
@@ -97,7 +97,7 @@
 <tt><li style="list-style-type: none">single &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
 <li style="list-style-type: none">double &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp; <span style="color: #007f00">floating point</span>&nbsp; &nbsp; &nbsp; &nbsp;%</li>
 <li style="list-style-type: none"><span style="color: #007f7f">quad &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>&amp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
-</tt><span style="color: #7f0000"><li style="list-style-type: none">Another candicate form was:</li>
+</tt><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
 <li style="list-style-type: none"><b>(</b><tt>unit</tt>&nbsp;<b>|</b>&nbsp;<tt>int</tt><b>)</b><tt>[</tt><b>(</b><tt>8</tt><b>|</b><tt>16</tt><b>|</b><tt>32</tt><b>|</b><tt>64</tt><b>)</b><tt>]</tt>&nbsp;e.g. unit[8]</li>
 </span><li style="list-style-type: none"><span style="color: #7f0000">No sting type yet...</span></li>
 <li style="list-style-type: none"></li>
@@ -115,7 +115,7 @@
 <li style="list-style-type: none">name</li>
 </span></tt><li style="list-style-type: none"><tt><span style="color: #007f7f">need</span></tt></li>
 <li style="list-style-type: none"></li>
-<span style="color: #7f0000"><li style="list-style-type: none">Another candicate form was:</li>
+<span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
 </span><li style="list-style-type: none"><span style="color: #7f0000"><tt>byval</tt></span><span style="color: #007f00">&nbsp;(default)</span></li>
 <span style="color: #7f0000"><tt><li style="list-style-type: none">byref</li>
 </tt></span><tt><span style="color: #007f7f"><li style="list-style-type: none">byres</li>
@@ -140,7 +140,7 @@
 <i>parameter</i>:<ul><li style="list-style-type: none"><i>argument-passing-mode</i>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>var-type</i></li>
 </ul>
 <br/>
-<i>function-definition</i>:<ul><li style="list-style-type: none"><b>[</b><tt>entry</tt><b>]</b>&nbsp;<tt>+fun</tt>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>function-type</i>&nbsp;<tt>=code</tt>&nbsp;<i>delcaration-statement-seq</i>&nbsp;<tt>−fun</tt>&nbsp;<i>identifier</i></li>
+<i>function-definition</i>:<ul><li style="list-style-type: none"><b>[</b><tt>entry</tt><b>]</b>&nbsp;<tt>+fun</tt>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>function-type</i>&nbsp;<tt>=code</tt>&nbsp;<i>declaration-statement-seq</i>&nbsp;<tt>−fun</tt>&nbsp;<i>identifier</i></li>
 <li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt>entry</tt>&nbsp;can be present in at most one <i>function-definition</i>&nbsp;per module.</li>
 <li style="list-style-type: none">If it is present, then the module becomes executable as a program and <i>identifier</i>&nbsp;becomes its entry point.</li>
 <li style="list-style-type: none">The two <i>identifier</i>s in the production must match.</li>
@@ -178,8 +178,8 @@
 </li>
 <li style="list-style-type: none">⟶</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>* </tt>multiplication</li>
-<li style="list-style-type: none"><tt>/ </tt>divition</li>
-<li style="list-style-type: none"><tt>% </tt>remainer</li>
+<li style="list-style-type: none"><tt>/ </tt>division</li>
+<li style="list-style-type: none"><tt>% </tt>remainder</li>
 </ul>
 </li>
 <li style="list-style-type: none">⟶</li>
@@ -220,7 +220,7 @@
 <tt><li style="list-style-type: none">+&lt;- addition assignment</li>
 </tt><li style="list-style-type: none"><tt>−&lt;- </tt>subtraction assignment</li>
 <li style="list-style-type: none"><tt>*&lt;- </tt>multiplication assignment</li>
-<li style="list-style-type: none"><tt>/&lt;- divition</tt>&nbsp;assignment</li>
+<li style="list-style-type: none"><tt>/&lt;- division</tt>&nbsp;assignment</li>
 <li style="list-style-type: none"><tt>%&lt;- modulo</tt>&nbsp;assignment</li>
 </ul>
 </li>

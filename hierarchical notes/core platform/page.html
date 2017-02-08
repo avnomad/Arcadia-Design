@@ -8,7 +8,7 @@
 <li>You should be able to specify the <b>fixity, arity, precedence</b>&nbsp;(or priority, or scope) and <b>associativity </b>of each operator and operload them.</li>
 <li>Support for distfix operators.</li>
 <li>Support juxtaposition.</li>
-<li>Classification of tokens into <b>initiators</b>, <b>seperators</b>, <b>terminators</b>&nbsp;and <b>operands</b>.</li>
+<li>Classification of tokens into <b>initiators</b>, <b>separators</b>, <b>terminators</b>&nbsp;and <b>operands</b>.</li>
 <li>Operator associativity could be relevant for unary operators too, if you consider them as potential values. e.g. a!! ≔ (a!)! or a(!!) ?</li>
 <li>Support associativity option that makes <tt>(a&lt;b)&lt;c ≠ a&lt;b&lt;c ≠ a&lt;(b&lt;c)</tt>&nbsp;and allows defining <tt>a&lt;b&lt;c</tt>&nbsp;as a<tt>&lt;b and b&lt;c</tt>&nbsp;(similarly for ⟶ (implies) and =)</li>
 <li>Support mixing operators with the above associativity option. e.g. <tt>a&lt;b=c&gt;b</tt>.</li>
@@ -43,7 +43,7 @@
 </li>
 </ul>
 </li>
-<li>For some properties like no escape of local addresses, synchronized, etc. it would be nice to give the ability to specify them, but I don't have to force constraints over the function structure. I could make them specifications that are guaranteed to be provable if the constraints are met, while they may be provable or not if the contraints they are not.</li>
+<li>For some properties like no escape of local addresses, synchronized, etc. it would be nice to give the ability to specify them, but I don't have to force constraints over the function structure. I could make them specifications that are guaranteed to be provable if the constraints are met, while they may be provable or not if the constraints they are not.</li>
 <li>Compile header/interface files to binary headers and source files to object files respectively and archive them both in a single file.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will a function gain access to the name of the function that called it and the line number, file name, etc. of the call site so that it can print an error message?</li>
@@ -62,8 +62,8 @@
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Clarify the semantics for "booting" or "bootstraping" into the initial language. Probably have the internal data structures be initialized by a hard-coded default.</li>
-<li>If the compiler hands off the integer literals to the "substrate" as strings so that they can be converted to numbers, then how will the substrate functions that do the convertion be written?</li>
+<li style="list-style-type: none"><ul><li>Clarify the semantics for "booting" or "bootstrapping" into the initial language. Probably have the internal data structures be initialized by a hard-coded default.</li>
+<li>If the compiler hands off the integer literals to the "substrate" as strings so that they can be converted to numbers, then how will the substrate functions that do the conversion be written?</li>
 <li style="list-style-type: none">Perhaps it can be done with the use of symbols like <tt>int.zero</tt>&nbsp;and <tt>int.one</tt>.</li>
 </ul>
 </li>

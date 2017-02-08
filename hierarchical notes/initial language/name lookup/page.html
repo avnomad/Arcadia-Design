@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Name Lookup</title>
 </head><body><ul><li>Generally speaking, every rules for looking up names, (e.g. ADL, 2-phase lookup, dependent names, function hijack prevention) effects different things. I probably need only some of them...</li>
-<li>A developer A should be able to import type/data declarations from a library written by developer B and algorithms from a library written by developer C and use them writting at most a few concept maps, even though developers B and C were oblivious of the existance and interfaces used by each other and developer A.</li>
+<li>A developer A should be able to import type/data declarations from a library written by developer B and algorithms from a library written by developer C and use them writing at most a few concept maps, even though developers B and C were oblivious of the existence and interfaces used by each other and developer A.</li>
 <li><img src="import-diagram.png" width="300" height="212" /></li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Should I support both static and dynamic scopes?</li>
 <li>Should I use argument-dependent lookup?</li>
-<li>The absence of argument-dependent lookup creates a seperate set of problems than the ban of function hijacks.</li>
+<li>The absence of argument-dependent lookup creates a separate set of problems than the ban of function hijacks.</li>
 <li>Should I use two-phase lookup?</li>
 <li>Custom lookup rules?</li>
 <li>How will default arguments and concepts interact with lookup rules?</li>
