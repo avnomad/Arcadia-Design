@@ -27,12 +27,26 @@
 <li>What are the exact semantics?</li>
 </ul>
 </li>
-<li><b>Temp</b></li>
+<li><b>Overloading</b></li>
+<li style="list-style-type: none"><ul><li><b>Temp</b></li>
 <li style="list-style-type: none"><ul><li>To allow overloading for named vs temporary values. (like C++'s r-value reference)</li>
 </ul>
 </li>
+<li><b>Identifier</b>, <b>Literal</b>, <b>Tagged?</b></li>
+<li style="list-style-type: none"><ul><li>To further learn if the argument was an identifier or a literal</li>
+<li>Do I need those?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Privilages</b></li>
+<li style="list-style-type: none"><ul><li><b>read</b>, <b>write</b>, <b>execute</b></li>
+<li>Do I want those?</li>
+</ul>
+</li>
 <li><b>Mutability</b></li>
-<li style="list-style-type: none"><ul><li><b>const</b>&nbsp;T won't be a type, it will be type T, qualified. <b>const</b>&nbsp;T and T don't represent different value sets! On the other hand, they support different operation sets!</li>
+<li style="list-style-type: none"><ul><li><b>const</b>, <b>mutable</b></li>
+<li><b>const</b>&nbsp;T won't be a type, it will be type T, qualified. <b>const</b>&nbsp;T and T don't represent different value sets! On the other hand, they support different operation sets!</li>
 <li>D's <b>inout</b>&nbsp;wildcard qualifier is nice, but I think I'll prefer my solution with the special named template parameter (some static checkers for Java use a similar approach!) that can be different for the various parts of a type and various function parameters. e.g. <tt>(T) int *(S) fun((T) int *(S) p);</tt></li>
 <li>Imagine a kind of <i>transitive const</i>&nbsp;that, when applied to an object, makes it const and moreover makes the objects pointed to by the object transitive const. That could e.g. be used in a function that accepts the head of a linked list (pointer) and guarantees that no list element will change.</li>
 <li><b>Todo</b></li>
@@ -86,13 +100,15 @@
 </li>
 </ul>
 </li>
-<li><b>Storage Classes</b></li>
+<li><b>Storage Class Specifiers</b></li>
 <li style="list-style-type: none"><ul><li><b>List</b></li>
-<li style="list-style-type: none"><ul><li><b>By increasing lifetime</b>&nbsp;(affects location of storage)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>auto (selects the 'best' storage class depending on context)</li>
+<li>symbol (or compiler? The value will be stored only during compilation and will be unavailable during run-time. May not need this)</li>
+<li><b>By increasing lifetime</b>&nbsp;(affects location of storage)<b>:</b></li>
 <li style="list-style-type: none"><ul><li>register</li>
 <li>stack (C's automatic)</li>
 <li>heap?</li>
-<li>static</li>
+<li>static? (replaced by 'process'?)</li>
 <li>disk (persistent)</li>
 </ul>
 </li>

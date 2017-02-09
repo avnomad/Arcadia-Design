@@ -5,11 +5,20 @@
 <title>Data Types</title>
 </head><body><ul><li><b>Scalar</b></li>
 <li style="list-style-type: none"><ul><li>List</li>
+<li><b>Enumeration Types</b></li>
+<li style="list-style-type: none"><ul><li>Semantics closer to C++11 enum class.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Compound</b></li>
 <li style="list-style-type: none"><ul><li>tuples, arrays, vectors, etc. will be different types with (implicit?) conversions between them.</li>
 <li>List</li>
+<li><b>Unions</b></li>
+<li style="list-style-type: none"><ul><li>Do I want tagged (discriminated) or untagged unions or both?</li>
+<li>Tagged unions can support patterns like ML's <b>datatypes</b>.</li>
+</ul>
+</li>
 <li><b>Arrays</b></li>
 <li style="list-style-type: none"><ul><li>Support variable-length or "one-size-per-instance" arrays.</li>
 <li>My arrays will probably not shrink from either side, but my ranges (that correspond to slices) will!</li>
@@ -45,8 +54,14 @@
 <li>Should support element-wise operations.</li>
 </ul>
 </li>
+<li><b>Lists</b></li>
+<li><b>Records</b></li>
+<li style="list-style-type: none"><ul><li>ML style</li>
+</ul>
+</li>
 <li><b>Structures</b></li>
-<li style="list-style-type: none"><ul><li>Support pattern matching through a deconstructor.</li>
+<li style="list-style-type: none"><ul><li>Named structs or classes, not both!</li>
+<li>Support pattern matching through a deconstructor.</li>
 <li>The above pattern matching should be available for foreach loops as well.</li>
 <li>I'll probably need something like C++'s mutable (e.g. for cached data).</li>
 <li><b>Ideas</b></li>

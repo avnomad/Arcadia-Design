@@ -10,10 +10,11 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at difference between chaining and cascading. (also see fluent interface and builder pattern)</li>
 <li>Look at Common List Object System (CLOS).</li>
+<li>Should objects be maps modifiable at run-time like in Javascript?</li>
 </ul>
 </li>
 <li><b>Class Definition</b></li>
-<li style="list-style-type: none"><ul><li>Do I want to have both value and reference types (like C#)?</li>
+<li style="list-style-type: none"><ul><li>Do I want to have both value and reference types (like C#)? Probably not. See rational.</li>
 <li style="list-style-type: none"><ul><li>If yes, I can also provide <i>nullable types</i>&nbsp;denoted by <tt>T?</tt>&nbsp;or <tt>Nullable&lt;T&gt;</tt>&nbsp;for a value class T.</li>
 </ul>
 </li>
@@ -22,6 +23,7 @@
 <li><b>Self-reference</b></li>
 <li style="list-style-type: none"><ul><li>In object-oriented programming languages either <tt>super.method_name</tt>&nbsp;or <tt>base_class_name.method_name</tt>&nbsp;is used for referring to a method of the parent class from a method of the child class.</li>
 <li>In my language the already existing disambiguator should suffice without changes.</li>
+<li><b>this</b>&nbsp;will probably be redundant since I'll be using free-standing functions for methods.</li>
 </ul>
 </li>
 <li><b>Construction</b></li>
@@ -32,11 +34,14 @@
 </li>
 <li><b>Encapsulation</b></li>
 <li style="list-style-type: none"><ul><li><b>Access Specifiers</b></li>
-<li style="list-style-type: none"><ul><li></li>
+<li style="list-style-type: none"><ul><li>public</li>
+<li>protected</li>
+<li>private</li>
+<li>others?</li>
 </ul>
 </li>
 <li><b>Friends</b></li>
-<li style="list-style-type: none"><ul><li>Since I don't make a distinction between methods and global functions (the syntax is given as an attribute), I probably don't need <i>friends</i>. All functions declared in the class, and only those, will have access to the private members.</li>
+<li style="list-style-type: none"><ul><li>Can be used in conjunction with static foreach loops to create the access specifiers.</li>
 </ul>
 </li>
 <li>The choice of visibility for the private members will effect compilation times and overload resolution.</li>
@@ -47,6 +52,7 @@
 <li>Support multiple inheritance of implementation &nbsp;or "opening" of an implementation into another.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do I want <b>final</b>&nbsp;methods and classes?</li>
+<li>Do I want to use prototyping instead? (like in Javascript)</li>
 </ul>
 </li>
 </ul>
