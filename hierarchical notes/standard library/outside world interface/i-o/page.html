@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>I/O</title>
+</head><body><ul><li><b>Common I/O Functions</b></li>
+<li style="list-style-type: none"><ul><li>General mechanism that will read/write from/to ranges of characters or bytes.</li>
+<li>Also support a <b>Steam</b>&nbsp;interface that will cover things like opening, closing and flushing that aren't supported by containers.</li>
+<li><b>Formatted I/O</b></li>
+<li><b>Character I/O</b></li>
+<li><b>Direct I/O</b></li>
+<li style="list-style-type: none"><ul><li>Read/Write blocks of bytes.</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Could support composition of streams (Java) or ranges to get the desired functionality (e.g. components to abstract bytes to code units or numbers, abstract code units to characters, add buffering, etc.)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Console I/O</b></li>
+<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Choose names for standard streams.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>File I/O</b></li>
+<li style="list-style-type: none"><ul><li>Secure file opening modes (privileges?)(C11?) to counter time-of-check-vs-time-of-use attacks.</li>
+<li>Support file attribute tests (size, owner, privileges, regular vs directory, etc.).</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Use of &lt;,&gt;, &gt;&gt;, | for specifying the mode in which to open a file.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Network I/O</b></li>
+<li style="list-style-type: none"><ul><li>Sockets</li>
+</ul>
+</li>
+<li><b>Device I/O</b></li>
+<li style="list-style-type: none"><ul><li>Probably best left for later...</li>
+<li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li>HID</li>
+<li>Joystick</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br/>
+</body></html>

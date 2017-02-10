@@ -119,6 +119,7 @@
 </li>
 <li><b>Explicit Conversions</b></li>
 <li style="list-style-type: none"><ul><li><i>Conversion casts</i>&nbsp;should be distinguished from <i>reinterpretation casts</i>. (no relationship with reinterpret_cast)</li>
+<li>Reinterpretation casts could be combined with the ability to slice and concatenate data. e.g. 2 32-bit integers could be reinterpreted as a 64-bit one or the inverse.</li>
 <li><i>Dynamic casts</i>&nbsp;should throw an exception to signal failure instead of returning 0. (like C++/CLI's safe_cast)</li>
 <li>Can also provide a complementary <b>as</b>&nbsp;operator that returns <tt>null</tt>&nbsp;to signal failure. (like C# does)</li>
 </ul>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>expanded</key><true/>
+  <key>title</key><string>Date &amp; Time</string>
+  <key>nodeid</key><string>13c6d620-9daa-42e1-9bb2-21b2b0af6b67</string>
+  <key>modified_time</key><integer>1486630304</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>application/x-notebook-dir</string>
+  <key>created_time</key><integer>1486630304</integer>
+  <key>info_sort_dir</key><integer>1</integer>
+  <key>order</key><integer>7</integer>
+  <key>info_sort</key><string>order</string>
+</dict>
+</node>

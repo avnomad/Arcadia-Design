@@ -3,7 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Ranges</title>
-</head><body>If inRange is a range, then +range could refer to its begin iterator and −range to its end iterator. So:<ul><li style="list-style-type: none">*+range ⟺ range.front</li>
+</head><body><ul><li>Hierarchy of range interfaces:</li>
+<li style="list-style-type: none"><ul><li>random access</li>
+<li>bidirectional</li>
+<li>forward</li>
+<li>input / output</li>
+</ul>
+</li>
+<li>Some ranges can support additional funcitonality like e.g. LinkedListRange could allow adding elements to the list without a handle to the list.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>What should adding/removing elements to/from a range mean?</li>
+<li style="list-style-type: none"><ul><li>Removing elements from the front/back of the range and/or adding up to the containers initial size could just make the range refer to a smaller/larger subset of the container.</li>
+<li>Removing/adding from/to random places and/or adding beyond the original size of the container could signal an error.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>If inRange is a range, then +range could refer to its begin iterator and −range to its end iterator. So:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">*+range ⟺ range.front</li>
 <li style="list-style-type: none">*−range ⟺ range.back</li>
 <li style="list-style-type: none">+++range ⟺ range.popFront()</li>
 <li style="list-style-type: none">−−−range ⟺ range.popBack()</li>
@@ -23,4 +41,11 @@
 </li>
 <li style="list-style-type: none">*+++range ⟺ range.popFront().front</li>
 </ul>
-Another option is to use an operator's fixity to distinguish between front and back. e.g. ^range ⟺ range.front and range^ ⟺ range.back.</body></html>
+</li>
+<li style="list-style-type: none">Another option is to use an operator's fixity to distinguish between front and back. e.g. ^range ⟺ range.front and range^ ⟺ range.back.</li>
+<li>Ranges could have interfaces similar to C++ containers. i.e. front, back, push/popFront/back to access elements and/or shrink/grow and begin/end to get the paired iterators.</li>
+<li>Most of the work on containers could be done by implicit conversion to ranges.</li>
+</ul>
+</li>
+</ul>
+</body></html>

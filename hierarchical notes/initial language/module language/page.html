@@ -20,6 +20,7 @@
 <li><tt>export import</tt>&nbsp;(for transitive imports)</li>
 <li>The difference between a using <i>declaration</i>&nbsp;and a using <i>directive</i>, isn't only that the former introduces a single name, while the latter all names, but that the former introduces only currently known names, while the latter introduces future names as well.</li>
 <li>I'll probably not need something like <b>static import</b>&nbsp;(include) because my "includes" are done implicitly.</li>
+<li>Allow importing modules (or dlls?) at run-time.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>I can use disambiguators with patterns in both imports and exports.</li>
 </ul>
@@ -47,6 +48,8 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Can I / Should I define subsets of the language like D's @safe, @trusted, @system? @substrate perhaps?</li>
+<li>Another idea is to put all the "unsafe" features in separate modules, so that unsafe code can be identified by looking at the imports at the beginning of the file.</li>
+<li style="list-style-type: none">A tool could start at the root module and look for imports of "unsafe" features and/or declarations that change the language (including the import semantics) to partition the code into "safe", "unsafe" and "not-sure" regions.</li>
 </ul>
 </li>
 </ul>

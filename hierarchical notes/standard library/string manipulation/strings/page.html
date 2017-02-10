@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Strings</title>
+</head><body><ul><li>Different from arrays of code units.</li>
+<li>Superset of the interface of a sequence of (UTF-32) unicode characters.</li>
+<li>Parametrized by the character set:</li>
+<li style="list-style-type: none"><ul><li>ascii</li>
+<li>unicode</li>
+<li>old unicode (2¹⁶ characters)?</li>
+</ul>
+</li>
+<li>Parametrized by internal representation? e.g.</li>
+<li style="list-style-type: none"><ul><li>encoding forms (UTF-8, UTF-16, UTF-32).</li>
+<li>container (array, vector, list, etc.)?</li>
+</ul>
+</li>
+<li>Provide option to reject malformed code unit sequences.</li>
+<li>The 'split' function should accept regular expressions.</li>
+<li>Support a 'repeat' operator (x in Perl, * in Python).</li>
+<li>Bidirectional iterators for the following conversions:</li>
+<li style="list-style-type: none"><ul><li>code units → code points (parameterized by the encoding form and possibly scheme)</li>
+<li>code points → grapheme clusters.</li>
+</ul>
+</li>
+</ul>
+</body></html>

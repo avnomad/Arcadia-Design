@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Arithmetic Types</title>
-</head><body><ul><li><b>Integer Types</b></li>
+</head><body><ul><li><b>Integer</b></li>
 <li style="list-style-type: none"><ul><li>natural and unsigned int need '<tt>−</tt>' to behave differently (e.g. in 6<tt>−</tt>8) so I might need both types.</li>
 <li>Ability to parametrize types with the intended behaviour in case of overflow. e.g.</li>
 <li style="list-style-type: none"><ul><li>saturate</li>
@@ -19,7 +19,12 @@
 <li>Include min and max members (or a limits member) in objects representing integer types.</li>
 </ul>
 </li>
-<li><b>Floating Point Types</b></li>
+<li><b>Rational</b></li>
+<li style="list-style-type: none"><ul><li>Exact arithmetic.</li>
+<li>Normalization.</li>
+</ul>
+</li>
+<li><b>Floating-Point</b></li>
 <li style="list-style-type: none"><ul><li>Support functionality similar to &lt;fpenv.h&gt;</li>
 <li>Comparison of two floating-point numbers (or two points for that matter), when based on whether their distance is lower than a threshold is not transitive!</li>
 <li style="list-style-type: none">A suggestion is to split the space into equivalence classes (e.g. with trunc or round)</li>
@@ -35,7 +40,11 @@
 </li>
 </ul>
 </li>
-<li><b>Complex Numbers</b></li>
+<li><b>Fixed-Point</b></li>
+<li style="list-style-type: none"><ul><li>Do I need those?</li>
+</ul>
+</li>
+<li><b>Complex Types</b></li>
 <li style="list-style-type: none"><ul><li><b>Standard Constants</b></li>
 <li style="list-style-type: none"><ul><li>ⅈ</li>
 </ul>
