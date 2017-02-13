@@ -72,6 +72,46 @@
 <li style="list-style-type: none">In those cases, the initial and final type must implement the same interface. But what if I already have obtained a pointer to the variable of the old type?</li>
 <li>Support for forwarding the return type. f()→auto&amp;, will deduce a reference return type (in general you'll be able to specify a pattern for the return type).</li>
 <li>Allow deducing the return type even in functions with multiple return statements and recursive calls.</li>
+<li><b>Body</b></li>
+<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Allow the function body to be a single expression like in functional programming languages?</li>
+<li>I could allow use of a keyword referring to a build-in function in place of the function body. e.g. IEEE-754-addition, machine-multiplication, machine-sqrt if available else &lt;body&gt;, etc.</li>
+<li>Allow the function body to be a table with the associations (this might not be very useful if arrays can be substituted for functions). e.g.:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">finite</li>
+<li style="list-style-type: none">{</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">&#09;a -&gt; .-</li>
+<li style="list-style-type: none">&#09;b -&gt; -...</li>
+<li style="list-style-type: none">&#09;c -&gt; -.-.</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">&#09;...</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">&#09;z -&gt; --..</li>
+<li style="list-style-type: none">&#09;rest -&gt; ' '</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">}</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">or maybe</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">finite</li>
+<li style="list-style-type: none">{</li>
+</ul>
+</li>
+<li style="list-style-type: none">&#09;'a' -&gt; ".-"</li>
+<li style="list-style-type: none">&#09;'b' -&gt; "-..."</li>
+<li style="list-style-type: none">&#09;'c' -&gt; "-.-."</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">&#09;...</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">&#09;'z' -&gt; "--.."</li>
+<li style="list-style-type: none">&#09;rest -&gt; " "</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>}</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Polymorphism</b></li>
 <li style="list-style-type: none"><ul><li>We can see a "polymorphic function" either as a set of monomorphic functions or as a function taking a number of type parameters.</li>
 </ul>
@@ -83,6 +123,7 @@
 </li>
 <li><b>Closures</b></li>
 <li style="list-style-type: none"><ul><li>Lambda functions and closures might need to be stored in arrays.</li>
+<li>Escaping closures (but only them) should cause the enclosing function's frame to be allocated on the garbage-collected heap.</li>
 </ul>
 </li>
 <li><b>Implicitly Callable Functions</b></li>
@@ -113,6 +154,18 @@
 <li>⟶ and λ functions. x ⟶ f() where x ∈ Identity(A⟶A)</li>
 <li>polymorphic and variadic.</li>
 <li>conversion to function pointer suitable for use as a callback.</li>
+</ul>
+</li>
+<li><b>Nested Functions</b></li>
+<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Provide a uniform mechanism for capturing the environment be it global variables from global functions or local variables from local functions and lambdas.</li>
+<li>Do I want a mechanism as powerful as C++'s lambda introducer?</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Accept the environment as one or more implicit parameters and allow explicitly specifying those parameters in the function signature to attach attributes and qualifiers. (like Java does with <b>this</b>)</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
