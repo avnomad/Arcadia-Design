@@ -3,19 +3,83 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Type System</title>
-</head><body><ul><li>We can see a "type" in different ways:</li>
+</head><body><ul><li><b>Model</b></li>
+<li style="list-style-type: none"><ul><li>We can see a "type" in different ways:</li>
 <li style="list-style-type: none"><ul><li>As a set of values.</li>
 <li>As a set of supported operations.</li>
 <li>As an interpretation of the binary data stored in some memory locations.</li>
 <li>As the expression tree used to create it.</li>
 </ul>
 </li>
+<li>I may need to split 'types' into two parts: a primary part that the programmer must or should write (e.g. int(cm)) and a secondary part or 'annotation' that will be infered in the background and will find additional or possible errors.</li>
+<li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
+<li style="list-style-type: none"><ul><li>Subsets or subranges of comparable arithmetic types (e.g. int ∩ (-2..128) or float ∩ [0,1] for VRP.</li>
+<li>Tracking the array variable an iterator came from, so that it won't be comparable to iterators of other arrays.</li>
+<li>Effective constness?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>What are the operations required from a type?</li>
+<li style="list-style-type: none"><ul><li>Size, alignment, default value, etc.? (for allocation)</li>
+<li>Test for membership? (for initialization with literal)</li>
+<li>Test for equality? (for assignment)</li>
+<li>Test for compatibility with another type? (for assignment)</li>
+<li>Deconstruction? (for inferring template arguments)</li>
+</ul>
+</li>
+<li>How do type qualifiers effect things?</li>
+<li style="list-style-type: none"><ul><li>Experience with Java static checkers may help</li>
+<li style="list-style-type: none"><ul><li>Problem with Java non-null analysis and maps. Merging of qualifiers?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Do types need to store a unique ID?</li>
+<li>How is the first set/type defined?</li>
+<li>There must be a theory (lambda calculus?) that describes values, types, polymorphism, type constructors (of higher-order too), types that depend on values and all the above together!</li>
+<li>Learn more about <i>liquid types</i>.</li>
+<li>What is a &nbsp;linear type system?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Types as Values</b></li>
+<li style="list-style-type: none"><ul><li>I could explicitly distinguish between values, types and type classes by thinking about them as different 'kinds' (like Haskell does?) and allowing use of each in different contexts. </li>
+<li style="list-style-type: none">That way only one of them could be used as a function parameter at any time. e.g.</li>
+<li style="list-style-type: none">&#09;count ∈ int;</li>
+<li style="list-style-type: none">&#09;int ∈ Fields;</li>
+<li style="list-style-type: none">&#09;Fields ∈ type-class;</li>
+<li style="list-style-type: none">i.e. Every function parameter will name either a value of some type, a type of some type class or a type class.</li>
+<li style="list-style-type: none">I would also ban the definition of sets of higher order.</li>
+<li>Alternatively, I could think of all of them as sets and allow using a set wherever a type would traditionally be used. All sets, be they sets of values, sets of sets of values (sets of types), sets of sets of sets of values (sets of type classes), or... some container, will provide a common interface. e.g. I could write:</li>
+<li style="list-style-type: none">&#09;foreach i ∈ int do…</li>
+<li style="list-style-type: none">&#09;double salary(e ∈ employs);</li>
+<li style="list-style-type: none">That way, enumerations and subrange types become compile-time arrays! e.g.</li>
+<li style="list-style-type: none">&#09;colors = {Red, Green, Yellow} ∈ int array;</li>
+<li style="list-style-type: none">&#09;colors = colors ∪ {Blue};</li>
+</ul>
+</li>
+</ul>
+&#09;&#09;&#09;<tt>∀</tt>color ∈ colors do…<ul><li style="list-style-type: none"><ul><li style="list-style-type: none">&#09;negative(color ∈ {Red,Green,Blue}) ∈ {Cyan, Yellow, Magenda} (function with trailing return type)</li>
 <li>Allow using a type as a set of values and vice versa! e.g.</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">array ⟷ enumeration</li>
 <li style="list-style-type: none">range ⟷ subrange type</li>
 <li style="list-style-type: none">etc.</li>
 </ul>
 </li>
+<li>Assuming the sets are statically known, there shouldn't be a difference in performance between this scheme and static typing.</li>
+<li>I might need a way to declare that a type will be computed at compilation time or execution time, although the syntax with which I do this for the expressions that compute the types will probably be enough.</li>
+<li>Some types will be sets that are updated automatically. e.g. during the declaration of a function of type T (e.g. f ∈ A⟶B), the compiler will make it a member of the set T which I can then use in foreach loops. (e.g. <tt>∀f ∈ A⟶B</tt>)</li>
+<li><b>Use Cases</b></li>
+<li style="list-style-type: none"><ul><li>An identity function that can work with everything. (value, function, type, type class, etc.)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Subrange Types</b></li>
+<li style="list-style-type: none"><ul><li>Will be supported</li>
 <li>Support for subrange types does not necessarily mean that the following cases will be supported out-of-the-box:</li>
 <li style="list-style-type: none"><ul><li><tt>val a ∈ −∞..−1 ∪ 1..∞ = 15;</tt></li>
 <tt><li style="list-style-type: none">val b ∈ {x ∈ ℤ : x ≠ 0};</li>
@@ -29,7 +93,10 @@
 </li>
 </ul>
 </li>
-<li>Types may be parameterized by expressions that need to be checked statically, evaluated at run-time and affect the type's size.</li>
+</ul>
+</li>
+<li><b>Matching Dynamic Sizes</b></li>
+<li style="list-style-type: none"><ul><li>Types may be parameterized by expressions that need to be checked statically, evaluated at run-time and affect the type's size.</li>
 <li style="list-style-type: none"><ul><li>An example is array types.</li>
 <li style="list-style-type: none"><ul><li><b>Use cases</b></li>
 <li style="list-style-type: none"><ul><li>string operations (e.g. concatenation)</li>
@@ -53,42 +120,66 @@
 <li style="list-style-type: none">assuming l1, l2 and n are known and l3, l4 and m are unknowns. It should conclude that the system has exactly one solution (expressed as a function of one of the knowns), namely l4=m=n+10 and l3 = n.</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>It might be necessary to include prefix, postfix, infix, function, method, etc. as part of the (function) type.</li>
-<li>Should be able to check various attributes like:</li>
-<li style="list-style-type: none"><ul><li>thrown exceptions</li>
-<li>pureness</li>
-<li>other?</li>
+<li><b>Static vs Dynamic Typing</b></li>
+<li style="list-style-type: none"><ul><li>I could add dynamic type systems too allowing the set that takes the place of the type to be computed at execution time (although I'll continue to allow it to be computed at compilation time and the latter will be the default), but I don't know whether this is necessary.</li>
 </ul>
 </li>
-<li><b>Type Inference</b></li>
-<li style="list-style-type: none"><ul><li>Haskell is probably capable of inferring type classes. Can I use something like that?</li>
-<li>Ability to infer various attributes like:</li>
-<li style="list-style-type: none"><ul><li>thrown exceptions</li>
-<li>pureness</li>
-<li>other?</li>
+<li><b>Type Construction and Instatiability</b></li>
+<li style="list-style-type: none"><ul><li>It is usually fine to create a pointer to a type that can't be instantiated like an interface or an abstract class, but it may be a problem to create an array of such types.</li>
 </ul>
 </li>
+<li><b>Variance</b></li>
+<li style="list-style-type: none"><ul><li>In function types</li>
+<li style="list-style-type: none"><ul><li>If U subtype V, then T⟶U can override T⟶V.</li>
+</ul>
+</li>
+<li>In container types (including arrays)</li>
+<li style="list-style-type: none"><ul><li>If U subtypes V, then U[] does not subtype V[].</li>
+<li>If U subtypes V, then does *U[] subtype *V[]?</li>
+</ul>
+</li>
+<li>In pointer types</li>
+<li style="list-style-type: none"><ul><li>If U subtypes V, then *U subtypes *V.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>What are the operations required from a type?</li>
-<li style="list-style-type: none"><ul><li>Size, alignment, default value, etc.? (for allocation)</li>
-<li>Test for membership? (for initialization with literal)</li>
-<li>Test for equality? (for assignment)</li>
-<li>Test for compatibility with another type? (for assignment)</li>
-<li>Deconstruction? (for inferring template arguments)</li>
-</ul>
-</li>
-<li>How do type qualifiers effect things?</li>
-<li style="list-style-type: none"><ul><li>Experience with Java static checkers may help</li>
-<li style="list-style-type: none"><ul><li>Problem with Java non-null analysis and maps. Merging of qualifiers?</li>
+<li style="list-style-type: none"><ul><li>Look at Java wildcards. ('?' in generics)</li>
+<li>How do I give all these options to the library writer?</li>
+<li>What's the connection between universal and existential types, heterogenous and homogenous translation and type variance?</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>There must be a theory (lambda calculus?) that describes values, types, polymorphism, type constructors (of higher-order too), types that depend on values and all the above together!</li>
-<li>Learn more about <i>liquid types</i>.</li>
+<li><b>Universal and Existential Types</b></li>
+<li style="list-style-type: none"><ul><li>T=<tt>∀</tt>τ.F(τ) means "There exists a (static) type τ so that for all values of (static) type T have the same (dynamic) type F(τ).</li>
+<li>T=<tt>∃</tt>τ.F(τ) means "For each value of (static) type T there exists a (possibly different) (static) type τ so that the value has (dynamic) type F(τ).</li>
+<li>It seems that universal types play better with heterogenous translation while existential ones with homogenous.</li>
+<li><b>Existential Types</b></li>
+<li style="list-style-type: none"><ul><li>The <i>witness types</i>&nbsp;of existential types are erased.</li>
+<li><b>Use Cases</b></li>
+<li style="list-style-type: none"><ul><li>Interfacing with low-level OS APIs that expect a callback and a pointer to the callback's data, where they can gloss types over the void pointers.</li>
+<li>Restricting 2 pointers to point to objects of the same type at any point in time, while allowing them to point to objects of different types at different times during execution.</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Should I allow querying for the witness type at run-time?</li>
+<li>Is 'n' in "<tt>add ∈ (int[n], int[n]) ⟶ int[n]</tt>" an <i>existential value</i>?</li>
+<li>Look at the "Existential Types for Imperative Languages" paper for problems that arise when combining "aliases at the opened type" and "witness changes".</li>
+<li>Remember ML's "polymorphic reference problem". </li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+<li><b>Type Inference</b></li>
+<li style="list-style-type: none"><ul><li>Haskell is probably capable of inferring type classes (something similar to C++ concepts). Can I use something like that?</li>
+<li>Ability to infer various attributes (as part of function or other types).</li>
+</ul>
+</li>
+</ul>
+<br/>
 </body></html>

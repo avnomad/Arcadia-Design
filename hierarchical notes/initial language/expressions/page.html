@@ -43,6 +43,12 @@
 <li><b>Array</b></li>
 <li><b>Tuple</b></li>
 <li><b>Record</b></li>
+<li><b>Set</b></li>
+<li style="list-style-type: none"><ul><li>Allow creating sets by enumerating their elements (e.g. {a,b,2}).</li>
+<li>Allow creating sets as subsets of other sets with some property (filter) (e.g. {x ∈ native : x % 2 = 0}).</li>
+</ul>
+</li>
+<li><b>Map</b>&nbsp;(or associative array)</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Literals could have an abstract type.</li>
 </ul>
@@ -51,84 +57,63 @@
 </li>
 <li><b>Variables</b></li>
 <li style="list-style-type: none"><ul><li>I'll probably not use prefixes like Perl does (e.g. $name, @names).</li>
+<li>The name of a datum (seen as a quadruple) will refer by default to its value, but I can include operators to make it refer to its type, address or name too.</li>
 </ul>
 </li>
-<li><b>Operators</b></li>
-<li style="list-style-type: none"><ul><li>Include both symbolic operators and easy-to-type aliases for them.</li>
-<li>List</li>
-<li style="list-style-type: none"><ul><li>function call ()</li>
-<li>pointers to members? (.*, .-&gt;)</li>
-<li>∧ (and), ∨ (or), ¬ (not)</li>
-<li>∈ (in), ∉ (not in), ⊆ (subset), ⊈ (not subset), = (equals), ≠ (not equals)</li>
-<li>Also ⊂ and ⊄?</li>
-<li>In typeset contexts ∑ and ∏ should be available and they might have higher precedence than + and * respectively.</li>
+<li><b>R-values and L-values</b></li>
+<li style="list-style-type: none"><ul><li>The r-value vs l-value terminology will make little sence in a language where '=' is "just another function".</li>
+<li>It might be better to allow a function to take both r-value and l-value arguments independently of the parameter pass mode. Both for uniformity and to dodge the terminological problem.</li>
+<li style="list-style-type: none"><ul><li>The good news is that I'll have perfect forwarding of arguments (in D e.g. it's probably not possible).</li>
+<li>The bad news is that if someone takes the address of an r-value and saves it somewhere, he'll create a dangling pointer.</li>
 </ul>
 </li>
-<li><b>Assignment</b></li>
-<li style="list-style-type: none"><ul><li>Use the ↜ and &lt;~ operators.</li>
-<li>Will support modification-assignments</li>
-<li>Will support expressions like <tt>(temp -= 32) *= 5/9</tt>.</li>
-<li>Support simultaneous assignment.</li>
-<li>Should be elidable.</li>
+<li>In order to define 'temporaries' as "any value returned from a function by value", I can consider literals as being returned by functions.</li>
+<li>Assuming everything has an address might prove problematic for variables of register and symbol storage class.</li>
 </ul>
 </li>
-<li><b>Array Subscript</b></li>
-<li style="list-style-type: none"><ul><li>I might not need $ (from D), if I adopt Python's approach of using negative offsets (added to the array's length).</li>
-</ul>
-</li>
-<li><b>Comprehensions</b></li>
-<li style="list-style-type: none"><ul><li>Expand the mathematical syntax for creating sets as subsets of other sets to lists and maps. Python calls this 'comprehension'.</li>
-</ul>
-</li>
-<li><b>~</b>&nbsp;for regular expression matching?</li>
-<li><b>nothrow</b>&nbsp;(or likewise named) operator takes an expression and returns false iff the expression could never throw an exception.</li>
-<li><b>precedenceof</b>&nbsp;for defining an operator with the same precedence as another one.</li>
-<li><b>is</b>&nbsp;or <b>instanceof</b>&nbsp;operator to check the dynamic type of an expression against a static type or interface.</li>
-<li style="list-style-type: none"><ul><li>Always returns false for null expressions.</li>
-<li>Causes a compile-time warning if the expression is known to always be <tt>true</tt>&nbsp;or to always be <tt>false</tt>, but typically evaluates type compatibility at run time.</li>
-</ul>
-</li>
-<li><b>as</b>&nbsp;operator </li>
-<li><b>ring operator </b>(∘) for function composition and appending sequences.</li>
-<li><b>range operator</b>&nbsp;(..) for specifying ranges a..b returns a range containing the numbers from a to but not including b. 3..5 := [3,4]</li>
-<li><b>sequence operator</b>&nbsp;(, ,..., ) for specifying sequences and progressions. Automatically recognises arithmetic and geometric progressions. e.g.</li>
-<li style="list-style-type: none">1,2,...,10 := [1,2,3,4,5,6,7,8,9,10] (two initial terms means arithmetic progression)</li>
-<li style="list-style-type: none">1,2,4,...,64 := [1,2,4,8,16,32,64] (three initial terms means geometric progression)</li>
-<li style="list-style-type: none">1, 3, 2*$x+1,..., 9 := [1,3,5,7,9] (a function after initial terms is used for computing all terms. No equation is solved. Checks are done to ensure the function maps 0 to the first term, 1 to the second term and so on)</li>
-<li><b>mixin</b>&nbsp;(from D) or similar operator (Python and JavaScript have <i>eval</i>) to take a string an compile it as if it was code. </li>
+<li><b>Conversions</b></li>
+<li style="list-style-type: none"><ul><li>The <i>implicit vs explicit</i>&nbsp;distinction can be orthogonal to the <i>conversion vs reinterpretatio</i>n one.</li>
+<li><b>Implicit</b></li>
+<li style="list-style-type: none"><ul><li>Don't include implicit reinterpretations.</li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Allow indexing of arrays, maps, vectors, matrices and random access ranges (everything that supports the index-of operator) using ranges of indices! (this supersedes the {i₁, i₂,...,iₙ} notation)</li>
-<li>An alternative notation could be something like .1-5,7.</li>
-<li>The .x, .y, .xy, .zxy, etc. OpenCL notation can still apply for a finite number of named indices.</li>
-<li>Should <b>a || b</b>&nbsp;and <b>a &amp;&amp; b </b>return one of a, b instead of a truth value like they do in Python?</li>
-<li>Should I include sed commands in addition to regular expressions? (s/foo/bar in addition to /(foo|bar)*/)</li>
-<li>Include matlab-like operator or function to produce equidistant points in a range of real numbers for use in plots, etc.</li>
-</ul>
-</li>
-<li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Clarify the semantics of the range operator (..). 0..3 means [0,1,2,3] or [0,1,2]?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><b>Implicit Conversions</b></li>
-<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>What would happen if I allowed implicit conversions of the form T→S iff T and S implemented a common interface? Is it implementable? Useful? Acceptable?</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><b>Explicit Conversions</b></li>
-<li style="list-style-type: none"><ul><li><i>Conversion casts</i>&nbsp;should be distinguished from <i>reinterpretation casts</i>. (no relationship with reinterpret_cast)</li>
-<li>Reinterpretation casts could be combined with the ability to slice and concatenate data. e.g. 2 32-bit integers could be reinterpreted as a 64-bit one or the inverse.</li>
-<li><i>Dynamic casts</i>&nbsp;should throw an exception to signal failure instead of returning 0. (like C++/CLI's safe_cast)</li>
+<li><b>Explicit</b></li>
+<li style="list-style-type: none"><ul><li><i>Conversion casts</i>&nbsp;should be distinguished from <i>reinterpretation casts</i>. (no relationship with C++'s reinterpret_cast)</li>
+<li><b>Conversion Casts</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+<li><b>Reinterpretation Casts</b></li>
+<li style="list-style-type: none"><ul><li>Could be combined with the ability to slice and concatenate data. e.g. 2 32-bit integers could be reinterpreted as a 64-bit one or the inverse.</li>
+<li>Can be importable as a library instead of being always available.</li>
+</ul>
+</li>
+<li><b>Dynamic casts</b></li>
+<li style="list-style-type: none"><ul><li>Should throw an exception to signal failure instead of returning nullptr. (like C++/CLI's safe_cast)</li>
 <li>Can also provide a complementary <b>as</b>&nbsp;operator that returns <tt>null</tt>&nbsp;to signal failure. (like C# does)</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Disambiguation</b></li>
-<li style="list-style-type: none"><ul><li>Referring to different namespaces, modules, etc.</li>
+<li style="list-style-type: none"><ul><li>The idea is to have a uniform expression for locating entities, called a "disambiguator", that will comprise a path/URL, for specifying the file, and a language-defined part for specifying the entity (function, variable, class, etc.) inside the source file. Those expressions will be usable as qualified names, for defining aliases to long qualified names and in import/using statements (depending on what will end up in the language in the end).</li>
+<li>Referring to different namespaces, modules, etc.</li>
 <li>Choosing between functions of the same name and namespace.</li>
+<li style="list-style-type: none"><ul><li>I might need to supply a function's number of parameters in addition to its template arguments in order to define it completely.</li>
+</ul>
+</li>
+<li>Part of the disambiguator could clarify whether an operator's (e.g. '+') occurance should be interpreted as data (a function) or as an operator. (and also what function/operator)</li>
 <li>Unified way to refer to any entity (whether named or not) in any file. (URL? "::", ".", ":"?)</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>The syntax could be: &lt;function-id&gt; ::= [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] where the &lt;locator&gt; part specifies the module, namespace, block, etc. in which the function is defined, the &lt;disambiguator&gt; part selects a specific function overload, template instance, etc. (may need to include the operator's fixity if I allow overloading of operator fixity) and &lt;identifier&gt; is the name of the function or variable.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

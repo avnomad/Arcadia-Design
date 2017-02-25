@@ -4,17 +4,53 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Reflection</title>
 </head><body><ul><li>Support static and dynamic reflection.</li>
-<li>Allow asking for a variable's or field's:</li>
-<li style="list-style-type: none"><ul><li>Size</li>
-<li>Type (and from that the min/max value)</li>
+<li><b>Variables</b></li>
+<li style="list-style-type: none"><ul><li>Allow asking for a variable's or field's:</li>
+<li style="list-style-type: none"><ul><li>Size (deep &amp; shallow)</li>
+<li>Static Type</li>
+<li>Dynamic Type (this may evaluate to the hidden pointer to the class descriptor)</li>
 <li>Name</li>
+<li>Address</li>
+<li>Value?</li>
 <li>Alignment</li>
 <li>Endianness</li>
 <li>Offset</li>
+<li>Storage Class</li>
+<li>Attributes/Traits</li>
+<li>Exported Status</li>
 </ul>
 </li>
-<li>Allow asking for a function's code. (source? intermediate? machine? code. source as string or AST?)</li>
-<li>Compile-time environment</li>
+<li>May use <tt>typeof</tt>, <tt>sizeof</tt>, <tt>alignof</tt>, <tt>nameof</tt>, <tt>attributesof</tt>/<tt>traitsof</tt>, etc. (metadata_operator variable_name)</li>
+<li style="list-style-type: none">or <tt>:type</tt>, <tt>:alignment</tt>, <tt>:name</tt>, <tt>:attibutes/traits</tt>, etc. syntax. (variable_name:metadata_name)</li>
+</ul>
+</li>
+<li><b>Functions</b></li>
+<li style="list-style-type: none"><ul><li>Allow asking for a function's:</li>
+<li style="list-style-type: none"><ul><li>Code. (source? intermediate? machine? code. source as string or AST?)</li>
+<li>Syntax (fixity, precedence, arity, etc.)</li>
+<li>Whether it's used as entry, loader or unloader for a module.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Types</b></li>
+<li style="list-style-type: none"><ul><li>Allow asking for a type's:</li>
+<li style="list-style-type: none"><ul><li>Set of direct descendants.</li>
+<li>Set of direct and indirect descendants.</li>
+<li>Inferred Interface.</li>
+<li style="list-style-type: none"><ul><li>Constructors</li>
+<li>Destructors</li>
+<li>Deconstructors</li>
+<li>Methods</li>
+<li>Fields</li>
+</ul>
+</li>
+<li>Limits like min and max value if it's an arithmetic type.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Compile-time environment</b></li>
 <li style="list-style-type: none"><ul><li>Allow getting the set of (currently?) known types as an iterable.</li>
 <li style="list-style-type: none">May also make sense for run-time after a class is dynamically loaded.</li>
 <li>Allow getting information about the compilation mode. e.g.</li>
@@ -25,9 +61,13 @@
 </li>
 </ul>
 </li>
-<li>Run-time environment</li>
+<li><b>Run-time environment</b></li>
 <li style="list-style-type: none"><ul><li>Allow getting the set of local variables as an iterable.</li>
 <li>Allow getting the set of function arguments as an iterable.</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Do I want functions to know if they are being run during compilation time or run time?</li>
 </ul>
 </li>
 </ul>

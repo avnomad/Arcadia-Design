@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Strings</title>
 </head><body><ul><li>Different from arrays of code units.</li>
+<li>Could be an adaptor over any container containing integers (e.g. array of surrogates). Since strings will be containers supporting ranges themselves the algorithms</li>
 <li>Superset of the interface of a sequence of (UTF-32) unicode characters.</li>
 <li>Parametrized by the character set:</li>
 <li style="list-style-type: none"><ul><li>ascii</li>
@@ -13,16 +14,18 @@
 </li>
 <li>Parametrized by internal representation? e.g.</li>
 <li style="list-style-type: none"><ul><li>encoding forms (UTF-8, UTF-16, UTF-32).</li>
+<li>encoding schemes? (UTF-16LE, UTF-16BE, UTF-32LE, UTF-32BE)</li>
 <li>container (array, vector, list, etc.)?</li>
 </ul>
 </li>
 <li>Provide option to reject malformed code unit sequences.</li>
 <li>The 'split' function should accept regular expressions.</li>
 <li>Support a 'repeat' operator (x in Perl, * in Python).</li>
-<li>Bidirectional iterators for the following conversions:</li>
+<li>Bidirectional iterators (or adaptors) for the following conversions:</li>
 <li style="list-style-type: none"><ul><li>code units → code points (parameterized by the encoding form and possibly scheme)</li>
-<li>code points → grapheme clusters.</li>
+<li>code points → grapheme clusters (one per language?)</li>
 </ul>
 </li>
+<li>All string operations that make sence for general containers will be moved to the 'Algorithms' module.</li>
 </ul>
 </body></html>

@@ -9,10 +9,15 @@
 <li style="list-style-type: none"><ul><li>Semantics closer to C++11 enum class.</li>
 </ul>
 </li>
+<li><b>Pointers</b></li>
+<li style="list-style-type: none"><ul><li>Support restrict pointer (and restrict references?)</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Compound</b></li>
 <li style="list-style-type: none"><ul><li>tuples, arrays, vectors, etc. will be different types with (implicit?) conversions between them.</li>
+<li>Iterable containers will be implicitly convertible to ranges for use e.g. in foreach loops.</li>
 <li>List</li>
 <li><b>Unions</b></li>
 <li style="list-style-type: none"><ul><li>Do I want tagged (discriminated) or untagged unions or both?</li>
@@ -21,17 +26,19 @@
 </li>
 <li><b>Arrays</b></li>
 <li style="list-style-type: none"><ul><li>Support variable-length or "one-size-per-instance" arrays.</li>
+<li>In general, but especially in conjunction with my 'semi-static' (or 'symbolic'?) array sizes, the array size doesn't have to be saved in a memory location that is adjacent to the array contents, but can be saved only when needed and when needed and then, as a new 'hidden' variable/parameter.</li>
 <li>My arrays will probably not shrink from either side, but my ranges (that correspond to slices) will!</li>
 <li>D's statically-sized arrays are more or less like my arrays (except the dynamic size) (from a memory layout perspective etc.). D's dynamically-sized arrays are similar to ranges...</li>
 <li>Support implicitly casting arrays to ranges covering them in whole.</li>
 <li>Should the range type produced by an array (T[15] or T[n]) be a vector or similar type at the same time? (T[*])</li>
-<li>Support taking slices of an arrays that will evaluate to ranges.</li>
+<li>Support taking slices of arrays that will evaluate to ranges. The syntax for taking slices can stay the same and be generalized so that it works with every container that supports random access iterators.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>What about multidimensional arrays? How will they interact with ranges and slices?</li>
 <li style="list-style-type: none">For all arrays (whether multidimensional or not) <tt>a[2..9][3..5]</tt>&nbsp;should probably mean the same as <tt>b &lt;~ a[2..9], b[3..5]</tt>, that is "make the initial slice even smaller"</li>
 <li style="list-style-type: none">In other words, a[2..9] is still an array, so you can take a slice of it. We don't treat sequences of slice expressions any differently.</li>
 <li style="list-style-type: none">I can follow C++/CLI's approach and make <tt>a[11][8]</tt>&nbsp;different from <tt>a[11, 8]</tt>&nbsp;in definitions. Moreover multidimensional arrays of the second kind could support multidimensional slices like <tt>a[2..9, 3..5]</tt>.</li>
 <li>Should I allow assignment to the array's length member?</li>
+<li>Should there be a type for blocks of memory different than an array of bytes?</li>
 </ul>
 </li>
 </ul>
@@ -41,8 +48,8 @@
 <li>string ⇒ bool e.g. ["on" ⇒ true, "off" ⇒ false]</li>
 </ul>
 </li>
-<li><b>Pointers</b></li>
-<li style="list-style-type: none"><ul><li>Support restrict pointer (and restrict references?)</li>
+<li><b>Sets</b></li>
+<li style="list-style-type: none"><ul><li></li>
 </ul>
 </li>
 <li><b>Functions</b></li>
@@ -61,7 +68,7 @@
 </li>
 <li><b>Structures</b></li>
 <li style="list-style-type: none"><ul><li>Named structs or classes, not both!</li>
-<li>Support pattern matching through a deconstructor.</li>
+<li>Support pattern matching through a deconstructor function.</li>
 <li>The above pattern matching should be available for foreach loops as well.</li>
 <li>I'll probably need something like C++'s mutable (e.g. for cached data).</li>
 <li><b>Ideas</b></li>
@@ -83,8 +90,9 @@
 </li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>View array of strings as 3-dimensional matrix of bits?</li>
-<li>Define a common interface for using functions, maps and arrays.</li>
+<li>Define a common interface for using functions, maps, arrays and function objects.</li>
 <li>You can view the array a[10] as an element of A¹⁰ or a function 0..10→A or as a block of memory.</li>
+<li>A structure similar to D's mixin, combined with compile-time evaluation, a good type system and a fundamental way to define types, should allow one to build structs, unions, datatypes, classes, javascript objects, etc. as libraries.</li>
 </ul>
 </li>
 </ul>

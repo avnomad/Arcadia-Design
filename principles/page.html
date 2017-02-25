@@ -3,26 +3,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Principles</title>
-</head><body><ul><li>• Everything that you may want to express should be expressible at least as fast as in C, without being more difficult to express.</li>
-<li>• At least one thing should be doable faster than in C.</li>
-<li>• Anything that can be written in C++ should be writeable here too, but not necessarily in the same way. (This includes things that aren't entirely internal to the language like passing values for symbolic constants from the build system, to the compiler, to the executable program.)</li>
-<li>• You should never have to write the same algorithm 2 times. (e.g. one time in the core language and another in the meta-language or one time for static and another for dynamic polymorphism.</li>
-<li>• Every program that can be written in C++ must be writeable here with (asymptotically) the same or less code.</li>
-<li>• No "magic" types / functions that are build-in the language (or its standard library), but can't be written by the programmer (so that they behave the same way) (The logic that fundamental types don't have anything special like in C++. Uniform handling of build-in and user-defined types (e.g. in generic code)).</li>
-<li>• Easy fine-tuning of the application performance using trial and error. (e.g. Is it better to pass this parameter by need or by result? Is it better to represent complex numbers by cartesian or polar coordinates?)</li>
-<li>• Good defaults and default defaults for less thought/typing.</li>
-<li>• If a choice is made (e.g. of a data structure, variable storage class, etc.) and then code is written based on that behaviour, changing that choice should not require extensive changes in code.</li>
-<li>• Pseudo-code abstraction level: typical examples of algorithms written in pseudo-code from the Compilers, NURBS and other books should be writeable in the language either as-is, or with small changes that don't change the abstraction level in which they are written.</li>
-<li>• The language shall have a few elementary structures from which all desired structures (that the programmer uses in practice) would be writeable as libraries (RISC mindset).</li>
-<li>• Zero-overhead abstraction whenever possible, but at least in implementing structures that have small or no overhead in other languages.</li>
-<li>• The languages metalanguage should be the language itself.</li>
-<li>• Promote a way of writing code with fast development of a prototype that works (is correct and tested) followed by heavy optimization and editing of details.</li>
-<li>• "If you don't use it, you don't pay for it" philosophy, like in C++.</li>
-<li>• Keep optional features to a minimum, ideally zero.</li>
-<li>• True Unicode support.</li>
-<li>• Easy to learn to solve problems writing correct programs. Not too difficult to predict what code is generated and write fast code. Unbounded implementation difficulty.</li>
-<li>• Views, substitutability and deferred decisions.</li>
-<li>• All operators have to be familiar (have to be used somewhere else already). "No originality" rule?</li>
-<li>• It should be possible to redefine the whole language from within the language. Not necessarily easy...</li>
+</head><body><ul><li>Everything that you may want to express should be expressible at least as fast as in C, without being more difficult to express.</li>
+<li>At least one thing should be doable faster than in C.</li>
+<li>Anything that can be written in C++ should be writeable here too, but not necessarily in the same way. (This includes things that aren't entirely internal to the language like passing values for symbolic constants from the build system, to the compiler, to the executable program.)</li>
+<li>You should never have to write the same algorithm 2 times. (e.g. one time in the core language and another in the meta-language or one time for static and another for dynamic polymorphism.</li>
+<li>Every program that can be written in C++ must be writeable here with (asymptotically) the same or less code.</li>
+<li>No "magic" types / functions that are build-in the language (or its standard library), but can't be written by the programmer (so that they behave the same way) (The logic that fundamental types don't have anything special like in C++. Uniform handling of build-in and user-defined types (e.g. in generic code)).</li>
+<li>Easy fine-tuning of the application performance using trial and error. (e.g. Is it better to pass this parameter by need or by result? Is it better to represent complex numbers by cartesian or polar coordinates?)</li>
+<li>Good defaults and default defaults for less thought/typing.</li>
+<li>If a choice is made (e.g. of a data structure, variable storage class, etc.) and then code is written based on that behaviour, changing that choice should not require extensive changes in code.</li>
+<li>Pseudo-code abstraction level: typical examples of algorithms written in pseudo-code from the Compilers, NURBS and other books should be writeable in the language either as-is, or with small changes that don't change the abstraction level in which they are written.</li>
+<li>The language shall have a few elementary structures from which all desired structures (that the programmer uses in practice) would be writeable as libraries (RISC mindset).</li>
+<li>Zero-overhead abstraction whenever possible, but at least in implementing structures that have small or no overhead in other languages.</li>
+<li>The languages metalanguage should be the language itself.</li>
+<li>Promote a way of writing code with fast development of a prototype that works (is correct and tested) followed by heavy optimization and editing of details.</li>
+<li>"If you don't use it, you don't pay for it" philosophy, like in C++.</li>
+<li>Keep optional features to a minimum, ideally zero.</li>
+<li>True Unicode support.</li>
+<li>Easy to learn to solve problems writing correct programs. Not too difficult to predict what code is generated and write fast code. Unbounded implementation difficulty.</li>
+<li>Views, substitutability and deferred decisions.</li>
+<li>All operators have to be familiar (have to be used somewhere else already). "No originality" rule?</li>
+<li>It should be possible to redefine the whole language from within the language. Not necessarily easy...</li>
 </ul>
 </body></html>

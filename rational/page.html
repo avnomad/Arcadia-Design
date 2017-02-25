@@ -5,11 +5,12 @@
 <title>Rational</title>
 </head><body><ul><li>The form <tt>print "Hello World!\n";</tt>&nbsp;wasn't used because "print" can't be generalized (to streams).</li>
 <li>By using <b>fallthrough</b>&nbsp;I'm not hijacking <b>break</b>&nbsp;and <b>continue</b>.</li>
-<li>Linear data structures could have a <i>length</i>&nbsp;member, but this name doesn't generalize to trees and graphs.</li>
+<li>Linear data structures could have a <i>length</i>&nbsp;member, but this name doesn't generalize to trees and graphs. They could have a <i>size</i>&nbsp;member, but this will be used for byte count instead.</li>
 <li>The ↜ and &lt;~ operators were used for assignment, even though they are harder to write than =, because they don't match any mathematical symbol used elsewhere.</li>
-<li>The <b>|</b>&nbsp;and <b>||</b>&nbsp;operators weren't used for bitwise and logical disjunction respectively because the former was needed for conditional probability and the parallel to test whether two lines or vectors were parallel.</li>
+<li>The <b>|</b>&nbsp;and <b>||</b>&nbsp;operators weren't used for bitwise and logical disjunction respectively because the former was needed for conditional probability and the latter to test whether two lines or vectors were parallel.</li>
 <li>Only arithmetic and geometric progressions are recognized by the sequence operator ( , ,..., ), since there is no point in submitting the readers of the code to an IQ test.</li>
 <li>The distinction between value and reference classes demands a decision up front about how the classes are going to be used (whether they will be inherited etc.) and isn't in line with the language's general principle to let you start writing something and decide about the details as you go.</li>
+<li>Angle brackets weren't used for argument lists because of the ambiguities caused from using the '&lt;' and '&gt;' characters for both the former and comparison (&lt;,&gt;) and shift (&lt;&lt;,&gt;&gt;) operators. Those ambiguities affected both the compiler's speed and complexity and the complexity of defining the language in C++.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Explain the ambiguity caused by using parenthesis for both tuple creation and function application, find examples of this ambiguity in mathematical books, and mention how the problem is avoided in Python, Mathematica and Matlab.</li>
 <li>e.g. f:ℝ²→ℝ f(x)=2x+y. f(3,5) = 2*3+5 or (3f,5f)</li>

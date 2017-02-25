@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Qualifiers</title>
+</head><body><ul><li><b>Volatile</b></li>
+<li style="list-style-type: none"><ul><li>Is it necessary?</li>
+<li>What are the exact semantics?</li>
+</ul>
+</li>
+<li><b>Overloading</b></li>
+<li style="list-style-type: none"><ul><li><b>Temp</b></li>
+<li style="list-style-type: none"><ul><li>To allow overloading for named vs temporary values. (like C++'s r-value reference)</li>
+</ul>
+</li>
+<li><b>Identifier</b>, <b>Literal</b></li>
+<li style="list-style-type: none"><ul><li>To further learn if the argument was an identifier or a literal.</li>
+<li>Do I need those?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Privilages</b></li>
+<li style="list-style-type: none"><ul><li><b>read</b>, <b>write</b>, <b>execute</b></li>
+<li>Do I want those?</li>
+</ul>
+</li>
+<li><b>Dynamic Features</b></li>
+<li style="list-style-type: none"><ul><li><b>Tagged</b></li>
+<li style="list-style-type: none"><ul><li>To include the hidden pointer to the class descriptor and enable RTTI and dynamic dispatch.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Mutability</b></li>
+<li style="list-style-type: none"><ul><li><b>const</b>, <b>mutable</b></li>
+<li><b>const</b>&nbsp;T won't be a type, it will be type T, qualified. <b>const</b>&nbsp;T and T don't represent different value sets! On the other hand, they support different operation sets!</li>
+<li>D's <b>inout</b>&nbsp;wildcard qualifier is nice, but I think I'll prefer my solution with the special named template parameter (some static checkers for Java use a similar approach!) that can be different for the various parts of a type and various function parameters. e.g. <tt>(T) int *(S) fun((T) int *(S) p);</tt></li>
+<li>Imagine a kind of <i>transitive const</i>&nbsp;that, when applied to an object, makes it const and moreover makes the objects pointed to by the object transitive const. That could e.g. be used in a function that accepts the head of a linked list (pointer) and guarantees that no list element will change.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Consider the following example:</li>
+<tt><li style="list-style-type: none">struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">int n;</li>
+<li style="list-style-type: none">int* p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">const T a;</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none"><tt>a.n</tt>&nbsp;and <tt>a.p</tt>&nbsp;will be <tt>const</tt>&nbsp;but what about <tt>*a.p</tt>? Should it be const or not?</li>
+<li style="list-style-type: none"></li>
+<tt><li style="list-style-type: none">struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">int n;</li>
+<li style="list-style-type: none">(this.type.qualifier) int *p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none">could give to the int pointed to by p the qualifier of the type of <b>this</b>, whatever that is.</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">If not with <b>this</b>, I should have another way to refer to the exact type of the instance.</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">What if I allow template parameters in the type declaration? e.g.</li>
+<tt><li style="list-style-type: none">const struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">const int n;</li>
+<li style="list-style-type: none">const int *const p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none">or</li>
+<tt><li style="list-style-type: none"></li>
+<li style="list-style-type: none">(qual) struct T</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">(qual) int n;</li>
+<li style="list-style-type: none">(qual) int *(qual) p;</li>
+</ul>
+</li>
+<li style="list-style-type: none">};</li>
+</tt><li><tt>Do I need <i>literal</i>&nbsp;and <i>initonly</i>&nbsp;fields from C++/CLI?</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Constant Expression</b></li>
+<li style="list-style-type: none"><ul><li>I might need <i>constant-expression values</i>, or at least a way to enforce the evaluation of the initializer at compilation time.</li>
+</ul>
+</li>
+</ul>
+</body></html>

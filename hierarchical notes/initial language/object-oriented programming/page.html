@@ -4,18 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Object-Oriented Programming</title>
 </head><body><ul><li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Provide for a way to inform the compiler that objects of a certain type are relocatable?</li>
-</ul>
-</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at difference between chaining and cascading. (also see fluent interface and builder pattern)</li>
 <li>Look at Common List Object System (CLOS).</li>
 <li>Should objects be maps modifiable at run-time like in Javascript?</li>
+<li>Can functions be seen as objects?</li>
 </ul>
 </li>
 <li><b>Class Definition</b></li>
 <li style="list-style-type: none"><ul><li>Do I want to have both value and reference types (like C#)? Probably not. See rational.</li>
 <li style="list-style-type: none"><ul><li>If yes, I can also provide <i>nullable types</i>&nbsp;denoted by <tt>T?</tt>&nbsp;or <tt>Nullable&lt;T&gt;</tt>&nbsp;for a value class T.</li>
+</ul>
+</li>
+<li>Allow declaring fields in control structures like foreach loops and perhaps conditionals.</li>
+<li><b>Field Initialization</b></li>
+<li style="list-style-type: none"><ul><li>Non-static member initializers can be useful when constructors are automatically created. (e.g. with inherited or default constructors)</li>
 </ul>
 </li>
 </ul>
@@ -29,7 +32,7 @@
 <li><b>Construction</b></li>
 <li style="list-style-type: none"><ul><li>Am I interested in defining more implicitly-defined constructors like D?</li>
 <li>I'll probably use the good old-fashioned copy constructor and assignment operator combination instead of D's postblit constructor this(this).</li>
-<li>I can have static, dynamic and automatic constructors that will be called for for variables of the respective storage duration.</li>
+<li>I can have static, dynamic and automatic constructors and the one that matches the storage duration of the variable will be called.</li>
 </ul>
 </li>
 <li><b>Encapsulation</b></li>
@@ -48,36 +51,55 @@
 </ul>
 </li>
 <li><b>Inheritance</b></li>
-<li style="list-style-type: none"><ul><li>The combination of <i>multiple subtyping</i>&nbsp;with D's "alias this" declaration for replacing multiple inheritance sounds promising!</li>
-<li>Support multiple inheritance of implementation &nbsp;or "opening" of an implementation into another.</li>
+<li style="list-style-type: none"><ul><li>A class (or whatever similar structure exists in the language) should be able to inherit from any type, even from fundamental types (if such types exist).</li>
 <li>Support 'shared' vs 'separate' inheritance. (If a base class B has a class field x then, for a derived class D, the expression D.x is valid. In most OO languages, D.x refers to B.x and I call this 'shared' inheritance. An alternative way to define the semantics would be to allocate a new x field for D, so that D1.x and D2.x would be distinct for two derived classes D1 and D2. I call this 'separate' inheritance. This is implementable using the curiously recurring template pattern.)</li>
+<li><b>Multiple Inheritance</b></li>
+<li style="list-style-type: none"><ul><li>The combination of D's <i>multiple subtyping</i>&nbsp;with D's "alias this" declaration for replacing multiple inheritance sounds promising!</li>
+<li>Support multiple inheritance of implementation &nbsp;or "opening" of an implementation into another.</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Allow renaming and/or undefining inherited methods and/or fields.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do I want <b>final</b>&nbsp;methods and classes?</li>
 <li>Do I want to use prototyping instead? (like in Javascript)</li>
+<li>Do I want to support private and protected inheritance?</li>
+<li>Should I distinguish between inheritance of implementation (for code reuse) and inheritance of type (for polymorphism)?</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><b>Polymorphism</b></li>
-<li style="list-style-type: none"><ul><li>Use <b>abstract</b>&nbsp;instead of <b>= 0</b>&nbsp;to make a method <i>pure virtual</i>. But do I need to declare pure virtual methods in the first place?</li>
-<li>Even in my style of free-standing functions there might be an <b>override</b>&nbsp;(attribute/keyword) that will work.</li>
+<li style="list-style-type: none"><ul><li>Functions are non-virtual by default like in C++.</li>
+<li>Use <b>abstract</b>&nbsp;instead of <b>= 0</b>&nbsp;to make a method <i>pure virtual</i>. But do I need to declare pure virtual methods in the first place?</li>
+<li>An <b>override</b>&nbsp;annotation/attribute/keyword (like the one in Java, C++11 and D) may be worth the trouble even in my style of free-standing functions.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Do I want to support something like the Non-Virtual Interface (NVI)? (it can be used to implement a contract)</li>
+<li>The additional hidden pointer to the class descriptor could be added to objects or not depending on some syntactic hint (e.g. an operator) at construction time, instead of taking the decition at class definition time depending on whether there are virtual functions or not. Essentially I'll have two variants of every type T. This hint could be a qualifier like const or temp (e.g. tagged). This pointer could be accessible as e.g. <tt>a:tag</tt>, although it could also be considered as the dynamic type.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will <i>covariant return types</i>&nbsp;and <i>dynamic dispatch</i>&nbsp;be handled?</li>
-<li>Do I need multiple dispatch?</li>
+<li>Do I need <i>multiple dispatch</i>?</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><b>Nesting</b></li>
 <li style="list-style-type: none"><ul><li>Support static and non-static nested classes. Allow nesting in both other classes and functions.</li>
+<li>Nested classes have access to the private and protected members of the enclosing class.</li>
+<li>Support for the "generalized hoisting" technique for minimizing dependencies between nested types and the parameters of enclosing types.</li>
+</ul>
+</li>
+<li><b>Partial Classes</b></li>
+<li style="list-style-type: none"><ul><li>Should probably support them.</li>
 </ul>
 </li>
 <li><b>Properties</b></li>
-<li style="list-style-type: none"><ul><li></li>
+<li style="list-style-type: none"><ul><li>Perhaps I can make everything a property and lack a 'traditional' assignment operator, but instead convert all occurances of the assignment operator to set/get calls. (those calls will then be removed by the optimizer)</li>
+<li>If I want to pass a property by reference, I may be able to pass the address of the owning object instead, and implicitly call the setter and getter functions in the callee's body. But that would create problems in cases where I want to pass a normal object by reference, in which case the callee's body wouldn't be expected to contain calls to set and get...</li>
 </ul>
 </li>
 </ul>

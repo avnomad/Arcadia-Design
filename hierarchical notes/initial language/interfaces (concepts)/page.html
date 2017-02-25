@@ -6,8 +6,24 @@
 </head><body><ul><li>Use the same interfaces for static and dynamic polymorphism.</li>
 <li>Support multiple inheritance of interfaces. (This should cover the uses of inheritance for subtyping)</li>
 <li>Interface / Implementation dualism.</li>
+<li style="list-style-type: none"><ul><li>Could use the following terminology and syntax:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">signature</li>
+<li style="list-style-type: none">&#09;interface</li>
+<li style="list-style-type: none">&#09;axioms</li>
+<li style="list-style-type: none">structure</li>
+<li style="list-style-type: none">&#09;representation</li>
+<li style="list-style-type: none">&#09;implementation (list of functions with access to private members &amp; optionally their bodies)</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Generic code might need to demand that an operation doesn't throw exceptions.</li>
 <li>Support inferring the header/summary/interface from the source file/definition in source/human-readable form, as well as manual/handwritten header creation and automated checking of implementation with respect to that.</li>
 <li>Support specification of Axioms/Postulates as part of the interface.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Restrict class interface contents to properties and functions only. That will ease the use of an interface in both static and dynamic polymorphism. i.e. An interface won't contain field declarations but will instead contain property (setter and getter) declarations that will give the impression that it has fields. (although there are other issues that need to be addressed too...)</li>
+<li>What if I could include performance characteristics (like computational complexity) as part of the interface and produce a "performance warning" instead of an error if the implementation supports the operation, but not with the required performace?</li>
+</ul>
+</li>
 </ul>
 </body></html>

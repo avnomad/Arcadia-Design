@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Storage Classes</title>
+</head><body><ul><li><b>List</b></li>
+<li style="list-style-type: none"><ul><li>auto (selects the 'best' storage class depending on context)</li>
+<li>symbol (or compiler? The value will be stored only during compilation and will be unavailable during run-time. May not need this)</li>
+<li><b>By increasing lifetime</b>&nbsp;(affects location of storage)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>register</li>
+<li>stack (C's automatic)</li>
+<li>heap?</li>
+<li>static? (replaced by 'process'?)</li>
+<li>disk (persistent)</li>
+</ul>
+</li>
+<li><b>By increased sharing</b>&nbsp;(affects instance visibility)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>function</li>
+<li>thread (Thread Local Storage)</li>
+<li>process (shared between threads)</li>
+<li>application (shared between processes)</li>
+</ul>
+</li>
+<li><b>By increasing visibility</b>&nbsp;(affects lexical scope)<b>:</b></li>
+<li style="list-style-type: none"><ul><li>local</li>
+<li>global</li>
+<li>exported</li>
+</ul>
+</li>
+<li><b>Valid Combinations</b></li>
+<li style="list-style-type: none"><ul><li>(local, function, register)</li>
+<li>(local, function, stack)</li>
+<li>(local, thread, static)</li>
+<li>(local, thread, disk)?</li>
+<li>(local, process, static)</li>
+<li>(local, process, disk)?</li>
+<li>(local, application, static)</li>
+<li>(local, application, disk)?</li>
+<li>(global, thread, static)</li>
+<li>(global, thread, disk)?</li>
+</ul>
+</li>
+<li><b>Valid Combinations </b>(alternative form)</li>
+<li style="list-style-type: none"><ul><li>(†global | export)(†static | disk)(†thread | process | application | shared? | universal?)</li>
+<li>† marks defaults.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Process (static)</b></li>
+<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Will I allow:</li>
+<tt><li style="list-style-type: none">int f(int x)</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">static int n = x;</li>
+<li style="list-style-type: none">n++;</li>
+<li style="list-style-type: none">return n;</li>
+</ul>
+</li>
+<li style="list-style-type: none">}</li>
+</tt><li>Explain how the different cases will be compiled.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Defaults</b></li>
+<li style="list-style-type: none"><ul><li>The default storage class for globals with probably be "process" according to the "if you don't use it, you don't pay for it" principle since I expect to use parallelism instead of concurrency and don't expect to have many threads. Or will I?</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Should there be an option to redirect stack allocations bigger than a configurable amount to the heap?</li>
+</ul>
+</li>
+</ul>
+</body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Conversions</title>
+</head><body><ul><li><b>String-to-String Codecs</b></li>
+<li style="list-style-type: none"><ul><li>Encode and decode strings to and from:</li>
+<li style="list-style-type: none"><ul><li>URL</li>
+<li>MIME</li>
+<li>Morse (doesn't need to be in the standard library, just needs to be implementable under the same interface)</li>
+<li>other?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Between Strings and Other Types</b></li>
+<li style="list-style-type: none"><ul><li>Uniform mechanism for all cases.</li>
+<li>From and to arithmetic types.</li>
+<li>From and to type names.</li>
+<li style="list-style-type: none"><ul><li>Given a type you should be able to get its name as a string and given a string containing a type's name you should be able to get the object representing the type. (the type object will have methods to create values of this type if needed)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</body></html>

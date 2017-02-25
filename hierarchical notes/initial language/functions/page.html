@@ -3,67 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Functions</title>
-</head><body><ul><li><b>Function call</b></li>
-<li style="list-style-type: none"><ul><li>When you bind one or more function parameters to specific arguments, there will be an option to either create an object that stores those arguments until the rest of the arguments become known, or create a specialization of the function for these specific argument values. <i>Partial application</i>&nbsp;vs <i>partial evaluation</i>?</li>
-<li>Support for currying and bind in some way.</li>
-<li>Different function calls (with corresponding syntaxes?) to evaluate a function at compile and run-time.</li>
-<li>Different function calls (with corresponding syntaxes?) to evaluate a function in a new (or existing?) thread and/or process.</li>
-<li><b>Parameter pass modes (evaluation strategies?)</b></li>
-<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Perhaps I can supply only the most generic parameter pass mode as build-in (tree?) and allow the rest to be created with constructors and conversions... e.g. every expression will be automatically converted into a tree and then converted into something else as needed.</li>
-<li>It may be useful to have the ability to explicitly bind a variable with the return value of a function, perhaps by using <b>retval</b>. e.g. <tt>add(a, b, retval=c)</tt></li>
-</ul>
-</li>
-<li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Is the implementation of return by value equivalent to receiving a parameter by return? The return by external reference mode is equivalent to receiving a parameter by reference. But what about return by internal reference?</li>
-<li style="list-style-type: none">Can I consider this to be a purely syntactic issue and use the functions either way? ((like with infix, method, etc.).</li>
-<li>The following concepts have overlap. How many orthogonal concepts can I derive from them and what would they be?</li>
-<li style="list-style-type: none"><ul><li>Mutability</li>
-<li style="list-style-type: none"><ul><li>read-only</li>
-<li>write-only</li>
-<li>full-access</li>
-</ul>
-</li>
-<li>Flow of information</li>
-<li style="list-style-type: none"><ul><li>in</li>
-<li>out</li>
-<li>inout</li>
-</ul>
-</li>
-<li>Evaluation strategy</li>
-<li style="list-style-type: none"><ul><li>val</li>
-<li>res</li>
-<li>val res</li>
-<li>ref</li>
-<li>name</li>
-<li>macro</li>
-<li>need</li>
-<li>tree?</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><b>Parameter Matching</b></li>
-<li style="list-style-type: none"><ul><li>Support both positional and named parameters.</li>
-<li>All named arguments not matching a named parameter will be passed as a map, like in Python.</li>
-</ul>
-</li>
-<li><b>Default Arguments</b></li>
-<li style="list-style-type: none"><ul><li>Should I be able to change default arguments when I create an alias for a function?</li>
-</ul>
-</li>
-<li><b>Variadic functions</b></li>
-<li style="list-style-type: none"><ul><li>Use of a unpack operator for arrays and maps like in Python (more generic than Java's mechanism).</li>
-</ul>
-</li>
+</head><body><ul><li><b>Header</b></li>
+<li style="list-style-type: none"><ul><li>Should a parameter be usable in defining the ones that follow? e.g.</li>
+<li style="list-style-type: none">&#09;void f(T in Types, t in T)</li>
+<li>In some cases, one might want to write a function that returns an array, but computing the array size will essentially be identical to running the function itself. In this case, the programmer will be able to use conventional methods (e.g. return a vector) or write a 2nd version of one's function that will perform all the computations, but won't write the result to an array, only return the size. One will then use this function to return the size of the array returned by the original function (essentially doubling the computations).</li>
+<li style="list-style-type: none">Although repeating some computations twice isn't recommended, if the function is very fast (e.g. 60ns) and allocating memory in the heap is relatively slow (e.g. 1ms) then it will be reasonable for the programmer to prefer running the function 2 times and the language could help him by automatically generatinc a "dry-run" version of the function. The original function shall not read from the returned array (retval) (not even its size?) and writtes to the returned array will be compiled to no-ops in the dry-run version.</li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Maybe I can use the 0x2061 FUNCTION APPLICATION Unicode character to resolve the f(g+h) ambiguity.</li>
-<li>What if a function call had 4 'kinds' of argument lists? (one for each member of a 'datum': value, type, name, address)</li>
-<li>Should I allow for a default argument for be supplied by a virtual function of the same class? Generally changing default arguments in an function <u>override</u>&nbsp;isn't a good idea, but that way it might work!</li>
+<li style="list-style-type: none"><ul><li>Allow or force the programmer to name all functions, be they called as infix operators, constructors, etc. or with a keyword like 'op' or 'operator' and the operator's symbol (e.g. op+). That should provide a little more documentation.</li>
 </ul>
 </li>
 </ul>
@@ -72,6 +18,37 @@
 <li style="list-style-type: none">In those cases, the initial and final type must implement the same interface. But what if I already have obtained a pointer to the variable of the old type?</li>
 <li>Support for forwarding the return type. f()→auto&amp;, will deduce a reference return type (in general you'll be able to specify a pattern for the return type).</li>
 <li>Allow deducing the return type even in functions with multiple return statements and recursive calls.</li>
+<li><b>Attributes</b></li>
+<li style="list-style-type: none"><ul><li><b>Model</b></li>
+<li style="list-style-type: none"><ul><li>All such attributes will be specifiable by the programmer using annotations/attributes.</li>
+<li>All such attributes will be checkable by the compiler given some constraints about the function structure that will be documented.</li>
+<li>Some of those attributes might be inferable by the compiler given some constraints about the function structure that will be documented.</li>
+<li>The compiler <i>might</i>&nbsp;be able to check and/or infer such attributes even if the structure constraints are not met. (If they are met it is <i>required</i>&nbsp;to check and/or infer them)</li>
+<li>It won't be an error to specify such attributes without meeting the documented constraints for checking and/or inference, but it may result to a warning.</li>
+<li>Such attributes will be made part of the function interface (they may apply to the function itself or its type) and advertised in module headers.</li>
+<li>The programmer <i>may</i>&nbsp;elect to specify that any additional attributes, not present in the code, that may be infered shall not be exported from the module as part of the function interface to ensure stability of the interface for the clients at the expence of lost chances for optimization.</li>
+</ul>
+</li>
+<li><b>Attributes</b></li>
+<li style="list-style-type: none"><ul><li>No escape of local addresses</li>
+<li>Synchronized</li>
+<li>Pureness / Referential Transparency</li>
+<li style="list-style-type: none"><ul><li>Side Effect Free</li>
+<li>Deterministic</li>
+<li>Pure</li>
+</ul>
+</li>
+<li>Side Effects</li>
+<li>Leaf Status (optimization?)</li>
+<li>Thrown Exceptions</li>
+<li style="list-style-type: none"><ul><li>noexpept</li>
+</ul>
+</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Body</b></li>
 <li style="list-style-type: none"><ul><li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Allow the function body to be a single expression like in functional programming languages?</li>
@@ -116,9 +93,24 @@
 <li style="list-style-type: none"><ul><li>We can see a "polymorphic function" either as a set of monomorphic functions or as a function taking a number of type parameters.</li>
 </ul>
 </li>
+<li><b>Overloading</b></li>
+<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Should I allow overloading a function for different architectures? e.g.</li>
+<li style="list-style-type: none"><ul><li>unsigned int populationCount(unsigned long long int) @ x86; // implement with architecture optimized code</li>
+<li>unsigned int populationCount(unsigned long long int) @ MIPS; // implement with single machine instruction</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Overload Resolution</b></li>
-<li style="list-style-type: none"><ul><li>In C++ when you declare a function in a scope, it hides all the functions with the same name in enclosing scopes, not only the one with the same signature. I don't think I wasn't that...</li>
+<li style="list-style-type: none"><ul><li>In C++ when you declare a function in a scope, it hides all the functions with the same name in enclosing scopes, not only the one with the same signature. I don't think I want that...</li>
 <li style="list-style-type: none">On the other hand, I might need to explicitly remove names and signatures from selected scopes. (delete foo&lt;int&gt;?)</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Consider the interaction between overload resolution and implicit type conversions in the context of arithmetic types and their operators. e.g. Will 2l + 2ll work or be ambiguous?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Closures</b></li>
@@ -168,8 +160,17 @@
 </li>
 </ul>
 </li>
+<li><b>Functions as Values</b></li>
+<li style="list-style-type: none"><ul><li>I could allow binding an argument of n-parameter function type to a parameter of m-parameter function type (where m&lt;n), if the n-m parameters can get default values, by "auto-binding" the n-m parameters to their default values.</li>
+</ul>
+</li>
+<li><b>Function Objects</b></li>
+<li style="list-style-type: none"><ul><li>I'll probably have a build-in bind operator instead of function objects similar to those of C++. An object that appears as a function (after defining an operator for this syntax) will be passable as an argument to a higher-order function by being implicitly converted to a function by binding the object with the first parameter of the function call operator.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Support a meta-object protocol?</li>
+<li style="list-style-type: none"><ul><li>Support a meta-object protocol? Might be useful in defining C-like type coercions for arithmetic types since those types won't be build-in, but libraries.</li>
+<li>Should function names behave as if they were variable names?</li>
 </ul>
 </li>
 </ul>

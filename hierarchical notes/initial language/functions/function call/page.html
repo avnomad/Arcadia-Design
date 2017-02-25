@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Function Call</title>
+</head><body><ul><li>When you bind one or more function parameters to specific arguments, there will be an option to either create an object that stores those arguments until the rest of the arguments become known, or create a specialization of the function for these specific argument values. <i>Partial application</i>&nbsp;vs <i>partial evaluation</i>?</li>
+<li><b>Partial Application</b></li>
+<li style="list-style-type: none"><ul><li><b>Currying</b></li>
+<li style="list-style-type: none"><ul><li>One should be able to implement functionality similar to boost::bind from currying and named parameters.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>I could use a different call syntax for currying (e.g. [] instead of ()). That way I could e.g. supply arguments for all parameters and take a function ∅ ⟶ T.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Bind</b></li>
+</ul>
+</li>
+<li><b>Call Operator Variants/Modifiers</b></li>
+<li style="list-style-type: none"><ul><li>There are a number of different semantics that can be given to the function call operator or contexts in which the function can be executed and an idea is to give each of them a different syntax.</li>
+<li>For explicitly inline / not inline calls? (in addition to the default that lets the compiler choose whether to inline)</li>
+<li>For evaluating a function at compile and run-time. But how do I elect to evaluate an operator at compile-time vs run-time?</li>
+<li>Since I'll support compile-time evaluation of arbitrary functions (using a special operator), I probably won't need <i>constant-expression functions</i>.</li>
+<li>For evaluating a function in a new (or existing?) thread and/or process.</li>
+<li style="list-style-type: none">This can be combined with a few standard "global" variables that hold additional parameters that are needed for starting threads, but you don't want to specify each time. e.g. stack size, start suspended, etc.</li>
+<li>Some posible choises for the syntax are:</li>
+<li style="list-style-type: none"><ul><li>Put brackets around the disambiguator, i.e. &lt;function-id&gt; ::= &lt;open-call-type-bracket&gt; [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] &lt;close-call-type-bracket&gt; where &lt;open-call-type-bracket&gt; must match &lt;close-call-type-bracket&gt; and specifies whether the call will take place during run-time or compile-time, in a new thread or process, etc. </li>
+<li style="list-style-type: none"><ul><li>The following can be used as call-type-bracket pairs: &lt;| |&gt;, &lt;~ ~&gt;, &lt;% %&gt;, &lt;# #&gt;, &lt;( )&gt;, &lt;[ ]&gt;, &lt;{ }&gt;,&lt;* *&gt;, &lt;&amp; &amp;&gt;, &lt;+ +&gt;.</li>
+<li>The result is parsed using the fixity that was used when declaring the function.</li>
+<li>Examples:</li>
+<li style="list-style-type: none"><ul><li>c = a + b ⟺ c std:= a std:+ b</li>
+<li>d = f(a g b) ⟺ d &lt;(=)&gt; &lt;#f#&gt;(a &lt;|asl:operators:g|&gt; &nbsp;b)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Add a modifier at the end of the disambiguator to denote the context in which the function will be called.</li>
+</ul>
+</li>
+<li>I might have to generalize <i>call operator variants</i>&nbsp;(including specification of default variant) to control structures (e.g. if, foreach etc.).</li>
+<li style="list-style-type: none">That's because of the interaction between static typing and the branch that is not taken. (see map implementation using SFINAE and foreach(field in class))</li>
+</ul>
+</li>
+<li><b>Parameter pass modes (evaluation strategies?)</b></li>
+<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Perhaps I can supply only the most generic parameter pass mode as build-in (tree?) and allow the rest to be created with constructors and conversions... e.g. every expression will be automatically converted into a tree and then converted into something else as needed.</li>
+<li>It may be useful to have the ability to explicitly bind a variable with the return value of a function, perhaps by using <b>retval</b>. e.g. <tt>add(a, b, retval=c)</tt></li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Is the implementation of return by value equivalent to receiving a parameter by return? The return by external reference mode is equivalent to receiving a parameter by reference. But what about return by internal reference?</li>
+<li style="list-style-type: none">Can I consider this to be a purely syntactic issue and use the functions either way? ((like with infix, method, etc.).</li>
+<li>Should I provide for a way to pass an expression to a function in the form of an abstract syntax tree? This can be done:</li>
+<li style="list-style-type: none"><ul><li>Using an operator similar to Lisp's quote ('). (e.g. 'a:ast')</li>
+<li>Using a new evaluation strategy. (e.g. 'tree')</li>
+<li>By modifying pass by need using an attribute.</li>
+<li>By implicit conversion to an AST type expected by the function.</li>
+</ul>
+</li>
+<li>The following concepts have overlap. How many orthogonal concepts can I derive from them and what would they be?</li>
+<li style="list-style-type: none"><ul><li>Mutability</li>
+<li style="list-style-type: none"><ul><li>read-only</li>
+<li>write-only</li>
+<li>full-access</li>
+</ul>
+</li>
+<li>Flow of information</li>
+<li style="list-style-type: none"><ul><li>in</li>
+<li>out</li>
+<li>inout</li>
+</ul>
+</li>
+<li>Evaluation strategy</li>
+<li style="list-style-type: none"><ul><li>val</li>
+<li>res</li>
+<li>val res</li>
+<li>ref</li>
+<li>name</li>
+<li>macro</li>
+<li>need</li>
+<li>tree?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Value return modes</b></li>
+<li style="list-style-type: none"><ul><li>by value</li>
+<li>2 modes to return a value by reference will be needed:</li>
+<li style="list-style-type: none"><ul><li><b>by external reference</b>: The caller allocates space in the stack for the object to be returned and passes its address to the callee as a hidden argument (the function isn't really returning anything). The constructor for the object to be returned can be called as the last thing before transfering control to the callee or the first thing after that (I'm not sure what's best. Perhaps last thing before transfering control, so that both the constructor and destructor are called from the caller.).</li>
+<li style="list-style-type: none">The above is enough for statements like <tt>g(f(b));</tt>&nbsp;where f returns an object of type T by external reference and g takes an object of type T by reference. But for statements of the form <tt>a = f(b);</tt>&nbsp;where a is of type T and f returns an object of type T by external reference, we want to avoid the creation of a new object and its copy into <tt>a</tt>&nbsp;and instead we'll pass the address of <tt>a</tt>&nbsp;to <tt>f</tt>&nbsp;directly.</li>
+<li><b>by internal reference</b>: This is the usual return by reference that returns the address of an object (that has usually been allocated by the callee and, if the stack isn't grarbage-collected, can't be allocated on the stack).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Parameter Matching</b></li>
+<li style="list-style-type: none"><ul><li>Support both positional and named parameters.</li>
+<li>All named arguments not matching a named parameter will be passed as a map, like in Python.</li>
+<li>Besides named parameters, Ada includes disjunction (|), ranges (..), the keyword 'other', etc. and can use them in aggregate literals too. I should see if I can do something similar.</li>
+</ul>
+</li>
+<li><b>Default Arguments</b></li>
+<li style="list-style-type: none"><ul><li>Should I be able to change default arguments when I create an alias for a function?</li>
+<li>It might be useful to allow the default argument values to be computed by an arbitrary expression that may contain the values of other parameters of the function. This expression will have to be evaluated in the context of the caller.</li>
+<li style="list-style-type: none">e.g. a function could receive the storage space it will use as an argument and if it doesn't receive it, the function could allocate the space itself.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>I could allow passing the keyword <b>default</b>&nbsp;in contexts were I can't just leave a parameter's position empty (e.g. currying), but I still want to use default arguments.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Variadic functions</b></li>
+<li style="list-style-type: none"><ul><li>Use of a unpack operator for arrays and maps like in Python (more generic than Java's mechanism).</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>The pack and unpack operators could be conbined with placeholder arguments ($0, $1, etc.) to further disambiguate the variable part.</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>How will the type of a variadic function look like?</li>
+<li>How will a function refer to its arguments in a way that ensures static type safety?</li>
+<li>In the context of boostrapping the language, can variadic functions be defined before defining parenthenses as the way to call functions?</li>
+<li>How will a respective writefln function be written? e.g. <tt>(Τ∈TypeClassExpression)… writefln∈(s ∈ string,args ∈ Τ)</tt>&nbsp;or <tt>writefln∈(s ∈ string, args ∈ Τ∈TypeClassExpression…)</tt>\</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Perfect Forwarding</b></li>
+<li style="list-style-type: none"><ul><li><b>Arguments</b></li>
+<li><b>Return Values</b></li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Maybe I can use the 0x2061 FUNCTION APPLICATION Unicode character to resolve the f(g+h) ambiguity.</li>
+<li>What if a function call had 4 'kinds' of argument lists? (one for each member of a 'datum': value, type, name, address)</li>
+<li>Should I allow for a default argument for be supplied by a virtual function of the same class? Generally changing default arguments in an function <u>override</u>&nbsp;isn't a good idea, but that way it might work!</li>
+</ul>
+</li>
+</ul>
+</body></html>

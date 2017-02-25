@@ -3,12 +3,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>(De)Serialization</title>
-</head><body><ul><li>XML?</li>
+</head><body><ul><li><b>Standard Formats</b></li>
+<li style="list-style-type: none"><ul><li>XML?</li>
 <li style="list-style-type: none"><ul><li>validating XML processor </li>
 </ul>
 </li>
 <li>Protobuf?</li>
 <li>CSV?</li>
-<li></li>
+</ul>
+</li>
+<li><b>Combined Recognizer/Generator DSL</b></li>
+<li style="list-style-type: none"><ul><li>I could offer parser generator similar to Spirit.Qi out-of-the-box as part of the standard input system.</li>
+<li>For a new type I'll be able to specify its format and it will be automatically usable for input and output.</li>
+<li>I'll also be able to separately customize input and output if needed.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>What if I could write <tt>output elements[$1] (", " elements[$1])*</tt>&nbsp;to print an array 'elements' of values?</li>
+<li>What if I could write a format:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">sum(left,right) ::= '(' left " + " right ')'</li>
+<li style="list-style-type: none">prod(left,right) ::= '(' left "*" right ')'</li>
+<li style="list-style-type: none">var(name) ::= name</li>
+</ul>
+</li>
+<li style="list-style-type: none">or even better</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">node(op,left,right) ::= '(' left op right ')'</li>
+<li style="list-style-type: none">var(name) ::= name</li>
+</ul>
+</li>
+<li style="list-style-type: none">and that format be usable for both parsing and printing expression trees? (When parsing extra whitespace would be ingored, while when printing extra whitespace could be added based on field lengths and justification rules.</li>
+<li style="list-style-type: none">sum, prod, var, node would be the deconstructors of respective types, and those types would be assumed as the nonterminals of a grammar. The types of left and right would be used as the nonterminals of the right hand side of the rules. A declaration of the grammar (terminals, nonterminals, rules, starting nonterminal) may be needed.</li>
+</ul>
+</li>
+<li><b>Relationship with Arcadia's parser</b></li>
+<li style="list-style-type: none"><ul><li>The parser and the way of specifying the syntax could be associated with the way of specifying the syntax of Arcadia itself or not.</li>
+</ul>
+</li>
+<li><b>Relationship with formatted I/O</b></li>
+<li style="list-style-type: none"><ul><li>For backward compatibility with the syntax for formatted input, variables of a type will be directly usable as parsers of this type (instead of int_, double_, etc.) that will read input into that variable. So <tt>in &gt;&gt; a b c</tt>&nbsp;(or <tt>input a b c</tt>) will work like C++'s <tt>cin &gt;&gt; a &gt;&gt; b &gt;&gt; c</tt>.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </body></html>

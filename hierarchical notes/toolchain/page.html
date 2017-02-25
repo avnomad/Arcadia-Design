@@ -19,7 +19,8 @@
 <li>-unittest to run unittests</li>
 <li>-benchmark to run benchmarks</li>
 <li>To choose between debug and release modes (e.g. -debug, -release). But what if you have more modes?</li>
-<li>To define some arbitrary symbol that can be searched for in code. (similar to C's #define mechanism)</li>
+<li>To define some arbitrary symbol (variable?) when calling the compiler that can be looked for by code (similar to C/C++'s #define mechanism and gcc's -D option).</li>
+<li style="list-style-type: none">Those symbols will be arbitrary in number, will use 'auto' or similar for type (so that their type will be inferred from the value they get) and will all be defined in a special namespace (e.g. External).</li>
 </ul>
 </li>
 <li><b>Optimizations</b></li>
@@ -53,12 +54,29 @@
 </ul>
 </li>
 <li><b>Editor</b>&nbsp;(not included)</li>
-<li style="list-style-type: none"><ul><li>substitutions (e.g. foreach becomes ∀).</li>
+<li style="list-style-type: none"><ul><li><b>substitutions</b>&nbsp;(e.g. foreach becomes ∀).</li>
 <li style="list-style-type: none"><ul><li>The editor could analyse code as you type to e.g. substitute <tt>−</tt>&nbsp;for - in "a-b", but not in "letter-like". This might need semantic analysis, besides parsing and scanning.</li>
 </ul>
 </li>
-<li>typeset contexts.</li>
+<li><b>typeset contexts</b></li>
 <li style="list-style-type: none"><ul><li>The editor could have rules to present certain lexical and syntactic structures, like mathematical formulas, in a typeset way instead of using a fixed width font everywhere.</li>
+<li>If I indeed distinguish between the language that is saved in the file and the language that is presented in the editor, then all function calls could be saved in a uniform way in the file (e.g. function-name(argument-list)) and presented to the programmer differently (e.g like an operator or a method) depending on what has been defined for each function.</li>
+<li style="list-style-type: none">If someone wants to write expressions in a plain text editor, it shouldn't be harder than programming in Lisp!</li>
+<li>A simple source code representation in a (UTF-8) text file could be token =&gt; type"value". Where tokens are separated by spaces or, maybe, not at all.</li>
+<li style="list-style-type: none">&#09;k"keyword-name"</li>
+<li style="list-style-type: none">&#09;i"identifier-name" (operators could be encoded as identifiers too)</li>
+<li style="list-style-type: none">&#09;c"comment-text"</li>
+<li style="list-style-type: none">&#09;s"string-text" (could include multiple prefixes depending on whether the string is ASCII, Unicode, etc.)</li>
+<li style="list-style-type: none">&#09;l"single-character-name" (l for letter, or sc for single character, or something else)</li>
+<li style="list-style-type: none">&#09;r"regular-expression-literal" ?</li>
+<li style="list-style-type: none">&#09;numbers?</li>
+<li style="list-style-type: none">All of the above can use escape sequences, but some may have additional constraints. e.g. it could be illegal for identifiers to contain line separators and keywords could be drawn from a predefined set.</li>
+<li>Support comments that will 'point' to certain line or character ranges or positions in the code with arrows and braces like in the report that I've written for the Numerical Analysis course.</li>
+<li style="list-style-type: none">Those could be represented in the file e.g. with 'invisible' anchors. e.g. I put an anchor in the beginning of the blcok and one at the end and in the comment I write that it refers to the code between those anchors.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>How will the whitespace in the file, map to the whitespace presented in the editor and vice versa?</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

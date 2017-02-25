@@ -4,6 +4,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Generic Programming</title>
 </head><body><ul><li>Template instantiation will be replaced by partial evaluation of methods taking type arguments.</li>
+<li>I may be able to obviate the need for both template functions and template classes as entities distinct from functions and classes. Could have only arguments and sets that become known and used at compile time. But how exactly? I might be able to construct the first integers using low level type facilities and behaviour primitives:</li>
+<li style="list-style-type: none">&#09;<tt>+struct Array</tt></li>
+<tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">x in Type;</li>
+<li style="list-style-type: none">y in UInt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</tt></ul>
+<tt>&#09;-struct<br/>
+&#09;+fun [constructor] ArrayConstructor(x in Type, y in UInt)-&gt;Array<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">retval.x = x;</li>
+<li style="list-style-type: none">retval.y = y;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+&#09;-fun<br/>
+&#09;+fun [size] ArraySize(array in Array(x,y))-&gt;UInt<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">return x:size * y;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+&#09;-fun<br/>
+&#09;+fun [∈] ArrayIn(value in Universal?, array in Array(x,y))-&gt;Bool<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">???</li>
+<li style="list-style-type: none">return value:size == array.size; &nbsp; ???</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+&#09;-fun</tt><ul><li style="list-style-type: none">or perhaps the last function doesn't need to be written by the programmer but by the system...</li>
 <li>When the compiler sees a formal parameter of interface type, it will introduce hidden type parameters that will be fed with the types of the actual parameters, at the call site.</li>
 <li>Support template variables.</li>
 <li>Support <i>signature constraints</i>&nbsp;and/or <i>concepts</i>&nbsp;for both parameterized functions and parameterized types.</li>
@@ -14,9 +47,46 @@
 <li>Explicit and implicit type variables</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>When will templates be instantiated?</li>
+<li>Support both <i>homogenous</i>&nbsp;and <i>heterogenous</i>&nbsp;translation?</li>
 <li>When a template inherits from another template, how will the base class members be visible in the 1st look-up phase?</li>
 <li>Will I allow an arbitrary set of types where an interface/type class is expected? (e.g. <tt>a ∈ T ∈ Integers</tt>)</li>
 <li style="list-style-type: none">An arbitrary set of types might not provide a common interface to handle values of those types, but may still be useful for overloading and checking could be done with "duck typing" here, as it is done in the case when the type class is "Types".</li>
+<li>How will template functions be declared? e.g.</li>
+<li style="list-style-type: none"><ul><li><tt>+∀ T, S ∈ Types</tt></li>
+<tt><li style="list-style-type: none">&nbsp; &nbsp; +fun combine ∈ </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">(t ∈ T, s ∈ S) ⟶ Combine(T,S)</li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+</ul>
+</li>
+<li style="list-style-type: none">−fun combine</li>
+</ul>
+</li>
+<li style="list-style-type: none">−∀</li>
+<li>+fun combine ∈ </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">(T ∈ Types, S ∈ Types, t ∈ T, s ∈ S) ⟶ Combine(T,S)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+</ul>
+</li>
+<li style="list-style-type: none">−fun combine</li>
+<li>+fun combine ∈ </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">(T ∈ Types, S ∈ Types) ⟶ (t ∈ T, s ∈ S) ⟶ Combine(T,S)</li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−fun combine</tt></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -3,10 +3,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Module Language</title>
-</head><body><ul><li><b>Namespaces</b></li>
+</head><body><ul><li><b>Model</b></li>
+<li style="list-style-type: none"><ul><li>Perhaps instead of having namespaces, includes and submodules I could do the following: </li>
+<li style="list-style-type: none">One or more source files are given to the compiler and are compiled as if they were a single file comprising the files that were given, in the order they were given, without gaps or additions between them. The result is a single module file and source code will refer to it by using its path/url (that includes the name). </li>
+<li>The rest of the code will be able to import the module's symbols, or a subset of them, with an import statement (assuming they have been exported using an export statement first) inside a namespace (global, class, local, etc.). </li>
+<li>It will also be able to qualify names with the path/url of a module, or declared aliases of that path/url, to refer to them directly, without importing them in a namespace. (e.g. to solve name conflicts) In the latter case, the module will be linked to implicitly.</li>
+<li>In general, mutally recursive functions (and structures?) could be in different files, but they must be in the same module. That might mean that changing one causes everyone to be recompiled.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>How will I avoid unnecessary recompilation in cases where there are mutually recursive functions?</li>
+<li style="list-style-type: none"><ul><li>Perhaps I can have cyclic imports of functions and classes... Then according to the above, there must be ways to save compilation time. e.g. a workaround could be to compile a source file in separate header and object, taking care not to change the timestamp of the header if the contents do not change, and write the makefile so that the 2nd module dependes only on the 1st module's header.</li>
+<li>On the other hand, it's good to have the guarantee that there are no cyclic dependencies between modules... Perhaps I need to include some kind of submodules or accept that compilation time won't always be the least possible or take measures in the implementation so that cases where compilation time can be saved are identified and addressed properly.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Initialization</b>&nbsp;(and Finilization) <b>Order</b></li>
+<li style="list-style-type: none"><ul><li>Variables inside the same module are initialized in the order they appear in the conceptual file.</li>
+<li>The module import graph must be a directed acyclic graph. (here a reference to a module's symbol using a qualified name, counts as an import)</li>
+<li>A modules variables are initialized after initialization of the variables of imported modules. (this is the same as for importing shared libraries)</li>
+<li>Variables are finilized in the reverse order they were initialized.</li>
+<li>Initialization includes calling the constructor and finilization includes calling the destructor.</li>
+</ul>
+</li>
+<li><b>Execution</b></li>
+<li style="list-style-type: none"><ul><li>The interpreted program will start its execution from the beginning of the file (although declaration order should not matter for functions).</li>
+<li>The compiled program will start its execution from the function marked as 'entry'.</li>
+</ul>
+</li>
+<li><b>Module Initializers and Finilizers</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+<li><b>Namespaces</b></li>
 <li style="list-style-type: none"><ul><li>Use the containing source file's path (URI?) to identify the namespace.</li>
 <li>namespace &lt;alias&gt; &lt;URI&gt; declaration.</li>
 <li>using &lt;alias&gt; | &lt;URI&gt; : &lt;identifier&gt;</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>I could use partial classes to implement namespaces that behave like they do in C++ (different parts of a namespace can be defined in other files or other parts of the same file) instead of building-in namespaces as a separate concept.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should I merge the concepts of namespaces and includes like Java does?</li>
 <li>Should I allow using <i>includes</i>&nbsp;to break large files into smaller ones?</li>
@@ -17,12 +54,16 @@
 <li><b>Imports</b></li>
 <li style="list-style-type: none"><ul><li>import/using &lt;alias&gt; | &lt;URI&gt;</li>
 <li><tt>+import, −</tt>import</li>
-<li><tt>export import</tt>&nbsp;(for transitive imports)</li>
+<li><tt>export import</tt></li>
+<li style="list-style-type: none"><ul><li>Immediately exports again all the imported symbols. (transitive import)</li>
+<li>Allows creation of "master module" files that will import all symbols from a number of smaller modules.</li>
+</ul>
+</li>
 <li>The difference between a using <i>declaration</i>&nbsp;and a using <i>directive</i>, isn't only that the former introduces a single name, while the latter all names, but that the former introduces only currently known names, while the latter introduces future names as well.</li>
 <li>I'll probably not need something like <b>static import</b>&nbsp;(include) because my "includes" are done implicitly.</li>
 <li>Allow importing modules (or dlls?) at run-time.</li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>I can use disambiguators with patterns in both imports and exports.</li>
+<li style="list-style-type: none"><ul><li>I can use disambiguators with patterns (like '*' in Java imports) in both imports and exports.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
@@ -33,9 +74,12 @@
 </ul>
 </li>
 <li><b>Exports</b></li>
-<li style="list-style-type: none"><ul><li><tt>+export, −export</tt></li>
+<li style="list-style-type: none"><ul><li>Use an <tt>export</tt>&nbsp;keyword instead of <tt>public</tt>&nbsp;to make a class or other entity visible to other modules / compilation units.</li>
+<li>Support both <tt>+export, −export</tt>&nbsp;blocks and <tt>export </tt><i>function_name</i>&nbsp;constructs<tt>?</tt></li>
 </ul>
 </li>
+<li><b>Includes</b></li>
+<li><b>Submodules</b></li>
 <li><b>Module Interoperability</b></li>
 <li style="list-style-type: none"><ul><li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Define a standard ABI for communication across module boundaries. e.g. for propagating exceptions.</li>
@@ -50,6 +94,12 @@
 <li style="list-style-type: none"><ul><li>Can I / Should I define subsets of the language like D's @safe, @trusted, @system? @substrate perhaps?</li>
 <li>Another idea is to put all the "unsafe" features in separate modules, so that unsafe code can be identified by looking at the imports at the beginning of the file.</li>
 <li style="list-style-type: none">A tool could start at the root module and look for imports of "unsafe" features and/or declarations that change the language (including the import semantics) to partition the code into "safe", "unsafe" and "not-sure" regions.</li>
+<li>Yet another idea is to allow certain "low level" features only in functions declared as "low level".</li>
+<li></li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>A class definition will be splittable to pieces (like partial classes?) and thus distributable to many files, assuming they are all given simultaneously for the creation of a single module as discribed above.</li>
 </ul>
 </li>
 </ul>

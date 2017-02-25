@@ -4,14 +4,53 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Statements</title>
 </head><body><ul><li><b>Control Structures</b></li>
-<li style="list-style-type: none"><ul><li><b>Foreach</b>&nbsp;loops are able to modify elements (by default?).</li>
-<li>Support '<b>else</b>' clause in loop statements like in Python.</li>
-<li><tt>+if +while +for +foreach +block</tt></li>
-<li style="list-style-type: none"><tt>−if −while −for −foreach −block</tt></li>
-<li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Include <b>unless</b>, <b>until</b>, etc?</li>
+<li style="list-style-type: none"><ul><li>All control structures will be executable at compile time as well and usable in global and class definition contexts .</li>
+<li><b>Syntax</b></li>
+<li style="list-style-type: none"><ul><li><tt>+if +while +for +foreach +block</tt></li>
+<tt><li style="list-style-type: none">−if −while −for −foreach −block</li>
+</tt><li>+for, -for για μεγάλο σώμα, for για μικρό (ένα expression statement ή break κτλ.)</li>
+</ul>
+</li>
+<li><b>Loops</b></li>
+<li style="list-style-type: none"><ul><li>Support '<b>else</b>' clause in loop statements, like in Python.</li>
+<li><b>Foreach</b></li>
+<li style="list-style-type: none"><ul><li>Should be able to modify elements (by default?).</li>
+<li>Will expect a range to iterate over.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Should they be able to simultaneously generate indices and values while iterating a collection, like in D?</li>
 <li>Should it be possible to overload the foreach loop with <i>iteration primitives</i>&nbsp;and <i>internal iteration</i>&nbsp;like in D?</li>
 <li style="list-style-type: none">Basically what D does isn't operator overload, but expression rewrites and lowering like those of an AST preprocessor!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>While</b></li>
+<li><b>Do-while</b></li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Include <b>unless</b>, <b>until</b>, etc?</li>
+<li>Include components that can be combined to create loops similar to Ada's. e.g. <tt>+loop</tt>, −loop, <tt>while(...)</tt>, <tt>until(...)</tt>, etc. With <tt>while</tt>&nbsp;and <tt>until</tt>&nbsp;being placeable at both the beginning or the end of the loop construct after the 'loop' keyword.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Conditionals</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+<li><b>Case</b>&nbsp;/ <b>Switch</b></li>
+<li style="list-style-type: none"><ul><li>The default behaviour when reaching the end of a case block will be to transfer control to the instruction just after the case/switch body.</li>
+<li>Include an optional <tt>default</tt>&nbsp;case.</li>
+<li>Include a <tt>fallthrough</tt>&nbsp;statement for "falling of" to the next case. (to allow behaviour similar to C's)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Expression Statements</b></li>
+<li style="list-style-type: none"><ul><li><b>Empty Statement</b></li>
+<li style="list-style-type: none"><ul><li>Do I need one?</li>
+<li>How can I avoid errors of the form <tt>for(...);</tt>?</li>
+<li>Perhaps I can lack an empty statement, but instead use a statement that does nothing by convention like <tt>null;</tt>.</li>
+<li>D includes an empty statement but bans it from control statements like for. Proposes using an empty block instead.</li>
 </ul>
 </li>
 </ul>
@@ -27,8 +66,30 @@
 </ul>
 </li>
 <li><b>Blocks</b></li>
-<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Perhaps I can view blocks as lists (or sets, or maps, but they need to be ordered) that contain the entities they lexically enclose.</li>
+<li style="list-style-type: none"><ul><li><b>Syntax</b></li>
+<li style="list-style-type: none"><ul><li>+block, −block</li>
+</ul>
+</li>
+<li><b>Paired Calls</b></li>
+<li style="list-style-type: none"><ul><li>The idea is to have a special block statement that will include two "slots": one at its opening 'tag' and one at its closing one. Those 'slots' will host function calls that will be executed whenever control flow reaches each slot. The compiler will check that the functions mentioned are declared as a 'pair' and that the call at the opening slot is the first pair member while the call at the closing slot is the second pair member. The function at the exit slot will be executed regardless of the way in which control flow exited the scope of the block (exception, return, fall-off, etc.).</li>
+<li>The goal is to give the programmer both a syntactic hint that he forgot something and proper semantic checks that he matched the calls correctly.</li>
+<li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
+<li style="list-style-type: none"><ul><li>glBegin ⟷ glEnd</li>
+<li>open ⟷ close</li>
+<li>new ⟷ delete</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>How does this structure compare with D's <b>scope</b>&nbsp;statement or other statements like <b>synchronized</b>?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Blocks could be used in place of C++ namespaces and ML local-in-end structures. To that end, I could generalize the export statement to make names visible from outside when needed.</li>
+<li>Perhaps I can view blocks as lists (or sets, or maps, but they need to be ordered) that contain the entities they lexically enclose.</li>
 <li>Support a special type of blocks (e.g. <tt>+iblock</tt>, <tt>−iblock</tt>) that don't allow "falling off" their end.</li>
 <li style="list-style-type: none"><ul><li><b>Use cases</b></li>
 <li style="list-style-type: none"><ul><li>These can be useful in implementing finite automata by hand.</li>

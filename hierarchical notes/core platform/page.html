@@ -8,10 +8,20 @@
 <li>You should be able to specify the <b>fixity, arity, precedence</b>&nbsp;(or priority, or scope) and <b>associativity </b>of each operator and operload them.</li>
 <li>Support for distfix operators.</li>
 <li>Support juxtaposition.</li>
+<li style="list-style-type: none"><ul><li>Juxtaposition will be considered a binary operator and will obey the same rules as other binary operators when it comes to importing it into a scope.</li>
+<li><b>Use cases</b>:</li>
+<li style="list-style-type: none"><ul><li>multiplication</li>
+<li>string concatenation</li>
+<li>stream insertion / extraction</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Classification of tokens into <b>initiators</b>, <b>separators</b>, <b>terminators</b>&nbsp;and <b>operands</b>.</li>
 <li>Operator associativity could be relevant for unary operators too, if you consider them as potential values. e.g. a!! ≔ (a!)! or a(!!) ?</li>
 <li>Support associativity option that makes <tt>(a&lt;b)&lt;c ≠ a&lt;b&lt;c ≠ a&lt;(b&lt;c)</tt>&nbsp;and allows defining <tt>a&lt;b&lt;c</tt>&nbsp;as a<tt>&lt;b and b&lt;c</tt>&nbsp;(similarly for ⟶ (implies) and =)</li>
 <li>Support mixing operators with the above associativity option. e.g. <tt>a&lt;b=c&gt;b</tt>.</li>
+<li>No special syntax is needed to treat an operator as a function since placeholder arguments can do the job. e.g. <tt>$0 ? $1 : $2</tt></li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Maybe I can use the 0x2062 INVISIBLE TIMES Unicode character to simplify implementation of juxtaposition parsing.</li>
 <li>Allow more than one associativity per priority?</li>
@@ -20,10 +30,23 @@
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Could I make the parser see the operators as functions when they appear by themselves in parenthesis or brackets (e.g. (+), [*], etc.), instead of using <b>op</b>&nbsp;or <b>operator</b>&nbsp;or something similar?</li>
+<li style="list-style-type: none"><ul><li>Should I assign meaning to expressions where one or more operator arguments are missing or should they be syntax errors? And if I assign meaning what would it be? Can the parser support it?</li>
+<li style="list-style-type: none"><ul><li><b>Examples</b>:</li>
+<li style="list-style-type: none"><ul><li>(+) could refer to operator '+' as a function (But would that function be the infix or the prefix '+'? Perhaps the context would expect a unary function resolving the ambiguity.)</li>
+<li>[&gt;=2] could be equivalent to [$0 &gt;= 2].</li>
+</ul>
+</li>
+<li><b>Use Cases</b>:</li>
+<li style="list-style-type: none"><ul><li>Obviate the need for a special operator like <b>op</b>&nbsp;or <b>operator</b>&nbsp;(or something similar) for passing operators as function arguments to other functions.</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Make sure <tt>(flag ? x : y) += 5;</tt>&nbsp;is properly supported.</li>
 <li>If I make the membership operator ('.') user-defined, how will I avoid confusion between a field and a variable with the same name? e.g. <tt>y</tt>&nbsp;in <tt>p.y</tt>&nbsp;with a variable <tt>y</tt>.</li>
 <li style="list-style-type: none">One idea is to take the right hand side argument as an AST, use the name of the argument ("y") and ignore its type and address. That might allow a syntax like OpenCL's .yzxw as well.</li>
+<li style="list-style-type: none">Another idea is to enable operators to define names inside their 'scope'. So e.g. '$' will only be defined inside the brackets in <tt>a[$-1]</tt>&nbsp;and 'yzxw' will only be defined after the '.' in <tt>v.yzxw</tt>.</li>
+<li>Confirm my parser supported operators that have simultaneous prefix, infix and postfix status and could parse the expressions that weren't ambiguous. It certainly handled cases where 2 out of the 3 fixities were active at any time.</li>
 </ul>
 </li>
 </ul>
@@ -37,14 +60,19 @@
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Clarify semantics around side-effects in the context of partial evaluation / instantiation.</li>
+<li style="list-style-type: none"><ul><li>Define for the compile-time environment characteristics similar to the ones for the run-time environment. e.g. What does an assignment to a global variable or a call to an output function mean?</li>
+<li>Clarify semantics around side-effects in the context of partial evaluation / instantiation.</li>
 <li>Clarify semantics around compile-time evaluation of floating-point expressions during cross-compilation, when target and host architecture floating-point models, don't match.</li>
+<li>Clarify the semantics and representation of types in the compile- and run-time environments. e.g. int in the compile-time environment will be closer to C's int, while in the run-time environment will be closer to Java's int.class.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>For some properties like no escape of local addresses, synchronized, etc. it would be nice to give the ability to specify them, but I don't have to force constraints over the function structure. I could make them specifications that are guaranteed to be provable if the constraints are met, while they may be provable or not if the constraints they are not.</li>
-<li>Compile header/interface files to binary headers and source files to object files respectively and archive them both in a single file.</li>
+<li><b>Output files</b></li>
+<li style="list-style-type: none"><ul><li>Compile header/interface files to binary headers and source files to object files respectively and archive them both in a single file.</li>
+<li>Source files could be compiled directly to a module file that contains both the object and module header files. A utility could extract the two files from the module and build a module from the comprising files whenever this is needed. e.g. When the source code is not available, but the object file is and the header has to be written explicitly. The latter can happen when you have to link with operating system routines.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will a function gain access to the name of the function that called it and the line number, file name, etc. of the call site so that it can print an error message?</li>
 </ul>
@@ -54,6 +82,11 @@
 <li><b>Intrinsics</b></li>
 <li style="list-style-type: none"><ul><li>HLT function?</li>
 <li>Together with primitive operations for integer addition, subtraction, etc. counting of set bits of a number, and other usual machine instructions. It would be good to have machine vector operations and maybe some primitives for copying memory blocks and converting strings to numbers.</li>
+<li>Two intrinsics that the language could provide to the programmers for implementing return by external reference (each by itself) are the following (names can be changed):</li>
+<li style="list-style-type: none"><ul><li><b>obviate(l-value, ext&amp;)</b>: The l-value must be used as the hidden parameter instead of allocating a new object.</li>
+<li><b>swap_symbols(a,b)</b>: Swap the two symbols in the symbol table so that all future references to a refer to b and vice versa. This might cause confusion, especially if someone has kept the address of one of the variables that participated in the swap.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
