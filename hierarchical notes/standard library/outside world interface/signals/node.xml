@@ -2,14 +2,14 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>Graph Drawing</string>
-  <key>nodeid</key><string>62138e9c-3b8d-4954-9037-5c6b552296af</string>
-  <key>modified_time</key><integer>1486716587</integer>
+  <key>title</key><string>Signals</string>
+  <key>nodeid</key><string>40804493-3019-4946-bd33-45c902645530</string>
+  <key>modified_time</key><integer>1488301849</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1486716587</integer>
+  <key>created_time</key><integer>1488301849</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>0</integer>
+  <key>order</key><integer>5</integer>
   <key>info_sort</key><string>order</string>
 </dict>
 </node>
