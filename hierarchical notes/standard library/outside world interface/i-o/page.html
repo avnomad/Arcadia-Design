@@ -40,13 +40,85 @@
 </li>
 <li><b>Device I/O</b></li>
 <li style="list-style-type: none"><ul><li>Probably best left for later...</li>
+<li>Input and Output devices</li>
 <li><b>Examples</b></li>
 <li style="list-style-type: none"><ul><li>HID</li>
 <li>Joystick</li>
+<li>Monitors</li>
+</ul>
+</li>
+<li><b>Design Requirements</b></li>
+<li style="list-style-type: none"><ul><li><b>Model</b></li>
+<li style="list-style-type: none"><ul><li>Uniform handling of all input devices.</li>
+<li>Support both direct (polling) and event-driven input.</li>
+<li>Ability to discover device capabilities.</li>
+<li style="list-style-type: none"><ul><li>At least the following should be discoverable:</li>
+<li style="list-style-type: none"><ul><li>Number of buttons.</li>
+<li>Number of axes.</li>
+<li>Whether each axis is relative or absolute. e.g. an airbrush could have absolute positioning and a relative wheel.</li>
+<li>Maximum and minimum reportable values for each axis. Those must be such that all intermediate values can be reported, i.e. they shall not be scaled.</li>
+<li>Range of each axis in metric units, when this makes sence and is supported by the device. e.g. lenght and width of a digitizer in cm.</li>
+<li style="list-style-type: none"><ul><li>A relative axis could be assigned a range in metric units as well, by defining it as the change in metric units that corresponds to a one-unit-change in the axis' value.</li>
+</ul>
+</li>
+<li>The possible connection between two or more axes of the same device. </li>
+<li style="list-style-type: none"><ul><li>e.g. consider the following 6-axes devices:</li>
+<li style="list-style-type: none"><ul><li>In an interactive digitizer the 6 axes correspond to the position and orientation in space of the same object (the pen).</li>
+<li>In a gamepad the X, Y and Rx, Ry axes form pairs (each corresponding to a thumbstick) and Z and Rz are independent (each corresponding to a trigger).</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<br/>
+</li>
+</ul>
+</li>
+<li>Ability to identify <i>dummy</i>&nbsp;devices that don't produce input (so that they can be ignored).</li>
+<li>Provide persistent IDs for supporting devices.</li>
+<li style="list-style-type: none"><ul><li>This means that after the application or the user selects and configures a device, the application can get a unique ID for the device, save it to disk and read it the next time it runs so that it can apply the same configuration to the device. The latter should be possible even if the system has restarted and this and/or other devices have been disconnected and reconnected in an arbitrary order.</li>
+</ul>
+</li>
+<li>Exposition of individual physical devices.</li>
+<li style="list-style-type: none"><ul><li>Some APIs expose a single input device that aggregates input from all actual devices of a certain group. (e.g. if I have 0 or 2 mice connected to the computer the API would still expose a single mouse device) This API shall expose the individual devices, each with a unique persistent ID, even if the devices have the same make and model.</li>
+<li>Also provide option for aggregating input from all devices of a group.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Documentation</b></li>
+<li style="list-style-type: none"><ul><li>Grouping of events into categories with clearly documented meanings of values. e.g. </li>
+<li style="list-style-type: none"><ul><li>Does 0 or 1 correspond to a pressed button?</li>
+<li>Do positive or negative values correspond to a mouse that moved away from the user?</li>
+<li>Does (0,0) correspond to the lower left corner of the interactive digitizer?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Operations</b></li>
+<li style="list-style-type: none"><ul><li>Request a list of connected/active devices.</li>
+<li>Poll connection status of specific device.</li>
+<li>Register for notifications about device connections and disconnections.</li>
+</ul>
+</li>
+<li><b>Timestamps</b></li>
+<li style="list-style-type: none"><ul><li>Common and consistent timestamps for the whole system. This means that all timestamps from all events from all devices will use the same clock, or at least clocks with the same epoch, resolution and precision. This includes timestamps for "vsync" events.</li>
+<li>Provide a function that returns a timestamp for the current time that is consistent with those of the input events.</li>
+<li>If two events happened with time difference of one millisecond or more they must get different timestamps.</li>
+<li>Device clocks must return a non-decreasing sequence of values.</li>
+</ul>
+</li>
+<li><b>Virtual Devices</b></li>
+<li style="list-style-type: none"><ul><li>Provide one "monitor synchronization" or "vsync" device per monitor. Each device will send a "vsync" event every time the corresponding monitor switches frame.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Should events and polling about device connection status get the form of a virtual input device that represents the system?</li>
+<li>Should the application be able to discover the correspondance between virtual and physical devices?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </body></html>
