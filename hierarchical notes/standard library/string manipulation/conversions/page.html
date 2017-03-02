@@ -3,12 +3,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Conversions</title>
-</head><body><ul><li><b>String-to-String Codecs</b></li>
+</head><body><ul><li><b>Between Strings</b></li>
+<li style="list-style-type: none"><ul><li><b>Codecs</b></li>
 <li style="list-style-type: none"><ul><li>Encode and decode strings to and from:</li>
-<li style="list-style-type: none"><ul><li>URL</li>
+<li style="list-style-type: none"><ul><li>URL (escape/interpret % encoding)</li>
+<li>XML (escape/interpret character references, both numeric and entity)</li>
+<li style="list-style-type: none"><ul><li>Different XML dialects may define different sets of character entity references.</li>
+</ul>
+</li>
 <li>MIME</li>
 <li>Morse (doesn't need to be in the standard library, just needs to be implementable under the same interface)</li>
+<li>string literal (C?) (escape/interpret escape sequences)</li>
 <li>other?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Case Conversions</b></li>
+<li style="list-style-type: none"><ul><li>To upper case</li>
+<li>To lower case</li>
+<li>Toggle case</li>
+</ul>
+</li>
+<li><b>Combining Characters</b></li>
+<li style="list-style-type: none"><ul><li>Remove diacritics</li>
+</ul>
+</li>
+<li><b>Encryption / Dectyption Engines</b></li>
+<li style="list-style-type: none"><ul><li>Do they make more sence for strings or byte buffers?</li>
+</ul>
+</li>
+<li><b>Translation Engines</b></li>
+<li style="list-style-type: none"><ul><li>Is that even possible?</li>
 </ul>
 </li>
 </ul>
