@@ -3,14 +3,92 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Colors</title>
-</head><body><ul><li>Allow the .bgra OpenCL syntax.</li>
+</head><body><ul><li><b>Color Class</b></li>
+<li style="list-style-type: none"><ul><li><b>Parameters</b></li>
+<li style="list-style-type: none"><ul><li><b>Color Space</b>:</li>
+<li style="list-style-type: none"><ul><li>RGB</li>
+<li style="list-style-type: none"><ul><li>red</li>
+<li>green</li>
+<li>blue</li>
+</ul>
+</li>
+<li>RGBA</li>
+<li style="list-style-type: none"><ul><li>red</li>
+<li>green</li>
+<li>blue</li>
+<li>alpha</li>
+</ul>
+</li>
+<li>BGR</li>
+<li>BGRA</li>
+<li>HSB</li>
+<li style="list-style-type: none"><ul><li>hue</li>
+<li>saturation</li>
+<li>brightness</li>
+</ul>
+</li>
+<li>CMY</li>
+<li>CMYB</li>
+<li style="list-style-type: none"><ul><li>cyan</li>
+<li>magenda</li>
+<li>yellow</li>
+<li>black</li>
+</ul>
+</li>
+<li>etc.</li>
+</ul>
+</li>
+<li><b>Color Component Storage Format</b>:</li>
+<li style="list-style-type: none"><ul><li>8, 16, 32-bit unsigned integer.</li>
+<li>8, 16, 32-bit signed integer.</li>
+<li>16, 32, 64-bit floating point. (normalized to [0,1])</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Manipulation</b></li>
+<li style="list-style-type: none"><ul><li>Common interface in all cases. (e.g. you can get saturation from an object using RGB internal storage and set green for an object using CMY internal storage)</li>
+<li>Support construction and deconstruction.</li>
+<li>Allow assignment between color objects of different internal formats by automatic conversion.</li>
+<li>Allow assignment between color components of different storage formats by automatic conversion.</li>
+<li>Allow the .bgra OpenCL syntax.</li>
+</ul>
+</li>
+<li><b>Views</b></li>
+<li style="list-style-type: none"><ul><li>vector</li>
+<li>array of integer or floating-point values (depending on the internal format). (for use with OpenGL API calls)</li>
+<li>Arrays of colors should also be viewable as arrays of quadruples of integer or floating-point values respectively. (again for use with OpenGL API calls)</li>
+</ul>
+</li>
+<li><b>Operations</b></li>
+<li style="list-style-type: none"><ul><li>negative</li>
+</ul>
+</li>
+<li><b>Safety</b></li>
+<li style="list-style-type: none"><ul><li>Values are considered valid when they are within the representable range of the internal storage format for integer components (trying to assign 1024 to a byte component is still an error) and in the interval [0,1] for floating-point components.</li>
+<li>Checks that can be done in compile-time (e.g. using compile-time-evaluation and/or value range propagation) are always on.</li>
+<li>Checks that can't be done in compile-time are only on in debug mode, unless overriden by a compilation flag.</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Standard Constants</b></li>
 <li style="list-style-type: none"><ul><li>Color names organized per naming standard (e.g. HTML color names, X11 color names, etc.)</li>
+<li>Implementation can generate definitions automatically from corresponding standard documents.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>What will be the type of these standard constants? What will be the internal representation? Should they have an interface type? Is this the same problem as with integer literals?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Use the <tt>#ffffff syntax for color literals? (# would be a prefix unary operator)</tt></li>
-<li style="list-style-type: none"><tt>'#' might need to be used for comments...</tt>&nbsp;</li>
+<li style="list-style-type: none"><tt>'#' might need to be used for comments...</tt></li>
+<li>Should RGBA colors inherit from RGB colors?</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>In many cases, one needs a color to inherit its value from another one (e.g in an editor the color for highlighting types might inherit from the color to highligh identifiers). Should this be something build into the color class? Are getting the parent color by value and by reference both useful?</li>
 </ul>
 </li>
 </ul>
