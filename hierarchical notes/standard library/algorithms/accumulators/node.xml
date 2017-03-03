@@ -2,12 +2,12 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>Common Functions</string>
-  <key>nodeid</key><string>0f357512-16c3-45be-a255-3e1fe1f35aaf</string>
-  <key>modified_time</key><integer>1488549152</integer>
+  <key>title</key><string>Accumulators</string>
+  <key>nodeid</key><string>f20ed2a2-2697-4729-a985-4f032f874db8</string>
+  <key>modified_time</key><integer>1488548714</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1486715156</integer>
+  <key>created_time</key><integer>1488544110</integer>
   <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>0</integer>
   <key>info_sort</key><string>order</string>

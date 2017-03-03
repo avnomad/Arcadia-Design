@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Accumulators</title>
+</head><body><ul><li>Based on Boost design.</li>
+<li>Common accumulator interface.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Do I need them? They are only needed if reduction is faster using stateful objects and reduction using stateless functions and return by external reference might be just as fast.</li>
+</ul>
+</li>
+<li><b>List</b></li>
+<li style="list-style-type: none"><ul><li>max</li>
+<li>min</li>
+<li>minmax (simultaneously find min and max)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">Will it be able to leverage the CLRS trick to reduce comparisons? Perhaps the reduction algorithm can take advantage of an accept method that takes two arguments!</li>
+</ul>
+</li>
+<li>sum</li>
+<li>product</li>
+<li>average</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Perhaps instead of providing an accumulator per operation, I can provide a function that takes a number of reduction functions and generates an accumulator that accumulates a value per function. (The returned object will have a field per reduction function)</li>
+</ul>
+</li>
+</ul>
+</body></html>
