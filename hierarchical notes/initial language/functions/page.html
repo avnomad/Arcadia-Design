@@ -10,6 +10,10 @@
 <li style="list-style-type: none">Although repeating some computations twice isn't recommended, if the function is very fast (e.g. 60ns) and allocating memory in the heap is relatively slow (e.g. 1ms) then it will be reasonable for the programmer to prefer running the function 2 times and the language could help him by automatically generatinc a "dry-run" version of the function. The original function shall not read from the returned array (retval) (not even its size?) and writtes to the returned array will be compiled to no-ops in the dry-run version.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Allow or force the programmer to name all functions, be they called as infix operators, constructors, etc. or with a keyword like 'op' or 'operator' and the operator's symbol (e.g. op+). That should provide a little more documentation.</li>
+<li>I can think of functions as taking a single argument and returning a single result (like in ML).</li>
+<li style="list-style-type: none"><ul><li>Since I want to support named parameters, multiple parameters can be passed by means of a type that combines properties from both tuples and records.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

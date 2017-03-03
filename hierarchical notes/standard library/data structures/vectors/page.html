@@ -6,6 +6,10 @@
 </head><body><ul><li>Similar to Matlab and OpenCL designs.</li>
 <li>Include .lo, .hi, .even and .odd members like in OpenCL.</li>
 <li>The || operator will return wether two vectors are parallel.</li>
+<li><b>Parameters</b></li>
+<li style="list-style-type: none"><ul><li>Component type.</li>
+</ul>
+</li>
 <li><b>Element-wise Operations</b></li>
 <li style="list-style-type: none"><ul><li>Include distinct symbol to modify operations so that they apply element-wise. May also apply to other (linear?) data structures and matrices.</li>
 <li>Alternatively the notation <tt>a[]</tt>, <tt>a[m..n]</tt>&nbsp;can be used for vector operations. e.g. <tt>a[] += b[] * c[] + 3</tt>&nbsp;will be equivalent to <tt>∀</tt>i ∈ a.indices: a[i] += b[i] *c[i] + 3;</li>
@@ -18,7 +22,6 @@
 <li style="list-style-type: none"><ul><li>A projectOnto B;</li>
 <li>A &lt;projectOnto&gt; B</li>
 <li>A -project&gt; B</li>
-<li></li>
 </ul>
 </li>
 </ul>
