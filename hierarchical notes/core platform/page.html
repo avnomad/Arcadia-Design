@@ -27,6 +27,7 @@
 <li>Allow more than one associativity per priority?</li>
 <li>I could decouple the insertion of names in a scope from the operator status of them. e.g. I could have a function named '+' with 'prefix' syntax, that would only be parsed as a prefix operator if the prefix + has been activated in the scope. Otherwise it would be parsed as a regular function.</li>
 <li>Overloading the membership operator '.' like I've thought, should be similar but more powerful than D's opDispatch.</li>
+<li>Constructors, destructors, deconstructors, methods, function, etc. can be thought of as being in different namespaces instead of being different ways to phrase a function call. So e.g. in the first part of a declaration, names will be looked up in the deconstructor namespace, while in the initializer part of a declaration, they will be looked up in the function namespace. Moreover, this way there can be multiple versions of some operators (e.g. [ , , , ]) without fear of collision.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
