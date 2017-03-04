@@ -6,13 +6,15 @@
 </head><body><ul><li>Use the same interfaces for static and dynamic polymorphism.</li>
 <li>Support multiple inheritance of interfaces. (This should cover the uses of inheritance for subtyping)</li>
 <li>Interface / Implementation dualism.</li>
-<li style="list-style-type: none"><ul><li>Could use the following terminology and syntax:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">signature</li>
-<li style="list-style-type: none">&#09;interface</li>
-<li style="list-style-type: none">&#09;axioms</li>
-<li style="list-style-type: none">structure</li>
-<li style="list-style-type: none">&#09;representation</li>
-<li style="list-style-type: none">&#09;implementation (list of functions with access to private members &amp; optionally their bodies)</li>
+<li style="list-style-type: none"><ul><li>Could use the following model and terminology:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>signature</b>&nbsp;: Modeled after an algebraic structure</li>
+<li style="list-style-type: none">&#09;<b>interface</b>&nbsp;: A list of supported operators and functions</li>
+<li style="list-style-type: none">&#09;<b>axioms</b>&nbsp;: A list of mathematical properties (that may include space and time complexity guarantees) the above operators and functions satisfy.</li>
+<li style="list-style-type: none"><b>structure</b></li>
+<li style="list-style-type: none">&#09;<b>representation</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>implementation</b>&nbsp;: A list of functions with access to private members &amp; optionally their bodies. An implementation may use different names for functions and operators than the interface, and there must be a mechanism to match them.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -20,9 +22,16 @@
 <li>Generic code might need to demand that an operation doesn't throw exceptions.</li>
 <li>Support inferring the header/summary/interface from the source file/definition in source/human-readable form, as well as manual/handwritten header creation and automated checking of implementation with respect to that.</li>
 <li>Support specification of Axioms/Postulates as part of the interface.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Do I need a different form of <b>interface</b>&nbsp;and <b>implementation</b>&nbsp;for <b>functions</b>&nbsp;and <b>types</b>?</li>
+<li>Sometimes implementations might not be able to satisfy all axioms, but it might be useful to allow them to be used as if they satisfied them. e.g. an unsigned 64-bit integer does not satisfy <tt>∀</tt>n∈ℕ. n+1&gt;n, but its useful to use it as if it was a natural number. One idea is to think of the axioms as true as long as no exceptions are thrown.</li>
+</ul>
+</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Restrict class interface contents to properties and functions only. That will ease the use of an interface in both static and dynamic polymorphism. i.e. An interface won't contain field declarations but will instead contain property (setter and getter) declarations that will give the impression that it has fields. (although there are other issues that need to be addressed too...)</li>
 <li>What if I could include performance characteristics (like computational complexity) as part of the interface and produce a "performance warning" instead of an error if the implementation supports the operation, but not with the required performace?</li>
+<li>If we had automatic theorem proving, its goal would be to prove that an implementation, indeed implements an interface. To do that it would have to prove each axiom of the implemented interface, given the code of the implementation and the axioms of any interfaces the implementation uses.</li>
+<li style="list-style-type: none">It would be useful to mention which axioms were used to prove each theorem and stress which theorems were proven using only proven axioms and which theorems required axioms that were assumed true by the programmer. e.g. If <tt>∀</tt>n∈ℕ. n+1&gt;n was used, and it wasn't really satisfied by the selected implementation (64-bit), the places were this happened should be highlighted.</li>
 </ul>
 </li>
 </ul>
