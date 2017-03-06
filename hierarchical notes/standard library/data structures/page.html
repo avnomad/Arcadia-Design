@@ -5,8 +5,11 @@
 <title>Data Structures</title>
 </head><body><ul><li>Should have an <i>nElements</i>&nbsp;(or <i>cardinality</i>? or #elements? or <i>population</i>) member (or |...| operator?) that returns the number of elements in the structure. This might need to return infinite for some structures!</li>
 <li>The same checks that are present in checked STL in debug mode should also be available here.</li>
+<li style="list-style-type: none"><ul><li>That might imply that iterators "remember" their parent container in debug mode.</li>
+</ul>
+</li>
 <li>Those checks should be split into categories that can be enabled/disabled independently in a way that is available to client code.</li>
-<li>Support 'views' or containers as other containers. (ReferenceList class?)</li>
+<li>Support 'views' of containers as other containers. (ReferenceList class?)</li>
 <li><b>Bounded Data Structures</b></li>
 <li style="list-style-type: none"><ul><li>bounded vector ⟹ bounded stack</li>
 <li>bounded dequeue ⟹ bounded queue</li>
@@ -48,5 +51,61 @@
 </li>
 </ul>
 </li>
+<li><b>Interfaces</b></li>
+<li style="list-style-type: none"><ul><li><b>Container</b></li>
+<li style="list-style-type: none"><ul><li><b>Constructors</b></li>
+<li style="list-style-type: none"><ul><li>default</li>
+<li>copy</li>
+<li>move</li>
 </ul>
+</li>
+<li><b>Destructor</b></li>
+<li><b>Methods</b></li>
+<li style="list-style-type: none"><ul><li>empty</li>
+<li>clear</li>
+<li>erase</li>
+<li>size?</li>
+<li>assign</li>
+<li>map?</li>
+<li>apply?</li>
+<li>execute?</li>
+<li>reduce?</li>
+<li>pair? adjacent?</li>
+<li>filter?</li>
+<li>select?</li>
+<li>unique?</li>
+</ul>
+</li>
+<li><b>Functions</b></li>
+<li style="list-style-type: none"><ul><li>swap</li>
+</ul>
+</li>
+<li><b>Operators</b></li>
+<li style="list-style-type: none"><ul><li>&lt;~</li>
+<li>&lt;</li>
+<li>&lt;=</li>
+<li>&gt;</li>
+<li>&gt;=</li>
+<li>==</li>
+<li>!=</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Sequence Container</b></li>
+<li style="list-style-type: none"><ul><li>begin</li>
+<li>end</li>
+<li>rbegin ('r' for "reverse")</li>
+<li>rend</li>
+<li>cbegin ('c' for "constant")</li>
+<li>cend</li>
+<li>crbegin</li>
+<li>crend</li>
+<li>max_size?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br/>
 </body></html>
