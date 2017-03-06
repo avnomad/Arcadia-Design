@@ -17,7 +17,7 @@
 </li>
 <li><b>Arrays</b></li>
 <li style="list-style-type: none"><ul><li>Array implementation that supports initialization and all-elements assignment in O(1).</li>
-<li>ListArray implementation (probably interface too. This refers to the data structure I used in Sieve of Eratosthenes).</li>
+<li>ListArray (or LinkedArray? or PermutationSet/Array?) implementation (probably interface too. This refers to the data structure I used in the Sieve of Eratosthenes and for finding orderings without repetition).</li>
 <li>Support concatenation.</li>
 <li>Support slices. May need both slices backed by the original array and copies.</li>
 </ul>
@@ -25,15 +25,27 @@
 <li><b>Vectors</b></li>
 <li><b>Lists</b></li>
 <li style="list-style-type: none"><ul><li>Support pattern-matching in definitions and assignments. e.g. [a,b] = [1,2].</li>
+<li>singly &amp; doubly linked variants</li>
+<li>linear &amp; cirlular variants</li>
+<li>combinations of the above</li>
 </ul>
 </li>
 <li><b>Deques</b></li>
 <li><b>Sets</b></li>
 <li><b>Maps</b></li>
 <li><b>Stacks</b></li>
+<li style="list-style-type: none"><ul><li>push &amp; pop methods?</li>
+</ul>
+</li>
 <li><b>Queues</b></li>
+<li style="list-style-type: none"><ul><li>enqueue &amp; dequeue methods?</li>
+</ul>
+</li>
 <li><b>Heaps</b></li>
 <li style="list-style-type: none"><ul><li>A heap must support key reduction and returning iterators to the heap elements, that don't get invalidated when elements are added/removed from the heap, for use with key reduction. (this is useful for implementing shortest paths, A*, etc. see CLRS for details)</li>
+<li>Binary</li>
+<li>Binomial</li>
+<li>Fibonacci</li>
 </ul>
 </li>
 <li><b>Hash Tables</b></li>
@@ -43,10 +55,39 @@
 </ul>
 </li>
 <li><b>Trees</b></li>
+<li style="list-style-type: none"><ul><li>Rooted</li>
+<li>Binary</li>
+<li>Search</li>
+<li>Red &amp; Black</li>
+<li>AVL</li>
+</ul>
+</li>
 <li><b>Graphs</b></li>
 <li style="list-style-type: none"><ul><li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Perhaps I can use my ListArrays (from sieving) for storing the adjacency lists of a graph implementation. That way I won't need a new/delete per edge.</li>
 <li style="list-style-type: none">I could move to a larger/smaller array using a <i>load factor</i>. Maybe I could have empty columns between the used ones without problem.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Hierarchy</b></li>
+<li style="list-style-type: none"><ul><li>Container</li>
+<li style="list-style-type: none"><ul><li>Graph</li>
+<li style="list-style-type: none"><ul><li>Tree</li>
+<li style="list-style-type: none"><ul><li>Linear Container</li>
+<li style="list-style-type: none"><ul><li>LinkedList</li>
+<li>Array</li>
+<li style="list-style-type: none"><ul><li>String</li>
+<li>HashTable</li>
+</ul>
+</li>
+<li>ReferenceList</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -66,10 +107,10 @@
 <li>erase</li>
 <li>size?</li>
 <li>assign</li>
-<li>map?</li>
-<li>apply?</li>
-<li>execute?</li>
-<li>reduce?</li>
+<li>map? (using both functions and methods)</li>
+<li>apply? (functions)</li>
+<li>execute? (methods)</li>
+<li>reduce? (using both functions and methods)</li>
 <li>pair? adjacent?</li>
 <li>filter?</li>
 <li>select?</li>
@@ -93,6 +134,11 @@
 </ul>
 </li>
 <li><b>Sequence Container</b></li>
+<li style="list-style-type: none"><ul><li>push (front &amp; back)</li>
+<li>pop (front &amp; back)</li>
+<li>peek (front &amp; back)</li>
+<li>max_size?</li>
+<li><b>Iterators</b></li>
 <li style="list-style-type: none"><ul><li>begin</li>
 <li>end</li>
 <li>rbegin ('r' for "reverse")</li>
@@ -101,7 +147,8 @@
 <li>cend</li>
 <li>crbegin</li>
 <li>crend</li>
-<li>max_size?</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
