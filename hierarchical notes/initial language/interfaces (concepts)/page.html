@@ -25,13 +25,18 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do I need a different form of <b>interface</b>&nbsp;and <b>implementation</b>&nbsp;for <b>functions</b>&nbsp;and <b>types</b>?</li>
 <li>Sometimes implementations might not be able to satisfy all axioms, but it might be useful to allow them to be used as if they satisfied them. e.g. an unsigned 64-bit integer does not satisfy <tt>∀</tt>n∈ℕ. n+1&gt;n, but its useful to use it as if it was a natural number. One idea is to think of the axioms as true as long as no exceptions are thrown.</li>
+<li>How will failures due to memory exhaustion be handled with respect to axiom satisfiability?</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Restrict class interface contents to properties and functions only. That will ease the use of an interface in both static and dynamic polymorphism. i.e. An interface won't contain field declarations but will instead contain property (setter and getter) declarations that will give the impression that it has fields. (although there are other issues that need to be addressed too...)</li>
 <li>What if I could include performance characteristics (like computational complexity) as part of the interface and produce a "performance warning" instead of an error if the implementation supports the operation, but not with the required performace?</li>
-<li>If we had automatic theorem proving, its goal would be to prove that an implementation, indeed implements an interface. To do that it would have to prove each axiom of the implemented interface, given the code of the implementation and the axioms of any interfaces the implementation uses.</li>
+<li><b>Automatic Theorem Proving</b></li>
+<li style="list-style-type: none"><ul><li>If we had automatic theorem proving, its goal would be to prove that an implementation, indeed implements an interface. To do that it would have to prove each axiom of the implemented interface, given the code of the implementation and the axioms of any interfaces the implementation uses.</li>
 <li style="list-style-type: none">It would be useful to mention which axioms were used to prove each theorem and stress which theorems were proven using only proven axioms and which theorems required axioms that were assumed true by the programmer. e.g. If <tt>∀</tt>n∈ℕ. n+1&gt;n was used, and it wasn't really satisfied by the selected implementation (64-bit), the places were this happened should be highlighted.</li>
+<li>In cases when the correctness of the program can't be proven for all inputs, it might make sence to find the set of inputs for which it can. e.g. A factorial function might not work for all inputs (as suggested by its input type) because of limitations imposed by its output type. In this case, one can compute the largest input that doesn't result in an overflow.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

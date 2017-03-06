@@ -24,10 +24,19 @@
 </li>
 </ul>
 </li>
+<li><b>Forever</b></li>
 <li><b>While</b></li>
 <li><b>Do-while</b></li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Include <b>unless</b>, <b>until</b>, etc?</li>
+<li>Include a loop of the form:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">do</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><i>block</i><tt></tt></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>natural-number</i><tt>&nbsp;times;</tt></li>
+</ul>
+</li>
 <li>Include components that can be combined to create loops similar to Ada's. e.g. <tt>+loop</tt>, −loop, <tt>while(...)</tt>, <tt>until(...)</tt>, etc. With <tt>while</tt>&nbsp;and <tt>until</tt>&nbsp;being placeable at both the beginning or the end of the loop construct after the 'loop' keyword.</li>
 </ul>
 </li>
@@ -57,12 +66,17 @@
 </li>
 <li><b>Labels</b></li>
 <li style="list-style-type: none"><ul><li>Support labelling statements for use with <b>goto</b>, <b>break</b>&nbsp;and <b>continue</b>.</li>
-<li>Another (preferable?) idea is to only support named blocks and not labelling of arbitrary statements. Instead of labelling a statement, you wrap it in a named block.</li>
+<li>Another (preferable?) idea is to only support named blocks and not labelling of arbitrary statements (nor just loop statements). Instead of labelling a statement, you wrap it in a named block.</li>
 </ul>
 </li>
-<li><b>Goto</b></li>
+<li><b>Jump Statements</b></li>
+<li style="list-style-type: none"><ul><li><b>Goto</b></li>
 <li style="list-style-type: none"><ul><li><tt>goto</tt>&nbsp;<b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b>&nbsp;<i>block-name</i></li>
 <li>No label targets</li>
+</ul>
+</li>
+<li><b>Break</b></li>
+<li><b>Continue</b></li>
 </ul>
 </li>
 <li><b>Blocks</b></li>
