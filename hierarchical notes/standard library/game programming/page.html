@@ -31,5 +31,32 @@
 </li>
 </ul>
 </li>
+<li><b>Particles Systems</b></li>
+<li style="list-style-type: none"><ul><li>Could include a <b>Particle</b>&nbsp;class with properties like:</li>
+<li style="list-style-type: none"><ul><li>colour (could be RGBA)</li>
+<li>maps?</li>
+<li>force applied (could be an Accumulator)</li>
+<li>position (could be a Point and could include time)</li>
+<li>reference system (could be included in position)</li>
+<li>velocity (Vector)</li>
+<li>acceleration (Vector)</li>
+<li>volume? (for collition detection)</li>
+<li>electrical charge (scalar)</li>
+<li>momemtum (Vector)</li>
+</ul>
+</li>
+<li style="list-style-type: none">and methods like:</li>
+<li style="list-style-type: none"><ul><li>resolve forces</li>
+<li>render (or show, or point, or some other name)</li>
+</ul>
+</li>
+<li>Could implement the simulation using a two-phase iteration:</li>
+<li style="list-style-type: none"><ul><li>First, iterate over all pairs of particles accumulating the forces they apply to each other.</li>
+<li>Second, iterate over all particles, resolving the forces applied to them.</li>
+</ul>
+</li>
+<li>Could be designed to be useful for both particle systems and physics simulation.</li>
+</ul>
+</li>
 </ul>
 </body></html>
