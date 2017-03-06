@@ -6,5 +6,35 @@
 </head><body><ul><li>Represent the file system as a tree with the folders being the nodes and files, etc. being the contents of those nodes (Tree&lt;Array&lt;File&gt;&gt;).</li>
 <li>Create/Remove folders/directories.</li>
 <li>Enumerate folder/directory contents.</li>
+<li>Include a class representing a file name (including its path).</li>
+<li style="list-style-type: none"><ul><li>Could be named FileID or FileName.</li>
+<li>Should allow construction (deconstruction) from (to) the following components as well as from (to) a string.</li>
+<li><b>Components</b></li>
+<li style="list-style-type: none"><ul><li>location</li>
+<li style="list-style-type: none"><ul><li>drive</li>
+<li>path</li>
+</ul>
+</li>
+<li>name</li>
+<li style="list-style-type: none"><ul><li>base name</li>
+<li>extension</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Example</b></li>
+<li style="list-style-type: none"><ul><li><span style="color: #00ff00">drive</span><span style="color: #ff0000">:/</span><span style="color: #00ff00">path</span><span style="color: #ff0000">/</span><span style="color: #00ff00">basename</span><span style="color: #ff0000">.</span><span style="color: #00ff00">extention</span></li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Lookup related terminology and syntax.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>What if streams are not constructed with a string of file argument but instead files have methods to return streams?</li>
+</ul>
+</li>
 </ul>
 </body></html>
