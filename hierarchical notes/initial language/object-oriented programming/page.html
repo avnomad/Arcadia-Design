@@ -61,6 +61,14 @@
 <li><b>Inheritance</b></li>
 <li style="list-style-type: none"><ul><li>A class (or whatever similar structure exists in the language) should be able to inherit from any type, even from fundamental types (if such types exist).</li>
 <li>Support 'shared' vs 'separate' inheritance. (If a base class B has a class field x then, for a derived class D, the expression D.x is valid. In most OO languages, D.x refers to B.x and I call this 'shared' inheritance. An alternative way to define the semantics would be to allocate a new x field for D, so that D1.x and D2.x would be distinct for two derived classes D1 and D2. I call this 'separate' inheritance. This is implementable using the curiously recurring template pattern.)</li>
+<li><b>Subtyping</b></li>
+<li style="list-style-type: none"><ul><li>Objects of a derived class should be convertible to objects of the base class by discarding any additional information (object slicing), but should that be doable implicitly?</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Should I support <i>extension aggragates</i>&nbsp;(from Ada) that converts an object of the base class to an object of the derived class by supplying values for any additional fields? (<i>derived</i>&nbsp;<tt>:= (</tt><i>base</i>&nbsp;<tt>with</tt>&nbsp;<i>newfield</i>&nbsp;<tt>=&gt;</tt>&nbsp;<i>value</i><tt>);</tt>)</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Multiple Inheritance</b></li>
 <li style="list-style-type: none"><ul><li>The combination of D's <i>multiple subtyping</i>&nbsp;with D's "alias this" declaration for replacing multiple inheritance sounds promising!</li>
 <li>Support multiple inheritance of implementation &nbsp;or "opening" of an implementation into another.</li>
