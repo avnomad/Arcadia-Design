@@ -25,13 +25,31 @@
 </ul>
 </li>
 <li><b>Forever</b></li>
+<li><b>For</b></li>
+<li style="list-style-type: none"><ul><li>Do I need it?</li>
+<li><b>Syntax</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+for(</tt>&nbsp;<i>expression</i>&nbsp;<tt>)</tt></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
+</ul>
+</li>
+<tt><li style="list-style-type: none">−for</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none"><tt>+for(</tt>&nbsp;<i>expression</i>&nbsp;<tt>):</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−for: <i>identifier</i></tt></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>While</b></li>
 <li><b>Do-while</b></li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Include <b>unless</b>, <b>until</b>, etc?</li>
 <li>Include a loop of the form:</li>
 <li style="list-style-type: none"><ul><tt><li style="list-style-type: none">do</li>
-</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><i>block</i><tt></tt></li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><i>block</i></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>natural-number</i><tt>&nbsp;times;</tt></li>
@@ -43,7 +61,7 @@
 </ul>
 </li>
 <li><b>Conditionals</b></li>
-<li style="list-style-type: none"><ul><li></li>
+<li style="list-style-type: none"><ul><li><b>If</b></li>
 </ul>
 </li>
 <li><b>Case</b>&nbsp;/ <b>Switch</b></li>
@@ -66,22 +84,76 @@
 </li>
 <li><b>Labels</b></li>
 <li style="list-style-type: none"><ul><li>Support labelling statements for use with <b>goto</b>, <b>break</b>&nbsp;and <b>continue</b>.</li>
-<li>Another (preferable?) idea is to only support named blocks and not labelling of arbitrary statements (nor just loop statements). Instead of labelling a statement, you wrap it in a named block.</li>
+<li>Another (preferable) idea is to only support named blocks and not labelling of arbitrary statements. Instead of labelling a statement, you wrap it in a named block.</li>
+<li>Could allow labelling of block-like versions of control structures too, or just blocks (preferable).</li>
+<li>Labels don't need to be at the line start.</li>
 </ul>
 </li>
 <li><b>Jump Statements</b></li>
 <li style="list-style-type: none"><ul><li><b>Goto</b></li>
 <li style="list-style-type: none"><ul><li><tt>goto</tt>&nbsp;<b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b>&nbsp;<i>block-name</i></li>
+<li><tt>goto</tt><i>&nbsp;</i><b>(</b><i><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt></i><b>)</b><i>&nbsp;</i><b>[</b><i>nesting-level</i><b>]</b></li>
+<li style="list-style-type: none"><ul><li><i>nesting-level</i>&nbsp;is an integer that defaults to 0. All control and other structures that introduce scopes count towards increasing the nesting-level.</li>
+<li>Can't jump from a for to another that doesn't enclose the first. For that, you need a named block.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Is the level system more likely to lead to errors that are not detectable by the compiler than labels?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><tt>goto</tt><i>&nbsp;</i><b>(</b><i><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt></i><b>)</b><i>&nbsp;</i><b>(</b><tt>if</tt>&nbsp;<b>|</b>&nbsp;<tt>for</tt>&nbsp;<b>|</b>&nbsp;<tt>foreach</tt>&nbsp;<b>|</b>&nbsp;<tt>while</tt>&nbsp;<b>|</b>&nbsp;<tt>do</tt>&nbsp;<b>|</b>&nbsp;...<b>)<tt>&nbsp;</tt>[</b><i>nesting-level</i><b>]</b></li>
+<li style="list-style-type: none"><ul><li>This version only counts nestings of the mentioned control structure towards increasing the nesting-level. So e.g.</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+for // level 1</li>
+</tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+if</li>
+</tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+for // level 0</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">goto end for 1;</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−</tt>for</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−</tt>if</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−</tt>for</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>No label targets</li>
 </ul>
 </li>
 <li><b>Break</b></li>
+<li style="list-style-type: none"><ul><li>Equivalent to <tt>goto for end;</tt>, <tt>goto while end;</tt>, etc. depending on the enclosing loop.</li>
+</ul>
+</li>
 <li><b>Continue</b></li>
 </ul>
 </li>
 <li><b>Blocks</b></li>
 <li style="list-style-type: none"><ul><li><b>Syntax</b></li>
-<li style="list-style-type: none"><ul><li>+block, −block</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">Only support named blocks:<tt></tt></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block</tt>&nbsp;<i>identifier</i></li>
+</ul>
+</li>
+<li style="list-style-type: none">Or both named and nameless versions:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block</tt></li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none"><tt>+block:</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block:</tt>&nbsp;<i>identifier</i></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Paired Calls</b></li>
