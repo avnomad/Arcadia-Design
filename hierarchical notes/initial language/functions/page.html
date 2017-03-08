@@ -8,6 +8,29 @@
 <li style="list-style-type: none">&#09;void f(T in Types, t in T)</li>
 <li>In some cases, one might want to write a function that returns an array, but computing the array size will essentially be identical to running the function itself. In this case, the programmer will be able to use conventional methods (e.g. return a vector) or write a 2nd version of one's function that will perform all the computations, but won't write the result to an array, only return the size. One will then use this function to return the size of the array returned by the original function (essentially doubling the computations).</li>
 <li style="list-style-type: none">Although repeating some computations twice isn't recommended, if the function is very fast (e.g. 60ns) and allocating memory in the heap is relatively slow (e.g. 1ms) then it will be reasonable for the programmer to prefer running the function 2 times and the language could help him by automatically generatinc a "dry-run" version of the function. The original function shall not read from the returned array (retval) (not even its size?) and writtes to the returned array will be compiled to no-ops in the dry-run version.</li>
+<li><b>Syntax</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>function-definition</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>complex-parameter-list</i>&nbsp;<tt>--&gt;</tt>&nbsp;<b>[</b><i>traits</i><b>]</b>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b>&nbsp;<b>[</b><i>constraints</i><b>]</b>&nbsp;<b>[</b><i>throws</i><b>]</b>&nbsp;<b>[</b><i>initializer</i><b>]</b>&nbsp;<b>(</b>&nbsp;<tt>=</tt>&nbsp;<i>expression </i><b>|</b>&nbsp;<i>compound-statement </i><b>)</b></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>complex-parameter-list</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>{</b><tt>(</tt>&nbsp;<i>simple-parameter-list</i>&nbsp;<b>[</b><tt>|</tt>&nbsp;<i>simple-parameter-list</i><b>] </b><tt>)</tt><b>}</b></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>simple-parameter-list</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>typed-parameter-list</i><b>&nbsp;{</b><tt>,</tt>&nbsp;<i>typed-parameter-list</i><b>}</b></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>typed-parameter-list</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>untyped-parameter</i>&nbsp;<b>{</b><tt>,</tt>&nbsp;<i>untyped-parameter</i><b>}</b>&nbsp;∈ <i>type-expression</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>untyped-parameter</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>] [</b><tt>=</tt>&nbsp;<i>value-expression</i><b>]</b></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Allow or force the programmer to name all functions, be they called as infix operators, constructors, etc. or with a keyword like 'op' or 'operator' and the operator's symbol (e.g. op+). That should provide a little more documentation.</li>
 <li>I can think of functions as taking a single argument and returning a single result (like in ML).</li>

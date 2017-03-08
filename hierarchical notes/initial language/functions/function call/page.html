@@ -28,7 +28,8 @@
 <li>deconstructor (of a class)</li>
 <li>destructor (of a class)</li>
 <li>conversion (cast)</li>
-<li>function (operator())</li>
+<li>function (normal call)</li>
+<li>operators [] and ()</li>
 <li>subscript</li>
 <li>superscript</li>
 </ul>
@@ -43,7 +44,9 @@
 <li>For evaluating a function in a new (or existing?) thread and/or process.</li>
 <li style="list-style-type: none">This can be combined with a few standard "global" variables that hold additional parameters that are needed for starting threads, but you don't want to specify each time. e.g. stack size, start suspended, etc.</li>
 <li>For calling a function indirectly through a pointer and/or for virtual calls through a pointer to the object?</li>
+<li>For explicitly using static or dynamic dispatch.</li>
 <li>For calling a function from a DLL?</li>
+<li>For calling as a macro? i.e. evaluate the function in the context of the caller instead of its own context. Similar to dynamic scope.</li>
 </ul>
 </li>
 <li>It should be possible to call any function or operator with any of the above call semantics, without changing the call syntax (infix, method, etc.) by specifying the call semantics at the call site.</li>
