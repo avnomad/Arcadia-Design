@@ -83,7 +83,7 @@
 <li>The programmer <i>may</i>&nbsp;elect to specify that any additional attributes, not present in the code, that may be infered shall not be exported from the module as part of the function interface to ensure stability of the interface for the clients at the expence of lost chances for optimization.</li>
 </ul>
 </li>
-<li><b>Attributes</b></li>
+<li><b>List</b></li>
 <li style="list-style-type: none"><ul><li>No escape of local addresses</li>
 <li>Synchronized</li>
 <li>Pureness / Referential Transparency</li>
@@ -212,6 +212,8 @@
 <li>x --&gt; x**2</li>
 <li>x =&gt; x**2</li>
 <li>[](x){return x**2;}</li>
+<li>[](x)+fun x**2; <tt>−</tt>fun</li>
+<li>[](x)+code x**2; <tt>−</tt>code</li>
 <li>λx. x**2</li>
 <li>fn x =&gt; x**2</li>
 <li>etc.</li>

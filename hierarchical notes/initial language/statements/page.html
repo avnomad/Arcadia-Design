@@ -92,7 +92,7 @@
 <li><b>Jump Statements</b></li>
 <li style="list-style-type: none"><ul><li><b>Goto</b></li>
 <li style="list-style-type: none"><ul><li><tt>goto</tt>&nbsp;<b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b>&nbsp;<i>block-name</i></li>
-<li><tt>goto</tt><i>&nbsp;</i><b>(</b><i><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt></i><b>)</b><i>&nbsp;</i><b>[</b><i>nesting-level</i><b>]</b></li>
+<li><tt>goto</tt><i>&nbsp;</i><b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b><i>&nbsp;</i><b>[</b><i>nesting-level</i><b>]</b></li>
 <li style="list-style-type: none"><ul><li><i>nesting-level</i>&nbsp;is an integer that defaults to 0. All control and other structures that introduce scopes count towards increasing the nesting-level.</li>
 <li>Can't jump from a for to another that doesn't enclose the first. For that, you need a named block.</li>
 <li><b>Todo</b></li>
@@ -101,7 +101,7 @@
 </li>
 </ul>
 </li>
-<li><tt>goto</tt><i>&nbsp;</i><b>(</b><i><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt></i><b>)</b><i>&nbsp;</i><b>(</b><tt>if</tt>&nbsp;<b>|</b>&nbsp;<tt>for</tt>&nbsp;<b>|</b>&nbsp;<tt>foreach</tt>&nbsp;<b>|</b>&nbsp;<tt>while</tt>&nbsp;<b>|</b>&nbsp;<tt>do</tt>&nbsp;<b>|</b>&nbsp;...<b>)<tt>&nbsp;</tt>[</b><i>nesting-level</i><b>]</b></li>
+<li><tt>goto</tt><i>&nbsp;</i><b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b><i>&nbsp;</i><b>(</b><tt>if</tt>&nbsp;<b>|</b>&nbsp;<tt>for</tt>&nbsp;<b>|</b>&nbsp;<tt>foreach</tt>&nbsp;<b>|</b>&nbsp;<tt>while</tt>&nbsp;<b>|</b>&nbsp;<tt>do</tt>&nbsp;<b>|</b>&nbsp;...<b>)<tt>&nbsp;</tt>[</b><i>nesting-level</i><b>]</b></li>
 <li style="list-style-type: none"><ul><li>This version only counts nestings of the mentioned control structure towards increasing the nesting-level. So e.g.</li>
 <li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+for // level 1</li>
 </tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+if</li>
@@ -132,7 +132,7 @@
 </li>
 <li><b>Blocks</b></li>
 <li style="list-style-type: none"><ul><li><b>Syntax</b></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">Only support named blocks:<tt></tt></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">Only support named blocks:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt>&nbsp;<i>identifier</i></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
 </ul>
