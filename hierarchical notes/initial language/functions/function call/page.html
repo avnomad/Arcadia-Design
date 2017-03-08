@@ -16,13 +16,38 @@
 <li><b>Bind</b></li>
 </ul>
 </li>
+<li><b>Call Syntax / Function Types</b></li>
+<li style="list-style-type: none"><ul><li>The following can be considered as different ways to phrase a function call.</li>
+<li style="list-style-type: none"><ul><li>property getter (of a field)</li>
+<li>property setter (of a field)</li>
+<li>prefix operator (with a priority)</li>
+<li>postfix operator (with a priority)</li>
+<li>infix operator (with a priority and an associativity)</li>
+<li>method (of an object)</li>
+<li>constructor (of a class)</li>
+<li>deconstructor (of a class)</li>
+<li>destructor (of a class)</li>
+<li>conversion (cast)</li>
+<li>function (operator())</li>
+<li>subscript</li>
+<li>superscript</li>
+</ul>
+</li>
+<li>But they can also be considered as functions in different namespaces.</li>
+</ul>
+</li>
 <li><b>Call Operator Variants/Modifiers</b></li>
 <li style="list-style-type: none"><ul><li>There are a number of different semantics that can be given to the function call operator or contexts in which the function can be executed and an idea is to give each of them a different syntax.</li>
-<li>For explicitly inline / not inline calls? (in addition to the default that lets the compiler choose whether to inline)</li>
+<li style="list-style-type: none"><ul><li>For explicitly inline / not inline calls? (in addition to the default that lets the compiler choose whether to inline)</li>
 <li>For evaluating a function at compile and run-time. But how do I elect to evaluate an operator at compile-time vs run-time?</li>
-<li>Since I'll support compile-time evaluation of arbitrary functions (using a special operator), I probably won't need <i>constant-expression functions</i>.</li>
 <li>For evaluating a function in a new (or existing?) thread and/or process.</li>
 <li style="list-style-type: none">This can be combined with a few standard "global" variables that hold additional parameters that are needed for starting threads, but you don't want to specify each time. e.g. stack size, start suspended, etc.</li>
+<li>For calling a function indirectly through a pointer and/or for virtual calls through a pointer to the object?</li>
+<li>For calling a function from a DLL?</li>
+</ul>
+</li>
+<li>It should be possible to call any function or operator with any of the above call semantics, without changing the call syntax (infix, method, etc.) by specifying the call semantics at the call site.</li>
+<li>It should be possible to specify any of the above function call semantics as the default in each function definition. This will be especially useful for operators where specifying the semantics at call site may greatly reduce readability.</li>
 <li>Some posible choises for the syntax are:</li>
 <li style="list-style-type: none"><ul><li>Put brackets around the disambiguator, i.e. &lt;function-id&gt; ::= &lt;open-call-type-bracket&gt; [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] &lt;close-call-type-bracket&gt; where &lt;open-call-type-bracket&gt; must match &lt;close-call-type-bracket&gt; and specifies whether the call will take place during run-time or compile-time, in a new thread or process, etc. </li>
 <li style="list-style-type: none"><ul><li>The following can be used as call-type-bracket pairs: &lt;| |&gt;, &lt;~ ~&gt;, &lt;% %&gt;, &lt;# #&gt;, &lt;( )&gt;, &lt;[ ]&gt;, &lt;{ }&gt;,&lt;* *&gt;, &lt;&amp; &amp;&gt;, &lt;+ +&gt;.</li>
@@ -39,6 +64,7 @@
 </li>
 <li>I might have to generalize <i>call operator variants</i>&nbsp;(including specification of default variant) to control structures (e.g. if, foreach etc.).</li>
 <li style="list-style-type: none">That's because of the interaction between static typing and the branch that is not taken. (see map implementation using SFINAE and foreach(field in class))</li>
+<li>Since I'll support compile-time evaluation of arbitrary functions (using a special operator), I probably won't need <i>constant-expression functions</i>.</li>
 </ul>
 </li>
 <li><b>Parameter pass modes (evaluation strategies?)</b></li>

@@ -133,6 +133,11 @@
 </li>
 <li><b>Placeholder Arguments</b></li>
 <li style="list-style-type: none"><ul><li>Can use arg[0]..arg[n] or $0..$n syntaxes.</li>
+<li>Can extend syntax to arg[x/y] to include the total number of arguments. e.g. </li>
+<li style="list-style-type: none"><ul><li>arg[1] ∈ A ⟹ A = x ⟶ x</li>
+<li>arg[2/3] ∈ A³ ⟹ A = (x,y,z) ⟶ y</li>
+</ul>
+</li>
 <li>Will evaluate to variadic functions.</li>
 <li>Support for polymorphic lambdas.</li>
 <li>Maybe I can couple <i>placeholder arguments</i>&nbsp;with type inference to concisely define functions like in functional programming languages. e.g. </li>
