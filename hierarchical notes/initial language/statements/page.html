@@ -157,7 +157,8 @@
 </ul>
 </li>
 <li><b>Paired Calls</b></li>
-<li style="list-style-type: none"><ul><li>The idea is to have a special block statement that will include two "slots": one at its opening 'tag' and one at its closing one. Those 'slots' will host function calls that will be executed whenever control flow reaches each slot. The compiler will check that the functions mentioned are declared as a 'pair' and that the call at the opening slot is the first pair member while the call at the closing slot is the second pair member. The function at the exit slot will be executed regardless of the way in which control flow exited the scope of the block (exception, return, fall-off, etc.).</li>
+<li style="list-style-type: none"><ul><li>Could also be called "bracketing calls".</li>
+<li>The idea is to have a special block statement that will include two "slots": one at its opening 'tag' and one at its closing one. Those 'slots' will host function calls that will be executed whenever control flow reaches each slot. The compiler will check that the functions mentioned are declared as a 'pair' and that the call at the opening slot is the first pair member while the call at the closing slot is the second pair member. The function at the exit slot will be executed regardless of the way in which control flow exited the scope of the block (exception, return, fall-off, etc.).</li>
 <li>The goal is to give the programmer both a syntactic hint that he forgot something and proper semantic checks that he matched the calls correctly.</li>
 <li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
 <li style="list-style-type: none"><ul><li>glBegin ⟷ glEnd</li>

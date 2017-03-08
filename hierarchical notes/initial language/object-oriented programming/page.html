@@ -35,17 +35,41 @@
 <li>I can have static, dynamic and automatic constructors and the one that matches the storage duration of the variable will be called.</li>
 </ul>
 </li>
+<li><b>Implicitly-Defined Members</b></li>
+<li style="list-style-type: none"><ul><li>Provide default versions of a number of methods and functions</li>
+<li style="list-style-type: none"><ul><li>default constructor</li>
+<li>copy constructor</li>
+<li>field-oriented contructors</li>
+<li>deconstructor</li>
+<li>assignment operator</li>
+</ul>
+</li>
+<li>Allow suppressing the implicit definition of such members using a <b>supress</b>&nbsp;keyword (similar to C++11's <tt>delete</tt>).</li>
+</ul>
+</li>
 <li><b>Encapsulation</b></li>
 <li style="list-style-type: none"><ul><li><b>Access Specifiers</b></li>
+<li style="list-style-type: none"><ul><li><b>List</b></li>
 <li style="list-style-type: none"><ul><li>public</li>
 <li>protected</li>
 <li>private</li>
+<li>private protected?</li>
 <li>others?</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Could have separate access specifiers for read and write accesses.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Friends</b></li>
 <li style="list-style-type: none"><ul><li>Can be used in conjunction with static foreach loops to create the access specifiers.</li>
 <li>Syntax can be <tt>friend</tt>&nbsp;<i>identifier</i>&nbsp;<tt>∈ <i>typeA</i>&nbsp;⟶ </tt><i>typeB</i>.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Could have different kinds of friends for read and write access.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>The choice of visibility for the private members will effect compilation times and overload resolution.</li>
@@ -62,6 +86,12 @@
 <li><b>Inheritance</b></li>
 <li style="list-style-type: none"><ul><li>A class (or whatever similar structure exists in the language) should be able to inherit from any type, even from fundamental types (if such types exist).</li>
 <li>Support 'shared' vs 'separate' inheritance. (If a base class B has a class field x then, for a derived class D, the expression D.x is valid. In most OO languages, D.x refers to B.x and I call this 'shared' inheritance. An alternative way to define the semantics would be to allocate a new x field for D, so that D1.x and D2.x would be distinct for two derived classes D1 and D2. I call this 'separate' inheritance. This is implementable using the curiously recurring template pattern.)</li>
+<li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
+<li style="list-style-type: none"><ul><li>Create a component that allows classes to count their instances, not their instances and plus the instances of any other class with a common ancestor.</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Subtyping</b></li>
 <li style="list-style-type: none"><ul><li>Objects of a derived class should be convertible to objects of the base class by discarding any additional information (object slicing), but should that be doable implicitly?</li>
 <li><b>Todo</b></li>
@@ -95,11 +125,13 @@
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Do I want to support something like the Non-Virtual Interface (NVI)? (it can be used to implement a contract)</li>
 <li>The additional hidden pointer to the class descriptor could be added to objects or not depending on some syntactic hint (e.g. an operator) at construction time, instead of taking the decition at class definition time depending on whether there are virtual functions or not. Essentially I'll have two variants of every type T. This hint could be a qualifier like const or temp (e.g. tagged). This pointer could be accessible as e.g. <tt>a:tag</tt>, although it could also be considered as the dynamic type.</li>
+<li>Alternatively (but not preferebly) I could have a class that only bequeaths to its children the additional 32 or 64 bits of the pointer to the class descriptor, and the ability to use RTTI (e.g. instanceof, .class, etc.) and define virtual functions. </li>
 </ul>
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will <i>covariant return types</i>&nbsp;and <i>dynamic dispatch</i>&nbsp;be handled?</li>
 <li>Do I need <i>multiple dispatch</i>?</li>
+<li>Should I allow calling methods that are not supported by the object? What would happen then?</li>
 </ul>
 </li>
 </ul>

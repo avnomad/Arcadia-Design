@@ -143,9 +143,13 @@
 <li style="list-style-type: none"><ul><li>Support both positional and named parameters.</li>
 <li>All named arguments not matching a named parameter will be passed as a map, like in Python.</li>
 <li>Besides named parameters, Ada includes disjunction (|), ranges (..), the keyword 'other', etc. and can use them in aggregate literals too. I should see if I can do something similar.</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Could use a separator between positional and named parameters in the function definition.</li>
 </ul>
 </li>
-<li><b>Default Arguments</b></li>
+</ul>
+</li>
+<li><b>Default Arguments </b>(also known as <b>Optional Parameters</b>)</li>
 <li style="list-style-type: none"><ul><li>Should I be able to change default arguments when I create an alias for a function?</li>
 <li>It might be useful to allow the default argument values to be computed by an arbitrary expression that may contain the values of other parameters of the function. This expression will have to be evaluated in the context of the caller.</li>
 <li style="list-style-type: none">e.g. a function could receive the storage space it will use as an argument and if it doesn't receive it, the function could allocate the space itself.</li>

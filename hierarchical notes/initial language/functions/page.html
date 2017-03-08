@@ -3,18 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Functions</title>
-</head><body><ul><li><b>Header</b></li>
+</head><body><ul><li><b>Definition</b></li>
+<li style="list-style-type: none"><ul><li>A function definition could comprise the following parts:</li>
+<li style="list-style-type: none"><ul><li>type</li>
+<li>units</li>
+<li>constraints</li>
+<li>traits</li>
+<li>throws</li>
+<li>body</li>
+<li>documentation</li>
+<li>tests</li>
+<li>benchmarks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Header</b></li>
 <li style="list-style-type: none"><ul><li>Should a parameter be usable in defining the ones that follow? e.g.</li>
 <li style="list-style-type: none">&#09;void f(T in Types, t in T)</li>
 <li>In some cases, one might want to write a function that returns an array, but computing the array size will essentially be identical to running the function itself. In this case, the programmer will be able to use conventional methods (e.g. return a vector) or write a 2nd version of one's function that will perform all the computations, but won't write the result to an array, only return the size. One will then use this function to return the size of the array returned by the original function (essentially doubling the computations).</li>
 <li style="list-style-type: none">Although repeating some computations twice isn't recommended, if the function is very fast (e.g. 60ns) and allocating memory in the heap is relatively slow (e.g. 1ms) then it will be reasonable for the programmer to prefer running the function 2 times and the language could help him by automatically generatinc a "dry-run" version of the function. The original function shall not read from the returned array (retval) (not even its size?) and writtes to the returned array will be compiled to no-ops in the dry-run version.</li>
 <li><b>Syntax</b></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>function-definition</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>complex-parameter-list</i>&nbsp;<tt>--&gt;</tt>&nbsp;<b>[</b><i>traits</i><b>]</b>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b>&nbsp;<b>[</b><i>constraints</i><b>]</b>&nbsp;<b>[</b><i>throws</i><b>]</b>&nbsp;<b>[</b><i>initializer</i><b>]</b>&nbsp;<b>(</b>&nbsp;<tt>=</tt>&nbsp;<i>expression </i><b>|</b>&nbsp;<i>compound-statement </i><b>)</b></li>
-</ul>
-</li>
-<li style="list-style-type: none"><i>complex-parameter-list</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>{</b><tt>(</tt>&nbsp;<i>simple-parameter-list</i>&nbsp;<b>[</b><tt>|</tt>&nbsp;<i>simple-parameter-list</i><b>] </b><tt>)</tt><b>}</b></li>
+<li style="list-style-type: none"><ul><li><i>complex-parameter-list</i>: <span style="color: #007f00">Derivations common to both versions</span></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>{</b><tt>(</tt>&nbsp;<i>simple-parameter-list</i>&nbsp;<b>[</b><tt>|</tt>&nbsp;<i>simple-parameter-list</i><b>] </b><tt>)</tt><b>}</b>&nbsp;<span style="color: #007f00">The parameters that appear before the vertical (|) are positional, while the ones appearing after are named.</span></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>simple-parameter-list</i>:</li>
@@ -23,6 +34,22 @@
 </li>
 <li style="list-style-type: none"><i>typed-parameter-list</i>:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>untyped-parameter</i>&nbsp;<b>{</b><tt>,</tt>&nbsp;<i>untyped-parameter</i><b>}</b>&nbsp;∈ <i>type-expression</i></li>
+</ul>
+</li>
+<li><i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by information category</span></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>--&gt;</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>with</tt>&nbsp;<i>units</i>&nbsp;<i>constraints traits throws</i>&nbsp;<i>complex-parameter-list</i>&nbsp;<i>body</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>untyped-parameter</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i><b>&nbsp;[</b><tt>=</tt>&nbsp;<i>value-expression</i><b>]</b></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by parameter</span><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>complex-parameter-list</i>&nbsp;<tt>--&gt;</tt>&nbsp;<b>[</b><i>traits</i><b>]</b>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b>&nbsp;<b>[</b><i>constraints</i><b>]</b>&nbsp;<b>[</b><i>throws</i><b>]</b>&nbsp;<b>[</b><i>initializer</i><b>]</b>&nbsp;<b>(</b>&nbsp;<tt>=</tt>&nbsp;<i>expression </i><b>|</b>&nbsp;<i>compound-statement </i><b>)</b></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>untyped-parameter</i>:</li>
@@ -195,7 +222,9 @@
 </ul>
 </li>
 <li><b>Nested Functions</b></li>
-<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>I could ban function nesting altogether, but a better idea might be to detect when local addresses escape the function and allocate the activation record on the grarbage-collected heap.</li>
+<li>Excecive function nesting combined with local variable captures can greately <i>reduce</i>&nbsp;readability...</li>
+<li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Provide a uniform mechanism for capturing the environment be it global variables from global functions or local variables from local functions and lambdas.</li>
 <li>Do I want a mechanism as powerful as C++'s lambda introducer?</li>
 </ul>
