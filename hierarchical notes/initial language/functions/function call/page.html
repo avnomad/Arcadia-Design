@@ -47,14 +47,19 @@
 <li>For explicitly using static or dynamic dispatch.</li>
 <li>For calling a function from a DLL?</li>
 <li>For calling as a macro? i.e. evaluate the function in the context of the caller instead of its own context. Similar to dynamic scope.</li>
+<li>For interpreting the call inside a formal logic context? (for use in defining axioms)</li>
 </ul>
 </li>
 <li>It should be possible to call any function or operator with any of the above call semantics, without changing the call syntax (infix, method, etc.) by specifying the call semantics at the call site.</li>
 <li>It should be possible to specify any of the above function call semantics as the default in each function definition. This will be especially useful for operators where specifying the semantics at call site may greatly reduce readability.</li>
+<li>There may be two ways to interpret the above variants/modifiers and both may be needed:</li>
+<li style="list-style-type: none"><ul><li>Apply to the specific expression node (function call).</li>
+<li>Apply to the whole subexpression rooted at the expression node.</li>
+</ul>
+</li>
 <li>Some posible choises for the syntax are:</li>
 <li style="list-style-type: none"><ul><li>Put brackets around the disambiguator, i.e. &lt;function-id&gt; ::= &lt;open-call-type-bracket&gt; [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] &lt;close-call-type-bracket&gt; where &lt;open-call-type-bracket&gt; must match &lt;close-call-type-bracket&gt; and specifies whether the call will take place during run-time or compile-time, in a new thread or process, etc. </li>
-<li style="list-style-type: none"><ul><li>The following can be used as call-type-bracket pairs: &lt;| |&gt;, &lt;~ ~&gt;, &lt;% %&gt;, &lt;# #&gt;, &lt;( )&gt;, &lt;[ ]&gt;, &lt;{ }&gt;,&lt;* *&gt;, &lt;&amp; &amp;&gt;, &lt;+ +&gt;.</li>
-<li>The result is parsed using the fixity that was used when declaring the function.</li>
+<li style="list-style-type: none"><ul><li>The result is parsed using the fixity that was used when declaring the function.</li>
 <li>Examples:</li>
 <li style="list-style-type: none"><ul><li>c = a + b ⟺ c std:= a std:+ b</li>
 <li>d = f(a g b) ⟺ d &lt;(=)&gt; &lt;#f#&gt;(a &lt;|asl:operators:g|&gt; &nbsp;b)</li>
@@ -63,6 +68,10 @@
 </ul>
 </li>
 <li>Add a modifier at the end of the disambiguator to denote the context in which the function will be called.</li>
+<li>Use a different pair of brackets in the otherwise usual function call syntax. Unfortunately this is not generalizable to operators... e.g.</li>
+<li style="list-style-type: none"><ul><li><tt>n = factorial&lt;(35)&gt;;</tt></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>I might have to generalize <i>call operator variants</i>&nbsp;(including specification of default variant) to control structures (e.g. if, foreach etc.).</li>
@@ -170,7 +179,7 @@
 <li style="list-style-type: none"><ul><li>How will the type of a variadic function look like?</li>
 <li>How will a function refer to its arguments in a way that ensures static type safety?</li>
 <li>In the context of boostrapping the language, can variadic functions be defined before defining parenthenses as the way to call functions?</li>
-<li>How will a respective writefln function be written? e.g. <tt>(Τ∈TypeClassExpression)… writefln∈(s ∈ string,args ∈ Τ)</tt>&nbsp;or <tt>writefln∈(s ∈ string, args ∈ Τ∈TypeClassExpression…)</tt>\</li>
+<li>How will a respective writefln function be written? e.g. <tt>(Τ∈TypeClassExpression)… writefln∈(s ∈ string,args ∈ Τ)</tt>&nbsp;or <tt>writefln∈(s ∈ string, args ∈ Τ∈TypeClassExpression…)</tt></li>
 </ul>
 </li>
 </ul>
@@ -183,7 +192,55 @@
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Maybe I can use the 0x2061 FUNCTION APPLICATION Unicode character to resolve the f(g+h) ambiguity.</li>
 <li>What if a function call had 4 'kinds' of argument lists? (one for each member of a 'datum': value, type, name, address)</li>
-<li></li>
+<li>A number of constructs may require the use of pairs of brackets.</li>
+<li style="list-style-type: none"><ul><li>A list of such constructs is the following:</li>
+<li style="list-style-type: none"><ul><li>literals (like lists, sets, tuples, etc)</li>
+<li>function calls</li>
+<li>array subscripts</li>
+<li>call operator variants</li>
+<li>casts (conversion, reinterpretation, etc.)</li>
+<li>compound statements</li>
+<li>code segments? (does that refer to operators similar to D's mixin?)</li>
+<li>paired/bracketing calls</li>
+</ul>
+</li>
+<li>A list of possible bracket pairs is the following:</li>
+<li style="list-style-type: none"><ul><li>Usual</li>
+<li style="list-style-type: none"><ul><li><tt>( )</tt></li>
+<li><tt>[ ]</tt></li>
+<li><tt>{ }</tt></li>
+<li><tt>&lt; &gt;</tt>&nbsp;Ambiguity with comparison and shift operators during both scanning and parsing.</li>
+<li><tt>| |</tt></li>
+<li><tt>|| ||</tt>&nbsp;Ambiguity with parallel-to operator when used in the form <tt>$0 || $1 ||</tt>. The form <tt>||$0||</tt>&nbsp;should be fine.</li>
+</ul>
+</li>
+<li>New</li>
+<li style="list-style-type: none"><ul><li><tt>&lt;| |&gt;</tt></li>
+<li><tt>&lt;~ ~&gt;</tt>&nbsp;Ambiguity with the assignment operator when used in the form <tt>$0 &lt;~ $1 ~&gt;</tt>&nbsp;The form <tt>&lt;~$0~&gt;</tt>&nbsp;should be fine.</li>
+<li><tt>&lt;% %&gt;</tt></li>
+<li><tt>&lt;# #&gt;</tt></li>
+<li><tt>&lt;( )&gt;</tt></li>
+<li><tt>&lt;[ ]&gt;</tt></li>
+<li><tt>&lt;{ }&gt;</tt></li>
+<li><tt>&lt;* *&gt;</tt></li>
+<li><tt>&lt;&amp; &amp;&gt;</tt></li>
+<li><tt>&lt;+ +&gt;</tt></li>
+<li><tt>-! !-</tt></li>
+<li><tt>#: :#</tt></li>
+<li><tt># #</tt></li>
+</ul>
+</li>
+<li>New with slots</li>
+<li style="list-style-type: none"><ul><li><tt>&lt;c: :&gt;</tt>&nbsp;Ambiguity with comparison and shift operators. e.g. compare <tt>x &lt; &lt;c:max(y,z)</tt>&nbsp;with <tt>x &lt;&lt;c:max(y,z)</tt>&nbsp;that differ only by a space character.</li>
+<li><tt>&lt;i: :&gt;</tt>&nbsp;Same</li>
+<li><tt>&lt;l: :&gt;</tt>&nbsp;Same</li>
+<li><tt>&lt;d: :&gt;</tt>&nbsp;Same</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

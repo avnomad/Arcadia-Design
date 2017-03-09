@@ -36,6 +36,24 @@
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>untyped-parameter</i>&nbsp;<b>{</b><tt>,</tt>&nbsp;<i>untyped-parameter</i><b>}</b>&nbsp;∈ <i>type-expression</i></li>
 </ul>
 </li>
+<li><i>function-definition</i>: <span style="color: #007f00">Derivations mentioning a pattern</span></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>function-type</i>&nbsp;<tt>with</tt>&nbsp;<b>[</b><i>traits</i>&nbsp;<tt>and</tt><b>]</b>&nbsp;<b>[</b><i>constraints </i><tt>and</tt><b>]</b><i>&nbsp;formula</i></li>
+</ul>
+</li>
+<li style="list-style-type: none"><i>formula</i>:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>pattern</i>&nbsp;<b>(</b><tt>=</tt>&nbsp;<i>expression</i>&nbsp;<tt>;</tt>&nbsp;<b>|</b>&nbsp;<i>compound-statement</i><b>)</b></li>
+</ul>
+</li>
+<li style="list-style-type: none">e.g.</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>f : ℝ</tt>⟶<tt>ℝ with f(x) = x²;</tt></li>
+<li style="list-style-type: none"><tt>g : ℕ</tt>⟶<tt>ℕ with g(n)</tt></li>
+<tt><li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>}</tt></li>
+</ul>
+</li>
 <li><i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by information category</span></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>--&gt;</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>with</tt>&nbsp;<i>units</i>&nbsp;<i>constraints traits throws</i>&nbsp;<i>complex-parameter-list</i>&nbsp;<i>body</i></li>
 </ul>
@@ -44,12 +62,8 @@
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i><b>&nbsp;[</b><tt>=</tt>&nbsp;<i>value-expression</i><b>]</b></li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by parameter</span><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>complex-parameter-list</i>&nbsp;<tt>--&gt;</tt>&nbsp;<b>[</b><i>traits</i><b>]</b>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b>&nbsp;<b>[</b><i>constraints</i><b>]</b>&nbsp;<b>[</b><i>throws</i><b>]</b>&nbsp;<b>[</b><i>initializer</i><b>]</b>&nbsp;<b>(</b>&nbsp;<tt>=</tt>&nbsp;<i>expression </i><b>|</b>&nbsp;<i>compound-statement </i><b>)</b></li>
+<li><i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by parameter</span></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>complex-parameter-list</i>&nbsp;<tt>--&gt;</tt>&nbsp;<b>[</b><i>traits</i><b>]</b>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b>&nbsp;<b>[</b><i>constraints</i><b>]</b>&nbsp;<b>[</b><i>throws</i><b>]</b>&nbsp;<b>[</b><i>initializer</i><b>]</b>&nbsp;<b>(</b>&nbsp;<tt>=</tt>&nbsp;<i>expression </i><b>|</b>&nbsp;<i>compound-statement </i><b>)</b></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>untyped-parameter</i>:</li>

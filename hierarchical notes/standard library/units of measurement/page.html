@@ -28,7 +28,17 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at Boost.Units.</li>
 <li>Choose syntax. e.g. <tt>int(m/s)</tt>, <tt>85(km/h)</tt>&nbsp;or <tt>85km/h</tt>?</li>
-<li>Allow compound numbers (e.g. 3hour 52minutes) or will addition be enough? (e.g. 3hour + 52minutes)</li>
+<li>How will the scanner split the prefix from the unit? e.g. "km"⟶"k" "m"</li>
+<li style="list-style-type: none"><ul><li>Could use an operator between them like in "k.m/s²".</li>
+<li>The scanner could have a list of known prefixes to look for.</li>
+</ul>
+</li>
+<li>Allow compound numbers (e.g. 3hours 52minutes) or will addition be enough? (e.g. 3hours + 52minutes)</li>
+<li style="list-style-type: none"><ul><li>Does multiplication between numbers of different units make sence or will it be confusing?</li>
+<li>Does it make sence to do something different on pairs of literals compared to pairs of variables or expressions?</li>
+</ul>
+</li>
+<li>Will definition of new units and prefixes be allowed and in which form?</li>
 </ul>
 </li>
 </ul>

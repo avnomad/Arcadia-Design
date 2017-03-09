@@ -10,6 +10,14 @@
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li>Could start the declaration with the storage class specifier instead of a keyword like 'var' or 'val'.</li>
 <li>Could also put the declaration between two verticals (|) (like Smalltalk), but I may want to leave '|' available for other things.</li>
+<li>Could give a parenthesized unit of measurement together with the variable name. e.g.</li>
+<li style="list-style-type: none"><ul><li><tt>t(s), x(m), u(m/s) ∈ ℝ[ieee745];</tt></li>
+</ul>
+</li>
+<li><i>identifier</i>&nbsp;<b>{</b><tt>,</tt>&nbsp;<i>identifier</i><b>}</b>&nbsp;<tt>∈</tt>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>[</tt>&nbsp;<i>implementation</i>&nbsp;<tt>]</tt><b>]</b>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b></li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>i, j ∈ ℕ;</tt>, <tt>f ∈ ℕ⟶ℝ;</tt></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Initializers</b></li>
@@ -70,6 +78,13 @@
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Should variables be immutable by default? Search open-source code to see which is most common!</li>
 <li>Should all variables, or a subset of them (e.g. statics are initialized to 0 in ELF and EXE anyway), be initialized to zero by default?</li>
+<li>Allow specifying types of the form <i>interface</i><tt>[</tt><i>implementation</i><tt>]</tt>. e.g.</li>
+<li style="list-style-type: none"><ul><li><tt>i, j ∈ ℤ[32-bit];</tt></li>
+<li>n<tt>&nbsp;∈ ℕ[native];</tt></li>
+<li><tt>v, u ∈ VectorSpace&lt;ℝ&gt;[Vector&lt;ℝ&gt;];</tt></li>
+</ul>
+</li>
+<li style="list-style-type: none">I could make all the interfaces user-defined and only make a few implementations build-in. (like e.g. 32-bit integers, IEEE 754 floating point, etc.)</li>
 <li><b>RAII</b></li>
 <li style="list-style-type: none"><ul><li>Should I allow the definition of nameless variables? e.g. for calling the constructor and destructor.</li>
 </ul>

@@ -21,11 +21,18 @@
 </li>
 <li>Generic code might need to demand that an operation doesn't throw exceptions.</li>
 <li>Support inferring the header/summary/interface from the source file/definition in source/human-readable form, as well as manual/handwritten header creation and automated checking of implementation with respect to that.</li>
-<li>Support specification of Axioms/Postulates as part of the interface.</li>
+<li><b>Axioms</b>&nbsp;/ <b>Postulates</b></li>
+<li style="list-style-type: none"><ul><li>Support specification of Axioms/Postulates as part of the interface.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>How will axioms interact with exceptions? One idea is to think of the axioms as true as long as no exceptions are thrown.</li>
+<li>Sometimes implementations might not be able to satisfy all axioms, but it might be useful to allow them to be used as if they satisfied them. e.g. an unsigned 64-bit integer does not satisfy <tt>∀</tt>n∈ℕ. n+1&gt;n, but its useful to use it as if it was a natural number. </li>
+<li>How will failures due to memory exhaustion be handled with respect to axiom satisfiability?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do I need a different form of <b>interface</b>&nbsp;and <b>implementation</b>&nbsp;for <b>functions</b>&nbsp;and <b>types</b>?</li>
-<li>Sometimes implementations might not be able to satisfy all axioms, but it might be useful to allow them to be used as if they satisfied them. e.g. an unsigned 64-bit integer does not satisfy <tt>∀</tt>n∈ℕ. n+1&gt;n, but its useful to use it as if it was a natural number. One idea is to think of the axioms as true as long as no exceptions are thrown.</li>
-<li>How will failures due to memory exhaustion be handled with respect to axiom satisfiability?</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
