@@ -23,11 +23,15 @@
 <li>Support mixing operators with the above associativity option. e.g. <tt>a&lt;b=c&gt;b</tt>.</li>
 <li>No special syntax is needed to treat an operator as a function since placeholder arguments can do the job. e.g. <tt>$0 ? $1 : $2</tt></li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>Maybe I can use the 0x2062 INVISIBLE TIMES Unicode character to simplify implementation of juxtaposition parsing.</li>
-<li>Allow more than one associativity per priority?</li>
+<li style="list-style-type: none"><ul><li>Allow more than one associativity per priority?</li>
 <li>I could decouple the insertion of names in a scope from the operator status of them. e.g. I could have a function named '+' with 'prefix' syntax, that would only be parsed as a prefix operator if the prefix + has been activated in the scope. Otherwise it would be parsed as a regular function.</li>
 <li>Overloading the membership operator '.' like I've thought, should be similar but more powerful than D's opDispatch.</li>
 <li>Constructors, destructors, deconstructors, methods, function, etc. can be thought of as being in different namespaces instead of being different ways to phrase a function call. So e.g. in the first part of a declaration, names will be looked up in the deconstructor namespace, while in the initializer part of a declaration, they will be looked up in the function namespace. Moreover, this way there can be multiple versions of some operators (e.g. [ , , , ]) without fear of collision.</li>
+<li><b>Implementation</b></li>
+<li style="list-style-type: none"><ul><li>Maybe I can use the 0x2062 INVISIBLE TIMES Unicode character to simplify implementation of juxtaposition parsing.</li>
+<li>Every keyword, operator, separator as well as identifiers could have a unique numerical id that would lead to a separate handling function via an array, or could be represented as an object of a different class and the right function would be selected using dynamic dispatch. That's from before I made my first parser...</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
@@ -93,6 +97,7 @@
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>If I need to reserve space for objects at link-time, the ELF 'common' objects can help!</li>
 <li>Define some sort of "Hardware Abstraction Language" that will be a little higher-level than an intermediate language and will replace build-in types.</li>
+<li>Could define the code each operation generates in assembly, then ship those definitions with the compiler.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>

@@ -25,6 +25,14 @@
 </li>
 <li><b>Optimizations</b></li>
 <li style="list-style-type: none"><ul><li>Must detect pure function calls whose return value is never used and remove them, maintaining the order of evaluation of its arguments. e.g. (p++,q++);</li>
+<li>Must inline function calls whose (net) size (measured in bytes of machine language instructions) is less than or equal to the size of their call sequence.</li>
+<li style="list-style-type: none"><ul><li>Though it's not clear how such a comparison could be done in practice, given that functions are inlined during the first stages of translation, while machine language is generated during the last.</li>
+<li style="list-style-type: none"><ul><li>One way could be to topologically sort the functions based on their call graph (so e.g. leaf functions would be translated first) and call a back-end function to calculate the size of the function call sequence. Assuming of course that there is enough information to calculate this size and that it won't depend on optimizations that haven't been done yet.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Must recognize and optimize tail calls.</li>
 </ul>
 </li>
 <li><b>Diagnostics</b></li>

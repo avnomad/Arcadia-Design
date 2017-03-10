@@ -18,8 +18,8 @@
 <i><li style="list-style-type: none"></li>
 </i></ul>
 <i>simple-statement</i>:<ul><li style="list-style-type: none"><b>[</b><i>expression</i><b>] </b><tt>;</tt>&nbsp;<span style="color: #007f00">Evaluates <i>expression</i>&nbsp;for its side-effects. Must issue warning (not error) if <i>expression</i>&nbsp;is pure.</span></li>
-<li style="list-style-type: none"><tt>break</tt>&nbsp;<b>[</b><i>integral-literal</i><b>] </b><tt>;</tt>&nbsp;<span style="color: #007f00"><i>integral-literal</i>&nbsp;must be non-negative. Defaults to 0.</span></li>
-<li style="list-style-type: none"><tt>continue</tt>&nbsp;<b>[</b><i>integral-literal</i><b>] </b><tt>;</tt>&nbsp;<i><span style="color: #007f00">integral-literal</span></i><span style="color: #007f00">&nbsp;must be non-negative. Defaults to 0.</span></li>
+<li style="list-style-type: none"><tt>break</tt>&nbsp;<b>[</b><i>integral-literal</i><b>] </b><tt>;</tt>&nbsp;<i><span style="color: #007f00">integral-literal</span></i><span style="color: #007f00">&nbsp;must be non-negative. Defaults to 0.</span></li>
+<li style="list-style-type: none"><tt>continue</tt>&nbsp;<b>[</b><i>integral-literal</i><b>] </b><tt>;</tt>&nbsp;<span style="color: #007f00"><i>integral-literal</i>&nbsp;must be non-negative. Defaults to 0.</span></li>
 <li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">0 breaks from the loop that directly encloses the <tt>break</tt>/<tt>continue</tt>&nbsp;statement.</li>
 <li style="list-style-type: none">1 breaks from the loop that directly encloses the above loop, or issues an error if no such loop exists.</li>
 <li style="list-style-type: none">And so on for the rest of the integers.</li>
@@ -66,13 +66,13 @@
 </span></ul>
 </li>
 </ul>
-<i>simple-declaration</i>:<ul><li style="list-style-type: none"><tt>val </tt><i>identifier</i><tt>&nbsp;</tt><b>[</b><tt><i>= </i></tt><i>expression</i><b>] [</b><tt>in </tt><i>type-expression</i><b>] </b><tt>; <span style="color: #007f00">Declares a new variable or constant.</span></tt></li>
-<li style="list-style-type: none"><ul><span style="color: #007f00"><tt><li style="list-style-type: none">At least one of the optional parts must be present.</li>
+<i>simple-declaration</i>:<ul><li style="list-style-type: none"><tt>val </tt><i>identifier</i><tt>&nbsp;</tt><b>[</b><i><tt>= </tt>expression</i><b>] [</b><tt>in </tt><i>type-expression</i><b>] </b><tt>; <span style="color: #007f00">Declares a new variable or constant.</span></tt></li>
+<li style="list-style-type: none"><ul><tt><span style="color: #007f00"><li style="list-style-type: none">At least one of the optional parts must be present.</li>
 <li style="list-style-type: none">If <i>type-expression</i>&nbsp;is absent, the type of <i>expression</i>&nbsp;is used instead, with a transitive immutability attribute. Otherwise the type computed by <i>type-expression,</i>&nbsp;with any constness or immutability attributes it may contain, is used verbatim.</li>
-</tt></span></ul>
+</span></tt></ul>
 </li>
-<span style="color: #007f00"><tt><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
-</span></tt></span><li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt><span style="color: #7f0000"><b>(</b>var <b>|</b>&nbsp;const<b>)</b></span></tt><span style="color: #7f0000"><i>&nbsp;identifier </i><b>[</b><tt>(</tt><i>&nbsp;unit-expression </i><tt>)</tt><b>][</b><tt>= </tt><i>expression</i><b>][</b><tt>in <i>static-expression</i><b>]</b>&nbsp;;</tt></span></li>
+<tt><span style="color: #007f00"><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
+</span></span></tt><li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt><span style="color: #7f0000"><b>(</b>var <b>|</b>&nbsp;const<b>)</b></span></tt><span style="color: #7f0000"><i>&nbsp;identifier </i><b>[</b><tt>(</tt><i>&nbsp;unit-expression </i><tt>)</tt><b>][</b><tt>= </tt><i>expression</i><b>][</b><tt>in <i>static-expression</i><b>]</b>&nbsp;;</tt></span></li>
 </span><tt><li style="list-style-type: none"></li>
 </tt></ul>
 </li>
@@ -93,14 +93,22 @@
 <li style="list-style-type: none">native unative &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # <span style="color: #007f00">integral</span>&nbsp;%</li>
 </tt><li style="list-style-type: none"><tt>asize &nbsp;uasize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% <span style="color: #007f00">scalar</span></tt></li>
 <li style="list-style-type: none"><tt>ascii<span style="color: #007f00">&nbsp; &nbsp; (8-bit) </span>@ <span style="color: #007f00">character</span>&nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</tt></li>
-<li style="list-style-type: none"><tt><span style="color: #007f7f">unicode </span><span style="color: #007f00">(32-bit) </span>@ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</tt></li>
+<li style="list-style-type: none"><span style="color: #007f7f"><tt>unicode </tt></span><tt><span style="color: #007f00">(32-bit) </span>@ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</tt></li>
 <tt><li style="list-style-type: none">single &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
 <li style="list-style-type: none">double &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp; <span style="color: #007f00">floating point</span>&nbsp; &nbsp; &nbsp; &nbsp;%</li>
 <li style="list-style-type: none"><span style="color: #007f7f">quad &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>&amp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
 </tt><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
 <li style="list-style-type: none"><b>(</b><tt>unit</tt>&nbsp;<b>|</b>&nbsp;<tt>int</tt><b>)</b><tt>[</tt><b>(</b><tt>8</tt><b>|</b><tt>16</tt><b>|</b><tt>32</tt><b>|</b><tt>64</tt><b>)</b><tt>]</tt>&nbsp;e.g. unit[8]</li>
-</span><li style="list-style-type: none"><span style="color: #7f0000">No sting type yet...</span></li>
-<li style="list-style-type: none"></li>
+<li style="list-style-type: none">No sting type yet...</li>
+<li style="list-style-type: none">Yet another candidate form was</li>
+<li style="list-style-type: none"><i>basic-type</i>:</li>
+</span><li style="list-style-type: none"><ul><li style="list-style-type: none"><span style="color: #7f0000"><b>[</b><tt>unsigned</tt><b>](</b><tt>char</tt>&nbsp;</span><span style="color: #007f00">(8-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>short</tt>&nbsp;</span><span style="color: #007f00">(16-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>int</tt>&nbsp;</span><span style="color: #007f00">(32-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>long</tt>&nbsp;</span><span style="color: #007f00">(64-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>long long</tt>&nbsp;</span><span style="color: #007f00">(128-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>integer</tt>&nbsp;</span><span style="color: #007f00">(native)</span><b><span style="color: #7f0000">)</span></b></li>
+<li style="list-style-type: none"><span style="color: #7f0000"><b>(</b><tt>cutf8</tt>&nbsp;<b>|</b>&nbsp;<tt>cutf16</tt>&nbsp;<b>|</b>&nbsp;<tt>cutf32</tt><b>)</b>&nbsp;</span><span style="color: #007f00">(for Unicode support and better overloading)</span></li>
+<li style="list-style-type: none"><tt><span style="color: #7f0000">bool </span></tt><span style="color: #007f00">(for better overloading)</span></li>
+<span style="color: #7f0000"><li style="list-style-type: none"><b>([</b>extended<b>]</b>&nbsp;<tt>double</tt>&nbsp;<b>| </b><tt>single</tt><b>)</b></li>
+</span><li style="list-style-type: none"><span style="color: #007f00">(extended long? extended unsigned or unsigned extended? medium int?)</span></li>
+</ul>
+</li>
 </ul>
 <span style="color: #7f0000"><br/>
 </span><i>var-type</i>:<ul><li style="list-style-type: none"><b>[</b><tt>const</tt><b>]</b>&nbsp;<i>basic-type </i><b>[</b><tt>[</tt><b>[</b><i>expression</i><b>]{</b><tt>, </tt><b>[</b><i>expression</i><b>]}</b><tt>]</tt><b>]</b></li>
@@ -117,8 +125,8 @@
 <li style="list-style-type: none"></li>
 <span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
 </span><li style="list-style-type: none"><span style="color: #7f0000"><tt>byval</tt></span><span style="color: #007f00">&nbsp;(default)</span></li>
-<span style="color: #7f0000"><tt><li style="list-style-type: none">byref</li>
-</tt></span><tt><span style="color: #007f7f"><li style="list-style-type: none">byres</li>
+<tt><span style="color: #7f0000"><li style="list-style-type: none">byref</li>
+</span><span style="color: #007f7f"><li style="list-style-type: none">byres</li>
 <li style="list-style-type: none">byvalres</li>
 <li style="list-style-type: none">bymacro</li>
 <li style="list-style-type: none">byname</li>
@@ -190,7 +198,7 @@
 <li style="list-style-type: none">⟶</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>&lt;&lt; </tt>left logical shift</li>
 <li style="list-style-type: none"><tt>&gt;&gt; </tt>right logical shift</li>
-<li style="list-style-type: none"><span style="color: #007f7f"><tt>&lt;&lt;&lt; </tt>left arithmetic shift?</span></li>
+<li style="list-style-type: none"><tt><span style="color: #007f7f">&lt;&lt;&lt; </span></tt><span style="color: #007f7f">left arithmetic shift?</span></li>
 </ul>
 </li>
 <li style="list-style-type: none">↮</li>

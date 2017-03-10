@@ -96,11 +96,11 @@
 <li>Another idea is to put all the "unsafe" features in separate modules, so that unsafe code can be identified by looking at the imports at the beginning of the file.</li>
 <li style="list-style-type: none">A tool could start at the root module and look for imports of "unsafe" features and/or declarations that change the language (including the import semantics) to partition the code into "safe", "unsafe" and "not-sure" regions.</li>
 <li>Yet another idea is to allow certain "low level" features only in functions declared as "low level".</li>
-<li></li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>A class definition will be splittable to pieces (like partial classes?) and thus distributable to many files, assuming they are all given simultaneously for the creation of a single module as discribed above.</li>
+<li>Could support importing global functions as methods and exporting methods as global functions.</li>
 </ul>
 </li>
 </ul>

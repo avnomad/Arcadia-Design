@@ -8,6 +8,7 @@
 <li>Only arithmetic and geometric progressions are recognized by the sequence operator ( , ,..., ), since there is no point in submitting the readers of the code to an IQ test.</li>
 <li>The distinction between value and reference classes demands a decision up front about how the classes are going to be used (whether they will be inherited etc.) and isn't in line with the language's general principle to let you start writing something and decide about the details as you go.</li>
 <li>No special adaptor that adds deallocation guarantees to containers of pointers to objects was included, since the intended behaviour can be achived by using containers of smart pointers.</li>
+<li>No preprocessor metaprogramming since there won't be a preprocessor.</li>
 <li><b>Choise of Names</b></li>
 <li style="list-style-type: none"><ul><li>Linear data structures could have a <i>length</i>&nbsp;member, but this name doesn't generalize to trees and graphs. They could have a <i>size</i>&nbsp;member, but this will be used for byte count instead.</li>
 </ul>
