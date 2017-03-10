@@ -130,6 +130,10 @@
 <li>2 modes to return a value by reference will be needed:</li>
 <li style="list-style-type: none"><ul><li><b>by external reference</b>: The caller allocates space in the stack for the object to be returned and passes its address to the callee as a hidden argument (the function isn't really returning anything). The constructor for the object to be returned can be called as the last thing before transfering control to the callee or the first thing after that (I'm not sure what's best. Perhaps last thing before transfering control, so that both the constructor and destructor are called from the caller.).</li>
 <li style="list-style-type: none">The above is enough for statements like <tt>g(f(b));</tt>&nbsp;where f returns an object of type T by external reference and g takes an object of type T by reference. But for statements of the form <tt>a = f(b);</tt>&nbsp;where a is of type T and f returns an object of type T by external reference, we want to avoid the creation of a new object and its copy into <tt>a</tt>&nbsp;and instead we'll pass the address of <tt>a</tt>&nbsp;to <tt>f</tt>&nbsp;directly.</li>
+<li style="list-style-type: none"><ul><li>This can be thought as explicitly requesting for a Return Value Optimization (RVO).</li>
+<li>Essentially <tt>double[] add(double a[], double [])</tt>&nbsp;becomes <tt>void add(double a[], double b[], double c[])</tt>.</li>
+</ul>
+</li>
 <li><b>by internal reference</b>: This is the usual return by reference that returns the address of an object (that has usually been allocated by the callee and, if the stack isn't grarbage-collected, can't be allocated on the stack).</li>
 </ul>
 </li>

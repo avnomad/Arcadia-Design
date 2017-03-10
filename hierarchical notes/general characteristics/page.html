@@ -19,15 +19,80 @@
 </li>
 </ul>
 <br/>
-<ul><li>identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
-<li>case-sensitive, free format, no preprocessor, with includes.</li>
+<ul><li>source files will be assumed to contain Unicode characters by default.</li>
+<li>identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
 <li>variables can be stored in heap, static, stack. no Java-style references, a number of pointer types.</li>
-<li>in some form: exceptions, modules, classes, inheritance, interfaces, templates, concepts, functions, overloading, variadic templates, dynamic dispatch.</li>
-<li>procedural with functional influence.</li>
-<li>static type system, type inference? dynamic elements (at least through dynamic dispatch)</li>
+<li>same function should be callable in different ways:</li>
+<li style="list-style-type: none"><ul><li>classic call</li>
+<li>inline call</li>
+<li>compile time call</li>
+<li>virtual function call? (should it be different from "classic"?)</li>
 </ul>
-<ul><li>Clearly defined "under the hood" behaviour.</li>
+</li>
+<li>duality between (algebraic) structures containing interface and axioms and types that can conform or not to the structure.</li>
+<li>type composition and decomposition</li>
+<li>array generation operators:</li>
+<li style="list-style-type: none"><ul><li>1...n</li>
+<li>1,3,...,7</li>
+<li>[a,b]:0,5</li>
+<li>1,...,2ⁱ,...,2ⁿ</li>
+</ul>
+</li>
+<li><b>Classification</b></li>
+<li style="list-style-type: none"><ul><li>case-sensitive, free format, no preprocessor</li>
+<li>procedural with functional influence.</li>
+<li>staticly typed (with type inference?) with dynamic elements (at least through dynamic dispatch).</li>
+</ul>
+</li>
+<li><b>Feature Synopsis</b></li>
+<li style="list-style-type: none"><ul><li>operator definition</li>
+<li>operator &amp; function overloading</li>
+<li>default arguments</li>
+<li>anonymous functions</li>
+<li>currying</li>
+<li>properties</li>
+<li>attributes</li>
+<li>unicode support</li>
+<li>eval, mixin or similar facility</li>
+<li>foreach and forever loops</li>
+<li><b>In some form</b>:</li>
+<li style="list-style-type: none"><ul><li>exceptions</li>
+<li>modules</li>
+<li>classes</li>
+<li>encaspulation</li>
+<li style="list-style-type: none"><ul><li>[read &amp; write] x [public, protected, private]</li>
+<li>+friends</li>
+</ul>
+</li>
+<li>inheritance</li>
+<li>interfaces</li>
+<li>templates</li>
+<li>concepts</li>
+<li>functions</li>
+<li>overloading</li>
+<li>variadic templates</li>
+<li>dynamic dispatch</li>
+<li>reflection</li>
+<li>tuples</li>
+<li>records</li>
+<li>traditionally offered by a preprocessor</li>
+<li style="list-style-type: none"><ul><li>includes</li>
+<li>symbolic names</li>
+<li>macros</li>
+<li>conditional compilation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>General Direction</b></li>
+<li style="list-style-type: none"><ul><li>Clearly defined "under the hood" behaviour.</li>
 <li>Clear and intuitive abstraction without 'holes'.</li>
+<li>Vast metaprogramming facilities.</li>
+<li>Easily modifiable programs.</li>
+</ul>
+</li>
 </ul>
 <ul><li>A rejected idea about the language name was "Experiment".</li>
 </ul>

@@ -97,6 +97,10 @@
 </li>
 <li><b>:tree</b>&nbsp;postfix operator that returns the expression given as its argument in the form of an AST. e.g.</li>
 <li style="list-style-type: none"><ul><li><tt>compile #derivative(&lt;| return x</tt>²<tt>+3x+2; |&gt;:tree) end;</tt></li>
+<li><b>Use Cases</b>:</li>
+<li style="list-style-type: none"><ul><li>Provide the ASTs to feed to symbolic differentiation routines. e.g. If a function's body is a single expression, then the function could be converted to an AST for this expression. The AST would be converted to another AST during compilation and from that, to a new function representing the derivative.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

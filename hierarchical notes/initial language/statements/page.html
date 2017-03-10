@@ -20,6 +20,7 @@
 <li style="list-style-type: none"><ul><li>Should they be able to simultaneously generate indices and values while iterating a collection, like in D?</li>
 <li>Should it be possible to overload the foreach loop with <i>iteration primitives</i>&nbsp;and <i>internal iteration</i>&nbsp;like in D?</li>
 <li style="list-style-type: none">Basically what D does isn't operator overload, but expression rewrites and lowering like those of an AST preprocessor!</li>
+<li>How will a static foreach loop that iterates over all members of a tuple/record behave? Will it always unroll?</li>
 </ul>
 </li>
 </ul>
@@ -157,7 +158,7 @@
 </ul>
 </li>
 <li><b>Paired Calls</b></li>
-<li style="list-style-type: none"><ul><li>Could also be called "bracketing calls".</li>
+<li style="list-style-type: none"><ul><li>Could also be called "bracketing calls" or "slotted blocks" or "slot-bearing blocks".</li>
 <li>The idea is to have a special block statement that will include two "slots": one at its opening 'tag' and one at its closing one. Those 'slots' will host function calls that will be executed whenever control flow reaches each slot. The compiler will check that the functions mentioned are declared as a 'pair' and that the call at the opening slot is the first pair member while the call at the closing slot is the second pair member. The function at the exit slot will be executed regardless of the way in which control flow exited the scope of the block (exception, return, fall-off, etc.).</li>
 <li>The goal is to give the programmer both a syntactic hint that he forgot something and proper semantic checks that he matched the calls correctly.</li>
 <li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
