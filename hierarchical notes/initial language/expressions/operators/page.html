@@ -14,6 +14,9 @@
 <li>∩ (intersection), ∪ (union), ∁ (complement)</li>
 <li>∈ (in), ∉ (not in), ⊆ (subset), ⊈ (not subset), = (equals), ≠ (not equals)</li>
 <li>Also ⊂ and ⊄?</li>
+<li>&lt;, &gt;, ≤ (&lt;=), ≥ (&gt;=)</li>
+<li>× (x)</li>
+<li>⋅ (*)</li>
 <li>In typeset contexts ∑ and ∏ should be available and they might have higher precedence than + and * respectively.</li>
 </ul>
 </li>
@@ -73,9 +76,22 @@
 <li><b>ring operator </b>(∘) for function composition and appending sequences (including strings).</li>
 <li><b>range operator</b>&nbsp;(..) for specifying ranges a..b returns a range containing the numbers from a to but not including b. 3..5 := [3,4]</li>
 <li><b>sequence operator</b>&nbsp;(, ,..., ) for specifying sequences and progressions. Automatically recognises arithmetic and geometric progressions. e.g.</li>
-<li style="list-style-type: none">1,2,...,10 := [1,2,3,4,5,6,7,8,9,10] (two initial terms means arithmetic progression)</li>
-<li style="list-style-type: none">1,2,4,...,64 := [1,2,4,8,16,32,64] (three initial terms means geometric progression)</li>
-<li style="list-style-type: none">1, 3, 2*$x+1,..., 9 := [1,3,5,7,9] (a function after initial terms is used for computing all terms. No equation is solved. Checks are done to ensure the function maps 0 to the first term, 1 to the second term and so on)</li>
+<li style="list-style-type: none"><ul><li>1,...,3 := [1,2,3] (one initial term means arithmetic progression with unit step)</li>
+<li>1,2,...,10 := [1,2,3,4,5,6,7,8,9,10] (two initial terms means arithmetic progression)</li>
+<li>1,2,4,...,64 := [1,2,4,8,16,32,64] (three initial terms means geometric progression)</li>
+<li>1, 3, 2*$x+1,..., 9 := [1,3,5,7,9] (a function after initial terms is used for computing all terms. No equation is solved. Checks are done to ensure the function maps 0 to the first term, 1 to the second term and so on)</li>
+</ul>
+</li>
+<li><b>interval operator </b>([,(,),]) for specifying intervals of real numbers.</li>
+<li style="list-style-type: none"><ul><li><tt>[a,b]</tt>, <tt>(a,b]</tt>, <tt>(a,b)</tt>, <tt>[a,b)</tt>&nbsp;could be interpreted as {x∈ℝ : a≤x≤b}, {x∈ℝ : a&lt;x≤b}, {x∈ℝ : a&lt;x&lt;b}, {x∈ℝ : a≤x&lt;b} respectively.</li>
+<li><tt>[a,b]:n</tt>&nbsp;could be interpreted as Matlab's linspace(a,b,n), i.e. evaluate to a range containing n evanly spaced points between and including the endpoints a and b.</li>
+<li><tt>[a,b|d]</tt>&nbsp;could evaluate to a range x₁=a, x₂=x₁+d, x₃=x₂+d,...,xₙ=b, of as many d-spaced points as are needed to fill the discance between the endpoint a and b.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>How do I resolve ambiguities when used in conjunction with tuples and lists?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>mixin</b>&nbsp;(from D) or similar operator (Python and JavaScript have <i>eval</i>) that accepts a string and compiles it as if it was code appearing in place of the operator. My syntax can be of the form <tt>&lt;[</tt><i>expression</i><tt>]&gt;</tt>.</li>
 <li><b>compile</b>&nbsp;<i>expression</i>&nbsp;<b>end</b><i>&nbsp;</i>(could also end with ";" or something else) that evaluates <i>expression</i>&nbsp;(which must evaluate to an AST) during compile-time and forwards the AST for attachment to the broader AST of the program and for semantic analysis, translation, etc.</li>
 <li><b>operator </b>or <b>op</b>&nbsp;or <b>''</b><i>operator</i><b>''</b></li>

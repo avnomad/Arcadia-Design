@@ -80,14 +80,14 @@
 </ul>
 </li>
 <li><b>Parameter pass modes (evaluation strategies?)</b></li>
-<li style="list-style-type: none"><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>If no mode is specified, then pass-by-value is assumed for mutable parameters, while pass-by-value or pass-by-reference may be assumed for constant ones based on object size. Up to a configurable default size (like e.g. 4 or 8 bytes) pass-by-value is assumed. For larger objects, pass-by-reference is assumed instead.</li>
+<li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Perhaps I can supply only the most generic parameter pass mode as build-in (tree?) and allow the rest to be created with constructors and conversions... e.g. every expression will be automatically converted into a tree and then converted into something else as needed.</li>
-<li>It may be useful to have the ability to explicitly bind a variable with the return value of a function, perhaps by using <b>retval</b>. e.g. <tt>add(a, b, retval=c)</tt></li>
 </ul>
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Is the implementation of return by value equivalent to receiving a parameter by return? The return by external reference mode is equivalent to receiving a parameter by reference. But what about return by internal reference?</li>
-<li style="list-style-type: none">Can I consider this to be a purely syntactic issue and use the functions either way? ((like with infix, method, etc.).</li>
+<li style="list-style-type: none">Can I consider this to be a purely syntactic issue and use the functions either way? (like with infix, method, etc.).</li>
 <li>Should I provide for a way to pass an expression to a function in the form of an abstract syntax tree? This can be done:</li>
 <li style="list-style-type: none"><ul><li>Using an operator similar to Lisp's quote ('). (e.g. 'a:ast')</li>
 <li>Using a new evaluation strategy. (e.g. 'tree')</li>
@@ -126,12 +126,18 @@
 </ul>
 </li>
 <li><b>Value return modes</b></li>
-<li style="list-style-type: none"><ul><li>by value</li>
+<li style="list-style-type: none"><ul><li>If no mode is specified, return-by-value is assumed for objects smaller than a configurable default size (register size?) and return by external reference for the rest.</li>
+<li>by value</li>
 <li>2 modes to return a value by reference will be needed:</li>
 <li style="list-style-type: none"><ul><li><b>by external reference</b>: The caller allocates space in the stack for the object to be returned and passes its address to the callee as a hidden argument (the function isn't really returning anything). The constructor for the object to be returned can be called as the last thing before transfering control to the callee or the first thing after that (I'm not sure what's best. Perhaps last thing before transfering control, so that both the constructor and destructor are called from the caller.).</li>
 <li style="list-style-type: none">The above is enough for statements like <tt>g(f(b));</tt>&nbsp;where f returns an object of type T by external reference and g takes an object of type T by reference. But for statements of the form <tt>a = f(b);</tt>&nbsp;where a is of type T and f returns an object of type T by external reference, we want to avoid the creation of a new object and its copy into <tt>a</tt>&nbsp;and instead we'll pass the address of <tt>a</tt>&nbsp;to <tt>f</tt>&nbsp;directly.</li>
 <li style="list-style-type: none"><ul><li>This can be thought as explicitly requesting for a Return Value Optimization (RVO).</li>
 <li>Essentially <tt>double[] add(double a[], double [])</tt>&nbsp;becomes <tt>void add(double a[], double b[], double c[])</tt>.</li>
+<li>An older thought (that predated external references) was to declare the function with an explicit extra parameter, then <tt>somehow</tt>&nbsp;bind <tt>retval</tt>&nbsp;with that extra parameter. The compiler would check e.g. that the parameter had the same type as the return value (including the temp qualifier) (or at least the same size?). Then it would allocate space or not using more-or-less the same rules as for external references. There were two options for the binding:</li>
+<li style="list-style-type: none"><ul><li>Using a special statement/directive like <tt>bind retval to <i>identifier</i>;</tt>&nbsp;at the beginning of a function's body.</li>
+<li>Using <b>retval</b>&nbsp;in the parameter list. e.g. <tt>add(a, b, retval=c)</tt>.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>by internal reference</b>: This is the usual return by reference that returns the address of an object (that has usually been allocated by the callee and, if the stack isn't grarbage-collected, can't be allocated on the stack).</li>

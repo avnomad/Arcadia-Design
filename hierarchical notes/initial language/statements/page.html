@@ -90,6 +90,12 @@
 <li>Labels don't need to be at the line start.</li>
 </ul>
 </li>
+<li><b>Return</b></li>
+<li style="list-style-type: none"><ul><li><tt>return</tt>&nbsp;<i>expression</i><tt>;</tt>&nbsp;will be equivalent to <tt>retval = </tt><i>expression</i><tt>; return;</tt>.</li>
+<li>A <tt>return</tt>&nbsp;statement isn't required if an explicit assignment has been made to <tt>retval</tt>.</li>
+<li>"Falling off" the end of a function has the same effect as returning.</li>
+</ul>
+</li>
 <li><b>Jump Statements</b></li>
 <li style="list-style-type: none"><ul><li><b>Goto</b></li>
 <li style="list-style-type: none"><ul><li><tt>goto</tt>&nbsp;<b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b>&nbsp;<i>block-name</i></li>

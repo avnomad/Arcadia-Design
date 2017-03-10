@@ -11,11 +11,18 @@
 <li><b>Overloading</b></li>
 <li style="list-style-type: none"><ul><li><b>Temp</b></li>
 <li style="list-style-type: none"><ul><li>To allow overloading for named vs temporary values. (like C++'s r-value reference)</li>
+<li>For unnamed, transient objects whose existance in primary memory is temporary. e.g. function return values.</li>
 </ul>
 </li>
-<li><b>Identifier</b>, <b>Literal</b></li>
-<li style="list-style-type: none"><ul><li>To further learn if the argument was an identifier or a literal.</li>
-<li>Do I need those?</li>
+<li><b>Literal</b></li>
+<li style="list-style-type: none"><ul><li>To further learn if the argument was a literal.</li>
+<li>For unnamed objects that may never get a space allocated for them in primary memory. e.g. numeric and character constants.</li>
+<li>In general such objects shouldn't be modified and don't have addresses to give.</li>
+</ul>
+</li>
+<li><b>Identifier</b></li>
+<li style="list-style-type: none"><ul><li>To further learn if the argument was an identifier.</li>
+<li>For completeness? Do I need it?</li>
 </ul>
 </li>
 </ul>

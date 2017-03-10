@@ -120,6 +120,38 @@
 <li style="list-style-type: none">assuming l1, l2 and n are known and l3, l4 and m are unknowns. It should conclude that the system has exactly one solution (expressed as a function of one of the knowns), namely l4=m=n+10 and l3 = n.</li>
 </ul>
 </li>
+<li><b>Implementation</b></li>
+<li style="list-style-type: none"><ul><li>The actual array sizes will be passes as extra hidden arguments.</li>
+<li style="list-style-type: none"><ul><li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li><tt>merge(T a[n], T b[k])⟶T[n+k]</tt></li>
+<tt><li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>}</tt></li>
+<li style="list-style-type: none">In the above we have 3 different lengths, so 4 hidden arguments will be passed (the 4th is for the returned array's address).</li>
+<li><tt>op+(double a[n], double b[n])⟶doube[n]</tt></li>
+<tt><li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">for(int c=0 ; c &lt; a.size ; ++c)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[c] &lt;~ a[c] + b[c];</li>
+</ul>
+</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>}</tt></li>
+<li style="list-style-type: none">Here we have one hidden argument for the base address of the resulting array and one hidden argument for the common length of the input and output arrays.</li>
+<li style="list-style-type: none">In reality, two functions are defined: the explicit op+ and an implicit size calculation function (a.size, b.size)⟶retval.size.</li>
+</ul>
+</li>
+<li>Alternatively, we could put the lengths in the first word of the array representation, like Java does. </li>
+<li style="list-style-type: none"><ul><li>This might be wasteful if not all lengths are needed, but may be faster if they are used frequently.</li>
+<li>For multidimentional arrays it is preferable to put all dimentions in the beginning than to have arrays of arrays, each with its own length like in Java.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>It might be necessary to include prefix, postfix, infix, function, method, etc. as part of the (function) type.</li>
