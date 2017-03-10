@@ -33,7 +33,10 @@
 </ul>
 </li>
 <li><b>Warnings</b></li>
-<li>Support <i>expressive diagnostics</i>. (based on clang++ output)</li>
+<li style="list-style-type: none"><ul><li>Support <i>expressive diagnostics</i>. (based on clang++ output)</li>
+<li>Include an independently enabled class of "performance" warnings. e.g. one could be issued when the activation record of a function is allocated on the heap.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Multi-file compilations</b></li>
@@ -56,6 +59,7 @@
 <li><b>Editor</b>&nbsp;(not included)</li>
 <li style="list-style-type: none"><ul><li><b>substitutions</b>&nbsp;(e.g. foreach becomes ∀).</li>
 <li style="list-style-type: none"><ul><li>The editor could analyse code as you type to e.g. substitute <tt>−</tt>&nbsp;for - in "a-b", but not in "letter-like". This might need semantic analysis, besides parsing and scanning.</li>
+<li>It could also perform more complex substitutions like "**2" to "²".</li>
 </ul>
 </li>
 <li><b>typeset contexts</b></li>
