@@ -54,12 +54,12 @@
 </ul>
 </li>
 <li><b>Examples</b></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">acradia type ⟺ closest C++ equivalent</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">Arcadia type ⟺ closest C++ equivalent</li>
 <li style="list-style-type: none"><ul><li>f:ℝ⟶ℝ ⟺ <tt>double f(double)</tt></li>
 <li>ascii* ⟺ <tt>string</tt></li>
 <li>unicode* ⟺ <tt>wstring</tt></li>
 <li>ℕ ⟺ <tt>unsigned int</tt></li>
-<li>ℕ×ℕ⟶ℕ ⟺ <tt>unsinged int (unsigned int, unsigned int)</tt></li>
+<li>ℕ×ℕ⟶ℕ ⟺ <tt>unsigned int (unsigned int, unsigned int)</tt></li>
 </ul>
 </li>
 <li style="list-style-type: none">The above "types" can actually be interfaces that may have a default implementation and/or accept an implementation at use site.</li>
@@ -95,7 +95,7 @@
 <li style="list-style-type: none"><ul><li>Include a <tt>xor</tt>&nbsp;operator.</li>
 <li>Support short-circuiting of logical operators.</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Should I make a distinction between <tt>and</tt>&nbsp;/ <tt>and then</tt>&nbsp;and <tt>or</tt>&nbsp;/ <tt>or else</tt>&nbsp;like Ada does? (the latter beign the short-circuited version)</li>
+<li style="list-style-type: none"><ul><li>Should I make a distinction between <tt>and</tt>&nbsp;/ <tt>and then</tt>&nbsp;and <tt>or</tt>&nbsp;/ <tt>or else</tt>&nbsp;like Ada does? (the latter being the short-circuited version)</li>
 <li>Should <b>a || b</b>&nbsp;and <b>a &amp;&amp; b </b>return one of a, b instead of a truth value like they do in Python?</li>
 </ul>
 </li>
@@ -152,8 +152,8 @@
 </li>
 <li><b>interval operator </b>([,(,),]) for specifying intervals of real numbers.</li>
 <li style="list-style-type: none"><ul><li><tt>[a,b]</tt>, <tt>(a,b]</tt>, <tt>(a,b)</tt>, <tt>[a,b)</tt>&nbsp;could be interpreted as {x∈ℝ : a≤x≤b}, {x∈ℝ : a&lt;x≤b}, {x∈ℝ : a&lt;x&lt;b}, {x∈ℝ : a≤x&lt;b} respectively.</li>
-<li><tt>[a,b]:n</tt>&nbsp;could be interpreted as Matlab's linspace(a,b,n), i.e. evaluate to a range containing n evanly spaced points between and including the endpoints a and b.</li>
-<li><tt>[a,b|d]</tt>&nbsp;could evaluate to a range x₁=a, x₂=x₁+d, x₃=x₂+d,...,xₙ=b, of as many d-spaced points as are needed to fill the discance between the endpoint a and b.</li>
+<li><tt>[a,b]:n</tt>&nbsp;could be interpreted as Matlab's linspace(a,b,n), i.e. evaluate to a range containing n evenly spaced points between and including the endpoints a and b.</li>
+<li><tt>[a,b|d]</tt>&nbsp;could evaluate to a range x₁=a, x₂=x₁+d, x₃=x₂+d,...,xₙ=b, of as many d-spaced points as are needed to fill the distance between the endpoint a and b.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How do I resolve ambiguities when used in conjunction with tuples and lists?</li>
 </ul>

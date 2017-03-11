@@ -55,10 +55,10 @@
 <li>It should be possible to specify any of the above function call semantics as the default in each function definition. This will be especially useful for operators where specifying the semantics at call site may greatly reduce readability.</li>
 <li>There may be two ways to interpret the above variants/modifiers and both may be needed:</li>
 <li style="list-style-type: none"><ul><li>Apply to the specific expression node (function call).</li>
-<li>Apply to the whole subexpression rooted at the expression node.</li>
+<li>Apply to the whole sub-expression rooted at the expression node.</li>
 </ul>
 </li>
-<li>Some posible choises for the syntax are:</li>
+<li>Some possible choices for the syntax are:</li>
 <li style="list-style-type: none"><ul><li>Put brackets around the disambiguator, i.e. &lt;function-id&gt; ::= &lt;open-call-type-bracket&gt; [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] &lt;close-call-type-bracket&gt; where &lt;open-call-type-bracket&gt; must match &lt;close-call-type-bracket&gt; and specifies whether the call will take place during run-time or compile-time, in a new thread or process, etc. </li>
 <li style="list-style-type: none"><ul><li>The result is parsed using the fixity that was used when declaring the function.</li>
 <li>Examples:</li>
@@ -130,7 +130,7 @@
 <li style="list-style-type: none"><ul><li>If no mode is specified, return-by-value is assumed for objects smaller than a configurable default size (register size?) and return by external reference for the rest.</li>
 <li>by value</li>
 <li>2 modes to return a value by reference will be needed:</li>
-<li style="list-style-type: none"><ul><li><b>by external reference</b>: The caller allocates space in the stack for the object to be returned and passes its address to the callee as a hidden argument (the function isn't really returning anything). The constructor for the object to be returned can be called as the last thing before transfering control to the callee or the first thing after that (I'm not sure what's best. Perhaps last thing before transfering control, so that both the constructor and destructor are called from the caller.).</li>
+<li style="list-style-type: none"><ul><li><b>by external reference</b>: The caller allocates space in the stack for the object to be returned and passes its address to the callee as a hidden argument (the function isn't really returning anything). The constructor for the object to be returned can be called as the last thing before transferring control to the callee or the first thing after that (I'm not sure what's best. Perhaps last thing before transferring control, so that both the constructor and destructor are called from the caller.).</li>
 <li style="list-style-type: none">The above is enough for statements like <tt>g(f(b));</tt>&nbsp;where f returns an object of type T by external reference and g takes an object of type T by reference. But for statements of the form <tt>a = f(b);</tt>&nbsp;where a is of type T and f returns an object of type T by external reference, we want to avoid the creation of a new object and its copy into <tt>a</tt>&nbsp;and instead we'll pass the address of <tt>a</tt>&nbsp;to <tt>f</tt>&nbsp;directly.</li>
 <li style="list-style-type: none"><ul><li>This can be thought as explicitly requesting for a Return Value Optimization (RVO).</li>
 <li>Essentially <tt>double[] add(double a[], double [])</tt>&nbsp;becomes <tt>void add(double a[], double b[], double c[])</tt>.</li>
@@ -141,7 +141,7 @@
 </li>
 </ul>
 </li>
-<li><b>by internal reference</b>: This is the usual return by reference that returns the address of an object (that has usually been allocated by the callee and, if the stack isn't grarbage-collected, can't be allocated on the stack).</li>
+<li><b>by internal reference</b>: This is the usual return by reference that returns the address of an object (that has usually been allocated by the callee and, if the stack isn't garbage-collected, can't be allocated on the stack).</li>
 </ul>
 </li>
 </ul>
@@ -183,13 +183,13 @@
 <li><b>Variadic functions</b></li>
 <li style="list-style-type: none"><ul><li>Use of a unpack operator for arrays and maps like in Python (more generic than Java's mechanism).</li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>The pack and unpack operators could be conbined with placeholder arguments ($0, $1, etc.) to further disambiguate the variable part.</li>
+<li style="list-style-type: none"><ul><li>The pack and unpack operators could be combined with placeholder arguments ($0, $1, etc.) to further disambiguate the variable part.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will the type of a variadic function look like?</li>
 <li>How will a function refer to its arguments in a way that ensures static type safety?</li>
-<li>In the context of boostrapping the language, can variadic functions be defined before defining parenthenses as the way to call functions?</li>
+<li>In the context of bootstrapping the language, can variadic functions be defined before defining parentheses as the way to call functions?</li>
 <li>How will a respective writefln function be written? e.g. <tt>(Τ∈TypeClassExpression)… writefln∈(s ∈ string,args ∈ Τ)</tt>&nbsp;or <tt>writefln∈(s ∈ string, args ∈ Τ∈TypeClassExpression…)</tt></li>
 </ul>
 </li>

@@ -75,7 +75,7 @@
 </ul>
 </li>
 <li><b>R-values and L-values</b></li>
-<li style="list-style-type: none"><ul><li>The r-value vs l-value terminology will make little sence in a language where '=' is "just another function".</li>
+<li style="list-style-type: none"><ul><li>The r-value vs l-value terminology will make little sense in a language where '=' is "just another function".</li>
 <li>It might be better to allow a function to take both r-value and l-value arguments independently of the parameter pass mode. Both for uniformity and to dodge the terminological problem.</li>
 <li style="list-style-type: none"><ul><li>The good news is that I'll have perfect forwarding of arguments (in D e.g. it's probably not possible).</li>
 <li>The bad news is that if someone takes the address of an r-value and saves it somewhere, he'll create a dangling pointer.</li>
@@ -86,7 +86,7 @@
 </ul>
 </li>
 <li><b>Conversions</b></li>
-<li style="list-style-type: none"><ul><li>The <i>implicit vs explicit</i>&nbsp;distinction can be orthogonal to the <i>conversion vs reinterpretatio</i>n one.</li>
+<li style="list-style-type: none"><ul><li>The <i>implicit vs explicit</i>&nbsp;distinction can be orthogonal to the <i>conversion vs reinterpretation</i>n one.</li>
 <li><b>Implicit</b></li>
 <li style="list-style-type: none"><ul><li>Don't include implicit reinterpretations.</li>
 <li><b>Ideas</b></li>
@@ -130,7 +130,7 @@
 <li style="list-style-type: none"><ul><li>I might need to supply a function's number of parameters in addition to its template arguments in order to define it completely.</li>
 </ul>
 </li>
-<li>Part of the disambiguator could clarify whether an operator's (e.g. '+') occurance should be interpreted as data (a function) or as an operator. (and also what function/operator)</li>
+<li>Part of the disambiguator could clarify whether an operator's (e.g. '+') occurrence should be interpreted as data (a function) or as an operator. (and also what function/operator)</li>
 <li>Unified way to refer to any entity (whether named or not) in any file. (URL? "::", ".", ":"?)</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>The syntax could be: &lt;function-id&gt; ::= [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] where the &lt;locator&gt; part specifies the module, namespace, block, etc. in which the function is defined, the &lt;disambiguator&gt; part selects a specific function overload, template instance, etc. (may need to include the operator's fixity if I allow overloading of operator fixity) and &lt;identifier&gt; is the name of the function or variable.</li>

@@ -73,8 +73,8 @@
 <li>Another option is to allow the compiler to choose an implementation. Perhaps the interface could name a default one or provide a way to select one. Additionally a module- or function-wide default could override the interface default.</li>
 <li>It might be possible to allow changing a variable's type after its definition using a special class of functions (or with a special syntax). Those functions would be responsible for doing the conversion under the hood. I could demand that the initial and final type implement the same interface, but they definitely need to have the same size (unless I allocate the maximum of the two sizes up-front...).</li>
 <li style="list-style-type: none"><ul><li><b>Use cases</b></li>
-<li style="list-style-type: none"><ul><li>Changing the coordinate system used internally to store a complex number (e.g. cartesian ⟷ polar).</li>
-<li>Changing the base used internally to store a polynomial (e.g. power basis form ⟷ bézier form).</li>
+<li style="list-style-type: none"><ul><li>Changing the coordinate system used internally to store a complex number (e.g. Cartesian ⟷ polar).</li>
+<li>Changing the base used internally to store a polynomial (e.g. power basis form ⟷ Bézier form).</li>
 <li>Changing the color space used internally to store a color. (e.g. RGB ⟷ HSV).</li>
 <li>In all the above cases the functions optimized for the new representation will be used after the change.</li>
 <li>May be usable with unions too.</li>
@@ -105,7 +105,7 @@
 </li>
 <li><b>Types</b></li>
 <li style="list-style-type: none"><ul><li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>In the definition of a type, a representation could be required and both build-in and user-defined ones could be accepted. e.g. 32bit-2s-complement, native-signed-integer-no-saturation, IEEE-754-signle, ASCII, etc.</li>
+<li style="list-style-type: none"><ul><li>In the definition of a type, a representation could be required and both build-in and user-defined ones could be accepted. e.g. 32bit-2s-complement, native-signed-integer-no-saturation, IEEE-754-single, ASCII, etc.</li>
 </ul>
 </li>
 </ul>

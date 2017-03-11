@@ -11,7 +11,7 @@
 <li>As the expression tree used to create it.</li>
 </ul>
 </li>
-<li>I may need to split 'types' into two parts: a primary part that the programmer must or should write (e.g. int(cm)) and a secondary part or 'annotation' that will be infered in the background and will find additional or possible errors.</li>
+<li>I may need to split 'types' into two parts: a primary part that the programmer must or should write (e.g. int(cm)) and a secondary part or 'annotation' that will be inferred in the background and will find additional or possible errors.</li>
 <li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
 <li style="list-style-type: none"><ul><li>Subsets or subranges of comparable arithmetic types (e.g. int ∩ (-2..128) or float ∩ [0,1] for VRP.</li>
 <li>Tracking the array variable an iterator came from, so that it won't be comparable to iterators of other arrays.</li>
@@ -62,7 +62,7 @@
 </ul>
 </li>
 </ul>
-&#09;&#09;&#09;<tt>∀</tt>color ∈ colors do…<ul><li style="list-style-type: none"><ul><li style="list-style-type: none">&#09;negative(color ∈ {Red,Green,Blue}) ∈ {Cyan, Yellow, Magenda} (function with trailing return type)</li>
+&#09;&#09;&#09;<tt>∀</tt>color ∈ colors do…<ul><li style="list-style-type: none"><ul><li style="list-style-type: none">&#09;negative(color ∈ {Red,Green,Blue}) ∈ {Cyan, Yellow, Magenta} (function with trailing return type)</li>
 <li>Allow using a type as a set of values and vice versa! e.g.</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">array ⟷ enumeration</li>
 <li style="list-style-type: none">range ⟷ subrange type</li>
@@ -145,7 +145,7 @@
 </li>
 <li>Alternatively, we could put the lengths in the first word of the array representation, like Java does. </li>
 <li style="list-style-type: none"><ul><li>This might be wasteful if not all lengths are needed, but may be faster if they are used frequently.</li>
-<li>For multidimentional arrays it is preferable to put all dimentions in the beginning than to have arrays of arrays, each with its own length like in Java.</li>
+<li>For multidimensional arrays it is preferable to put all dimensions in the beginning than to have arrays of arrays, each with its own length like in Java.</li>
 </ul>
 </li>
 </ul>
@@ -159,7 +159,7 @@
 <li style="list-style-type: none"><ul><li>I could add dynamic type systems too allowing the set that takes the place of the type to be computed at execution time (although I'll continue to allow it to be computed at compilation time and the latter will be the default), but I don't know whether this is necessary.</li>
 </ul>
 </li>
-<li><b>Type Construction and Instatiability</b></li>
+<li><b>Type Construction and Instantiability</b></li>
 <li style="list-style-type: none"><ul><li>It is usually fine to create a pointer to a type that can't be instantiated like an interface or an abstract class, but it may be a problem to create an array of such types.</li>
 </ul>
 </li>
@@ -180,7 +180,7 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at Java wildcards. ('?' in generics)</li>
 <li>How do I give all these options to the library writer?</li>
-<li>What's the connection between universal and existential types, heterogenous and homogenous translation and type variance?</li>
+<li>What's the connection between universal and existential types, heterogeneous and homogeneous translation and type variance?</li>
 </ul>
 </li>
 </ul>
@@ -188,7 +188,7 @@
 <li><b>Universal and Existential Types</b></li>
 <li style="list-style-type: none"><ul><li>T=<tt>∀</tt>τ.F(τ) means "There exists a (static) type τ so that for all values of (static) type T have the same (dynamic) type F(τ).</li>
 <li>T=<tt>∃</tt>τ.F(τ) means "For each value of (static) type T there exists a (possibly different) (static) type τ so that the value has (dynamic) type F(τ).</li>
-<li>It seems that universal types play better with heterogenous translation while existential ones with homogenous.</li>
+<li>It seems that universal types play better with heterogeneous translation while existential ones with homogeneous.</li>
 <li><b>Existential Types</b></li>
 <li style="list-style-type: none"><ul><li>The <i>witness types</i>&nbsp;of existential types are erased.</li>
 <li><b>Use Cases</b></li>

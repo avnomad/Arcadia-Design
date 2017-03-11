@@ -11,7 +11,7 @@
 <li>In general, mutally recursive functions (and structures?) could be in different files, but they must be in the same module. That might mean that changing one causes everyone to be recompiled.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will I avoid unnecessary recompilation in cases where there are mutually recursive functions?</li>
-<li style="list-style-type: none"><ul><li>Perhaps I can have cyclic imports of functions and classes... Then according to the above, there must be ways to save compilation time. e.g. a workaround could be to compile a source file in separate header and object, taking care not to change the timestamp of the header if the contents do not change, and write the makefile so that the 2nd module dependes only on the 1st module's header.</li>
+<li style="list-style-type: none"><ul><li>Perhaps I can have cyclic imports of functions and classes... Then according to the above, there must be ways to save compilation time. e.g. a workaround could be to compile a source file in separate header and object, taking care not to change the timestamp of the header if the contents do not change, and write the makefile so that the 2nd module depends only on the 1st module's header.</li>
 <li>On the other hand, it's good to have the guarantee that there are no cyclic dependencies between modules... Perhaps I need to include some kind of submodules or accept that compilation time won't always be the least possible or take measures in the implementation so that cases where compilation time can be saved are identified and addressed properly.</li>
 </ul>
 </li>
@@ -19,12 +19,12 @@
 </li>
 </ul>
 </li>
-<li><b>Initialization</b>&nbsp;(and Finilization) <b>Order</b></li>
+<li><b>Initialization</b>&nbsp;(and Finalization) <b>Order</b></li>
 <li style="list-style-type: none"><ul><li>Variables inside the same module are initialized in the order they appear in the conceptual file.</li>
 <li>The module import graph must be a directed acyclic graph. (here a reference to a module's symbol using a qualified name, counts as an import)</li>
 <li>A modules variables are initialized after initialization of the variables of imported modules. (this is the same as for importing shared libraries)</li>
-<li>Variables are finilized in the reverse order they were initialized.</li>
-<li>Initialization includes calling the constructor and finilization includes calling the destructor.</li>
+<li>Variables are finalized in the reverse order they were initialized.</li>
+<li>Initialization includes calling the constructor and finalization includes calling the destructor.</li>
 </ul>
 </li>
 <li><b>Execution</b></li>
@@ -32,7 +32,7 @@
 <li>The compiled program will start its execution from the function marked as 'entry'.</li>
 </ul>
 </li>
-<li><b>Module Initializers and Finilizers</b></li>
+<li><b>Module Initializers and Finalizers</b></li>
 <li style="list-style-type: none"><ul><li></li>
 </ul>
 </li>
@@ -99,7 +99,7 @@
 </ul>
 </li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>A class definition will be splittable to pieces (like partial classes?) and thus distributable to many files, assuming they are all given simultaneously for the creation of a single module as discribed above.</li>
+<li style="list-style-type: none"><ul><li>A class definition will be splitable to pieces (like partial classes?) and thus distributable to many files, assuming they are all given simultaneously for the creation of a single module as described above.</li>
 <li>Could support importing global functions as methods and exporting methods as global functions.</li>
 </ul>
 </li>
