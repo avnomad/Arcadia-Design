@@ -22,6 +22,11 @@
 <li style="list-style-type: none"><ul><li>e.g. <tt>x ∈ integers:[32bit no overflow];</tt></li>
 </ul>
 </li>
+<li><i>identifier <tt>∈</tt>&nbsp;interface</i>&nbsp;<tt>[</tt><i>unit-expression</i><tt>]</tt>&nbsp;<tt>[</tt><i>implementation</i><tt>];</tt></li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>n ∈ ℕ[unsigned,64,no exception];</tt></li>
+</ul>
+</li>
+<li><i>identifier</i><tt>&nbsp;<b>{</b>, <i>identifier</i><b>}</b>&nbsp;∈ <i>implementation</i>&nbsp;<b>[</b>∈ </tt><i>interface</i><b><tt>]</tt></b><tt>&nbsp;</tt></li>
 </ul>
 </li>
 <li><b>Initializers</b></li>
@@ -65,6 +70,7 @@
 <li><b>Interface Type</b></li>
 <li style="list-style-type: none"><ul><li>Support declaring variables of interface type. Using a dynamic interface for a variable's type is common in Java, but static interfaces will be more interesting.</li>
 <li>Using an interface where a type is expected in a variable (or parameter) declaration could cause the function to become a template. Then, at the call site, the missing types could be inferred from the arguments, specified using some syntax, or given some default value. It could also be declared that a given type will become known during run-time and thus, dynamic dispatch must be used. The latter could be declared as the default behaviour.</li>
+<li>Another option is to allow the compiler to choose an implementation. Perhaps the interface could name a default one or provide a way to select one. Additionally a module- or function-wide default could override the interface default.</li>
 <li>It might be possible to allow changing a variable's type after its definition using a special class of functions (or with a special syntax). Those functions would be responsible for doing the conversion under the hood. I could demand that the initial and final type implement the same interface, but they definitely need to have the same size (unless I allocate the maximum of the two sizes up-front...).</li>
 <li style="list-style-type: none"><ul><li><b>Use cases</b></li>
 <li style="list-style-type: none"><ul><li>Changing the coordinate system used internally to store a complex number (e.g. cartesian ⟷ polar).</li>

@@ -4,23 +4,91 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Operators</title>
 </head><body><ul><li>Include both symbolic operators and easy-to-type aliases for them.</li>
-<li>List</li>
-<li style="list-style-type: none"><ul><li>function call ()</li>
-<li>pointers to members? (.*, .-&gt;)</li>
-<li>function type ⟶ (--&gt;)</li>
-<li>procedure type? ⊣ (-|)</li>
-<li>dereferencing *, → (-&gt;)</li>
-<li>∧ (and), ∨ (or), ¬ (not)</li>
-<li>∩ (intersection), ∪ (union), ∁ (complement)</li>
-<li>∈ (in), ∉ (not in), ⊆ (subset), ⊈ (not subset), = (equals), ≠ (not equals)</li>
-<li>Also ⊂ and ⊄?</li>
-<li>&lt;, &gt;, ≤ (&lt;=), ≥ (&gt;=)</li>
-<li>× (x)</li>
-<li>⋅ (*)</li>
-<li>In typeset contexts ∑ and ∏ should be available and they might have higher precedence than + and * respectively.</li>
+<li>If there are build-in operator and function definitions it should be possible to replace/override them, but keep them always available through some mechanism. (like C++'s new and delete)</li>
+<li><b>List</b></li>
+<li style="list-style-type: none"><ul><li><b>Type Expressions</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">∁ (complement)</li>
 </ul>
 </li>
-<li>If there are build-in operator and function definitions it should be possible to replace/override them, but keep them always available through some mechanism. (like C++'s new and delete)</li>
+<li style="list-style-type: none">⟵</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">exponentiation ** (raise?)</li>
+</ul>
+</li>
+<li style="list-style-type: none">⟶</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">cartesian product × (x) </li>
+<li style="list-style-type: none">∩ (intersection)</li>
+<li style="list-style-type: none">∪ (union)</li>
+</ul>
+</li>
+<li style="list-style-type: none">⟵</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">procedure type? ⊣ (-|)</li>
+<li style="list-style-type: none">function type ⟶ (--&gt;)</li>
+<li style="list-style-type: none">= (equals), ≠ (not equals)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Unit Expressions</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+<li><b>Value Expressions</b></li>
+<li style="list-style-type: none"><ul><li>function call ()</li>
+<li>pointers to members? (.*, .-&gt;)</li>
+<li>dereferencing *, → (-&gt;)</li>
+<li>∧ (and), ∨ (or), ¬ (not)</li>
+<li>external product × (x) </li>
+<li>internal product ⋅ (*)</li>
+<li>In typeset contexts ∑ and ∏ should be available and they might have higher precedence than + and * respectively.</li>
+<li>∩ (intersection), ∪ (union), ∁ (complement)</li>
+<li>∈ (in), ∉ (not in), ⊆ (subset), ⊈ (not subset)</li>
+<li>Also ⊂ and ⊄?</li>
+<li>= (equals), ≠ (not equals)</li>
+<li>&lt;, &gt;, ≤ (&lt;=), ≥ (&gt;=)</li>
+</ul>
+</li>
+<li><b>Mixed Expressions</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">acradia type ⟺ closest C++ equivalent</li>
+<li style="list-style-type: none"><ul><li>f:ℝ⟶ℝ ⟺ <tt>double f(double)</tt></li>
+<li>ascii* ⟺ <tt>string</tt></li>
+<li>unicode* ⟺ <tt>wstring</tt></li>
+<li>ℕ ⟺ <tt>unsigned int</tt></li>
+<li>ℕ×ℕ⟶ℕ ⟺ <tt>unsinged int (unsigned int, unsigned int)</tt></li>
+</ul>
+</li>
+<li style="list-style-type: none">The above "types" can actually be interfaces that may have a default implementation and/or accept an implementation at use site.</li>
+</ul>
+</li>
+<li><b>Type Composition</b></li>
+<li style="list-style-type: none"><ul><li><b>Cartesian Product</b>&nbsp;(×)</li>
+<li style="list-style-type: none"><ul><li>T₁×T₂×…×Tₙ concatenation, creates a tuple or struct with nameless members. Refer to specific members using indexing.</li>
+</ul>
+</li>
+<li><b>Union</b>&nbsp;(∪)</li>
+<li style="list-style-type: none"><ul><li>T₁∪T₂∪…∪Tₙ union, creates something like a C union but with anonymous members. Refer to specific members using indexing.</li>
+</ul>
+</li>
+<li><b>Exponentiation</b>&nbsp;(**)</li>
+<li style="list-style-type: none"><ul><li>Tⁿ exponentiation, equivalent to T×T×…×T n-times. Like an array. Again uses indexing.</li>
+</ul>
+</li>
+<li><b>Postfix Asterisk</b>&nbsp;(*)</li>
+<li style="list-style-type: none"><ul><li>T* &nbsp;Kleene's star, like a variable length array or a vector.</li>
+<li>Could instead be used with the meaning it has in mathematical analysis textbooks, i.e. to remove zero from a set.</li>
+</ul>
+</li>
+<li><b>Function Definition</b>&nbsp;(⟶)</li>
+<li style="list-style-type: none"><ul><li>T₁⟶T₂ creates a function type.</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Arithmetic</b></li>
 <li><b>Exponentiation</b></li>
 <li><b>Logical</b></li>

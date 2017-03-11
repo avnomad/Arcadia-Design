@@ -86,11 +86,15 @@
 <li>Support comments that will 'point' to certain line or character ranges or positions in the code with arrows and braces like in the report that I've written for the Numerical Analysis course.</li>
 <li style="list-style-type: none">Those could be represented in the file e.g. with 'invisible' anchors. e.g. I put an anchor in the beginning of the blcok and one at the end and in the comment I write that it refers to the code between those anchors.</li>
 <li>Support actual subscripting (aᵢ).</li>
-<li style="list-style-type: none"><ul><li>Syntax in the file could be: <i>identifier</i>&nbsp;<tt>subscript</tt>&nbsp;<i>expression</i>&nbsp;<tt>end</tt>.</li>
+<li style="list-style-type: none"><ul><li>Syntax in the file could be: <i>identifier</i>&nbsp;<tt>subscript</tt>&nbsp;<i>expression</i>&nbsp;<tt>end</tt>. Or terminate with "end subscript"?</li>
 </ul>
 </li>
 <li>Support statements of the form: sum = ∑ᵢ₌₁ⁿaᵢ; (can't typeset properly in KeepNote...)</li>
-<li>Array lengths could be written in superscript instead of brackets. e.g. consider doubleⁿ × doubleⁿ ⟶ doubleⁿ.</li>
+<li>Support actual superscripting (aⁱ).</li>
+<li style="list-style-type: none"><ul><li>Array lengths could be written in superscript instead of brackets. e.g. consider doubleⁿ × doubleⁿ ⟶ doubleⁿ.</li>
+<li>Syntax in the file could be <i>identifier</i>&nbsp;<tt>raise</tt>&nbsp;<i>expression</i>&nbsp;<tt>end</tt>. Or terminate with "end raise"?</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will the whitespace in the file, map to the whitespace presented in the editor and vice versa?</li>
 </ul>

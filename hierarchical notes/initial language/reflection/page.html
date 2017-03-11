@@ -4,12 +4,42 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Reflection</title>
 </head><body><ul><li>Support static and dynamic reflection.</li>
+<li>The program will work as if all information was available at any time for use by reflection facilities and all information will indeed be present during compile-time, but for run-time, only the information that is actually requested will acompany the program for efficiency reasons.</li>
+<li style="list-style-type: none"><ul><li>If providing the requested information at run-time would case a significant performance hit, a performance warning could be issued.</li>
+</ul>
+</li>
+<li><b>Syntax</b></li>
+<li style="list-style-type: none"><ul><li>Could be one of:</li>
+<li style="list-style-type: none"><ul><li><i>metadata-operator</i>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>typeof x</tt>, <tt>sizeof x</tt>, <tt>alignof x</tt>, <tt>nameof x</tt>, <tt>attributesof</tt>/<tt>traitsof x</tt></li>
+</ul>
+</li>
+<li><i>metadata-operator</i><tt>&nbsp;(</tt>&nbsp;<i>identifier</i>&nbsp;<tt>)</tt></li>
+<li><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>metadata-name</i></li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>x:type</tt>, <tt>x:alignment</tt>, <tt>x:name</tt>, <tt>x:attibutes/traits</tt></li>
+</ul>
+</li>
+<li><i>identifier</i>&nbsp;<tt>.</tt>&nbsp;<i>metadata-name</i></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Variables</b></li>
 <li style="list-style-type: none"><ul><li>Allow asking for a variable's or field's:</li>
 <li style="list-style-type: none"><ul><li>Size (deep &amp; shallow)</li>
 <li>Static Type</li>
 <li>Dynamic Type (this may evaluate to the hidden pointer to the class descriptor)</li>
-<li>Name (for use in loops, etc. when you don't refer to a variable or field using its name)</li>
+<li>Name</li>
+<li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
+<li style="list-style-type: none"><ul><li>Loops, etc. when you don't refer to a variable or field using its name.</li>
+<li>Printing the variable's name in a way that doesn't break if it changes during refactoring.</li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>cout &lt;&lt; "The height is " &lt;&lt; height;</tt>&nbsp;vs <tt>cout &lt;&lt; "The " &lt;&lt; height:name &lt;&lt; " is " &lt;&lt; height;</tt>&nbsp;when renaming "height" to "width".</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Address</li>
 <li>Value?</li>
 <li>Alignment</li>
@@ -20,13 +50,11 @@
 <li>Exported Status</li>
 </ul>
 </li>
-<li>May use <tt>typeof</tt>, <tt>sizeof</tt>, <tt>alignof</tt>, <tt>nameof</tt>, <tt>attributesof</tt>/<tt>traitsof</tt>, etc. (metadata_operator variable_name)</li>
-<li style="list-style-type: none">or <tt>:type</tt>, <tt>:alignment</tt>, <tt>:name</tt>, <tt>:attibutes/traits</tt>, etc. syntax. (variable_name:metadata_name)</li>
 </ul>
 </li>
 <li><b>Functions</b></li>
 <li style="list-style-type: none"><ul><li>Allow asking for a function's:</li>
-<li style="list-style-type: none"><ul><li>Code. (source? intermediate? machine? code. source as string or AST?)</li>
+<li style="list-style-type: none"><ul><li>Code. (source? intermediate? machine? code. source as string or AST? Could also be called "image")</li>
 <li>Syntax (fixity, precedence, arity, etc.)</li>
 <li>Whether it's used as entry, loader or unloader for a module.</li>
 </ul>
@@ -35,6 +63,7 @@
 </li>
 <li><b>Types</b></li>
 <li style="list-style-type: none"><ul><li>Allow asking for a type's:</li>
+<li style="list-style-type: none"><ul><li><b>All</b></li>
 <li style="list-style-type: none"><ul><li>Set of direct descendants.</li>
 <li>Set of direct and indirect descendants.</li>
 <li>Inferred Interface.</li>
@@ -45,8 +74,48 @@
 <li>Fields</li>
 </ul>
 </li>
-<li>Attributes/Traits including units of measurement.</li>
-<li>Limits like min and max value if it's an arithmetic type.</li>
+<li>Element Size (the shallow size of all objects of that type)</li>
+<li>Default Alignment (default alignment of variables of this type if nothing else is specified)</li>
+<li>Attributes/Traits (including units of measurement).</li>
+</ul>
+</li>
+<li><b>Arithmetic</b></li>
+<li style="list-style-type: none"><ul><li>Limits like min and max value.</li>
+</ul>
+</li>
+<li><b>Function</b></li>
+<li style="list-style-type: none"><ul><li>Domain</li>
+<li>Codomain</li>
+</ul>
+</li>
+<li><b>Tuple</b></li>
+<li style="list-style-type: none"><ul><li>Components List (or factor list, if seen as cartesian product)</li>
+<li>Individual Components (or individual factors (factor[i]))</li>
+</ul>
+</li>
+<li><b>Union</b></li>
+<li style="list-style-type: none"><ul><li>Parts List (or terms list, if seen as disjunction or logical sum)</li>
+<li>Individual Parts (or individual terms (term[i]))</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Classification</b></li>
+<li style="list-style-type: none"><ul><li>Allow testing whether an object is a:</li>
+<li style="list-style-type: none"><ul><li>Variable</li>
+<li>Function</li>
+<li>Type</li>
+<li style="list-style-type: none"><ul><li>Function</li>
+<li>Tuple</li>
+<li style="list-style-type: none"><ul><li>Homogenous (Array)</li>
+<li>Heterogenous</li>
+</ul>
+</li>
+<li>Union</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
