@@ -94,6 +94,10 @@
 </li>
 <li><b>Subtyping</b></li>
 <li style="list-style-type: none"><ul><li>Objects of a derived class should be convertible to objects of the base class by discarding any additional information (object slicing), but should that be doable implicitly?</li>
+<li>An idea is to ban is-a inheritance relationships but instead allow implementing the inferred interface of the base type. Combined with an operator for getting the inferred interface and limiting subtyping to implementations of interfaces, the result lets the programmer easily select whether to enable polymorphism for a specific function parameter. e.g.</li>
+<li style="list-style-type: none"><ul><li>Assuming D implements !B and the definitions f: B ⟶ ℤ, g: !B ⟶ ℤ and d:D, f(d) fails while g(d) typechecks successfully.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should I support <i>extension aggregates</i>&nbsp;(from Ada) that converts an object of the base class to an object of the derived class by supplying values for any additional fields? (<i>derived</i>&nbsp;<tt>:= (</tt><i>base</i>&nbsp;<tt>with</tt>&nbsp;<i>newfield</i>&nbsp;<tt>=&gt;</tt>&nbsp;<i>value</i><tt>);</tt>)</li>
 </ul>

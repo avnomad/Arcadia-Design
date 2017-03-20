@@ -4,10 +4,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Attributes</title>
 </head><body><ul><li><b>Pureness</b></li>
+<li style="list-style-type: none"><ul><li>Pureness attributes should apply to the function type instead of the function so that I can have e.g. pointers to pure functions.</li>
+<li><b>Pure</b></li>
 <li style="list-style-type: none"><ul><li>Allow declaring functions to be "pure" and check that they don't do certain things. (like in D)</li>
-<li>Besides the standard <i>deterministic, side-effect-free</i>&nbsp;and <i>pure </i>attributes, a form of conditional pureness may be needed, e.g. to express that a function is pure iff it's function arguments are pure.</li>
 <li><i>Pure</i>&nbsp;is good, but I'll probably also need a way to express the fact that a method will change (or read) only some variables and/or only the pass-by-reference parameters, etc.</li>
-<li>Pureness attributes should apply to the function type instead of the function so that I can have e.g. pointers to pure functions.</li>
+</ul>
+</li>
+<li><b>Deterministic</b></li>
+<li style="list-style-type: none"><ul><li>Determinism can be defined:</li>
+<li style="list-style-type: none"><ul><li>In terms of <i>binary</i>&nbsp;equality of the function's inputs and outputs.</li>
+<li>In terms of <i>logical</i>&nbsp;equality of the function's inputs and outputs. (As expressed by the user-defined equals operator.)</li>
+<li>Using combinations of the above.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Side-Effect-Free</b></li>
+<li><b>Conditional</b></li>
+<li style="list-style-type: none"><ul><li>Conditional versions of the above attributes may be needed. e.g. to express that a function is pure iff it's function arguments are pure.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Control Flow</b></li>
@@ -17,6 +33,9 @@
 </li>
 <li><b>Mathematical Properties</b></li>
 <li style="list-style-type: none"><ul><li>If Value Range Propagation is to be generalized to user-defined functions, then it might be necessary to include attributes for function monotonicity, and/or a way to specify the range of values a function can return given the range of values it takes as arguments.</li>
+<li>Connection between equality and assignment.</li>
+<li>Connection between =, ≠, &lt;, &gt;, ≤ , ≥</li>
+<li>Partial vs total order.</li>
 </ul>
 </li>
 <li><i>simple</i>? for types for which there is an invertible mapping from the type's elements to the binary combinations that can fit in the space an object of that type takes. i.e. All binary combinations represent valid objects.</li>

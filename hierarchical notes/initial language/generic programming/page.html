@@ -113,7 +113,18 @@
 <li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
 </ul>
 </li>
+<li style="list-style-type: none">−fun combine</li>
+<li>+fun combine ∈ </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">(t ∈ Combinable, s ∈ Combinable) ⟶ Combine(T,S)</li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+<li style="list-style-type: none"># t:actual-type = T and s:actual-type = S</li>
+</ul>
+</li>
 </tt><li style="list-style-type: none"><tt>−fun combine</tt></li>
+<li style="list-style-type: none">In the latter, Combinable is an interface and its use as the parameter's type triggers the creation of a hidden type parameter than is bound to the actual interface's implementation for which the function should be specialized. The latter implementation can be accessed reflectively using t:actual-type (or something similar).</li>
 </ul>
 </li>
 </ul>

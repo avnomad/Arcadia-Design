@@ -27,6 +27,9 @@
 <li>I could decouple the insertion of names in a scope from the operator status of them. e.g. I could have a function named '+' with 'prefix' syntax, that would only be parsed as a prefix operator if the prefix + has been activated in the scope. Otherwise it would be parsed as a regular function.</li>
 <li>Overloading the membership operator '.' like I've thought, should be similar but more powerful than D's opDispatch.</li>
 <li>Constructors, destructors, deconstructors, methods, function, etc. can be thought of as being in different namespaces instead of being different ways to phrase a function call. So e.g. in the first part of a declaration, names will be looked up in the deconstructor namespace, while in the initializer part of a declaration, they will be looked up in the function namespace. Moreover, this way there can be multiple versions of some operators (e.g. [ , , , ]) without fear of collision.</li>
+<li style="list-style-type: none"><ul><li>The same technique can be used to separate operators that accept and return values (used in eager contexts like e.g. compile-time commands) and their duals that accept and return syntax trees (used in lazy contexts like e.g. function bodies).</li>
+</ul>
+</li>
 <li><b>Implementation</b></li>
 <li style="list-style-type: none"><ul><li>Maybe I can use the 0x2062 INVISIBLE TIMES Unicode character to simplify implementation of juxtaposition parsing.</li>
 <li>Every keyword, operator, separator as well as identifiers could have a unique numerical id that would lead to a separate handling function via an array, or could be represented as an object of a different class and the right function would be selected using dynamic dispatch. That's from before I made my first parser...</li>

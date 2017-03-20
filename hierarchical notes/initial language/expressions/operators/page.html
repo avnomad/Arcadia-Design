@@ -118,6 +118,15 @@
 <li>Provide different operators for shallow and deep assignment.</li>
 </ul>
 </li>
+<li><b>Equality</b>&nbsp;(=,≠)</li>
+<li style="list-style-type: none"><ul><li>May need multiple versions:</li>
+<li style="list-style-type: none"><ul><li>shallow</li>
+<li>deep</li>
+<li>binary</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Object Membership</b>&nbsp;(.)</li>
 <li style="list-style-type: none"><ul><li>I is preferable that '.' be able to distinguish between bgcolor.red and bgcolor."red" at compile-time. Of course, if field identifiers are implemented as integers, (from which you'll be able to get the names too e.g. using an array) this shouldn't be a problem.</li>
 <li>To guarantee that the object membership operator (.) is as fast as in languages where it's build-in, I'll need a form of partial evaluation where some of the function arguments are known during compile-time while others are not.</li>
