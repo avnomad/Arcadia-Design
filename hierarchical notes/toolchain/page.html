@@ -8,11 +8,17 @@
 <li><b>Command-line options</b></li>
 <li style="list-style-type: none"><ul><li>To add instrumentation that enables logging of entry/exit input/output of any method</li>
 <li>To change the maximum number of loop iterations / function recursive calls for code executed at compile-time.</li>
+<li>To keep track of the number of partial evaluations emitted per function and their total size.</li>
+<li style="list-style-type: none"><ul><li>This is intended to help optimize the executable size, when needed, by identifying functions that cause code bloat and switching them from heterogeneous to homogeneous compilation.</li>
+<li>The output should be a listing of all the functions together with the collected stats, sortable by either total code size, or number of partial evaluations.</li>
+</ul>
+</li>
 <li>To enable/disable the following checks, independent of debug/release mode. These are mandatory for compile-time evaluation, can only be disabled for run-time evaluation and are enabled by default in debug mode):</li>
 <li style="list-style-type: none"><ul><li>array size mismatch</li>
 <li>index out of bounds</li>
 <li>read from uninitialized variable</li>
 <li>dangling pointer use</li>
+<li>memory leak</li>
 </ul>
 </li>
 <li>--main to add a do-nothing main function</li>

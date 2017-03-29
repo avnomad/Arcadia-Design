@@ -211,6 +211,23 @@
 <li><b>Type Inference</b></li>
 <li style="list-style-type: none"><ul><li>Haskell is probably capable of inferring type classes (something similar to C++ concepts). Can I use something like that?</li>
 <li>Ability to infer various attributes (as part of function or other types).</li>
+<li>Should at least be able to infer:</li>
+<li style="list-style-type: none"><ul><li>Variable type from its initializer.</li>
+<li>Function return type from parameter types and function body.</li>
+<li>Anonymous function type when:</li>
+<li style="list-style-type: none"><ul><li>Assigned to a variable of known type.</li>
+<li>Bound to a formal parameter of known type.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Produce example with highly ambiguous expression when fixity is part of the type and types are unknown.</li>
+<li style="list-style-type: none"><ul><li>During type inference a generic type is given to expressions that can have any type. Can we infer a generic fixity as well?</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

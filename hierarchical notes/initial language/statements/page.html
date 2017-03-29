@@ -8,7 +8,7 @@
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li><tt>+if +while +for +foreach +block</tt></li>
 <tt><li style="list-style-type: none">−if −while −for −foreach −block</li>
-</tt><li>+for, -for για μεγάλο σώμα, for για μικρό (ένα expression statement ή break κτλ.)</li>
+</tt><li>+for, <tt>−</tt>for για μεγάλο σώμα, for για μικρό (ένα expression statement ή break κτλ.)</li>
 </ul>
 </li>
 <li><b>Loops</b></li>
@@ -16,6 +16,7 @@
 <li><b>Foreach</b></li>
 <li style="list-style-type: none"><ul><li>Should be able to modify elements (by default?).</li>
 <li>Will expect a range to iterate over.</li>
+<li>Can appear in almost any context including inside and outside of function bodies, in interface and class declarations, etc.</li>
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li>Need to pick one of the following options:</li>
 <li style="list-style-type: none"><ul><li><tt>∀</tt>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>expression</i>&nbsp;<tt>do</tt></li>
@@ -33,6 +34,11 @@
 <li>Should it be possible to overload the foreach loop with <i>iteration primitives</i>&nbsp;and <i>internal iteration</i>&nbsp;like in D?</li>
 <li style="list-style-type: none">Basically what D does isn't operator overload, but expression rewrites and lowering like those of an AST preprocessor!</li>
 <li>How will a static foreach loop that iterates over all members of a tuple/record behave? Will it always unroll?</li>
+<li>If one or more foreach loops generate two or more copies of a function with the same name and signature inside a single scope, should that be an error, or should it be treated as a variable assignment? i.e. the last assignment overwrites existing value. I guess that can depend on whether the assigned variable is declared const...</li>
+<li>Should foreach semantics inside generic class and interface definitions be extended to match iterated ranges and filters so that they can decide whether the loops can generate collisions for <i>any</i>&nbsp;instantiation, without actually instantiating the class/interface nor running the loop? (Similar to the modular type-checking of MorphJ)</li>
+<li style="list-style-type: none"><ul><li>Same question can arise in other contexts where the loop is lazy, i.e. the iterated set is not known when the loop is first seen.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -150,7 +156,9 @@
 </ul>
 </li>
 <li><b>Blocks</b></li>
-<li style="list-style-type: none"><ul><li><b>Syntax</b></li>
+<li style="list-style-type: none"><ul><li>Blocks can appear in almost any context, including inside and outside of function bodies, in interface and class declarations, etc. In top level, they can serve a function similar to that of namespace definitions.</li>
+<li>Names declared inside a block, are not visible outside the block by default, but the module <tt>import</tt>, <tt>export</tt>&nbsp;and <tt>export import</tt>&nbsp;statements are usable with blocks as well.</li>
+<li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">Only support named blocks:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt>&nbsp;<i>identifier</i></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>

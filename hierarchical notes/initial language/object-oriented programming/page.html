@@ -4,11 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Object-Oriented Programming</title>
 </head><body><ul><li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>I could provide one or more OO programming models as importable modules. e.g.:</li>
+<li style="list-style-type: none"><ul><li>C# model with value and reference classes</li>
+<li>Javascript model with prototyping</li>
+<li>Delegation</li>
+<li>My own mix</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at difference between chaining and cascading. (also see fluent interface and builder pattern)</li>
 <li>Look at Common List Object System (CLOS).</li>
 <li>Should objects be maps modifiable at run-time like in JavaScript?</li>
 <li>Can functions be seen as objects?</li>
+<li>Decouple Object-Oriented language from the procedural core, so that it can be imported as a module. This should also reduce complexity and facilitate reasoning.</li>
 </ul>
 </li>
 <li><b>Class Definition</b></li>
@@ -78,7 +88,8 @@
 <li><b>Delegation</b></li>
 <li style="list-style-type: none"><ul><li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Learn more about delegation.</li>
-<li>Can it replace inheritance for code reuse?</li>
+<li>Can it replace inheritance?</li>
+<li>Do I want delegation using access paths like that of DelphJ?</li>
 </ul>
 </li>
 </ul>
@@ -92,14 +103,34 @@
 </li>
 </ul>
 </li>
+<li><b>Subclassing</b></li>
+<li style="list-style-type: none"><ul><li>Static foreach loops together with static reflection and perhaps some mixin statements (e.g. <tt>mixin(extend(T))</tt>) supersede subclassing, as far as code reuse is concerned.</li>
+</ul>
+</li>
 <li><b>Subtyping</b></li>
 <li style="list-style-type: none"><ul><li>Objects of a derived class should be convertible to objects of the base class by discarding any additional information (object slicing), but should that be doable implicitly?</li>
-<li>An idea is to ban is-a inheritance relationships but instead allow implementing the inferred interface of the base type. Combined with an operator for getting the inferred interface and limiting subtyping to implementations of interfaces, the result lets the programmer easily select whether to enable polymorphism for a specific function parameter. e.g.</li>
+<li><b>Nominal</b></li>
+<li style="list-style-type: none"><ul><li>Could allow a class to declare that it implements (is a subtype of) an interface to enable conformance checking, even if I use structural subtyping. The implementation of the declared functions and attributes will be checked statically, while contracts will be checked dynamically. Declaring the implemented interfaces may also increase performance in some cases.</li>
+</ul>
+</li>
+<li><b>Structural</b></li>
+<li style="list-style-type: none"><ul><li>I should probably use structural subtyping to pass arguments to function, like what is done with C++ concepts. The risk of passing an object that supports the right interface, but not the correct semantics will be mitigated by adding contracts and axioms to the interface.</li>
+<li><b>Implementation</b></li>
+<li style="list-style-type: none"><ul><li>Assuming subtyping works only between interfaces and between implementations and interfaces and not between implementations, I could implement it in a way similar to the dictionary implementation of type classes. i.e. a reference to the (untagged) object will be passed to the function + a hidden pointer to a dispatch table that corresponds to the implementation-interface pair. That table can be created statically. If an interface is recast into another interface, the table might need to be created dynamically and memoized.</li>
+<li>If the dynamic types of two or more parameters of the same interface are constrained to be equal, only one pointer to the dispatch table needs to be passed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Ban is-a inheritance relationships but instead allow implementing the inferred interface of the base type. Combined with an operator for getting the inferred interface and limiting subtyping to implementations of interfaces, the result lets the programmer easily select whether to enable polymorphism for a specific function parameter. e.g.</li>
 <li style="list-style-type: none"><ul><li>Assuming D implements !B and the definitions f: B ⟶ ℤ, g: !B ⟶ ℤ and d:D, f(d) fails while g(d) typechecks successfully.</li>
 </ul>
 </li>
+</ul>
+</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Should I support <i>extension aggregates</i>&nbsp;(from Ada) that converts an object of the base class to an object of the derived class by supplying values for any additional fields? (<i>derived</i>&nbsp;<tt>:= (</tt><i>base</i>&nbsp;<tt>with</tt>&nbsp;<i>newfield</i>&nbsp;<tt>=&gt;</tt>&nbsp;<i>value</i><tt>);</tt>)</li>
+<li style="list-style-type: none"><ul><li>Should I support <i>extension aggregates</i>&nbsp;(from Ada) that convert an object of the base class to an object of the derived class by supplying values for any additional fields? (<i>derived</i>&nbsp;<tt>:= (</tt><i>base</i>&nbsp;<tt>with</tt>&nbsp;<i>newfield</i>&nbsp;<tt>=&gt;</tt>&nbsp;<i>value</i><tt>);</tt>) Of course classes that need them can always define appropriate constructors.</li>
 </ul>
 </li>
 </ul>
@@ -136,6 +167,12 @@
 <li style="list-style-type: none"><ul><li>How will <i>covariant return types</i>&nbsp;and <i>dynamic dispatch</i>&nbsp;be handled?</li>
 <li>Do I need <i>multiple dispatch</i>?</li>
 <li>Should I allow calling methods that are not supported by the object? What would happen then?</li>
+<li>Do languages with structural subtyping support dynamic dispatch and how?</li>
+<li>Consider classes <tt>Base</tt>&nbsp;and <tt>Derived</tt>&nbsp;where <tt>Derived</tt>&nbsp;extends <tt>Base</tt>&nbsp;and virtual methods <tt>kept</tt>&nbsp;and <tt>changed</tt>&nbsp;of <tt>Base</tt>, where <tt>changed</tt>&nbsp;is overridden by <tt>Derived</tt>&nbsp;and <tt>Base</tt>'s implementation of <tt>kept</tt>&nbsp;calls <tt>changed</tt>&nbsp;internally. In C++, D and Java this creates a customization point in <tt>kept</tt>, since <tt>changed</tt>&nbsp;will be dispatched dynamically.</li>
+<li style="list-style-type: none"><ul><li><tt>Derived</tt>&nbsp;has no idea what call it will actually execute, and code can be inserted before and/or after the <tt>changed</tt>&nbsp;code it knows about. So this is related to AOP and the comefrom statement.</li>
+<li>In such a scenario, I could make the call to <tt>changed</tt>&nbsp;from within <tt>kept</tt>&nbsp;non-virtual by default, and making it explicitly virtual could force the <tt>Derived</tt>&nbsp;class to be tagged.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

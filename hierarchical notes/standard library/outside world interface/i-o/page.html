@@ -6,6 +6,16 @@
 </head><body><ul><li><b>Common I/O Functions</b></li>
 <li style="list-style-type: none"><ul><li>General mechanism that will read/write from/to ranges of characters or bytes.</li>
 <li>Also support a <b>Steam</b>&nbsp;interface that will cover things like opening, closing and flushing that aren't supported by containers.</li>
+<li>Lightweight syntax inspired by C++ insertion and extraction operators.</li>
+<li style="list-style-type: none"><ul><li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li><tt>console&lt;&lt; "Today you walked " steps " steps, or " distance ".";</tt>&nbsp;will print "Today you walked 500 steps, or 381m."</li>
+<li><tt>console&lt;&lt; "What is your full name?\n";</tt></li>
+<li style="list-style-type: none"><tt>console&gt;&gt; given_name family_name;</tt></li>
+</ul>
+</li>
+<li>An operator is required to distinguish between insertion and extraction when a stream supports both.</li>
+</ul>
+</li>
 <li><b>Formatted I/O</b></li>
 <li><b>Character I/O</b></li>
 <li><b>Direct I/O</b></li>
@@ -20,7 +30,7 @@
 </li>
 <li><b>Console I/O</b></li>
 <li style="list-style-type: none"><ul><li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Choose names for standard streams.</li>
+<li style="list-style-type: none"><ul><li>Choose names for standard streams. Could abstract both stdin and stdout as a single I/O stream called "console".</li>
 </ul>
 </li>
 </ul>

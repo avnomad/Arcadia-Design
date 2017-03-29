@@ -38,6 +38,17 @@
 <li>Partial vs total order.</li>
 </ul>
 </li>
+<li><b>Well-formedness of Function Calls</b></li>
+<li style="list-style-type: none"><ul><li>Needed for "paired-call" blocks to work.</li>
+<li>Specify that a function:</li>
+<li style="list-style-type: none"><ul><li>Begins a block</li>
+<li>Ends a block</li>
+<li>Can only be called within the block.</li>
+</ul>
+</li>
+<li>Although these function calls usually appear within a single function body in linear code and can be checked statically, this in not always the case. If they are not used within a paired-call block, and proper matching can't be guaranteed, a warning could be issued.</li>
+</ul>
+</li>
 <li><i>simple</i>? for types for which there is an invertible mapping from the type's elements to the binary combinations that can fit in the space an object of that type takes. i.e. All binary combinations represent valid objects.</li>
 <li><b>Optimization</b></li>
 <li style="list-style-type: none"><ul><li><i>relocatable</i>? for types whose objects are relocatable. i.e. They don't contain a field that points inside the object itself, so they can be relocated by simple bit-by-bit copy.</li>
