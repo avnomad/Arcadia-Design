@@ -6,6 +6,11 @@
 </head><body><ul><li>Include at least everything included in C++ STL.</li>
 <li>Modify algorithms to work with ranges instead of iterators.</li>
 <li>Include 'smart' version of map (and other algorithms?) that will work recursively on nested containers based on the function argument type.</li>
+<li>Algorithms should check their arguments for supported operations and adapt accordingly. e.g.</li>
+<li style="list-style-type: none"><ul><li>A find function could use binary search on sorted random-access ranges, but fall-back to linear search on forward ranges.</li>
+</ul>
+</li>
+<li>Most algorithms can be recast to transform ranges to other ranges without actually doing any work, then a copy algorithm, or an (deep) assignment can trigger the actual work.</li>
 <li><b>String</b></li>
 <li style="list-style-type: none"><ul><li>regular expression matching (e.g. you may want to search for a pattern of real values)</li>
 <li>string-in-string search</li>
@@ -27,7 +32,17 @@
 </ul>
 </li>
 <li><b>Tree</b></li>
-<li style="list-style-type: none"><ul><li></li>
+<li style="list-style-type: none"><ul><li><b>Search</b></li>
+<li style="list-style-type: none"><ul><li>Best be implemented as ranges.</li>
+<li>DFS</li>
+<li style="list-style-type: none"><ul><li>preorder</li>
+<li>inorder</li>
+<li>postorder</li>
+</ul>
+</li>
+<li>BFS</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Graph</b></li>

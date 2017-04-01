@@ -55,6 +55,7 @@
 <li style="list-style-type: none">One idea is to take the right hand side argument as an AST, use the name of the argument ("y") and ignore its type and address. That might allow a syntax like OpenCL's .yzxw as well.</li>
 <li style="list-style-type: none">Another idea is to enable operators to define names inside their 'scope'. So e.g. '$' will only be defined inside the brackets in <tt>a[$-1]</tt>&nbsp;and 'yzxw' will only be defined after the '.' in <tt>v.yzxw</tt>.</li>
 <li>Confirm my parser supported operators that have simultaneous prefix, infix and postfix status and could parse the expressions that weren't ambiguous. It certainly handled cases where 2 out of the 3 fixities were active at any time.</li>
+<li>Investigate connection with Categorial Grammars. Would forward and backward functional composition reductions be useful in my case? Some classes of categorial grammars have the same expressive power as context-free grammars.</li>
 </ul>
 </li>
 </ul>
