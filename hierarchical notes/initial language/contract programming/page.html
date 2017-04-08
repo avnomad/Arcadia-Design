@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Contract Programming</title>
 </head><body><ul><li>requires (precondition)</li>
+<li style="list-style-type: none"><ul><li>May need to name another function that needs to be called first. Although this may be worked-around by adding an auxiliary function. e.g. consider the following public interface: turnOn() {ensures isOn()}, isOn(), move() {requires isOn()}.</li>
+</ul>
+</li>
 <li>ensures (postcondition)</li>
 <li>assigns</li>
 <li>It may be reasonable to annotate some preconditions (or maybe other contracts as well?) so that they are compiled even in release mode. That way, they will be part of the function header and be visible in documentation, but they will also be left in the release binary to detect exploits!</li>

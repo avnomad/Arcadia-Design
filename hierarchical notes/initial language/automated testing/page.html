@@ -29,5 +29,35 @@
 </ul>
 </li>
 <li style="list-style-type: none"><tt>−</tt>fun</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Learn more about <b>Property-Based Testing</b>.</li>
+<li style="list-style-type: none"><ul><li>Can contracts be used as the properties?</li>
+<li>Can I automatically and recursively build generators by reflecting on constructors?</li>
+<li>Can I include test case shrinking?</li>
+</ul>
+</li>
+<li>Whenever random tests cases are generated, it may make sense to save the failing ones to be reused in the next test run.</li>
+<li>Would it be possible to use the same generators for property-based testing and benchmarking?</li>
+<li style="list-style-type: none"><ul><li>Could use a @generator annotation to let the system pick up the generator functions automatically.</li>
+</ul>
+</li>
+<li>Learn more about <b>Mode-Based Testing</b>.</li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>To reflectively build a generator for class C:</li>
+<li style="list-style-type: none"><ul><li>Find all its constructors and construct instances generating their arguments recursively.</li>
+<li>Find all public non-const methods (including friends) and apply arbitrary sequences of them generating their arguments recursively.</li>
+<li>If too many sequences are rejected due to failing preconditions, suggest that the programmer supplies a regular expression (or FSM) for generating valid sequences.</li>
+<li style="list-style-type: none"><ul><li>e.g. ((turnOn move*) | (turnOff store*)) *</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Since instances are generated recursively, memoization and/or dynamic programming can be used to improve performance, essentially reusing sub-instances either as stand-alone test cases, or as constituents of multiple bigger instances.</li>
+<li>I could provide a way to annotate tests as <i>positive</i>&nbsp;and <i>negative</i>&nbsp;and group them accordingly in the statistics output. e.g. 90% of positive and 30% of negative tests passed.</li>
+<li>It might make sense to provide a common framework for combinatorial (exhaustive) and random generators.</li>
+</ul>
+</li>
 </ul>
 </body></html>
