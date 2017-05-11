@@ -6,7 +6,7 @@
 </head><body><ul><li><b>Parsing</b></li>
 <li style="list-style-type: none"><ul><li>Support defining and overloading operators.</li>
 <li>You should be able to specify the <b>fixity, arity, precedence</b>&nbsp;(or priority, or scope) and <b>associativity </b>of each operator and overload them.</li>
-<li>Support for distfix operators.</li>
+<li>Support distfix operators.</li>
 <li>Support juxtaposition.</li>
 <li style="list-style-type: none"><ul><li>Juxtaposition will be considered a binary operator and will obey the same rules as other binary operators when it comes to importing it into a scope.</li>
 <li><b>Use cases</b>:</li>
@@ -25,11 +25,29 @@
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Allow more than one associativity per priority?</li>
 <li>I could decouple the insertion of names in a scope from the operator status of them. e.g. I could have a function named '+' with 'prefix' syntax, that would only be parsed as a prefix operator if the prefix + has been activated in the scope. Otherwise it would be parsed as a regular function.</li>
+<li style="list-style-type: none"><ul><li>On the other hand if I make operator status an attribute of the object's type, then names will be imported as operators but they can then be assigned to other names with the same type but without the operator attribute (and status).</li>
+</ul>
+</li>
 <li>Overloading the membership operator '.' like I've thought, should be similar but more powerful than D's opDispatch.</li>
 <li>Constructors, destructors, deconstructors, methods, function, etc. can be thought of as being in different namespaces instead of being different ways to phrase a function call. So e.g. in the first part of a declaration, names will be looked up in the deconstructor namespace, while in the initializer part of a declaration, they will be looked up in the function namespace. Moreover, this way there can be multiple versions of some operators (e.g. [ , , , ]) without fear of collision.</li>
 <li style="list-style-type: none"><ul><li>The same technique can be used to separate operators that accept and return values (used in eager contexts like e.g. compile-time commands) and their duals that accept and return syntax trees (used in lazy contexts like e.g. function bodies).</li>
 </ul>
 </li>
+<li>Assume for a second that CFGs can be parsed by replacing all non-terminals in the productions by a single non-terminal 'E' and then letting the type system reject erroneous trees.</li>
+<li style="list-style-type: none"><ul><li>Productions can be thought as distfix operators:</li>
+<li style="list-style-type: none"><ul><li>E⟶E a₁ ... aₙ E can be thought as an infix operator.</li>
+<li>E⟶a₁ ... aₙ E can be thought as a prefix operator.</li>
+<li>E⟶E a₁ ... aₙ can be thought as a postfix operator.</li>
+<li>E⟶a₁ ... aₙ can be thought as a parenthesized expression or an operand.</li>
+<li>Where a₁ ... aₙ is a sequence of terminals and non-terminals that begins and ends with a non-terminal.</li>
+<li>The rest of the cases involve multiple consecutive non-terminals before and/or after the first/last terminal. It may be possible to handle them as cases of juxtaposition.</li>
+<li>It may be possible to handle a sequence of the form a₁ E a₂ E a₃ ... aₙ by handling a₁ E a₂ as if it was a parenthesized expression, then giving the result an initiator status. The resulting initiator would match with terminator a₃ to form a new parenthesized expression resulting in an initiator and so on, until the whole sequence is consumed in which case the final result will have infix, prefix, postfix or operand status depending on the production form above.</li>
+<li style="list-style-type: none">Semantic routines could collect sub-expressions in intermediate results until the correct AST node can be constructed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>To handle the fact that an expression can evaluate to an operator, initiator or terminator instead of an operand, a second stack can hold the current values of the <i>first-non-postfix</i>&nbsp;and <i>last-non-prefix</i>&nbsp;pointers used for disambiguation. If a staging area for operators that pend disambiguation is used, then this should be put on the second stack as well. When an initiator is encountered, a new frame will be pushed on the disambiguation stack whilst the top frame will be popped off the stack when the corresponding terminator is found.</li>
 <li><b>Implementation</b></li>
 <li style="list-style-type: none"><ul><li>Maybe I can use the 0x2062 INVISIBLE TIMES Unicode character to simplify implementation of juxtaposition parsing.</li>
 <li>Every keyword, operator, separator as well as identifiers could have a unique numerical id that would lead to a separate handling function via an array, or could be represented as an object of a different class and the right function would be selected using dynamic dispatch. That's from before I made my first parser...</li>
