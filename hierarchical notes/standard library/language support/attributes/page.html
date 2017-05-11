@@ -24,10 +24,21 @@
 <li style="list-style-type: none"><ul><li>Conditional versions of the above attributes may be needed. e.g. to express that a function is pure iff it's function arguments are pure.</li>
 </ul>
 </li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>What annotation do I need to express that <tt>list.size()</tt>&nbsp;can be moved outside the loop in the following example?</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">for(int i = 0 ; i &lt; list.size() ; ++i)</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>list.set(i,i);</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>size</tt>&nbsp;can be a pure function, but <tt>set</tt>&nbsp;modifies the object. Somehow I need to express that the fields that change are not the ones that contribute to <tt>size</tt>'s output.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Control Flow</b></li>
-<li style="list-style-type: none"><ul><li><i>noreturn</i>&nbsp;for functions not intended to ever return.</li>
+<li style="list-style-type: none"><ul><li><i>noreturn</i>&nbsp;for functions not intended to ever return. Can be useful in warning about dead code.</li>
 <li><i>nothrow</i>&nbsp;for functions that don't throw any exceptions.</li>
 </ul>
 </li>

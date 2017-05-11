@@ -69,9 +69,27 @@
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Define for the compile-time environment characteristics similar to the ones for the run-time environment. e.g. What does an assignment to a global variable or a call to an output function mean?</li>
+<li style="list-style-type: none"><ul><li>Define for the compile-time environment characteristics similar to the ones for the run-time environment. e.g. what do the following mean?</li>
+<li style="list-style-type: none"><ul><li>Assignment to a global variable. Some options are the following:</li>
+<li style="list-style-type: none"><ul><li>Prohibit calls to functions that refer to global variables during compilation. (I'll probably not use that)</li>
+<li>Allocate space for the global variables in the compiler process as well.</li>
+<li style="list-style-type: none"><ul><li>Initialize the variables once for the compiler process and once again for the resulting executable program.</li>
+<li>Let the global variables of the resulting executable be initialized with the last value they had during compilation.</li>
+<li style="list-style-type: none"><ul><li>The latter idea taken to the extreme can result in a form of "gradual partial evaluation" of the program: The compiler process is gradually transformed to the output program process, with things that are no longer useful (e.g. the parser) being garbage-collected periodically. The result of any of the intermediate steps of this continuous transformation can be saved to file as an executable. In a sense, compilation (and specialization) never ends.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Call to an output function</li>
+</ul>
+</li>
 <li>Clarify semantics around side-effects in the context of partial evaluation / instantiation.</li>
 <li>Clarify semantics around compile-time evaluation of floating-point expressions during cross-compilation, when target and host architecture floating-point models, don't match.</li>
+<li style="list-style-type: none"><ul><li>The problem disappears if floating-point types are libraries and each library defines its own semantics that will be the same for compile- and run-time. Each floating-point model can have its own library and be implemented using the corresponding machine instructions when the platform supports it or software when it doesn't.</li>
+</ul>
+</li>
 <li>Clarify the semantics and representation of types in the compile- and run-time environments. e.g. int in the compile-time environment will be closer to C's int, while in the run-time environment will be closer to Java's int.class.</li>
 </ul>
 </li>
@@ -84,6 +102,15 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will a function gain access to the name of the function that called it and the line number, file name, etc. of the call site so that it can print an error message?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Run-time Environment</b></li>
+<li style="list-style-type: none"><ul><li>If a function has escaping closures, its stack frame will be allocated on the heap instead (like in D).</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Select one of the methods to implement static scoping in deeply nested functions (<b>access links</b>&nbsp;or <b>link tables</b>).</li>
+<li>How exactly will an escaping closure be handled in a deeply nested function setting?</li>
 </ul>
 </li>
 </ul>
