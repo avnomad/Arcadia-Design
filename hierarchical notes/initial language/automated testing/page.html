@@ -9,6 +9,7 @@
 </li>
 <li><tt>+unittest</tt>, <tt>−unittest</tt></li>
 <li>provide way to automatically feed implementations and child classes to tests of functions with interface and abstract argument parameters.</li>
+<li>There should be a way to associate tests to the classes and/or functions they test, even if they reside on different files. That way the report could highlight functions that don't have tests, even if they have some test coverage from indirect invocations by other tests.</li>
 <li>Perhaps provide a way to add tests to the function definition? e.g.</li>
 <tt><li style="list-style-type: none">+fun factorial ∈ (n uint) → uint</li>
 <li style="list-style-type: none">=code</li>
@@ -32,6 +33,7 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Learn more about <b>Property-Based Testing</b>.</li>
 <li style="list-style-type: none"><ul><li>Can contracts be used as the properties?</li>
+<li>Do I need properties that are not associated with a specific function or class?</li>
 <li>Can I automatically and recursively build generators by reflecting on constructors?</li>
 <li>Can I include test case shrinking?</li>
 </ul>

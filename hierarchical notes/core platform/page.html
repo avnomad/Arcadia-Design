@@ -74,6 +74,14 @@
 <li style="list-style-type: none">Another idea is to enable operators to define names inside their 'scope'. So e.g. '$' will only be defined inside the brackets in <tt>a[$-1]</tt>&nbsp;and 'yzxw' will only be defined after the '.' in <tt>v.yzxw</tt>.</li>
 <li>Confirm my parser supported operators that have simultaneous prefix, infix and postfix status and could parse the expressions that weren't ambiguous. It certainly handled cases where 2 out of the 3 fixities were active at any time.</li>
 <li>Investigate connection with Categorial Grammars. Would forward and backward functional composition reductions be useful in my case? Some classes of categorial grammars have the same expressive power as context-free grammars.</li>
+<li>If the parser depends on the token's type to classify it as an operator, operand, etc., then how will identifiers be handled in contexts where new identifiers are defined?</li>
+<li style="list-style-type: none"><ul><li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li>Why is <i>height</i>&nbsp;an operand to the <i>auto = ;</i>&nbsp;operator in <tt>auto height = 5.2m;</tt>?</li>
+<li>What about <i>x</i>&nbsp;and <i>y</i>&nbsp;in <tt>auto (x,y) = room.center;?</tt></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

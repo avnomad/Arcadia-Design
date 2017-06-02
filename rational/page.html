@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rational</title>
-</head><body><ul><li>The form <tt>print "Hello World!\n";</tt>&nbsp;wasn't used because "print" can't be generalized (to streams).</li>
+</head><body><ul><li>The choice was made to design a fresh concrete syntax rather than reuse the syntax of one of the prominent language families (C, Pascal, etc.) to stress that this is a completely new language, set expectations and avoid surprises when the corresponding semantics don't match.</li>
+<li>The form <tt>print "Hello World!\n";</tt>&nbsp;wasn't used because "print" can't be generalized (to streams).</li>
 <li>By using <b>fallthrough</b>&nbsp;I'm not hijacking <b>break</b>&nbsp;and <b>continue</b>.</li>
 <li>Only arithmetic and geometric progressions are recognized by the sequence operator ( , ,..., ), since there is no point in submitting the readers of the code to an IQ test.</li>
 <li>The distinction between value and reference classes demands a decision up front about how the classes are going to be used (whether they will be inherited etc.) and isn't in line with the language's general principle to let you start writing something and decide about the details as you go.</li>
