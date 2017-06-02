@@ -3,27 +3,159 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Principles</title>
-</head><body><ul><li>Everything that you may want to express should be expressible at least as fast as in C, without being more difficult to express.</li>
-<li>At least one thing should be doable faster than in C.</li>
-<li>Anything that can be written in C++ should be writeable here too, but not necessarily in the same way. (This includes things that aren't entirely internal to the language like passing values for symbolic constants from the build system, to the compiler, to the executable program.)</li>
-<li>You should never have to write the same algorithm 2 times. (e.g. one time in the core language and another in the meta-language or one time for static and another for dynamic polymorphism.</li>
-<li>Every program that can be written in C++ must be writeable here with (asymptotically) the same or less code.</li>
-<li>No "magic" types / functions that are build-in the language (or its standard library), but can't be written by the programmer (so that they behave the same way) (The logic that fundamental types don't have anything special like in C++. Uniform handling of build-in and user-defined types (e.g. in generic code)).</li>
-<li>Easy fine-tuning of the application performance using trial and error. (e.g. Is it better to pass this parameter by need or by result? Is it better to represent complex numbers by Cartesian or polar coordinates?)</li>
-<li>Good defaults and default defaults for less thought/typing.</li>
-<li>If a choice is made (e.g. of a data structure, variable storage class, etc.) and then code is written based on that behaviour, changing that choice should not require extensive changes in code.</li>
-<li>Pseudo-code abstraction level: typical examples of algorithms written in pseudo-code from the Compilers, NURBS and other books should be writeable in the language either as-is, or with small changes that don't change the abstraction level in which they are written.</li>
-<li>The language shall have a few elementary structures from which all desired structures (that the programmer uses in practice) would be writeable as libraries (RISC mindset).</li>
-<li>Zero-overhead abstraction whenever possible, but at least in implementing structures that have small or no overhead in other languages.</li>
-<li>The languages metalanguage should be the language itself.</li>
-<li>Promote a way of writing code with fast development of a prototype that works (is correct and tested) followed by heavy optimization and editing of details.</li>
-<li>"If you don't use it, you don't pay for it" philosophy, like in C++.</li>
-<li>Keep optional features to a minimum, ideally zero.</li>
-<li>True Unicode support.</li>
-<li>Easy to learn to solve problems writing correct programs. Not too difficult to predict what code is generated and write fast code. Unbounded implementation difficulty.</li>
-<li>Views, substitutability and deferred decisions.</li>
-<li>All operators have to be familiar (have to be used somewhere else already). "No originality" rule?</li>
-<li>It should be possible to redefine the whole language from within the language. Not necessarily easy...</li>
-<li>By default the compiler should have more freedom (to make optimizations), but it should also be easier to tell the compiler exactly what to do when needed.</li>
+</head><body>Below keep in mind that the ultimate goal is to <i>promote a way to develop applications</i>&nbsp;that takes advantage of the <i>expressiveness</i>&nbsp;and <i>brevity</i>&nbsp;features to quickly develop a prototype, then the <i>safety</i>&nbsp;and <i>testing</i>&nbsp;features to make sure it's correct and finally the <i>modifiability</i>&nbsp;and <i>performance</i>&nbsp;features to edit the details and fine tune performance using rapid iterations of trial-and-error driven by <i>automatically collected data</i>.<ul><li style="list-style-type: none"></li>
+<li><b>Performance</b></li>
+<li style="list-style-type: none"><ul><li>For each algorithm it should be possible to attain at least the same performance you'd get with C with at most the same effort.</li>
+<li>In the general case one should get better performance per effort than in C.</li>
+<li>The tools should be there for one to accurately and conveniently measure and optimize performance.</li>
+<li>The compiler should have the information and freedom to make optimizations by default, but it should also be easy to specify one's intentions exactly when needed. [roughly from C]</li>
+<li style="list-style-type: none"><ul><li>e.g. the compiler should have the freedom to choose:</li>
+<li style="list-style-type: none"><ul><li>the order in which local variables are layed out in memory.</li>
+<li>the order in which function arguments are evaluated.</li>
+<li>whether a function is inlined.</li>
+</ul>
+</li>
+<li>e.g. the compiler can get information from annotations related to:</li>
+<li style="list-style-type: none"><ul><li>function pureness</li>
+<li>function monotonicity</li>
+<li>operator algebraic properties</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Present zero-overhead abstractions whenever possible, but at least in implementing structures that have small or no overhead in other languages. [from C++]</li>
+<li style="list-style-type: none"><ul><li>What you don't use, you don't pay for.</li>
+<li>What you do use, you couldn't hand code any better.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Safety</b></li>
+<li style="list-style-type: none"><ul><li>Errors should be found sooner than later.</li>
+<li>No errors should be left undetected unless the programmer specifically asks for it.</li>
+<li>"Unsafe" features won't be available unless explicitly imported as modules. Examples include:</li>
+<li style="list-style-type: none"><ul><li>reinterpretation casts. (in the OpenCL C, not C++ sense)</li>
+<li>goto, labels and variables of label type.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Expressiveness</b></li>
+<li style="list-style-type: none"><ul><li>The level of abstraction used to express algorithms should be roughly the same as the custom pseudo-code used in textbooks describing those algorithms.</li>
+<li style="list-style-type: none"><ul><li>I have a number of books in mind covering:</li>
+<li style="list-style-type: none"><ul><li>algorithms and data structures</li>
+<li>computer graphics</li>
+<li>numerical analysis</li>
+<li>linear algebra</li>
+<li>compilers</li>
+<li>splines</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The inclusion of features to the language should be driven by the needs of its libraries. [roughly from C++]</li>
+<li>Functions and types should be first-class citizens.</li>
+<li>Common practices and workflows used by the industry and supported by other languages like C++ should be supported here as well, but not necessarily by the same feature set.</li>
+<li style="list-style-type: none"><ul><li>e.g. It is common to pass values as symbolic constants from the build system, to the compiler, to the executable program and this will be supported without the use of a preprocessor.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Brevity</b></li>
+<li style="list-style-type: none"><ul><li>You should never have to write the same thing twice. Examples include:</li>
+<li style="list-style-type: none"><ul><li>Implementing an algorithm or data structure once for run-time and again for compile-time execution. (e.g. this happens with C++ template metaprograms)</li>
+<li>Implementing the same predicate once to test values during run-time and again for expressing program properties like pre- and post-conditions.</li>
+<li>Implementing the same function or type multiple times where only one identifier or operator change from one implementation to the next.</li>
+<li>Writing an interface once for dynamic and again for static polymorphism.</li>
+</ul>
+</li>
+<li>In a sense, the language's meta-language should be the language itself.</li>
+<li>It should be possible to express any program with a most as much code (asymptotically) as in C++.</li>
+<li>One should be able to omit things and let the compiler fill them up using inference, defaults and default defaults. E.g. the following could be omitted:</li>
+<li style="list-style-type: none"><ul><li>storage class</li>
+<li>parameter pass mode</li>
+<li>function return type</li>
+<li>array size</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Extensibility</b></li>
+<li style="list-style-type: none"><ul><li>Existing functions, types and structures (including their syntax) should have nothing special and one should be able to mimic, modify, extend or abolish them as needed.</li>
+<li>It should be possible to write a module that once imported makes the compiler process a completely different language like ML or HTML. Such radical changes don't have to be made easy though.</li>
+<li>In a sense the "core" language should just be the "initial" language.</li>
+</ul>
+</li>
+<li><b>Learnability</b></li>
+<li style="list-style-type: none"><ul><li>Operators and identifiers should be familiar in the sense that they have to already be in use by another language or notation, preferably by mathematical textbooks.</li>
+<li>The language shall have a few elementary structures from which all other structures are written as libraries. [from RISC]</li>
+<li style="list-style-type: none"><ul><li>e.g. object-oriented programming can be an importable module.</li>
+</ul>
+</li>
+<li>Clear and intuitive abstraction without "holes", yet clearly defined "under the hood" behaviour.</li>
+<li>Whenever there is a trade-off between learnability and implementation difficulty, learnability should win.</li>
+<li>Priority should be given to making the language easy to learn for those that just want to solve problems and write correct programs, yet learning to expect what code is generated and optimize performance shouldn't become too difficult.</li>
+</ul>
+</li>
+<li><b>Modifiability</b></li>
+<li style="list-style-type: none"><ul><li>Decisions should be deferred as much as possible (so that more information is available when they are made and less code is based on them). In practice this might mean that:</li>
+<li style="list-style-type: none"><ul><li>Decisions are moved from entity definition to entity use time. E.g. you shouldn't have to decide at definition time whether:</li>
+<li style="list-style-type: none"><ul><li>a function will be computed statically</li>
+<li>a class will be used in an inheritence hierarchy.</li>
+<li>a method will be dispatched dynamically.</li>
+</ul>
+</li>
+<li>Enities can present different views to different clients. e.g.</li>
+<li style="list-style-type: none"><ul><li>A map can present it's keys as a set.</li>
+<li>An array can present itself as a function taking positive integers and vice versa.</li>
+</ul>
+</li>
+<li>Entities can be substituted for others as long as they implement the necessary interface.</li>
+<li style="list-style-type: none"><ul><li>In the structural subtyping sence.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Choices that are made should effect subsequent source code as little as possible, ideally not at all. (so that they can be changed at a single point) Examples include choice of:</li>
+<li style="list-style-type: none"><ul><li>data structure</li>
+<li>coordinate system</li>
+<li>unit of measurement</li>
+<li>integer type of certain size</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Portability</b></li>
+<li style="list-style-type: none"><ul><li>Program semantics shouldn't depend on the target nor host system unless the programmer specifically asks for it.</li>
+<li>Keep optional features to a minimum, ideally zero. [from OpenGL]</li>
+</ul>
+</li>
+<li><b>Standards Compliance</b></li>
+<li style="list-style-type: none"><ul><li>Rely on existing standards whenever possible and be true to their spirit. Examples where existing standards can be relied upon include:</li>
+<li style="list-style-type: none"><ul><li>floating-point arithmetic</li>
+<li>regular expressions</li>
+<li>units of measurement</li>
+<li>character sets</li>
+</ul>
+</li>
+<li>Take special care in supporting Unicode. e.g. in exposition of:</li>
+<li style="list-style-type: none"><ul><li>grapheme clusters</li>
+<li>collation</li>
+<li>bidirectionality</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Interoperability</b></li>
+<li style="list-style-type: none"><ul><li>Sufficient ABIs should be defined to allow modules compiled by one implementation to be imported by another.</li>
+<li style="list-style-type: none"><ul><li>That should include cross-module exception propagation.</li>
+</ul>
+</li>
+<li>It should be possible to link with C binaries, especially with OS libraries.</li>
+<li style="list-style-type: none"><ul><li>Certain patterns commonly used in the latter should be taken into account to make the process as safe and painless as possible.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </body></html>
