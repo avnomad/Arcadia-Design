@@ -5,11 +5,14 @@
 <title>Data Structures</title>
 </head><body><ul><li>Should have an <i>nElements</i>&nbsp;(or <i>cardinality</i>? or #elements? or <i>population</i>) member (or |...| operator?) that returns the number of elements in the structure. This might need to return infinite for some structures!</li>
 <li>Could the compiler be left to choose a default data structure like it can choose a default integer type?</li>
-<li>The same checks that are present in checked STL in debug mode should also be available here.</li>
+<li><b>Safety</b></li>
+<li style="list-style-type: none"><ul><li>The same checks that are present in checked STL in debug mode should also be available here.</li>
 <li style="list-style-type: none"><ul><li>That might imply that iterators "remember" their parent container in debug mode.</li>
 </ul>
 </li>
 <li>Those checks should be split into categories that can be enabled/disabled independently in a way that is available to client code.</li>
+</ul>
+</li>
 <li>Support 'views' of containers as other containers. (ReferenceList class?)</li>
 <li><b>Bounded Data Structures</b></li>
 <li style="list-style-type: none"><ul><li>bounded vector ⟹ bounded stack</li>
