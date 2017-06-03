@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pointers</title>
+<title>Pointer</title>
 </head><body><ul><li>A number of types:</li>
 <li style="list-style-type: none"><ul><li>unique</li>
 <li>shared</li>
 <li>weak</li>
 <li>restrict</li>
 <li>garbage-collected</li>
-<li>pointer type for pointing to objects that should never be freed. e.g. for pointing to stack objects and/or iterating over arrays.</li>
-<li>pointer type for pointing exclusively to objects allocated using new and can be deleted.</li>
+<li>pointer type for pointing to objects that should never be freed. e.g. for pointing to stack objects and/or iterating over arrays. On the other hand 'weak' wouldn't free them anyway.</li>
+<li>pointer type for pointing exclusively to objects allocated using new and can be deleted. (Won't automatically manage memory, but will be usable with <tt>delete</tt>)</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
