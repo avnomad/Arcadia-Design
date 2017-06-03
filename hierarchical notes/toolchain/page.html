@@ -100,13 +100,17 @@
 </ul>
 </li>
 <li><b>Editor</b>&nbsp;(not included)</li>
-<li style="list-style-type: none"><ul><li><b>substitutions</b>&nbsp;(e.g. foreach becomes ∀).</li>
+<li style="list-style-type: none"><ul><li><b>auto-completion</b></li>
+<li><b>substitutions</b>&nbsp;(e.g. foreach becomes ∀).</li>
 <li style="list-style-type: none"><ul><li>The editor could analyse code as you type to e.g. substitute <tt>−</tt>&nbsp;for - in "a-b", but not in "letter-like". This might need semantic analysis, besides parsing and scanning.</li>
 <li>It could also perform more complex substitutions like "**2" to "²".</li>
 </ul>
 </li>
 <li><b>typeset contexts</b></li>
 <li style="list-style-type: none"><ul><li>The editor could have rules to present certain lexical and syntactic structures, like mathematical formulas, in a typeset way instead of using a fixed width font everywhere.</li>
+<li style="list-style-type: none"><ul><li>Those rules could be written in a "presentation rules language" that would probably need to be designed in coordination with the programming language proper.</li>
+</ul>
+</li>
 <li>If I indeed distinguish between the language that is saved in the file and the language that is presented in the editor, then all function calls could be saved in a uniform way in the file (e.g. function-name(argument-list)) and presented to the programmer differently (e.g like an operator or a method) depending on what has been defined for each function.</li>
 <li style="list-style-type: none">If someone wants to write expressions in a plain text editor, it shouldn't be harder than programming in Lisp!</li>
 <li>A simple source code representation in a (UTF-8) text file could be token =&gt; type"value". Where tokens are separated by spaces or, maybe, not at all.</li>

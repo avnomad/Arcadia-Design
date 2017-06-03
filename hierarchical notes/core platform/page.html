@@ -3,7 +3,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Core Platform</title>
-</head><body><ul><li><b>Parsing</b></li>
+</head><body><ul><li><b>File Formats</b></li>
+<li style="list-style-type: none"><ul><li><b>Source</b></li>
+<li style="list-style-type: none"><ul><li>Plain text format.</li>
+</ul>
+</li>
+<li><b>Module</b></li>
+<li style="list-style-type: none"><ul><li>Binary format, aimed towards build scalability.</li>
+<li style="list-style-type: none"><ul><li>Should be optimized for fast and selective loading of contained information.</li>
+<li>Prevents reading and parsing the whole source file east time.</li>
+</ul>
+</li>
+<li>Should contain all the information needed by clients including any information inferred during compilation.</li>
+<li style="list-style-type: none"><ul><li>The goal is to distribute modules instead of headers and/or library files.</li>
+</ul>
+</li>
+<li>Should probably be platform independent.</li>
+<li style="list-style-type: none"><ul><li>So that library writers don't have to distribute a different set of modules for each implementation.</li>
+<li>May imply that code is kept in an intermediate representation until all modules are linked together.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Scanning</b></li>
+<li style="list-style-type: none"><ul><li>source files will be assumed to contain Unicode characters by default.</li>
+<li>identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
+</ul>
+</li>
+<li><b>Parsing</b></li>
 <li style="list-style-type: none"><ul><li>Support defining and overloading operators.</li>
 <li>You should be able to specify the <b>fixity, arity, precedence</b>&nbsp;(or priority, or scope) and <b>associativity </b>of each operator and overload them.</li>
 <li>Support distfix operators.</li>
