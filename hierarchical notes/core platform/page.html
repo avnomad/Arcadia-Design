@@ -6,6 +6,12 @@
 </head><body><ul><li><b>File Formats</b></li>
 <li style="list-style-type: none"><ul><li><b>Source</b></li>
 <li style="list-style-type: none"><ul><li>Plain text format.</li>
+<li>The character set used to encode characters in the file will be decided as follows:</li>
+<li style="list-style-type: none"><ul><li>If a compiler flag specifies a character set, the file will be interpreted using that character set.</li>
+<li>Otherwise if the first few bytes can be interpreted as a BOM, then the corresponding Unicode encoding scheme will be used.</li>
+<li>Otherwise the file will be interpreted using the UTF-8 encoding.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Module</b></li>
@@ -28,8 +34,7 @@
 </ul>
 </li>
 <li><b>Scanning</b></li>
-<li style="list-style-type: none"><ul><li>source files will be assumed to contain Unicode characters by default.</li>
-<li>identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
+<li style="list-style-type: none"><ul><li>identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
 </ul>
 </li>
 <li><b>Parsing</b></li>

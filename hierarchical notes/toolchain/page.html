@@ -27,6 +27,7 @@
 <li>To choose between debug and release modes (e.g. -debug, -release). But what if you have more modes? The program will have access to this information by looking at a "mode" variable in a special namespace.</li>
 <li>To define some arbitrary symbol (variable?) when calling the compiler that can be looked for by code (similar to C/C++'s #define mechanism and gcc's -D option).</li>
 <li style="list-style-type: none">Those symbols will be arbitrary in number, will use 'auto' or similar for type (so that their type will be inferred from the value they get) and will all be defined in a special namespace (e.g. External).</li>
+<li>-script to only run the source code or module for its compile-time side-effects without producing an executable.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>-credits to show everyone who has contributed to the project one way or another.</li>
 </ul>
@@ -64,6 +65,18 @@
 </li>
 <li><b>Multi-file compilations</b></li>
 <li style="list-style-type: none"><ul><li>Topologically sort the module inclusion graph and compare timestamps?</li>
+</ul>
+</li>
+<li><b>Input</b></li>
+<li style="list-style-type: none"><ul><li>A list of plain text (source code) and/or binary (module) files.</li>
+</ul>
+</li>
+<li><b>Output</b></li>
+<li style="list-style-type: none"><ul><li>For each plain text (source code) input file, the corresponding binary (module) file containing platform-independent code and metadata.</li>
+<li style="list-style-type: none"><ul><li>Plain text inputs may be automatically added and/or removed from the list while examining the import lists and/or file timestamps.</li>
+</ul>
+</li>
+<li>Unless the -script option is specified, a target-dependent executable file containing the "entry" function of the first input file and everything else needed for it to work.</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
