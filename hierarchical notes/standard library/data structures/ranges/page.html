@@ -46,6 +46,10 @@
 <li style="list-style-type: none">Another option is to use an operator's fixity to distinguish between front and back. e.g. ^range ⟺ range.front and range^ ⟺ range.back.</li>
 <li>Ranges could have interfaces similar to C++ containers. i.e. front, back, push/popFront/back to access elements and/or shrink/grow and begin/end to get the paired iterators.</li>
 <li>Most of the work on containers could be done by implicit conversion to ranges.</li>
+<li>Could define multidimentional iterators and/or ranges (e.g. for use with matrices and tensors) and specify the dimention before applying any of the other operators.</li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>iter[0]++</tt>&nbsp;could move to the next column and <tt>iter[1]++</tt>&nbsp;could move to the next row.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

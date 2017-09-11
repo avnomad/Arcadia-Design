@@ -12,6 +12,7 @@
 <li>No special adaptor that adds deallocation guarantees to containers of pointers to objects was included, since the intended behaviour can be achieved by using containers of smart pointers.</li>
 <li>No preprocessor meta-programming since there won't be a preprocessor.</li>
 <li>Plain text source file format was selected mostly because there weren't enough resources to design and implement a decent editor and to allow programmers to use their existing editor-of-choice.</li>
+<li>One of the reasons for making Arcadia extensible was so that projects like Qt and ODB for C++ wouldn't have to write their own compiler/preprocessor but rather extend the language by writting a library.</li>
 <li><b>Choice of Names</b></li>
 <li style="list-style-type: none"><ul><li>Linear data structures could have a <i>length</i>&nbsp;member, but this name doesn't generalize to trees and graphs. They could have a <i>size</i>&nbsp;member, but this will be used for byte count instead.</li>
 </ul>

@@ -19,9 +19,11 @@
 </ul>
 </li>
 <li>Perhaps it will be best to emit the code that checks the contract in the caller, not the callee. That way, the optimizer will have a chance to remove them and there won't be a difference between distributing release or debug binaries.</li>
+<li>One way to implement contracts, laid out in a proposal for C++, is to emit many entry points to the function that defines the contracts. One entry point will be used when preconditions are checked in the caller and another when preconditions are checked in the callee (e.g. when called through a pointer).</li>
 <li>Contracts might express mathematical properties that can't necessarily be proved automatically.</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Look at specification languages</li>
+<li style="list-style-type: none"><ul><li>Look at specification languages.</li>
+<li>Select terminology (requires/ensures vs expects/ensures vs precondition/postcondition).</li>
 </ul>
 </li>
 </ul>
