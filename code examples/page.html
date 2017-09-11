@@ -3,17 +3,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Code Examples</title>
-</head><body><tt>+∀ (element, index) ∈ zip(array, array.indices)<br/>
-&nbsp; &nbsp; element &lt;~ index;<br/>
+</head><body><tt># Print a message during compilation.<br/>
+import io;<br/>
+<br/>
+console &lt;&lt; "Hello World!\n";<br/>
+<br/>
+# Print a message during run-time.<br/>
+import io;<br/>
+<br/>
++fun main ∈ (args ∈ String[]) ⊣<br/>
+=annotations<ul><li style="list-style-type: none">@entry</li>
+</ul>
+=code<ul><li style="list-style-type: none">console &lt;&lt; "Hello World!\n";</li>
+</ul>
+−fun main<br/>
+<br/>
+# fill an array<br/>
++∀ (element, index) ∈ zip(array, array.indices)<br/>
+element &lt;~ index;<br/>
 −∀<br/>
 <br/>
 +∀ line ∈ ifstream("input.txt").lines) # lines is a range<br/>
-&nbsp; &nbsp; element &lt;~ index;<br/>
+element &lt;~ index;<br/>
 −∀<br/>
 <br/>
 # Wrapping functions will be easier in Arcadia:<br/>
 +fun transmogrify ∈ (int, string) → vector<br/>
-&nbsp; &nbsp; ....<br/>
+....<br/>
 −fun transmogrify<br/>
 <br/>
 auto aNewName &lt;~ transmogrify;<br/>
@@ -49,7 +65,7 @@ a..(b-a)<br/>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">+∀j ∈ retval.indices[1]:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i,j] &lt;~ 0;</li>
 <li style="list-style-type: none">∀k ∈ 0..l-1:</li>
-<li style="list-style-type: none">&nbsp; &nbsp; retval[i,j] +&lt;~ a[i,k] * b[k,j];</li>
+<li style="list-style-type: none">&nbsp;retval[i,j] +&lt;~ a[i,k] * b[k,j];</li>
 </ul>
 </li>
 <li style="list-style-type: none">−∀</li>
@@ -191,4 +207,45 @@ a.subarray(begin,end)<br/>
 </ul>
 −fun sort_positive<br/>
 <br/>
+# overload operators in a loop<br/>
++export<ul><li style="list-style-type: none">+∀ operator ∈ [`+`, `-`, `*`, `/`]:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+export</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+function operator : </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">(ref a : int[n], ref b : int[n]) ⟶ external ref int[n]</li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">∀i ∈ retval.indices:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i] ↜ a[i] operator b[i];</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">−function operator</li>
+</ul>
+</li>
+<li style="list-style-type: none">−export</li>
+</ul>
+</li>
+<li style="list-style-type: none">−∀</li>
+</ul>
+−export<br/>
+# would some sort of transitive export help?<br/>
+<br/>
+@ Compute the FIRST sets.<br/>
+@ Input: A Grammar G=(T,N,P,S)<br/>
+@ Output: The sets FIRST(A), for each A ∈ N and FIRST(α) for each suffix α ∈ (Τ∪N)* of a rule's right-hand side in G.<br/>
++fun first<br/>
+=type <ul><li style="list-style-type: none">(Terminal&lt;~Unicode ∈ Types) @ Grammar is parameterized by the terminal type (default is unicode characters)</li>
+<li style="list-style-type: none">⟶ (Grammar(terminals,nonterminals,rules,initial) ∈ Grammar(Terminal))</li>
+<li style="list-style-type: none">⟶ extref (Nonterminal⟹Set(Terminal), SententialForm⟹Set(Terminal))</li>
+</ul>
+=code<ul><li style="list-style-type: none">∀nonterminal ∈ nonterminals:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[0][nonterminal] &lt;~ ∅; @ just for exposition: map values are default-inilialized on first access to key like in C++.</li>
+</ul>
+</li>
+<li style="list-style-type: none">...</li>
+</ul>
+<br/>
+−fun first<br/>
 </tt></body></html>
