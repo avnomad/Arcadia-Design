@@ -116,7 +116,24 @@
 <li>Will support expressions like <tt>(temp -= 32) *= 5/9</tt>.</li>
 <li>Support simultaneous assignment.</li>
 <li>Should be elidable.</li>
-<li>Provide different operators for shallow and deep assignment.</li>
+<li>Could provide different operators for shallow and deep assignment.</li>
+<li style="list-style-type: none"><ul><li>In most situations mutating a shallow copy invalidates all others and deallocating one should prevent others from deallocating the same memory. So a move that invalidates the source object might be preferable.</li>
+</ul>
+</li>
+<li>There are two options:</li>
+<li style="list-style-type: none"><ul><li>↜ denotes deep copy and move is signaled by using a function (C++). e.g.</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">v = u; // copy</li>
+</tt><li style="list-style-type: none"><tt>v = move(u); // move</tt></li>
+</ul>
+</li>
+<li>↜ denotes move (shallow copy + invalidation) and copy is signaled by using a function (Rust). e.g.</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">v = u.copy(); // copy</li>
+</tt><li style="list-style-type: none"><tt>v = u; // move</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">In any case, a modifier function is preferable to a 2nd operator because it can be used to change how arguments are passed as well.</li>
 </ul>
 </li>
 <li><b>Equality</b>&nbsp;(=,≠)</li>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Code Generation</title>
+</head><body><ul><li><b>Generation of Boilerplate Code</b></li>
+<li style="list-style-type: none"><ul><li><b>Copy &amp; Move</b></li>
+<li style="list-style-type: none"><ul><li>shallow copy for relocatable types that don't need invalidation. (so that bitwise copy can be used)</li>
+<li>deep copy for types consisting of deep copyable types.</li>
+<li>move for types consisting of movable types.</li>
+<li>move and deep copy from shallow copy for shallow types.</li>
+</ul>
+</li>
+<li><b>Comparison Operators</b></li>
+<li style="list-style-type: none"><ul><li>= from ≠ and vice versa</li>
+<li>&lt;,≤,&gt;,≥ from = and either &lt; or &gt;</li>
+<li>= from &lt; and &gt;</li>
+<li>shallow equals for relocatable types.</li>
+<li>deep equals for types consisting of types that support deep equals.</li>
+<li>all comparison operators for types that should be lexicographically ordered and consist of types supporting at least &lt; and =.</li>
+</ul>
+</li>
+<li><b>Generators</b></li>
+<li style="list-style-type: none"><ul><li>(e.g. for property testing)</li>
+<li>from constructors of immutable types iff generators exist for constructor parameter types.</li>
+<li>from constructors and methods with side-effects iff generators exist for parameter types of constructors and methods.</li>
+</ul>
+</li>
+<li><b>Serialization &amp; Deserialization</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</body></html>

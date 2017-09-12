@@ -49,6 +49,26 @@
 <li>Partial vs total order.</li>
 </ul>
 </li>
+<li><b>Copy &amp; Move</b></li>
+<li style="list-style-type: none"><ul><li>A number of attributes for declaring that:</li>
+<li style="list-style-type: none"><ul><li>shallow copy = bitwise copy (or equivalently that no pointers inside the object point inside the object) (could be <i>relocatable</i>)</li>
+<li>deep copy = shallow copy (or equivalently that no pointers inside the object point outside the object) (could be <i>shallow</i>) (implies move = deep copy)</li>
+<li>shallow copy can be used without invalidation. (either object is shallow or transitively immutable and points to garbage-collected memory or ?)</li>
+</ul>
+</li>
+<li>Although this isn't always true in C++, move can be defined as:</li>
+<li style="list-style-type: none"><ul><li>move = shallow copy + invalidation of source (invalidation can be done statically or dynamically)</li>
+</ul>
+</li>
+<li>We can also define:</li>
+<li style="list-style-type: none"><ul><li><i>movable</i>&nbsp;as having move function(s) defined (move assignment and construction?).</li>
+<li><i>deep copyable</i>&nbsp;as having deep copy function(s) defined (deep copy assignment and construction?).</li>
+<li><i>shallow copyable</i>&nbsp;as having shallow copy function(s) defined (shallow copy assignment and construction?).</li>
+<li><i>bit copyable</i>&nbsp;as being <i>relocatable</i>.</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Well-formedness of Function Calls</b></li>
 <li style="list-style-type: none"><ul><li>Needed for "paired-call" blocks to work.</li>
 <li>Specify that a function:</li>
@@ -62,7 +82,7 @@
 </li>
 <li><i>simple</i>? for types for which there is an invertible mapping from the type's elements to the binary combinations that can fit in the space an object of that type takes. i.e. All binary combinations represent valid objects.</li>
 <li><b>Optimization</b></li>
-<li style="list-style-type: none"><ul><li><i>relocatable</i>? for types whose objects are relocatable. i.e. They don't contain a field that points inside the object itself, so they can be relocated by simple bit-by-bit copy.</li>
+<li style="list-style-type: none"><ul><li></li>
 </ul>
 </li>
 <li><b>Thread Safety</b></li>
