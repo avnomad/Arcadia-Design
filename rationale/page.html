@@ -3,7 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rationale</title>
-</head><body><ul><li>The choice was made to design a fresh concrete syntax rather than reuse the syntax of one of the prominent language families (C, Pascal, etc.) to stress that this is a completely new language, set expectations and avoid surprises when the corresponding semantics don't match.</li>
+</head><body><ul><li><b>Designing Concrete Syntax from Scratch</b></li>
+<li style="list-style-type: none"><ul><li>The choice was made to design a fresh concrete syntax rather than reuse the syntax of one of the prominent language families (C, Pascal, etc.) to stress that this is a completely new language, set expectations and avoid surprises when the corresponding semantics don't match.</li>
+<li>Opportunity to avoid some nuances:</li>
+<li style="list-style-type: none"><ul><li>Difficulty in parsing &lt; and &gt; for both angle brackets and comparison.</li>
+<li>Dangling else problem.</li>
+<li>Accidental use of = instead of == in conditions.</li>
+<li>Need to commend closing braces with // end for|if|else|...</li>
+</ul>
+</li>
+<li>Opportunity to adapt syntax to parser capabilities.</li>
+</ul>
+</li>
 <li>The rules for selecting an encoding where selected so that international characters can still be used in systems that don't support a BOM to preceed the #! sequence.</li>
 <li>The form <tt>print "Hello World!\n";</tt>&nbsp;wasn't used because "print" can't be generalized (to streams).</li>
 <li>By using <b>fallthrough</b>&nbsp;I'm not hijacking <b>break</b>&nbsp;and <b>continue</b>.</li>
