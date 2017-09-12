@@ -4,7 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Statements</title>
 </head><body><ul><li><b>Control Structures</b></li>
-<li style="list-style-type: none"><ul><li>All control structures will be executable at compile time as well and usable in global and class definition contexts .</li>
+<li style="list-style-type: none"><ul><li>All control structures will be executable at compile time as well and usable in global and class definition contexts.</li>
+<li>Control structures will introduce their own nested scope (like {} in C) and support the export statement to make selected names available outside that scope.</li>
+<li style="list-style-type: none"><ul><li>That's mostly useful when control structures are used during compile-time. To e.g. define functions in a foreach loop.</li>
+<li>Names exported that way could be automatically imported (i.e. made available without prefixing them with the scope identifier) by the surrounding scope.</li>
+<li>Another option is control structures not creating their own scope (they don't in C#).</li>
+</ul>
+</li>
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li><tt>+if +while +for +foreach +block</tt></li>
 <tt><li style="list-style-type: none">−if −while −for −foreach −block</li>
@@ -96,9 +102,16 @@
 <li style="list-style-type: none"><ul><li>Do I need one?</li>
 <li>How can I avoid errors of the form <tt>for(...);</tt>?</li>
 <li>Perhaps I can lack an empty statement, but instead use a statement that does nothing by convention like <tt>null;</tt>.</li>
+<li>Alternatively I can allow empty statements only where I allow nesting. e.g.</li>
+<li style="list-style-type: none"><ul><li><tt>for i in 1..2:<span style="background-color: #ff99ff">;</span>&nbsp;# illegal</tt></li>
+<li><tt>+for i in 1..2:<span style="background-color: #ff99ff">;</span>&nbsp;# ok, but body is obviously empty</tt></li>
+<li style="list-style-type: none"><tt>−for</tt></li>
+</ul>
+</li>
 <li>D includes an empty statement but bans it from control statements like for. Proposes using an empty block instead.</li>
 </ul>
 </li>
+<li>Expression statements where the expression is present but has no side-effects will result in a warning.</li>
 </ul>
 </li>
 <li><b>Labels</b></li>
