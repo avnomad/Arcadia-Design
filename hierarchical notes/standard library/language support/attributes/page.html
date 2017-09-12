@@ -81,6 +81,14 @@
 </ul>
 </li>
 <li><i>simple</i>? for types for which there is an invertible mapping from the type's elements to the binary combinations that can fit in the space an object of that type takes. i.e. All binary combinations represent valid objects.</li>
+<li><b>Lifetimes</b></li>
+<li style="list-style-type: none"><ul><li><i>capture</i>&nbsp;to indicate that a function makes copies of an address parameter that outlive the function itself. Inverse of LLVM IR's <i><tt>nocapture</tt></i>.</li>
+</ul>
+</li>
+<li><b>Aliasing</b></li>
+<li style="list-style-type: none"><ul><li>An attribute similar to C99's <i>restrict</i>&nbsp;or LLVM IR's <i>noalias</i>. May make sense for pointers, references and pass-by-reference parameters.</li>
+</ul>
+</li>
 <li><b>Optimization</b></li>
 <li style="list-style-type: none"><ul><li></li>
 </ul>

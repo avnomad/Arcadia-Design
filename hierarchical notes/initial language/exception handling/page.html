@@ -6,6 +6,8 @@
 </head><body><ul><li>Exception objects will pack enough information to print a stack trace that will at a minimum contain a list of the stack frames that were active at the time the exception was thrown and the point of execution each instance was at the time. (function name, line number)</li>
 <li>Support <i>structured exceptions</i>&nbsp;that can propagate between threads.</li>
 <li>Encapsulate <i>floating point exceptions</i>.</li>
+<li>Exception specifications should be allowed to depend on the exception specifications of other functions. Like C++'s noexcept(expression), but generatlized to work with sets of exceptions? e.g.</li>
+<li style="list-style-type: none">throws((pred.throws <tt>−</tt>&nbsp; BadAlloc) ∪ FileNotFound)</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Should the existence of unreachable catch blocks be detected as an error like in D?</li>
 <li>I like the idea of propagating both the primary and secondary exceptions as well as D's approach to use a singly-linked list for it. Efficiency?</li>
@@ -13,6 +15,10 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Research the pros and cons of statically and dynamically checked exception specifications.</li>
+<li>Should I name the attribute <i>noexcept</i>&nbsp;(C++) or <i>nothrow</i>&nbsp;(D)?</li>
+<li>Will the attribute be statically or dynamically checked?</li>
+<li>What happens with exceptions produced by the system like numeric overflow, bounds violations, memory depletion and contract violation?</li>
+<li>Is an all-or-nothing attribute enough, or are elaborate exception specifications still needed?</li>
 </ul>
 </li>
 </ul>
