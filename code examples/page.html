@@ -232,6 +232,69 @@ a.subarray(begin,end)<br/>
 −export<br/>
 # would some sort of transitive export help?<br/>
 <br/>
+# serialize/deserialize JSON files. Needs more work... especially to work for serialization!<br/>
++block js</tt><ul><tt><li style="list-style-type: none">+structure Object</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">auto fields : String ⟹ Value = {};</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">syntax '{' ($0 ':' fields[$0]) % ',' '}';</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none"># alternatively:</li>
+<li style="list-style-type: none"># syntax '{' (let key : String in key ':' fields[key] end) % ',' '}';</li>
+</ul>
+</li>
+<li style="list-style-type: none">−structure Object</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+structure Array</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">auto elements : Vector(Value) = [];</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">syntax '[' elements[$0] % ',' ']';</li>
+</ul>
+</li>
+<li style="list-style-type: none">−structure Array</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">auto Value = String ∪ Number ∪ Object ∪ Array ∪ Boolean ∪ Null; # discriminated union</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+structure Boolean</li>
+</tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">auto value : bool;</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none"><tt>syntax "true"{value </tt>↜<tt>&nbsp;true;} | "false"{value </tt>↜<tt>&nbsp;false;};</tt></li>
+</ul>
+</li>
+<tt><li style="list-style-type: none">−structure Boolean</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+structure Null</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">syntax "null";</li>
+</ul>
+</li>
+<li style="list-style-type: none">−structure Null</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+structure String</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">auto value : global.String = "";</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">syntax '"' ((!('"'|'\\') </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">| "\\\"" ⟷ '"' | "\\\\" ⟷ '\\' | "\\/" ⟷ '/' &nbsp;| "\\b" ⟷ "\b"</li>
+<li style="list-style-type: none">| "\\f" ⟷ '\f' | "\\n" ⟷ '\n' &nbsp;| "\\r" ⟷ '\r' | "\\t" ⟷ '\t'</li>
+<li style="list-style-type: none">| "\\u" hex * 4 ⟷ ???)[value[$0]])* '"';</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">−structure String</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+structure Number</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">auto value : long;</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">syntax ('-'? ('0' | 1–9 0–9*) ('.' 0–9+)? (('e' | 'E') ('+'|'-')? 0–0+)?)[value];</li>
+</ul>
+</li>
+<li style="list-style-type: none">−structure Number</li>
+</tt></ul>
+<tt>−block js<br/>
+<br/>
 @ Compute the FIRST sets.<br/>
 @ Input: A Grammar G=(T,N,P,S)<br/>
 @ Output: The sets FIRST(A), for each A ∈ N and FIRST(α) for each suffix α ∈ (Τ∪N)* of a rule's right-hand side in G.<br/>

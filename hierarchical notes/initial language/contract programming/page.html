@@ -9,6 +9,8 @@
 </li>
 <li>ensures (postcondition)</li>
 <li>assigns</li>
+<li>invariants (class)</li>
+<li>May need something similar to <tt>oldof</tt>&nbsp;too.</li>
 <li>It may be reasonable to annotate some preconditions (or maybe other contracts as well?) so that they are compiled even in release mode. That way, they will be part of the function header and be visible in documentation, but they will also be left in the release binary to detect exploits!</li>
 <li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
 <li style="list-style-type: none"><ul><li>OS API (syscalls)</li>
@@ -21,9 +23,13 @@
 <li>Perhaps it will be best to emit the code that checks the contract in the caller, not the callee. That way, the optimizer will have a chance to remove them and there won't be a difference between distributing release or debug binaries.</li>
 <li>One way to implement contracts, laid out in a proposal for C++, is to emit many entry points to the function that defines the contracts. One entry point will be used when preconditions are checked in the caller and another when preconditions are checked in the callee (e.g. when called through a pointer).</li>
 <li>Contracts might express mathematical properties that can't necessarily be proved automatically.</li>
+<li>Function pointers should follow the same rules regarding contracts as interfaces.</li>
+<li>Could support reflecting on contracts. (e.g. get the preconditions of a function)</li>
+<li>Mutations won't be allowed inside contracts and neither will unhandled exceptions. This is preferably checked statically.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Look at specification languages.</li>
 <li>Select terminology (requires/ensures vs expects/ensures vs precondition/postcondition).</li>
+<li>Should contracts be blocks of statements or expressions or should both forms be allowed?</li>
 </ul>
 </li>
 </ul>
