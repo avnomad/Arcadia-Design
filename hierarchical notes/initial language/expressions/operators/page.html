@@ -112,8 +112,6 @@
 </li>
 <li><b>Assignment</b></li>
 <li style="list-style-type: none"><ul><li>Use the ↜ and &lt;~ operators.</li>
-<li>Will support modification-assignments</li>
-<li>Will support expressions like <tt>(temp -= 32) *= 5/9</tt>.</li>
 <li>Support simultaneous assignment.</li>
 <li>Should be elidable.</li>
 <li>Could provide different operators for shallow and deep assignment.</li>
@@ -134,6 +132,26 @@
 </ul>
 </li>
 <li style="list-style-type: none">In any case, a modifier function is preferable to a 2nd operator because it can be used to change how arguments are passed as well.</li>
+</ul>
+</li>
+<li><b>Compound Assignment</b></li>
+<li style="list-style-type: none"><ul><li>Or "augmented assignment" (or "modification assignment"?)</li>
+<li>Will support expressions like <tt>(temp -= 32) *= 5/9</tt>.</li>
+<li>There are a few alternatives for how the symbols are combined:</li>
+<li style="list-style-type: none"><ul><li>+↜</li>
+<li>↜+</li>
+<li>&lt;~+</li>
+<li>&lt;~(+)~</li>
+</ul>
+</li>
+<li><b>List</b></li>
+<li style="list-style-type: none"><ul><li>addition assignment (+↜)</li>
+<li>subtraction assignment (-↜)</li>
+<li>multiplication assignment (*↜)</li>
+<li>divition assignment (/↜)</li>
+<li>etc.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Equality</b>&nbsp;(=,≠)</li>
