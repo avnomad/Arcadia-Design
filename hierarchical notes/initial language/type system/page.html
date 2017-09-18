@@ -96,66 +96,12 @@
 </li>
 </ul>
 </li>
-<li><b>Matching Dynamic Sizes</b></li>
-<li style="list-style-type: none"><ul><li>Types may be parameterized by expressions that need to be checked statically, evaluated at run-time and affect the type's size.</li>
-<li style="list-style-type: none"><ul><li>An example is array types.</li>
-<li style="list-style-type: none"><ul><li><b>Use cases</b></li>
-<li style="list-style-type: none"><ul><li>string operations (e.g. concatenation)</li>
-<li>vector operations (e.g. addition)</li>
-<li>spline operations (e.g. raise or lower degree, evaluate, etc.)</li>
-<li>OS APIs (e.g. functions that need you to call them once to get the size of an array, allocate the array and call them again with the array)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Matching array types may require solving systems of linear equations.</li>
-<li style="list-style-type: none">e.g. If <tt>f ∈ T ⟶ (int[n], uint[n+10])</tt>&nbsp;and <tt>g ∈ (int[m−10], uint[m])</tt>, then g(f(x)) might need to solve the system</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">l1 = n</li>
-<li style="list-style-type: none">l2 = n+10</li>
-<li style="list-style-type: none">l3 = m-10</li>
-<li style="list-style-type: none">l4 = m</li>
-<li style="list-style-type: none">n = m-10</li>
-<li style="list-style-type: none">n+10 = m</li>
-</ul>
-</li>
-<li style="list-style-type: none">assuming l1, l2 and n are known and l3, l4 and m are unknowns. It should conclude that the system has exactly one solution (expressed as a function of one of the knowns), namely l4=m=n+10 and l3 = n.</li>
-</ul>
-</li>
-<li><b>Implementation</b></li>
-<li style="list-style-type: none"><ul><li>The actual array sizes will be passes as extra hidden arguments.</li>
-<li style="list-style-type: none"><ul><li><b>Examples</b></li>
-<li style="list-style-type: none"><ul><li><tt>merge(T a[n], T b[k])⟶T[n+k]</tt></li>
-<tt><li style="list-style-type: none">{</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
-</ul>
-</li>
-</tt><li style="list-style-type: none"><tt>}</tt></li>
-<li style="list-style-type: none">In the above we have 3 different lengths, so 4 hidden arguments will be passed (the 4th is for the returned array's address).</li>
-<li><tt>op+(double a[n], double b[n])⟶doube[n]</tt></li>
-<tt><li style="list-style-type: none">{</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">for(int c=0 ; c &lt; a.size ; ++c)</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[c] &lt;~ a[c] + b[c];</li>
-</ul>
-</li>
-</ul>
-</li>
-</tt><li style="list-style-type: none"><tt>}</tt></li>
-<li style="list-style-type: none">Here we have one hidden argument for the base address of the resulting array and one hidden argument for the common length of the input and output arrays.</li>
-<li style="list-style-type: none">In reality, two functions are defined: the explicit op+ and an implicit size calculation function (a.size, b.size)⟶retval.size.</li>
-</ul>
-</li>
-<li>Alternatively, we could put the lengths in the first word of the array representation, like Java does. </li>
-<li style="list-style-type: none"><ul><li>This might be wasteful if not all lengths are needed, but may be faster if they are used frequently.</li>
-<li>For multidimensional arrays it is preferable to put all dimensions in the beginning than to have arrays of arrays, each with its own length like in Java.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li>It might be necessary to include prefix, postfix, infix, function, method, etc. as part of the (function) type.</li>
+<li><b>Runtime-sized Types</b></li>
+<li><b>Generalized Size Variables</b></li>
+<li style="list-style-type: none"><ul><li>It is conceivable that the same techniques used to express properties and constraints about runtime-sized types can be useful for other types too. e.g. to specify that two graphs need to have the same number of nodes.</li>
+</ul>
+</li>
 <li><b>Static vs Dynamic Typing</b></li>
 <li style="list-style-type: none"><ul><li>I could add dynamic type systems too allowing the set that takes the place of the type to be computed at execution time (although I'll continue to allow it to be computed at compilation time and the latter will be the default), but I don't know whether this is necessary.</li>
 </ul>

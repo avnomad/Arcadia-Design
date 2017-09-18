@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Runtime-sized Types</title>
+</head><body><ul><li><b>Runtime-sized Arrays</b></li>
+<li style="list-style-type: none"><ul><li>They are parameterized by expressions that are evaluated at runtime to compute the array's size.</li>
+<li>There will be ways to specify constraints on the sizes of such arrays, that should be met when arguments are bound to parameters.</li>
+<li>Under some circumstances those constraints will be solvable at compile-time, in others runtime checks will be emitted.</li>
+<li><b>Use cases</b></li>
+<li style="list-style-type: none"><ul><li>string operations (e.g. concatenation)</li>
+<li>vector operations (e.g. addition)</li>
+<li>spline operations (e.g. raise or lower degree, evaluate, etc.)</li>
+<li>OS APIs (e.g. functions that need you to call them once to get the size of an array, allocate the array and call them again with the array)</li>
+</ul>
+</li>
+<li><b>Implementation</b></li>
+<li style="list-style-type: none"><ul><li>The actual array sizes will be passed as extra hidden arguments.</li>
+<li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li><tt>merge(T a[n], T b[k])⟶T[n+k]</tt></li>
+<tt><li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">...</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>}</tt></li>
+<li style="list-style-type: none">In the above we have 3 different lengths, so 4 hidden arguments will be passed (the 4th is for the returned array's address).</li>
+<li><tt>op+(double a[n], double b[n])⟶doube[n]</tt></li>
+<tt><li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">for(int c=0 ; c &lt; a.size ; ++c)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[c] &lt;~ a[c] + b[c];</li>
+</ul>
+</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>}</tt></li>
+<li style="list-style-type: none">Here we have one hidden argument for the base address of the resulting array and one hidden argument for the common length of the input and output arrays.</li>
+<li style="list-style-type: none">In reality, two functions are defined: the explicit op+ and an implicit size calculation function (a.size, b.size)⟶retval.size.</li>
+</ul>
+</li>
+<li>Alternatively, we could put the lengths in the first word of the array representation, like Java does. </li>
+<li style="list-style-type: none"><ul><li>This might be wasteful if not all lengths are needed, but may be faster if they are used frequently.</li>
+</ul>
+</li>
+<li>For multidimensional arrays it is preferable to put all dimensions in the beginning than to have arrays of arrays, each with its own length like in Java.</li>
+</ul>
+</li>
+<li><b>Size variables</b></li>
+<li style="list-style-type: none"><ul><li>There are a number of options when it comes to how they are defined:</li>
+<li style="list-style-type: none"><ul><li>Don't use them: use |name_of_array| instead. For short array names it'll be almost as short.</li>
+<li>Whenever an undeclared identifier appears in an array size expression, assume it names a size variable.</li>
+<li>Prefix size variable names with a special character, so that they can be searched in their own namespace and they don't get captured when someone defines a normal variable of the same name in the scope. e.g. @n, @k, etc.</li>
+<li>Require them to be explicitly defined, either as normal parameters or using a special syntax.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Return Value</b></li>
+<li style="list-style-type: none"><ul><li>When arrays are returned by external reference (or by value too?) there are the following possibilities:</li>
+<li style="list-style-type: none"><ul><li>An expression is given so that the caller can calculate the size. It must be side-effect free.</li>
+<li>The size expression is omitted, but the size expression can be inferred. The inferred expression will be made part of the interface of the function. It can't depend on retval.size.</li>
+<li>An expression is not given and can't be inferred from the function body. The function compiles, but can't be used unless the result is assigned to an object of known size: that size will be passed to the function. A warning about limited usability of the function can be issued.</li>
+<li>An error is issued.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Constraints</b></li>
+<li style="list-style-type: none"><ul><li>Linear constraints should be solvable automatically at compile-time and be sufficient for 80% of the applications including the ones mentioned above.</li>
+<li>It may also be possible to combine one-way constraints with linear ones in the same functions.</li>
+<li>In some cases even non-linear constraints are solvable for some of their variables.</li>
+<li><b>Linear</b></li>
+<li style="list-style-type: none"><ul><li><b>Goals</b></li>
+<li style="list-style-type: none"><ul><li>Identify cases when not all sizes need to be passed as hidden variables, but some are identical or can be computed by the others.</li>
+<li style="list-style-type: none"><ul><li>e.g. We may decide that sizes that can be computed from a base size using an addition or subtraction need not be passed individually, while others that need a multiplication should.</li>
+</ul>
+</li>
+<li>Statically check for correctness instead of emitting runtime checks.</li>
+<li>Allow some sizes to be left out and inferred from others.</li>
+<li>Generate the function that will be used to calculate the size of the output as a function of the sizes of the inputs.</li>
+</ul>
+</li>
+<li><b>Notation</b></li>
+<li style="list-style-type: none"><ul><li>@ for internal size variables produced by the system.</li>
+<li>$ for explicit size variables defined by the programmer.</li>
+<li># for program values of integral type that can't be known at compile-time and are used as array sizes. Those known at compile-time appear verbatim.</li>
+</ul>
+</li>
+<li><b>Algorithm</b></li>
+<li style="list-style-type: none"><ul><li>The solver algorithm should be able to treat each function's body individually so that systems of equations don't get too big.</li>
+<li>When solving the system for an individual function body the following should be considered known:</li>
+<li style="list-style-type: none"><ul><li>Internal size variables associated with input parameters for this body.</li>
+<li>Values of normal expressions, used as array sizes.</li>
+</ul>
+</li>
+<li style="list-style-type: none">Everything else should be considered unknown, including internal size variables associated with input parameters of recursive calls.</li>
+<li>Deterministic expressions that are written in an identical way (save for whitespace) should result in the same # parameter.</li>
+<li style="list-style-type: none"><ul><li>The compiler might be able to prove that different computations result in the same value and in such a case it should use the same # parameter as well, but this is not guaranteed.</li>
+</ul>
+</li>
+<li>An error is issued if the system has zero solutions and a different one if it has infinitely many.</li>
+<li>If the system has a unique solution then:</li>
+<li style="list-style-type: none"><ul><li>If it imposes additional constraints to a # parameter, an error is issued.</li>
+<li>If it imposes additional constraints to a @ parameter, an informative message can be printed if the corresponding bounds expression was originally omitted.</li>
+<li>If a public size depends on a # parameter whose computation depends on private values or involves side-effects, an error is issued.</li>
+</ul>
+</li>
+<li>Otherwise the function type checks.</li>
+</ul>
+</li>
+<li><b>Examples</b></li>
+<li style="list-style-type: none"><ul><li><tt>merge : (a : int[na], b : int[nb]) ⟶ external ref int[na+nb]</tt></li>
+<li style="list-style-type: none">No binding of arrays takes place in the function body so only the header is relevant here.</li>
+<li style="list-style-type: none">The following system of equations is constructed:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@m-0-a = $na</li>
+<li style="list-style-type: none">@m-0-b = $nb</li>
+<li style="list-style-type: none">@m-0-ret = $na + $nb</li>
+</ul>
+</li>
+<li style="list-style-type: none">The system has a unique solution that depends on the 2 known @ parameters:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@m-0-ret = @m-0-a + @m-0-b</li>
+<li style="list-style-type: none">$na = @m-0-a</li>
+<li style="list-style-type: none">$nb = @m-0-b</li>
+</ul>
+</li>
+<li style="list-style-type: none">Only the first equation is kept since na and nb are not directly used in the body. It will be used by the called for allocation.</li>
+<li style="list-style-type: none">@m-0-a and @m-0-b will be passed as hidden variables while @m-0-ret will be computed when needed.</li>
+<li><tt>+function mergesort : </tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">(a : int[n]) ⟶ external ref int[n]</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+if n ≤ 1:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">return a;</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">val m = n/2+1;</li>
+<li style="list-style-type: none">return merge(mergesort(a[0..m], mergesort(a[m..$]));</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−function mergesort</tt></li>
+<li style="list-style-type: none">The following system of equations is constructed:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-a = $ms-0-n</li>
+<li style="list-style-type: none">@ms-0-ret = $ms-0-n</li>
+<li style="list-style-type: none">@ms-1-a = #m-0</li>
+<li style="list-style-type: none">@ms-1-a = $ms-1-n</li>
+<li style="list-style-type: none">@ms-1-ret = $ms-1-n</li>
+<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-a = $ms-2-n</li>
+<li style="list-style-type: none">@ms-2-ret = $ms-2-n</li>
+<li style="list-style-type: none">@m-0-a = @ms-1-ret</li>
+<li style="list-style-type: none">@m-0-b = @ms-2-ret</li>
+<li style="list-style-type: none">@m-0-ret = @m-0-a + @m-0-b</li>
+<li style="list-style-type: none">@ms-0-ret = @m-0-ret</li>
+</ul>
+</li>
+<li style="list-style-type: none">The system has a unique solution that depends on 1 @ parameter and 1 # parameter:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-ret = @ms-0-a</li>
+<li style="list-style-type: none">$ms-0-n = @ms-0-a</li>
+<li style="list-style-type: none">@ms-1-a = #m</li>
+<li style="list-style-type: none">$ms-1-n = #m</li>
+<li style="list-style-type: none">@ms-1-ret = #m</li>
+<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">$ms-2-n = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-ret = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@m-0-a = #m</li>
+<li style="list-style-type: none">@m-0-b = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@m-0-ret = $ms-0-a</li>
+</ul>
+</li>
+<li style="list-style-type: none">No public sizes depend on private # parameters.</li>
+<li style="list-style-type: none">The following equations will be kept for code generation:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-ret = @ms-0-a</li>
+<li style="list-style-type: none">@ms-1-a = #m</li>
+<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+</ul>
+</li>
+<li style="list-style-type: none">Only @ms-0-a will be passed as hidden variable. @ms-0-ret is identical.</li>
+<li><tt>+function split : </tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">(list : int[n+m]) ⟶ (int[n], int[m])</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">auto (mut i, mut j) = (0, 0);</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+∀e ∈ list:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+if e ≥ 0:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[0][i++];</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[1][j++];</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+</ul>
+</li>
+<li style="list-style-type: none">−∀</li>
+</ul>
+</li>
+<li style="list-style-type: none">−function split</li>
+</tt><li style="list-style-type: none"></li>
+<li style="list-style-type: none">The following system of equations is constructed:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@sp-0-a = $sp-0-n + $sp-0-m</li>
+<li style="list-style-type: none">@sp-0-ret0 = $sp-0-n</li>
+<li style="list-style-type: none">@sp-0-ret1 = $sp-0-m</li>
+</ul>
+</li>
+<li style="list-style-type: none">The system has infinitely many solutions:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@sp-0-ret0 = @sp-0-a <tt>−</tt>&nbsp;@sp-0-ret1</li>
+<li style="list-style-type: none">$sp-0-n = @sp-0-a <tt>−</tt>&nbsp;@sp-0-ret1</li>
+<li style="list-style-type: none">$sp-0-m = @sp-0-ret1</li>
+</ul>
+</li>
+<li style="list-style-type: none">An error should be issued explaining the ambiguity. Alternatively, one could investigate further to see that making @sp-0-ret0 or @sp-0-ret1 known results in a unique solution and only warn about the function's limited applicability. In such a scenario the function result could be assigned to an array of known size without an error, but the function would still likely fail with array-out-of-bounds at run-time.</li>
+<li><tt>+function zip : </tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">(T, S : Type) ⟶ (a : T[n], b : S[n]) ⟶ (T, S)[n]</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">∀i ∈ retval.indices():</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i] ↜ (a[i], b[i]);</li>
+</ul>
+</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−function zip</tt></li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">The following system of equations is constructed:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@zip-0-a = $zip-0-n</li>
+<li style="list-style-type: none">@zip-0-b = $zip-0-n</li>
+<li style="list-style-type: none">@zip-0-ret = $zip-0-n</li>
+</ul>
+</li>
+<li style="list-style-type: none">The system has a unique solution that depends on 1 @ parameter:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@zip-0-ret = @zip-0-a</li>
+<li style="list-style-type: none">$zip-0-n = @zip-0-a</li>
+<li style="list-style-type: none">@zip-0-b = @zip-0-a</li>
+</ul>
+</li>
+<li style="list-style-type: none">An additional constraint has been imposed on @zip-0-b, but since the array bound was filled, that was probably the intention and no message is printed.</li>
+<li style="list-style-type: none">The following equations are kept as part of the function's interface:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@zip-0-ret = @zip-0-a</li>
+<li style="list-style-type: none">@zip-0-b = @zip-0-a</li>
+</ul>
+</li>
+<li style="list-style-type: none">Only @zip-0-a is passed as a hidden variable.</li>
+<li><tt>itoa : (n : uint) ⟶ ubyte[floor(log10(n))+1]</tt></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@itoa-0-ret = #itoa-0-ret</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+function ascending_digits : </tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">(n : uint) ⟶ (ubyte, bool)[]</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">auto digits = itoa(n);</li>
+<li style="list-style-type: none">auto ascending : bool[];</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">ascending[0] = true;</li>
+<li style="list-style-type: none">∀i ∈ 1..|digits|:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">ascending[i] = digits[i−1] &lt; digits[i];</li>
+</ul>
+</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">return zip(digits, ascending);</li>
+</ul>
+</li>
+<li style="list-style-type: none">−function ascending_digits</li>
+<li style="list-style-type: none"></li>
+</tt><li style="list-style-type: none">The following system of equations is constructed:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ad-0-dg = @itoa-0-ret</li>
+<li style="list-style-type: none">@itoa-0-ret = #itoa-0-ret</li>
+<li style="list-style-type: none">@zip-0-a = @ad-0-dg</li>
+<li style="list-style-type: none">@zip-0-b = @ad-0-as</li>
+<li style="list-style-type: none">@zip-0-ret = @zip-0-a</li>
+<li style="list-style-type: none">@zip-0-b = @zip-0-a</li>
+<li style="list-style-type: none">@ad-0-ret = @zip-0-ret</li>
+</ul>
+</li>
+<li style="list-style-type: none">The system has a unique solution that depends on 1 # parameter:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ad-0-ret = #itoa-0-ret</li>
+<li style="list-style-type: none">@ad-0-dg = #itoa-0-ret</li>
+<li style="list-style-type: none">@ad-0-as = #itoa-0-ret</li>
+<li style="list-style-type: none">@zip-0-ret = #itoa-0-ret</li>
+<li style="list-style-type: none">@zip-0-a = #itoa-0-ret</li>
+<li style="list-style-type: none">@zip-0-b = #itoa-0-ret</li>
+<li style="list-style-type: none">@itoa-0-ret = #itoa-0-ret</li>
+</ul>
+</li>
+<li style="list-style-type: none">#itoa-0-ret is computed by the expression "<tt>floor(log10(n))+1"</tt>, which only depends on ascending_digits' parameter and is side-effect free and thus, is suitable for evaluation by an arbitrary caller.</li>
+<li style="list-style-type: none">The following equations are kept as part of the function's interface:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ad-0-ret = #itoa-0-ret</li>
+</ul>
+</li>
+<li style="list-style-type: none">Only @ad-0-ret is passed as a hidden variable.</li>
+<li style="list-style-type: none">#itoa-0-ret = <tt>floor(log10(n))+1</tt>&nbsp;is inferred as the size of both ascending and retval arrays.</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">Additionally the following linear inequalities could have been inferred:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ad-0-as &gt; 0</li>
+</ul>
+</li>
+<li style="list-style-type: none">An extension to the system that would flag this as an error could lead us to revise the type of itoa to something that exposes the fact that <tt>∀</tt>n.|itoa(n)|&gt;0.</li>
+<li>If <tt>f ∈ T ⟶ (int[n], uint[n+10])</tt>&nbsp;and <tt>g ∈ (int[m−10], uint[m])</tt>, then g(f(x)) might need to solve the system</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">l1 = n</li>
+<li style="list-style-type: none">l2 = n+10</li>
+<li style="list-style-type: none">l3 = m<tt>−</tt>10</li>
+<li style="list-style-type: none">l4 = m</li>
+<li style="list-style-type: none">n = m<tt>−</tt>10</li>
+<li style="list-style-type: none">n+10 = m</li>
+</ul>
+</li>
+<li style="list-style-type: none">assuming l1, l2 and n are known and l3, l4 and m are unknowns. It should conclude that the system has exactly one solution (expressed as a function of one of the knowns), namely l4=m=n+10 and l3 = n.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>One-Way</b></li>
+<li style="list-style-type: none"><ul><li>The simplest case of a one-way constraint is the expression that computes the size of a returned array from the function arguments.</li>
+<li>Should one-way constraints between parameters or computing a parameter size from that of the return value be written in the type, or as a preconditions?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Generalized Runtime-sized Types</b></li>
+<li style="list-style-type: none"><ul><li>Any type whose size is not determined until the program runs.</li>
+<li style="list-style-type: none"><ul><li>Any structure that has runtime-sized arrays as fields qualifies. Is there any other case?</li>
+</ul>
+</li>
+<li>In general same rules apply as with runtime-sized arrays.</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Can a structure contain more than one runtime-sized member? Can they appear anywhere, or just at the end?</li>
+<li>How are they defined and used? In particular how is their size parameter tied to the parameters of sub-objects?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</body></html>
