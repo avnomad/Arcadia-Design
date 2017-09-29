@@ -141,14 +141,16 @@
 <li style="list-style-type: none">−if</li>
 </ul>
 </li>
-</tt><li style="list-style-type: none"><tt>−function mergesort</tt></li>
+<li style="list-style-type: none">−function mergesort</li>
+</tt><li style="list-style-type: none"></li>
 <li style="list-style-type: none">The following system of equations is constructed:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-a = $ms-0-n</li>
 <li style="list-style-type: none">@ms-0-ret = $ms-0-n</li>
-<li style="list-style-type: none">@ms-1-a = #m-0</li>
+<li style="list-style-type: none">@ms-0-ret = @ms-0-a</li>
+<li style="list-style-type: none">@ms-1-a = #m<tt>−</tt>0</li>
 <li style="list-style-type: none">@ms-1-a = $ms-1-n</li>
 <li style="list-style-type: none">@ms-1-ret = $ms-1-n</li>
-<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt>&nbsp;#m</li>
 <li style="list-style-type: none">@ms-2-a = $ms-2-n</li>
 <li style="list-style-type: none">@ms-2-ret = $ms-2-n</li>
 <li style="list-style-type: none">@m-0-a = @ms-1-ret</li>
@@ -163,12 +165,12 @@
 <li style="list-style-type: none">@ms-1-a = #m</li>
 <li style="list-style-type: none">$ms-1-n = #m</li>
 <li style="list-style-type: none">@ms-1-ret = #m</li>
-<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt>&nbsp;#m</li>
-<li style="list-style-type: none">$ms-2-n = $ms-0-a <tt>−</tt>&nbsp;#m</li>
-<li style="list-style-type: none">@ms-2-ret = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">$ms-2-n = @ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-ret = @ms-0-a <tt>−</tt>&nbsp;#m</li>
 <li style="list-style-type: none">@m-0-a = #m</li>
-<li style="list-style-type: none">@m-0-b = $ms-0-a <tt>−</tt>&nbsp;#m</li>
-<li style="list-style-type: none">@m-0-ret = $ms-0-a</li>
+<li style="list-style-type: none">@m-0-b = @ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@m-0-ret = @ms-0-a</li>
 </ul>
 </li>
 <li style="list-style-type: none">No public sizes depend on private # parameters.</li>
@@ -179,11 +181,54 @@
 </ul>
 </li>
 <li style="list-style-type: none">Only @ms-0-a will be passed as hidden variable. @ms-0-ret is identical.</li>
-<li><tt>+function split : </tt></li>
-<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">(list : int[n+m]) ⟶ (int[n], int[m])</li>
-</tt></ul>
+<li><tt>+function bad_mergesort : </tt></li>
+<tt><li style="list-style-type: none"><ul><li style="list-style-type: none">(a : int[n]) ⟶ external ref int[n]</li>
+</ul>
 </li>
-<tt><li style="list-style-type: none">=code</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+if n ≤ 1:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">return a;</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">val m = n/2+1;</li>
+<li style="list-style-type: none">return merge(bad_mergesort(a[0..m], bad_mergesort(a[m+1..$]));</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+</ul>
+</li>
+<li style="list-style-type: none">−function bad_mergesort</li>
+</tt><li style="list-style-type: none"></li>
+<li style="list-style-type: none">The following system of equations is constructed:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-a = $ms-0-n</li>
+<li style="list-style-type: none">@ms-0-ret = $ms-0-n</li>
+<li style="list-style-type: none">@ms-0-ret = @ms-0-a</li>
+<li style="list-style-type: none">@ms-1-a = #m<tt>−</tt>0</li>
+<li style="list-style-type: none">@ms-1-a = $ms-1-n</li>
+<li style="list-style-type: none">@ms-1-ret = $ms-1-n</li>
+<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt>&nbsp;#m <tt>− </tt>1</li>
+<li style="list-style-type: none">@ms-2-a = $ms-2-n</li>
+<li style="list-style-type: none">@ms-2-ret = $ms-2-n</li>
+<li style="list-style-type: none">@m-0-a = @ms-1-ret</li>
+<li style="list-style-type: none">@m-0-b = @ms-2-ret</li>
+<li style="list-style-type: none">@m-0-ret = @m-0-a + @m-0-b</li>
+<li style="list-style-type: none">@ms-0-ret = @m-0-ret</li>
+</ul>
+</li>
+<li style="list-style-type: none">The system has no solutions:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-ret = @ms-0-ret <tt>−</tt>&nbsp;#m <tt>−</tt>&nbsp;1 + #m </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">or</li>
+</ul>
+</li>
+<li style="list-style-type: none">0 = 1</li>
+</ul>
+</li>
+<li><tt>+function split : </tt></li>
+<tt><li style="list-style-type: none"><ul><li style="list-style-type: none">(list : int[n+m]) ⟶ (int[n], int[m])</li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">auto (mut i, mut j) = (0, 0);</li>
 <li style="list-style-type: none"></li>
 <li style="list-style-type: none">+∀e ∈ list:</li>
