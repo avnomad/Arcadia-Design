@@ -62,16 +62,19 @@
 <li><b>Mutability</b></li>
 <li style="list-style-type: none"><ul><li>Variables should be transitively immutable by default (like in Rust).</li>
 <li style="list-style-type: none"><ul><li>That will be especially useful if type and function definitions are treated like variable definitions, since you don't usually want the former to change!</li>
-<li>Rebinding of variable names (not shadowing) should probably be avoided too. At least when it comes to function, type and mathematical constant names, as it'll be confusing.</li>
-<li style="list-style-type: none"><ul><li>If needed, the same mechanism used to undeclare operators can be used here too.</li>
+<li>Rebinding of variable names (not shadowing) should probably be avoided:</li>
+<li style="list-style-type: none"><ul><li>It'll be confusing to rebind function, type and mathematical constant names.</li>
+<li>Referring to exported names from the outside may become ambiguous.</li>
 </ul>
 </li>
+<li style="list-style-type: none">If needed, the same mechanism used to undeclare operators can be used here too.</li>
 <li>A <tt>mut</tt>&nbsp;attribute can be applied to different parts of a type expression to make that part mutable. e.g.</li>
 <li style="list-style-type: none"><ul><li><tt>int mut * mut p;</tt></li>
 </ul>
 </li>
 </ul>
 </li>
+<li>Parameters can be transitively const by default instead. (so that they can be applied to mutable arguments as well)</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Search open-source code to confirm most variables declared are used like constants in practice!</li>
 </ul>

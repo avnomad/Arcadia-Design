@@ -20,6 +20,15 @@
 <li>all comparison operators for types that should be lexicographically ordered and consist of types supporting at least &lt; and =.</li>
 </ul>
 </li>
+<li><b>Constructors</b></li>
+<li style="list-style-type: none"><ul><li>no argument, initializing fields to the values that appear in the initializer of their declarations.</li>
+<li>with as many parameters as there are fields without a specific attribute in the class declaration, initializing the fields using the corresponding arguments.</li>
+</ul>
+</li>
+<li><b>Deconstructors</b></li>
+<li style="list-style-type: none"><ul><li>with as many parameters as there are fields without a specific attribute in the class declaration, deconstructing the object to that many values.</li>
+</ul>
+</li>
 <li><b>Generators</b></li>
 <li style="list-style-type: none"><ul><li>(e.g. for property testing)</li>
 <li>from constructors of immutable types iff generators exist for constructor parameter types.</li>
