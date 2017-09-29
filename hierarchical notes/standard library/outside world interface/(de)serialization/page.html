@@ -76,6 +76,8 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do semantic actions need to roll back when backtracking? How does Spirit solve this?</li>
+<li>Will $0, $1, etc. be enough or will I need something like @0, @1, etc. to avoid ambiguities with short lambdas?</li>
+<li>Will something like <tt>with x ∈ container: x</tt>&nbsp;generalize better for arbitrary containers?</li>
 </ul>
 </li>
 </ul>
@@ -104,6 +106,7 @@
 <li style="list-style-type: none">and that format be usable for both parsing and printing expression trees?</li>
 <li style="list-style-type: none">sum, prod, var, node would be the deconstructors of respective types, and those types would be assumed as the non-terminals of a grammar. The types of left and right would be used as the non-terminals of the right hand side of the rules. A declaration of the grammar (terminals, non-terminals, rules, starting non-terminal) may be needed.</li>
 <li>May be able to check whether $0 is used as an l-value or r-value to dissambiguate its meaning.</li>
+<li>Containers could define @0, @1, etc inside the scope of some of their functions and when these are used with those functions the result could be something that packs the information (e.g. the container, the type of its elements and the way to iterate over its elements and insert new ones) needed by the various levels of repeated grammar sub-expressions to work.</li>
 </ul>
 </li>
 <li><b>Relationship with Arcadia's parser</b></li>
