@@ -34,12 +34,27 @@
 </ul>
 </li>
 <li><b>Scanning</b></li>
-<li style="list-style-type: none"><ul><li>identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
+<li style="list-style-type: none"><ul><li>Identifiers, strings, comments, etc. can contain any number and kind of Unicode characters.</li>
+<li>Could use:</li>
+<li style="list-style-type: none"><ul><li>" for strings</li>
+<li>' for characters</li>
+<li>` for identifiers containing special characters. e.g. `strictly ascending`</li>
+<li>`` for identifiers consisting of a single character denoted by its Unicode name. e.g. ``⁡⁡FUNCTION APPLICATION``</li>
+<li>''delimiter"string"delimiter'' for raw string literals?</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Support D-like hex strings?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Parsing</b></li>
 <li style="list-style-type: none"><ul><li>Support defining and overloading operators.</li>
 <li>You should be able to specify the <b>fixity, arity, precedence</b>&nbsp;(or priority, or scope) and <b>associativity </b>of each operator and overload them.</li>
+<li style="list-style-type: none"><ul><li>Precedence should be taken into account only if there is ambiguity, otherwise a postfix '+' with higher precedence than the infix one could make 'a+b' fail to parse.</li>
+</ul>
+</li>
 <li>Support distfix operators.</li>
 <li>Support juxtaposition. (like Fortress)</li>
 <li style="list-style-type: none"><ul><li>Juxtaposition will be considered a binary operator and will obey the same rules as other binary operators when it comes to importing it into a scope.</li>
