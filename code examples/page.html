@@ -19,12 +19,14 @@ import io;<br/>
 −fun main<br/>
 <br/>
 # fill an array<br/>
-+∀ (element, index) ∈ zip(array, array.indices)<br/>
-element &lt;~ index;<br/>
++∀ (element, index) ∈ zip(array, array.indices)
+<ul><li style="list-style-type: none">element &lt;~ index;</li>
+</ul>
 −∀<br/>
 <br/>
-+∀ line ∈ ifstream("input.txt").lines) # lines is a range<br/>
-element &lt;~ index;<br/>
++∀ line ∈ ifstream("input.txt").lines) # lines is a range
+<ul><li style="list-style-type: none">element &lt;~ index;</li>
+</ul>
 −∀<br/>
 <br/>
 # Wrapping functions will be easier in Arcadia:<br/>
