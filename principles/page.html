@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Principles</title>
-</head><body>Below keep in mind that the ultimate goal is to <i>promote a way to develop applications</i>&nbsp;that takes advantage of the <i>expressiveness</i>&nbsp;and <i>brevity</i>&nbsp;features to quickly develop a prototype, then the <i>safety</i>&nbsp;and <i>testing</i>&nbsp;features to make sure it's correct and finally the <i>modifiability</i>&nbsp;and <i>performance</i>&nbsp;features to edit the details and fine tune performance using rapid iterations of trial-and-error driven by <i>automatically collected data</i>.<ul><li style="list-style-type: none"></li>
+</head><body>Below keep in mind that the ultimate goal is to <i>promote a way to develop applications</i> that takes advantage of the <i>expressiveness</i> and <i>brevity</i> features to quickly develop a prototype, then the <i>safety</i> and <i>testing</i> features to make sure it's correct and finally the <i>modifiability</i> and <i>performance</i> features to edit the details and fine tune performance using rapid iterations of trial-and-error driven by <i>automatically collected data</i>.<ul><li style="list-style-type: none"></li>
 <li><b>Performance</b></li>
 <li style="list-style-type: none"><ul><li>For each algorithm it should be possible to attain at least the same performance you'd get with C with at most the same effort.</li>
 <li>In the general case one should get better performance per effort than in C.</li>
@@ -70,7 +70,7 @@
 </ul>
 </li>
 <li>In a sense, the language's meta-language should be the language itself.</li>
-<li>It should be possible to express any program with a most as much code (asymptotically) as in C++.</li>
+<li>It should be possible to express any program with at most as much code (asymptotically) as in C++.</li>
 <li>One should be able to omit things and let the compiler fill them up using inference, defaults and default defaults. E.g. the following could be omitted:</li>
 <li style="list-style-type: none"><ul><li>storage class</li>
 <li>parameter pass mode</li>
@@ -87,7 +87,7 @@
 </ul>
 </li>
 <li><b>Learnability</b></li>
-<li style="list-style-type: none"><ul><li>Operators and identifiers should be familiar in the sense that they have to already be in use by another language or notation, preferably by mathematical textbooks.</li>
+<li style="list-style-type: none"><ul><li>Operators and identifiers should be familiar in the sense that they should already be in use by another language or notation, preferably by mathematical textbooks.</li>
 <li>The language shall have a few elementary structures from which all other structures are written as libraries. [from RISC]</li>
 <li style="list-style-type: none"><ul><li>e.g. object-oriented programming can be an importable module.</li>
 </ul>
@@ -101,17 +101,17 @@
 <li style="list-style-type: none"><ul><li>Decisions should be deferred as much as possible (so that more information is available when they are made and less code is based on them). In practice this might mean that:</li>
 <li style="list-style-type: none"><ul><li>Decisions are moved from entity definition to entity use time. E.g. you shouldn't have to decide at definition time whether:</li>
 <li style="list-style-type: none"><ul><li>a function will be computed statically</li>
-<li>a class will be used in an inheritence hierarchy.</li>
+<li>a class will be used in an inheritance hierarchy.</li>
 <li>a method will be dispatched dynamically.</li>
 </ul>
 </li>
-<li>Enities can present different views to different clients. e.g.</li>
-<li style="list-style-type: none"><ul><li>A map can present it's keys as a set.</li>
+<li>Entities can present different views to different clients. e.g.</li>
+<li style="list-style-type: none"><ul><li>A map can present its keys as a set.</li>
 <li>An array can present itself as a function taking positive integers and vice versa.</li>
 </ul>
 </li>
 <li>Entities can be substituted for others as long as they implement the necessary interface.</li>
-<li style="list-style-type: none"><ul><li>In the structural subtyping sence.</li>
+<li style="list-style-type: none"><ul><li>In the structural subtyping sense.</li>
 </ul>
 </li>
 </ul>
