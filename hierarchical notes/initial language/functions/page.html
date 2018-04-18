@@ -27,23 +27,23 @@
 <li style="list-style-type: none">Although repeating some computations twice isn't recommended, if the function is very fast (e.g. 60ns) and allocating memory in the heap is relatively slow (e.g. 1ms) then it will be reasonable for the programmer to prefer running the function 2 times and the language could help him by automatically generating a "dry-run" version of the function. The original function shall not read from the returned array (retval) (not even its size?) and writes to the returned array will be compiled to no-ops in the dry-run version.</li>
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li><i>complex-parameter-list</i>: <span style="color: #007f00">Derivations common to both versions</span></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>{</b><tt>(</tt>&nbsp;<i>simple-parameter-list</i>&nbsp;<b>[</b><tt>|</tt>&nbsp;<i>simple-parameter-list</i><b>] </b><tt>)</tt><b>}</b>&nbsp;<span style="color: #007f00">The parameters that appear before the vertical (|) are positional, while the ones appearing after are named.</span></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>{</b><tt>(</tt> <i>simple-parameter-list</i> <b>[</b><tt>|</tt> <i>simple-parameter-list</i><b>] </b><tt>)</tt><b>}</b> <span style="color: #007f00">The parameters that appear before the vertical (|) are positional, while the ones appearing after are named.</span></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>simple-parameter-list</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>typed-parameter-list</i><b>&nbsp;{</b><tt>,</tt>&nbsp;<i>typed-parameter-list</i><b>}</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>typed-parameter-list</i><b> {</b><tt>,</tt> <i>typed-parameter-list</i><b>}</b></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>typed-parameter-list</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>untyped-parameter</i>&nbsp;<b>{</b><tt>,</tt>&nbsp;<i>untyped-parameter</i><b>}</b>&nbsp;∈ <i>type-expression</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>untyped-parameter</i> <b>{</b><tt>,</tt> <i>untyped-parameter</i><b>}</b> ∈ <i>type-expression</i></li>
 </ul>
 </li>
 <li><i>function-definition</i>: <span style="color: #007f00">Derivations mentioning a pattern</span></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>function-type</i>&nbsp;<tt>with</tt>&nbsp;<b>[</b><i>traits</i>&nbsp;<tt>and</tt><b>]</b>&nbsp;<b>[</b><i>constraints </i><tt>and</tt><b>]</b><i>&nbsp;formula</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i> <tt>:</tt> <i>function-type</i> <tt>with</tt> <b>[</b><i>traits</i> <tt>and</tt><b>]</b> <b>[</b><i>constraints </i><tt>and</tt><b>]</b><i> formula</i></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>formula</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>pattern</i>&nbsp;<b>(</b><tt>=</tt>&nbsp;<i>expression</i>&nbsp;<tt>;</tt>&nbsp;<b>|</b>&nbsp;<i>compound-statement</i><b>)</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>pattern</i> <b>(</b><tt>=</tt> <i>expression</i> <tt>;</tt> <b>|</b> <i>compound-statement</i><b>)</b></li>
 </ul>
 </li>
 <li style="list-style-type: none">e.g.</li>
@@ -57,19 +57,19 @@
 </ul>
 </li>
 <li><i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by information category</span></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>--&gt;</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>with</tt>&nbsp;<i>units</i>&nbsp;<i>constraints traits throws</i>&nbsp;<i>complex-parameter-list</i>&nbsp;<i>body</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i> <tt>:</tt> <i>type-expression</i> <tt>--&gt;</tt> <i>type-expression</i> <tt>with</tt> <i>units</i> <i>constraints traits throws</i> <i>complex-parameter-list</i> <i>body</i></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>untyped-parameter</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i><b>&nbsp;[</b><tt>=</tt>&nbsp;<i>value-expression</i><b>]</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><i>identifier</i><b> [</b><tt>=</tt> <i>value-expression</i><b>]</b></li>
 </ul>
 </li>
 <li><i>function-definition</i>: <span style="color: #007f00">Derivations for organizing by parameter</span></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>complex-parameter-list</i>&nbsp;<tt>--&gt;</tt>&nbsp;<b>[</b><i>traits</i><b>]</b>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b>&nbsp;<b>[</b><i>constraints</i><b>]</b>&nbsp;<b>[</b><i>throws</i><b>]</b>&nbsp;<b>[</b><i>initializer</i><b>]</b>&nbsp;<b>(</b>&nbsp;<tt>=</tt>&nbsp;<i>expression </i><b>|</b>&nbsp;<i>compound-statement </i><b>)</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>function-traits</i><b>]</b> <i>identifier</i> <tt>:</tt> <i>complex-parameter-list</i> <tt>--&gt;</tt> <b>[</b><i>traits</i><b>]</b> <i>type-expression</i> <b>[</b><tt>(</tt> <i>unit-expression</i> <tt>)</tt><b>]</b> <b>[</b><i>constraints</i><b>]</b> <b>[</b><i>throws</i><b>]</b> <b>[</b><i>initializer</i><b>]</b> <b>(</b> <tt>=</tt> <i>expression </i><b>|</b> <i>compound-statement </i><b>)</b></li>
 </ul>
 </li>
 <li style="list-style-type: none"><i>untyped-parameter</i>:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>traits</i><b>]</b>&nbsp;<i>identifier</i>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>] [</b><tt>=</tt>&nbsp;<i>value-expression</i><b>]</b></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>[</b><i>traits</i><b>]</b> <i>identifier</i> <b>[</b><tt>(</tt> <i>unit-expression</i> <tt>)</tt><b>] [</b><tt>=</tt> <i>value-expression</i><b>]</b></li>
 </ul>
 </li>
 </ul>
@@ -93,10 +93,10 @@
 <li style="list-style-type: none"><ul><li>All such attributes will be specifiable by the programmer using annotations/attributes.</li>
 <li>All such attributes will be checkable by the compiler given some constraints about the function structure that will be documented.</li>
 <li>Some of those attributes might be inferable by the compiler given some constraints about the function structure that will be documented.</li>
-<li>The compiler <i>might</i>&nbsp;be able to check and/or infer such attributes even if the structure constraints are not met. (If they are met it is <i>required</i>&nbsp;to check and/or infer them)</li>
+<li>The compiler <i>might</i> be able to check and/or infer such attributes even if the structure constraints are not met. (If they are met it is <i>required</i> to check and/or infer them)</li>
 <li>It won't be an error to specify such attributes without meeting the documented constraints for checking and/or inference, but it may result to a warning.</li>
 <li>Such attributes will be made part of the function interface (they may apply to the function itself or its type) and advertised in module headers.</li>
-<li>The programmer <i>may</i>&nbsp;elect to specify that any additional attributes, not present in the code, that may be inferred shall not be exported from the module as part of the function interface to ensure stability of the interface for the clients at the expense of lost chances for optimization.</li>
+<li>The programmer <i>may</i> elect to specify that any additional attributes, not present in the code, that may be inferred shall not be exported from the module as part of the function interface to ensure stability of the interface for the clients at the expense of lost chances for optimization.</li>
 </ul>
 </li>
 <li><b>List</b></li>
@@ -176,7 +176,7 @@
 </li>
 <li><b>Inlining</b></li>
 <li style="list-style-type: none"><ul><li>Could have two kinds of "inline":</li>
-<li style="list-style-type: none"><ul><li>For <i>inline</i>&nbsp;functions the compiler will generate a callable copy, so it won't be an error to take their address and will not be required to inline them. (same as C++ inline) e.g.</li>
+<li style="list-style-type: none"><ul><li>For <i>inline</i> functions the compiler will generate a callable copy, so it won't be an error to take their address and will not be required to inline them. (same as C++ inline) e.g.</li>
 <li style="list-style-type: none"><ul><tt><li style="list-style-type: none">inline int sum(int x, int y)</li>
 <li style="list-style-type: none">{</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">return x+y;</li>
@@ -185,7 +185,7 @@
 </tt><li style="list-style-type: none"><tt>}</tt></li>
 </ul>
 </li>
-<li>For <i>macro</i>&nbsp;functions the compiler won't generate a callable copy, so it will be an error to take their address and will be required to inline them. (closer to C macros) e.g.</li>
+<li>For <i>macro</i> functions the compiler won't generate a callable copy, so it will be an error to take their address and will be required to inline them. (closer to C macros) e.g.</li>
 <li style="list-style-type: none"><ul><tt><li style="list-style-type: none">macro int sum(int x, int y)</li>
 <li style="list-style-type: none">{</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">return x+y;</li>
@@ -245,7 +245,7 @@
 </li>
 <li>Will evaluate to variadic functions.</li>
 <li>Support for polymorphic lambdas.</li>
-<li>Maybe I can couple <i>placeholder arguments</i>&nbsp;with type inference to concisely define functions like in functional programming languages. e.g. </li>
+<li>Maybe I can couple <i>placeholder arguments</i> with type inference to concisely define functions like in functional programming languages. e.g. </li>
 <li style="list-style-type: none"><tt>auto fact = $0 ≥ 1 ? fact($0-1)*$0 : 1;</tt></li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Should placeholder arguments be extended to work with named arguments as well as positional ones? (The names could be inferred from context)? e.g.</li>
@@ -256,7 +256,7 @@
 </li>
 </ul>
 </li>
-<li><b>Anonymous Functions</b>&nbsp;(lambda)</li>
+<li><b>Anonymous Functions</b> (lambda)</li>
 <li style="list-style-type: none"><ul><li>Will support nesting. (unlike placeholder arguments?)</li>
 <li>⟶ and λ functions. x ⟶ f() where x ∈ Identity(A⟶A)</li>
 <li>polymorphic and variadic.</li>
@@ -280,7 +280,7 @@
 </li>
 <li><b>Nested Functions</b></li>
 <li style="list-style-type: none"><ul><li>I could ban function nesting altogether, but a better idea might be to detect when local addresses escape the function and allocate the activation record on the garbage-collected heap.</li>
-<li>Excessive function nesting combined with local variable captures can greatly <i>reduce</i>&nbsp;readability...</li>
+<li>Excessive function nesting combined with local variable captures can greatly <i>reduce</i> readability...</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Provide a uniform mechanism for capturing the environment be it global variables from global functions or local variables from local functions and lambdas.</li>
 <li>Do I want a mechanism as powerful as C++'s lambda introducer?</li>

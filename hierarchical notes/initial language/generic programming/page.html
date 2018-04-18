@@ -30,7 +30,7 @@
 </ul>
 &#09;-fun<br/>
 &#09;+fun [∈] ArrayIn(value in Universal?, array in Array(x,y))-&gt;Bool<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">???</li>
-<li style="list-style-type: none">return value:size == array.size; &nbsp; ???</li>
+<li style="list-style-type: none">return value:size == array.size;   ???</li>
 </ul>
 </li>
 </ul>
@@ -39,11 +39,11 @@
 </tt><tt>&#09;-fun</tt><ul><li style="list-style-type: none">or perhaps the last function doesn't need to be written by the programmer but by the system...</li>
 <li>When the compiler sees a formal parameter of interface type, it will introduce hidden type parameters that will be fed with the types of the actual parameters, at the call site.</li>
 <li>Support template variables.</li>
-<li>Support <i>signature constraints</i>&nbsp;and/or <i>concepts</i>&nbsp;for both parameterized functions and parameterized types.</li>
+<li>Support <i>signature constraints</i> and/or <i>concepts</i> for both parameterized functions and parameterized types.</li>
 <li>If I allow for arbitrary sets of types where interfaces are expected, then I don't need <i>signature constraints</i>. e.g.</li>
-<li style="list-style-type: none"><tt>T foo(T) if (isPrime!T)</tt>&nbsp;⟺ <tt>foo ∈ T → T where T ∈ {x ∈ Types : isPrime(x)}</tt></li>
-<li>I probably don't need <i>parameterized scopes</i>&nbsp;like D's since the use-cases presented in the book will be handled by the compile-time evaluation and types-as-values combination.</li>
-<li>Moreover I probably don't need the <i>eponymous template</i>&nbsp;trick.</li>
+<li style="list-style-type: none"><tt>T foo(T) if (isPrime!T)</tt> ⟺ <tt>foo ∈ T → T where T ∈ {x ∈ Types : isPrime(x)}</tt></li>
+<li>I probably don't need <i>parameterized scopes</i> like D's since the use-cases presented in the book will be handled by the compile-time evaluation and types-as-values combination.</li>
+<li>Moreover I probably don't need the <i>eponymous template</i> trick.</li>
 <li>Explicit and implicit type variables</li>
 <li>Provide a way to define multiple functions and/or operators with possibly different names and similar definitions without duplicating those definitions. Some options:</li>
 <li style="list-style-type: none"><ul><li>Define the functions/operators inside a static foreach loop.</li>
@@ -73,7 +73,7 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>When will templates be instantiated?</li>
-<li>Support both <i>homogeneous</i>&nbsp;and <i>heterogeneous</i>&nbsp;translation?</li>
+<li>Support both <i>homogeneous</i> and <i>heterogeneous</i> translation?</li>
 <li style="list-style-type: none"><ul><li>Could use "compile-time" and "run-time" keywords to select the desired one.</li>
 </ul>
 </li>
@@ -82,7 +82,7 @@
 <li style="list-style-type: none">An arbitrary set of types might not provide a common interface to handle values of those types, but may still be useful for overloading and checking could be done with "duck typing" here, as it is done in the case when the type class is "Types".</li>
 <li>How will template functions be declared? e.g.</li>
 <li style="list-style-type: none"><ul><li><tt>+∀ T, S ∈ Types</tt></li>
-<tt><li style="list-style-type: none">&nbsp; &nbsp; +fun combine ∈ </li>
+<tt><li style="list-style-type: none">    +fun combine ∈ </li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">(t ∈ T, s ∈ S) ⟶ Combine(T,S)</li>
 </ul>
 </li>

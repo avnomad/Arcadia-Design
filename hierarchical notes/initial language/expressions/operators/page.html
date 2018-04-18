@@ -67,24 +67,24 @@
 </ul>
 </li>
 <li><b>Type Composition</b></li>
-<li style="list-style-type: none"><ul><li><b>Cartesian Product</b>&nbsp;(×)</li>
+<li style="list-style-type: none"><ul><li><b>Cartesian Product</b> (×)</li>
 <li style="list-style-type: none"><ul><li>T₁×T₂×…×Tₙ concatenation, creates a tuple or struct with nameless members. Refer to specific members using indexing.</li>
 </ul>
 </li>
-<li><b>Union</b>&nbsp;(∪)</li>
+<li><b>Union</b> (∪)</li>
 <li style="list-style-type: none"><ul><li>T₁∪T₂∪…∪Tₙ union, creates something like a C union but with anonymous members. Refer to specific members using indexing.</li>
 </ul>
 </li>
-<li><b>Exponentiation</b>&nbsp;(**)</li>
+<li><b>Exponentiation</b> (**)</li>
 <li style="list-style-type: none"><ul><li>Tⁿ exponentiation, equivalent to T×T×…×T n-times. Like an array. Again uses indexing.</li>
 </ul>
 </li>
-<li><b>Postfix Asterisk</b>&nbsp;(*)</li>
-<li style="list-style-type: none"><ul><li>T* &nbsp;Kleene's star, like a variable length array or a vector.</li>
+<li><b>Postfix Asterisk</b> (*)</li>
+<li style="list-style-type: none"><ul><li>T*  Kleene's star, like a variable length array or a vector.</li>
 <li>Could instead be used with the meaning it has in mathematical analysis textbooks, i.e. to remove zero from a set.</li>
 </ul>
 </li>
-<li><b>Function Definition</b>&nbsp;(⟶)</li>
+<li><b>Function Definition</b> (⟶)</li>
 <li style="list-style-type: none"><ul><li>T₁⟶T₂ creates a function type.</li>
 </ul>
 </li>
@@ -93,11 +93,11 @@
 <li><b>Arithmetic</b></li>
 <li><b>Exponentiation</b></li>
 <li><b>Logical</b></li>
-<li style="list-style-type: none"><ul><li>Include a <tt>xor</tt>&nbsp;operator.</li>
+<li style="list-style-type: none"><ul><li>Include a <tt>xor</tt> operator.</li>
 <li>Support short-circuiting of logical operators.</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Should I make a distinction between <tt>and</tt>&nbsp;/ <tt>and then</tt>&nbsp;and <tt>or</tt>&nbsp;/ <tt>or else</tt>&nbsp;like Ada does? (the latter being the short-circuited version)</li>
-<li>Should <b>a || b</b>&nbsp;and <b>a &amp;&amp; b </b>return one of a, b instead of a truth value like they do in Python?</li>
+<li style="list-style-type: none"><ul><li>Should I make a distinction between <tt>and</tt> / <tt>and then</tt> and <tt>or</tt> / <tt>or else</tt> like Ada does? (the latter being the short-circuited version)</li>
+<li>Should <b>a || b</b> and <b>a &amp;&amp; b </b>return one of a, b instead of a truth value like they do in Python?</li>
 </ul>
 </li>
 </ul>
@@ -154,7 +154,7 @@
 </li>
 </ul>
 </li>
-<li><b>Equality</b>&nbsp;(=,≠)</li>
+<li><b>Equality</b> (=,≠)</li>
 <li style="list-style-type: none"><ul><li>May need multiple versions:</li>
 <li style="list-style-type: none"><ul><li>shallow</li>
 <li>deep</li>
@@ -163,7 +163,7 @@
 </li>
 </ul>
 </li>
-<li><b>Object Membership</b>&nbsp;(.)</li>
+<li><b>Object Membership</b> (.)</li>
 <li style="list-style-type: none"><ul><li>I is preferable that '.' be able to distinguish between bgcolor.red and bgcolor."red" at compile-time. Of course, if field identifiers are implemented as integers, (from which you'll be able to get the names too e.g. using an array) this shouldn't be a problem.</li>
 <li>To guarantee that the object membership operator (.) is as fast as in languages where it's build-in, I'll need a form of partial evaluation where some of the function arguments are known during compile-time while others are not.</li>
 </ul>
@@ -177,18 +177,18 @@
 <li style="list-style-type: none"><ul><li>Expand the mathematical syntax for creating sets as subsets of other sets to lists and maps. Python calls this 'comprehension'.</li>
 </ul>
 </li>
-<li><b>~</b>&nbsp;for regular expression matching?</li>
-<li><b>nothrow</b>&nbsp;(or likewise named) operator takes an expression and returns false iff the expression could never throw an exception.</li>
-<li><b>precedenceof</b>&nbsp;for defining an operator with the same precedence as another one.</li>
-<li><b>is</b>&nbsp;or <b>instanceof</b>&nbsp;operator to check the dynamic type of an expression against a static type or interface.</li>
+<li><b>~</b> for regular expression matching?</li>
+<li><b>nothrow</b> (or likewise named) operator takes an expression and returns false iff the expression could never throw an exception.</li>
+<li><b>precedenceof</b> for defining an operator with the same precedence as another one.</li>
+<li><b>is</b> or <b>instanceof</b> operator to check the dynamic type of an expression against a static type or interface.</li>
 <li style="list-style-type: none"><ul><li>Always returns false for null expressions.</li>
-<li>Causes a compile-time warning if the expression is known to always be <tt>true</tt>&nbsp;or to always be <tt>false</tt>, but typically evaluates type compatibility at run time.</li>
+<li>Causes a compile-time warning if the expression is known to always be <tt>true</tt> or to always be <tt>false</tt>, but typically evaluates type compatibility at run time.</li>
 </ul>
 </li>
-<li><b>as</b>&nbsp;operator </li>
+<li><b>as</b> operator </li>
 <li><b>ring operator </b>(∘) for function composition and appending sequences (including strings).</li>
-<li><b>range operator</b>&nbsp;(..) for specifying ranges a..b returns a range containing the numbers from a to but not including b. 3..5 := [3,4]</li>
-<li><b>sequence operator</b>&nbsp;(, ,..., ) for specifying sequences and progressions. Automatically recognises arithmetic and geometric progressions. e.g.</li>
+<li><b>range operator</b> (..) for specifying ranges a..b returns a range containing the numbers from a to but not including b. 3..5 := [3,4]</li>
+<li><b>sequence operator</b> (, ,..., ) for specifying sequences and progressions. Automatically recognises arithmetic and geometric progressions. e.g.</li>
 <li style="list-style-type: none"><ul><li>1,...,3 := [1,2,3] (one initial term means arithmetic progression with unit step)</li>
 <li>1,2,...,10 := [1,2,3,4,5,6,7,8,9,10] (two initial terms means arithmetic progression)</li>
 <li>1,2,4,...,64 := [1,2,4,8,16,32,64] (three initial terms means geometric progression)</li>
@@ -196,20 +196,20 @@
 </ul>
 </li>
 <li><b>interval operator </b>([,(,),]) for specifying intervals of real numbers.</li>
-<li style="list-style-type: none"><ul><li><tt>[a,b]</tt>, <tt>(a,b]</tt>, <tt>(a,b)</tt>, <tt>[a,b)</tt>&nbsp;could be interpreted as {x∈ℝ : a≤x≤b}, {x∈ℝ : a&lt;x≤b}, {x∈ℝ : a&lt;x&lt;b}, {x∈ℝ : a≤x&lt;b} respectively.</li>
-<li><tt>[a,b]:n</tt>&nbsp;could be interpreted as Matlab's linspace(a,b,n), i.e. evaluate to a range containing n evenly spaced points between and including the endpoints a and b.</li>
-<li><tt>[a,b|d]</tt>&nbsp;could evaluate to a range x₁=a, x₂=x₁+d, x₃=x₂+d,...,xₙ=b, of as many d-spaced points as are needed to fill the distance between the endpoint a and b.</li>
+<li style="list-style-type: none"><ul><li><tt>[a,b]</tt>, <tt>(a,b]</tt>, <tt>(a,b)</tt>, <tt>[a,b)</tt> could be interpreted as {x∈ℝ : a≤x≤b}, {x∈ℝ : a&lt;x≤b}, {x∈ℝ : a&lt;x&lt;b}, {x∈ℝ : a≤x&lt;b} respectively.</li>
+<li><tt>[a,b]:n</tt> could be interpreted as Matlab's linspace(a,b,n), i.e. evaluate to a range containing n evenly spaced points between and including the endpoints a and b.</li>
+<li><tt>[a,b|d]</tt> could evaluate to a range x₁=a, x₂=x₁+d, x₃=x₂+d,...,xₙ=b, of as many d-spaced points as are needed to fill the distance between the endpoint a and b.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How do I resolve ambiguities when used in conjunction with tuples and lists?</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><b>mixin</b>&nbsp;(from D) or similar operator (Python and JavaScript have <i>eval</i>) that accepts a string and compiles it as if it was code appearing in place of the operator. My syntax can be of the form <tt>&lt;[</tt><i>expression</i><tt>]&gt;</tt>.</li>
-<li><b>compile</b>&nbsp;<i>expression</i>&nbsp;<b>end</b><i>&nbsp;</i>(could also end with ";" or something else) that evaluates <i>expression</i>&nbsp;(which must evaluate to an AST) during compile-time and forwards the AST for attachment to the broader AST of the program and for semantic analysis, translation, etc.</li>
-<li><b>operator </b>or <b>op</b>&nbsp;or <b>''</b><i>operator</i><b>''</b></li>
+<li><b>mixin</b> (from D) or similar operator (Python and JavaScript have <i>eval</i>) that accepts a string and compiles it as if it was code appearing in place of the operator. My syntax can be of the form <tt>&lt;[</tt><i>expression</i><tt>]&gt;</tt>.</li>
+<li><b>compile</b> <i>expression</i> <b>end</b><i> </i>(could also end with ";" or something else) that evaluates <i>expression</i> (which must evaluate to an AST) during compile-time and forwards the AST for attachment to the broader AST of the program and for semantic analysis, translation, etc.</li>
+<li><b>operator </b>or <b>op</b> or <b>''</b><i>operator</i><b>''</b></li>
 <li style="list-style-type: none"><ul><li>Should an operator like that exist to force another operator to loose its operator status and allow reference to the operator itself like passing it to a function that expects another function as an argument?</li>
-<li>The syntax <b>op</b>&nbsp;<i>operator_symbol</i>&nbsp;should work with all operators and their overloads even if those are defined for fundamental types (e.g. operator+(int, int)). i.e. the example shouldn't issue an error like in C++.</li>
+<li>The syntax <b>op</b> <i>operator_symbol</i> should work with all operators and their overloads even if those are defined for fundamental types (e.g. operator+(int, int)). i.e. the example shouldn't issue an error like in C++.</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
@@ -218,13 +218,13 @@
 <li>The .x, .y, .xy, .zxy, etc. OpenCL notation can still apply for a finite number of named indices.</li>
 <li>Should I include sed commands in addition to regular expressions? (s/foo/bar in addition to /(foo|bar)*/)</li>
 <li>Include matlab-like operator or function to produce equidistant points in a range of real numbers for use in plots, etc.</li>
-<li><b>:asclass</b>&nbsp;postfix operator that returns an object that describes the type in a form suitable for use by the program.</li>
-<li><b>:astype</b>&nbsp;postfix operator that returns the type described by its argument in a form suitable for use by the compiler. e.g.</li>
-<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">x ∈ ℝ ⟺ x ∈ ℝ &nbsp; &nbsp; &nbsp;⟺ x ∈ ℝ</li>
-</tt><li style="list-style-type: none"><tt>y ∈ ℝ &nbsp; &nbsp;y ∈ x:type &nbsp; &nbsp;y ∈ x:type:asclass:astype</tt></li>
+<li><b>:asclass</b> postfix operator that returns an object that describes the type in a form suitable for use by the program.</li>
+<li><b>:astype</b> postfix operator that returns the type described by its argument in a form suitable for use by the compiler. e.g.</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">x ∈ ℝ ⟺ x ∈ ℝ      ⟺ x ∈ ℝ</li>
+</tt><li style="list-style-type: none"><tt>y ∈ ℝ    y ∈ x:type    y ∈ x:type:asclass:astype</tt></li>
 </ul>
 </li>
-<li><b>:tree</b>&nbsp;postfix operator that returns the expression given as its argument in the form of an AST. e.g.</li>
+<li><b>:tree</b> postfix operator that returns the expression given as its argument in the form of an AST. e.g.</li>
 <li style="list-style-type: none"><ul><li><tt>compile #derivative(&lt;| return x</tt>²<tt>+3x+2; |&gt;:tree) end;</tt></li>
 <li><b>Use Cases</b>:</li>
 <li style="list-style-type: none"><ul><li>Provide the ASTs to feed to symbolic differentiation routines. e.g. If a function's body is a single expression, then the function could be converted to an AST for this expression. The AST would be converted to another AST during compilation and from that, to a new function representing the derivative.</li>

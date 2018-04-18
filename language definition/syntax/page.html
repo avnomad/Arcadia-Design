@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Syntax</title>
-</head><body><ul><li>Non-terminals are <i>italicized</i>. Terminals are <tt>monospace</tt>. EBNF operators are <b>bold</b>. Plus <span style="color: #007f00">dark green font</span>&nbsp;for semantics. <span style="color: #7f0000">Dark red font</span>&nbsp;is used for comments.</li>
+</head><body><ul><li>Non-terminals are <i>italicized</i>. Terminals are <tt>monospace</tt>. EBNF operators are <b>bold</b>. Plus <span style="color: #007f00">dark green font</span> for semantics. <span style="color: #7f0000">Dark red font</span> is used for comments.</li>
 </ul>
 <i>statement</i>:<ul><i><li style="list-style-type: none">simple-statement</li>
 <li style="list-style-type: none">control-statement</li>
@@ -14,107 +14,107 @@
 <li style="list-style-type: none">alias-declaration</li>
 </i><li style="list-style-type: none"></li>
 </ul>
-<i>declaration-statement-seq</i>:<ul><li style="list-style-type: none"><b>{</b><i>statement<b>&nbsp;| </b>declaration</i><b>}</b></li>
+<i>declaration-statement-seq</i>:<ul><li style="list-style-type: none"><b>{</b><i>statement<b> | </b>declaration</i><b>}</b></li>
 <i><li style="list-style-type: none"></li>
 </i></ul>
-<i>simple-statement</i>:<ul><li style="list-style-type: none"><b>[</b><i>expression</i><b>] </b><tt>;</tt>&nbsp;<span style="color: #007f00">Evaluates <i>expression</i>&nbsp;for its side-effects. Must issue warning (not error) if <i>expression</i>&nbsp;is pure.</span></li>
-<li style="list-style-type: none"><tt>break</tt>&nbsp;<b>[</b><i>integral-literal</i><b>] </b><tt>;</tt>&nbsp;<i><span style="color: #007f00">integral-literal</span></i><span style="color: #007f00">&nbsp;must be non-negative. Defaults to 0.</span></li>
-<li style="list-style-type: none"><tt>continue</tt>&nbsp;<b>[</b><i>integral-literal</i><b>] </b><tt>;</tt>&nbsp;<span style="color: #007f00"><i>integral-literal</i>&nbsp;must be non-negative. Defaults to 0.</span></li>
-<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">0 breaks from the loop that directly encloses the <tt>break</tt>/<tt>continue</tt>&nbsp;statement.</li>
+<i>simple-statement</i>:<ul><li style="list-style-type: none"><b>[</b><i>expression</i><b>] </b><tt>;</tt> <span style="color: #007f00">Evaluates <i>expression</i> for its side-effects. Must issue warning (not error) if <i>expression</i> is pure.</span></li>
+<li style="list-style-type: none"><tt>break</tt> <b>[</b><i>integral-literal</i><b>] </b><tt>;</tt> <i><span style="color: #007f00">integral-literal</span></i><span style="color: #007f00"> must be non-negative. Defaults to 0.</span></li>
+<li style="list-style-type: none"><tt>continue</tt> <b>[</b><i>integral-literal</i><b>] </b><tt>;</tt> <span style="color: #007f00"><i>integral-literal</i> must be non-negative. Defaults to 0.</span></li>
+<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">0 breaks from the loop that directly encloses the <tt>break</tt>/<tt>continue</tt> statement.</li>
 <li style="list-style-type: none">1 breaks from the loop that directly encloses the above loop, or issues an error if no such loop exists.</li>
 <li style="list-style-type: none">And so on for the rest of the integers.</li>
 </span></ul>
 </li>
-<li style="list-style-type: none"><tt>goto </tt><b>(</b><tt>begin</tt><b>&nbsp;|</b>&nbsp;<i>end</i><b>) (</b><i>identifier</i><b>&nbsp;| </b><i>integral-literal</i><b>)</b><i>&nbsp;</i><tt>;</tt>&nbsp;<span style="color: #007f00">Jumps to the specified instruction.</span></li>
-<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt>begin</tt>&nbsp;specifies the first instruction of the specified scope.</li>
-<li style="list-style-type: none"><tt>end</tt>&nbsp;specifies the instruction just after the last instruction of the specified scope.</li>
-<li style="list-style-type: none"><i>identifier</i>&nbsp;must name a block or other scope and specifies that scope.</li>
-</span><li style="list-style-type: none"><span style="color: #007f00"><i>integral-literal</i>&nbsp;must be non-negative and specifies the enclosing scope (not only loop) at that level.</span></li>
+<li style="list-style-type: none"><tt>goto </tt><b>(</b><tt>begin</tt><b> |</b> <i>end</i><b>) (</b><i>identifier</i><b> | </b><i>integral-literal</i><b>)</b><i> </i><tt>;</tt> <span style="color: #007f00">Jumps to the specified instruction.</span></li>
+<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt>begin</tt> specifies the first instruction of the specified scope.</li>
+<li style="list-style-type: none"><tt>end</tt> specifies the instruction just after the last instruction of the specified scope.</li>
+<li style="list-style-type: none"><i>identifier</i> must name a block or other scope and specifies that scope.</li>
+</span><li style="list-style-type: none"><span style="color: #007f00"><i>integral-literal</i> must be non-negative and specifies the enclosing scope (not only loop) at that level.</span></li>
 </ul>
 </li>
 <li style="list-style-type: none"><tt>return </tt><i>expression</i>ₒₚₜ<tt>; </tt><span style="color: #007f00">Returns control to the caller, just after the call site, and clears the stack, calls destructors, etc.</span></li>
-<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">If <i>expression</i>&nbsp;is present, the statement is equivalent to:</li>
+<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">If <i>expression</i> is present, the statement is equivalent to:</li>
 <li style="list-style-type: none"><tt>retval = </tt><i>expression</i><tt>;</tt></li>
 <li style="list-style-type: none"><tt>return;</tt></li>
 </span></ul>
 </li>
 <span style="color: #007f00"><li style="list-style-type: none"></li>
 </span></ul>
-<i>control-statement</i>:<ul><li style="list-style-type: none"><span style="color: #7f0000">The convention is that + increases the nesting level, <tt>−</tt>&nbsp;decreases it and = preserves it.</span></li>
-<li style="list-style-type: none"><tt>if ( </tt><i>expression</i><tt>&nbsp;) </tt><i>simple-statement</i></li>
-<li style="list-style-type: none"><tt>+if ( </tt><i>expression</i><tt>&nbsp;) </tt><i>declaration-statement-seq</i><b>&nbsp;{</b><tt>=elif </tt><i>declaration-statement-seq</i><b>} [</b><tt>=else </tt><i>declaration-statement-seq</i><b>]</b><tt>&nbsp;−if</tt></li>
-<li style="list-style-type: none"><tt>foreach ( </tt><i>identifier</i><tt>&nbsp;in </tt><i>expression</i><tt>&nbsp;) </tt><i>simple-statement</i></li>
-<li style="list-style-type: none"><tt>+foreach ( </tt><i>identifier</i><tt>&nbsp;in </tt><i>expression</i><tt>&nbsp;) </tt><i>declaration-statement-seq</i>&nbsp;<tt>−</tt>foreach</li>
+<i>control-statement</i>:<ul><li style="list-style-type: none"><span style="color: #7f0000">The convention is that + increases the nesting level, <tt>−</tt> decreases it and = preserves it.</span></li>
+<li style="list-style-type: none"><tt>if ( </tt><i>expression</i><tt> ) </tt><i>simple-statement</i></li>
+<li style="list-style-type: none"><tt>+if ( </tt><i>expression</i><tt> ) </tt><i>declaration-statement-seq</i><b> {</b><tt>=elif </tt><i>declaration-statement-seq</i><b>} [</b><tt>=else </tt><i>declaration-statement-seq</i><b>]</b><tt> −if</tt></li>
+<li style="list-style-type: none"><tt>foreach ( </tt><i>identifier</i><tt> in </tt><i>expression</i><tt> ) </tt><i>simple-statement</i></li>
+<li style="list-style-type: none"><tt>+foreach ( </tt><i>identifier</i><tt> in </tt><i>expression</i><tt> ) </tt><i>declaration-statement-seq</i> <tt>−</tt>foreach</li>
 <li style="list-style-type: none"><tt>forever </tt><i>simple-statement</i></li>
 <li style="list-style-type: none"><tt>+forever </tt><i>declaration-statement-seq </i><tt>−forever</tt></li>
-<li style="list-style-type: none"><tt>while ( </tt><i>expression</i><tt>&nbsp;) </tt><i>simple-statement</i></li>
-<li style="list-style-type: none"><tt>+while ( </tt><i>expression</i><tt>&nbsp;) </tt><i>declaration-statement-seq</i><tt>&nbsp;−while</tt></li>
-<li style="list-style-type: none"><tt>+do-while </tt><i>declaration-statement-seq</i><tt>&nbsp;−do-while ( </tt><i>expression</i><tt>&nbsp;)</tt></li>
-<li style="list-style-type: none"><tt>+case ( <i>expression </i>) </tt><b>{</b><tt>=:: </tt><i>constant-expression</i><tt>&nbsp;:: </tt><i>declaration-statement-seq</i><tt>&nbsp;</tt><b>[</b><tt>fallthrough;</tt><b>]} [</b><tt>=default </tt><i>declaration-statement-seq</i><b>] </b>−case</li>
-<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">Every <tt>=::</tt>&nbsp;<tt>::</tt>&nbsp;and <tt>=default</tt>&nbsp;defines its own scope.</li>
-<li style="list-style-type: none"><tt>break</tt>&nbsp;has no special meaning in a <tt>case</tt>&nbsp;statement.</li>
-<li style="list-style-type: none">If <tt>fallthrough;</tt>&nbsp;is present, control is transferred to the next <tt>=:: ::</tt>&nbsp;or <tt>=default</tt>&nbsp;block instead of just after the end of the <tt>case </tt>statement.</li>
-<li style="list-style-type: none">Execution of the <tt>fallthrough;</tt>&nbsp;statement exits the current scope and enters the next.</li>
+<li style="list-style-type: none"><tt>while ( </tt><i>expression</i><tt> ) </tt><i>simple-statement</i></li>
+<li style="list-style-type: none"><tt>+while ( </tt><i>expression</i><tt> ) </tt><i>declaration-statement-seq</i><tt> −while</tt></li>
+<li style="list-style-type: none"><tt>+do-while </tt><i>declaration-statement-seq</i><tt> −do-while ( </tt><i>expression</i><tt> )</tt></li>
+<li style="list-style-type: none"><tt>+case ( <i>expression </i>) </tt><b>{</b><tt>=:: </tt><i>constant-expression</i><tt> :: </tt><i>declaration-statement-seq</i><tt> </tt><b>[</b><tt>fallthrough;</tt><b>]} [</b><tt>=default </tt><i>declaration-statement-seq</i><b>] </b>−case</li>
+<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none">Every <tt>=::</tt> <tt>::</tt> and <tt>=default</tt> defines its own scope.</li>
+<li style="list-style-type: none"><tt>break</tt> has no special meaning in a <tt>case</tt> statement.</li>
+<li style="list-style-type: none">If <tt>fallthrough;</tt> is present, control is transferred to the next <tt>=:: ::</tt> or <tt>=default</tt> block instead of just after the end of the <tt>case </tt>statement.</li>
+<li style="list-style-type: none">Execution of the <tt>fallthrough;</tt> statement exits the current scope and enters the next.</li>
 <li style="list-style-type: none"></li>
 </span></ul>
 </li>
 </ul>
-<i>block-statement</i>:<ul><li style="list-style-type: none"><tt>+block </tt><i>identifier</i><tt>&nbsp;</tt><i>declaration-statement-list</i><tt>&nbsp;−block </tt><i>identifier </i><span style="color: #007f00">The two <i>identifiers</i>&nbsp;in the <i>block-statement</i>&nbsp;production must match. </span></li>
+<i>block-statement</i>:<ul><li style="list-style-type: none"><tt>+block </tt><i>identifier</i><tt> </tt><i>declaration-statement-list</i><tt> −block </tt><i>identifier </i><span style="color: #007f00">The two <i>identifiers</i> in the <i>block-statement</i> production must match. </span></li>
 <li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><i>block-statement</i>s introduce new scopes and are used to group statements, direct jumps and facilitate RAII.</li>
 </span><li style="list-style-type: none"><span style="color: #007f00">Exiting the block in any way, including and exception, causes the scope to exit and any destructors to be called.</span></li>
 <span style="color: #007f00"><li style="list-style-type: none"></li>
 </span></ul>
 </li>
 </ul>
-<i>simple-declaration</i>:<ul><li style="list-style-type: none"><tt>val </tt><i>identifier</i><tt>&nbsp;</tt><b>[</b><i><tt>= </tt>expression</i><b>] [</b><tt>in </tt><i>type-expression</i><b>] </b><tt>; <span style="color: #007f00">Declares a new variable or constant.</span></tt></li>
+<i>simple-declaration</i>:<ul><li style="list-style-type: none"><tt>val </tt><i>identifier</i><tt> </tt><b>[</b><i><tt>= </tt>expression</i><b>] [</b><tt>in </tt><i>type-expression</i><b>] </b><tt>; <span style="color: #007f00">Declares a new variable or constant.</span></tt></li>
 <li style="list-style-type: none"><ul><tt><span style="color: #007f00"><li style="list-style-type: none">At least one of the optional parts must be present.</li>
-<li style="list-style-type: none">If <i>type-expression</i>&nbsp;is absent, the type of <i>expression</i>&nbsp;is used instead, with a transitive immutability attribute. Otherwise the type computed by <i>type-expression,</i>&nbsp;with any constness or immutability attributes it may contain, is used verbatim.</li>
+<li style="list-style-type: none">If <i>type-expression</i> is absent, the type of <i>expression</i> is used instead, with a transitive immutability attribute. Otherwise the type computed by <i>type-expression,</i> with any constness or immutability attributes it may contain, is used verbatim.</li>
 </span></tt></ul>
 </li>
 <tt><span style="color: #007f00"><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
-</span></span></tt><li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt><span style="color: #7f0000"><b>(</b>var <b>|</b>&nbsp;const<b>)</b></span></tt><span style="color: #7f0000"><i>&nbsp;identifier </i><b>[</b><tt>(</tt><i>&nbsp;unit-expression </i><tt>)</tt><b>][</b><tt>= </tt><i>expression</i><b>][</b><tt>in <i>static-expression</i><b>]</b>&nbsp;;</tt></span></li>
+</span></span></tt><li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt><span style="color: #7f0000"><b>(</b>var <b>|</b> const<b>)</b></span></tt><span style="color: #7f0000"><i> identifier </i><b>[</b><tt>(</tt><i> unit-expression </i><tt>)</tt><b>][</b><tt>= </tt><i>expression</i><b>][</b><tt>in <i>static-expression</i><b>]</b> ;</tt></span></li>
 </span><tt><li style="list-style-type: none"></li>
 </tt></ul>
 </li>
 </ul>
-<i>alias-declaration</i>:<ul><li style="list-style-type: none"><tt>type</tt><b>&nbsp;</b><tt>alias</tt>&nbsp;<i>identifier</i>&nbsp;<tt>=</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>;</tt><span style="color: #007f00">&nbsp;Declares <i>identifier</i>&nbsp;as a new name for the type denoted by <i>type-expression.</i></span></li>
-<li style="list-style-type: none"><ul><span style="color: #7f0000"><li style="list-style-type: none">May also include <tt>var, function</tt>&nbsp;and <tt>namespace alias</tt>&nbsp;declarations.</li>
+<i>alias-declaration</i>:<ul><li style="list-style-type: none"><tt>type</tt><b> </b><tt>alias</tt> <i>identifier</i> <tt>=</tt> <i>type-expression</i> <tt>;</tt><span style="color: #007f00"> Declares <i>identifier</i> as a new name for the type denoted by <i>type-expression.</i></span></li>
+<li style="list-style-type: none"><ul><span style="color: #7f0000"><li style="list-style-type: none">May also include <tt>var, function</tt> and <tt>namespace alias</tt> declarations.</li>
 </span></ul>
 </li>
 <span style="color: #7f0000"><li style="list-style-type: none"></li>
 </span></ul>
 <i>type-expression</i>:<ul><li style="list-style-type: none"></li>
 </ul>
-<i>basic-type</i>: one of<ul><li style="list-style-type: none"><tt>bool &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</tt></li>
-<tt><li style="list-style-type: none">byte &nbsp; ubyte &nbsp; &nbsp; * <span style="color: #007f00">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>&nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
-<li style="list-style-type: none">short &nbsp;ushort &nbsp; &nbsp;* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
-<li style="list-style-type: none">int &nbsp; &nbsp;uint &nbsp; &nbsp; &nbsp;* <span style="color: #007f00">integer</span>&nbsp; &nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
-<li style="list-style-type: none">long &nbsp; ulong &nbsp; &nbsp; * <span style="color: #007f00">&nbsp;</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
-<li style="list-style-type: none">native unative &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # <span style="color: #007f00">integral</span>&nbsp;%</li>
-</tt><li style="list-style-type: none"><tt>asize &nbsp;uasize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% <span style="color: #007f00">scalar</span></tt></li>
-<li style="list-style-type: none"><tt>ascii<span style="color: #007f00">&nbsp; &nbsp; (8-bit) </span>@ <span style="color: #007f00">character</span>&nbsp;# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</tt></li>
-<li style="list-style-type: none"><span style="color: #007f7f"><tt>unicode </tt></span><tt><span style="color: #007f00">(32-bit) </span>@ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</tt></li>
-<tt><li style="list-style-type: none">single &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
-<li style="list-style-type: none">double &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp; <span style="color: #007f00">floating point</span>&nbsp; &nbsp; &nbsp; &nbsp;%</li>
-<li style="list-style-type: none"><span style="color: #007f7f">quad &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>&amp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;%</li>
+<i>basic-type</i>: one of<ul><li style="list-style-type: none"><tt>bool                         #          %</tt></li>
+<tt><li style="list-style-type: none">byte   ubyte     * <span style="color: #007f00">         </span> #          %</li>
+<li style="list-style-type: none">short  ushort    *           #          %</li>
+<li style="list-style-type: none">int    uint      * <span style="color: #007f00">integer</span>   #          %</li>
+<li style="list-style-type: none">long   ulong     * <span style="color: #007f00"> </span>         #          %</li>
+<li style="list-style-type: none">native unative   *           # <span style="color: #007f00">integral</span> %</li>
+</tt><li style="list-style-type: none"><tt>asize  uasize                #          % <span style="color: #007f00">scalar</span></tt></li>
+<li style="list-style-type: none"><tt>ascii<span style="color: #007f00">    (8-bit) </span>@ <span style="color: #007f00">character</span> #          %</tt></li>
+<li style="list-style-type: none"><span style="color: #007f7f"><tt>unicode </tt></span><tt><span style="color: #007f00">(32-bit) </span>@           #          %</tt></li>
+<tt><li style="list-style-type: none">single           &amp;                      %</li>
+<li style="list-style-type: none">double           &amp; <span style="color: #007f00">floating point</span>       %</li>
+<li style="list-style-type: none"><span style="color: #007f7f">quad             </span>&amp;                      %</li>
 </tt><span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
-<li style="list-style-type: none"><b>(</b><tt>unit</tt>&nbsp;<b>|</b>&nbsp;<tt>int</tt><b>)</b><tt>[</tt><b>(</b><tt>8</tt><b>|</b><tt>16</tt><b>|</b><tt>32</tt><b>|</b><tt>64</tt><b>)</b><tt>]</tt>&nbsp;e.g. unit[8]</li>
+<li style="list-style-type: none"><b>(</b><tt>unit</tt> <b>|</b> <tt>int</tt><b>)</b><tt>[</tt><b>(</b><tt>8</tt><b>|</b><tt>16</tt><b>|</b><tt>32</tt><b>|</b><tt>64</tt><b>)</b><tt>]</tt> e.g. unit[8]</li>
 <li style="list-style-type: none">No sting type yet...</li>
 <li style="list-style-type: none">Yet another candidate form was</li>
 <li style="list-style-type: none"><i>basic-type</i>:</li>
-</span><li style="list-style-type: none"><ul><li style="list-style-type: none"><span style="color: #7f0000"><b>[</b><tt>unsigned</tt><b>](</b><tt>char</tt>&nbsp;</span><span style="color: #007f00">(8-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>short</tt>&nbsp;</span><span style="color: #007f00">(16-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>int</tt>&nbsp;</span><span style="color: #007f00">(32-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>long</tt>&nbsp;</span><span style="color: #007f00">(64-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>long long</tt>&nbsp;</span><span style="color: #007f00">(128-bit)</span><span style="color: #7f0000">&nbsp;<b>|</b>&nbsp;<tt>integer</tt>&nbsp;</span><span style="color: #007f00">(native)</span><b><span style="color: #7f0000">)</span></b></li>
-<li style="list-style-type: none"><span style="color: #7f0000"><b>(</b><tt>cutf8</tt>&nbsp;<b>|</b>&nbsp;<tt>cutf16</tt>&nbsp;<b>|</b>&nbsp;<tt>cutf32</tt><b>)</b>&nbsp;</span><span style="color: #007f00">(for Unicode support and better overloading)</span></li>
+</span><li style="list-style-type: none"><ul><li style="list-style-type: none"><span style="color: #7f0000"><b>[</b><tt>unsigned</tt><b>](</b><tt>char</tt> </span><span style="color: #007f00">(8-bit)</span><span style="color: #7f0000"> <b>|</b> <tt>short</tt> </span><span style="color: #007f00">(16-bit)</span><span style="color: #7f0000"> <b>|</b> <tt>int</tt> </span><span style="color: #007f00">(32-bit)</span><span style="color: #7f0000"> <b>|</b> <tt>long</tt> </span><span style="color: #007f00">(64-bit)</span><span style="color: #7f0000"> <b>|</b> <tt>long long</tt> </span><span style="color: #007f00">(128-bit)</span><span style="color: #7f0000"> <b>|</b> <tt>integer</tt> </span><span style="color: #007f00">(native)</span><b><span style="color: #7f0000">)</span></b></li>
+<li style="list-style-type: none"><span style="color: #7f0000"><b>(</b><tt>cutf8</tt> <b>|</b> <tt>cutf16</tt> <b>|</b> <tt>cutf32</tt><b>)</b> </span><span style="color: #007f00">(for Unicode support and better overloading)</span></li>
 <li style="list-style-type: none"><tt><span style="color: #7f0000">bool </span></tt><span style="color: #007f00">(for better overloading)</span></li>
-<span style="color: #7f0000"><li style="list-style-type: none"><b>([</b>extended<b>]</b>&nbsp;<tt>double</tt>&nbsp;<b>| </b><tt>single</tt><b>)</b></li>
+<span style="color: #7f0000"><li style="list-style-type: none"><b>([</b>extended<b>]</b> <tt>double</tt> <b>| </b><tt>single</tt><b>)</b></li>
 </span><li style="list-style-type: none"><span style="color: #007f00">(extended long? extended unsigned or unsigned extended? medium int?)</span></li>
 </ul>
 </li>
 </ul>
 <span style="color: #7f0000"><br/>
-</span><i>var-type</i>:<ul><li style="list-style-type: none"><b>[</b><tt>const</tt><b>]</b>&nbsp;<i>basic-type </i><b>[</b><tt>[</tt><b>[</b><i>expression</i><b>]{</b><tt>, </tt><b>[</b><i>expression</i><b>]}</b><tt>]</tt><b>]</b></li>
+</span><i>var-type</i>:<ul><li style="list-style-type: none"><b>[</b><tt>const</tt><b>]</b> <i>basic-type </i><b>[</b><tt>[</tt><b>[</b><i>expression</i><b>]{</b><tt>, </tt><b>[</b><i>expression</i><b>]}</b><tt>]</tt><b>]</b></li>
 <b><li style="list-style-type: none"></li>
 </b></ul>
-<i>argument-passing-mode</i>:<ul><li style="list-style-type: none"><tt>best</tt><span style="color: #007f00">&nbsp;(default. Behaves as if it was val, but passes types larger than a reference by reference if the formal parameter is const or effectively const)</span></li>
+<i>argument-passing-mode</i>:<ul><li style="list-style-type: none"><tt>best</tt><span style="color: #007f00"> (default. Behaves as if it was val, but passes types larger than a reference by reference if the formal parameter is const or effectively const)</span></li>
 <tt><li style="list-style-type: none">val</li>
 <li style="list-style-type: none">ref</li>
 <span style="color: #007f7f"><li style="list-style-type: none">res</li>
@@ -124,7 +124,7 @@
 </span></tt><li style="list-style-type: none"><tt><span style="color: #007f7f">need</span></tt></li>
 <li style="list-style-type: none"></li>
 <span style="color: #7f0000"><li style="list-style-type: none">Another candidate form was:</li>
-</span><li style="list-style-type: none"><span style="color: #7f0000"><tt>byval</tt></span><span style="color: #007f00">&nbsp;(default)</span></li>
+</span><li style="list-style-type: none"><span style="color: #7f0000"><tt>byval</tt></span><span style="color: #007f00"> (default)</span></li>
 <tt><span style="color: #7f0000"><li style="list-style-type: none">byref</li>
 </span><span style="color: #007f7f"><li style="list-style-type: none">byres</li>
 <li style="list-style-type: none">byvalres</li>
@@ -138,26 +138,26 @@
 </tt><li style="list-style-type: none"><tt>internal ref</tt></li>
 <i><li style="list-style-type: none"></li>
 </i></ul>
-<i>function-type</i>:<ul><li style="list-style-type: none"><i>parameter-list</i>&nbsp;<tt>-&gt;</tt>&nbsp;<i>value-return-mode</i>&nbsp;<i>var-type</i></li>
+<i>function-type</i>:<ul><li style="list-style-type: none"><i>parameter-list</i> <tt>-&gt;</tt> <i>value-return-mode</i> <i>var-type</i></li>
 <i><li style="list-style-type: none">parameter-list <tt>-|</tt></li>
 <li style="list-style-type: none"></li>
 </i></ul>
-<i>parameter-list</i>:<ul><li style="list-style-type: none"><tt>(</tt><b>[</b><i>parameter</i><b>]{</b><tt>,</tt>&nbsp;<i>parameter</i><b>}</b><tt>)</tt></li>
+<i>parameter-list</i>:<ul><li style="list-style-type: none"><tt>(</tt><b>[</b><i>parameter</i><b>]{</b><tt>,</tt> <i>parameter</i><b>}</b><tt>)</tt></li>
 <tt><li style="list-style-type: none"></li>
 </tt></ul>
-<i>parameter</i>:<ul><li style="list-style-type: none"><i>argument-passing-mode</i>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>var-type</i></li>
+<i>parameter</i>:<ul><li style="list-style-type: none"><i>argument-passing-mode</i> <i>identifier</i> <tt>in</tt> <i>var-type</i></li>
 </ul>
 <br/>
-<i>function-definition</i>:<ul><li style="list-style-type: none"><b>[</b><tt>entry</tt><b>]</b>&nbsp;<tt>+fun</tt>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>function-type</i>&nbsp;<tt>=code</tt>&nbsp;<i>declaration-statement-seq</i>&nbsp;<tt>−fun</tt>&nbsp;<i>identifier</i></li>
-<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt>entry</tt>&nbsp;can be present in at most one <i>function-definition</i>&nbsp;per module.</li>
-<li style="list-style-type: none">If it is present, then the module becomes executable as a program and <i>identifier</i>&nbsp;becomes its entry point.</li>
+<i>function-definition</i>:<ul><li style="list-style-type: none"><b>[</b><tt>entry</tt><b>]</b> <tt>+fun</tt> <i>identifier</i> <tt>in</tt> <i>function-type</i> <tt>=code</tt> <i>declaration-statement-seq</i> <tt>−fun</tt> <i>identifier</i></li>
+<li style="list-style-type: none"><ul><span style="color: #007f00"><li style="list-style-type: none"><tt>entry</tt> can be present in at most one <i>function-definition</i> per module.</li>
+<li style="list-style-type: none">If it is present, then the module becomes executable as a program and <i>identifier</i> becomes its entry point.</li>
 <li style="list-style-type: none">The two <i>identifier</i>s in the production must match.</li>
 </span><li style="list-style-type: none"></li>
 </ul>
 </li>
 <li style="list-style-type: none"></li>
 </ul>
-<i>program</i>:<ul><li style="list-style-type: none"><b>{(</b><i>simple-declaration</i>&nbsp;<b>| </b><i>alias-declaration</i>&nbsp;<b>|</b>&nbsp;<i>function-definition</i><b>)}</b></li>
+<i>program</i>:<ul><li style="list-style-type: none"><b>{(</b><i>simple-declaration</i> <b>| </b><i>alias-declaration</i> <b>|</b> <i>function-definition</i><b>)}</b></li>
 </ul>
 <br/>
 <span style="color: #7f0000"><hr/><br/>
@@ -228,12 +228,12 @@
 <tt><li style="list-style-type: none">+&lt;- addition assignment</li>
 </tt><li style="list-style-type: none"><tt>−&lt;- </tt>subtraction assignment</li>
 <li style="list-style-type: none"><tt>*&lt;- </tt>multiplication assignment</li>
-<li style="list-style-type: none"><tt>/&lt;- division</tt>&nbsp;assignment</li>
-<li style="list-style-type: none"><tt>%&lt;- modulo</tt>&nbsp;assignment</li>
+<li style="list-style-type: none"><tt>/&lt;- division</tt> assignment</li>
+<li style="list-style-type: none"><tt>%&lt;- modulo</tt> assignment</li>
 </ul>
 </li>
 <li style="list-style-type: none">⟶</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>,</tt>&nbsp;comma operator</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>,</tt> comma operator</li>
 </ul>
 </li>
 </ul>

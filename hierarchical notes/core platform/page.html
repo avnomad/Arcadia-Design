@@ -51,7 +51,7 @@
 </li>
 <li><b>Parsing</b></li>
 <li style="list-style-type: none"><ul><li>Support defining and overloading operators.</li>
-<li>You should be able to specify the <b>fixity, arity, precedence</b>&nbsp;(or priority, or scope) and <b>associativity </b>of each operator and overload them.</li>
+<li>You should be able to specify the <b>fixity, arity, precedence</b> (or priority, or scope) and <b>associativity </b>of each operator and overload them.</li>
 <li style="list-style-type: none"><ul><li>Precedence should be taken into account only if there is ambiguity, otherwise a postfix '+' with higher precedence than the infix one could make 'a+b' fail to parse.</li>
 </ul>
 </li>
@@ -67,9 +67,9 @@
 </li>
 </ul>
 </li>
-<li>Classification of tokens into <b>initiators</b>, <b>separators</b>, <b>terminators</b>&nbsp;and <b>operands</b>.</li>
+<li>Classification of tokens into <b>initiators</b>, <b>separators</b>, <b>terminators</b> and <b>operands</b>.</li>
 <li>Operator associativity could be relevant for unary operators too, if you consider them as potential values. e.g. a!! ≔ (a!)! or a(!!) ?</li>
-<li>Support associativity option that makes <tt>(a&lt;b)&lt;c ≠ a&lt;b&lt;c ≠ a&lt;(b&lt;c)</tt>&nbsp;and allows defining <tt>a&lt;b&lt;c</tt>&nbsp;as a<tt>&lt;b and b&lt;c</tt>&nbsp;(similarly for ⟶ (implies) and =)</li>
+<li>Support associativity option that makes <tt>(a&lt;b)&lt;c ≠ a&lt;b&lt;c ≠ a&lt;(b&lt;c)</tt> and allows defining <tt>a&lt;b&lt;c</tt> as a<tt>&lt;b and b&lt;c</tt> (similarly for ⟶ (implies) and =)</li>
 <li>Support mixing operators with the above associativity option. e.g. <tt>a&lt;b=c&gt;b</tt>.</li>
 <li>No special syntax is needed to treat an operator as a function since placeholder arguments can do the job. e.g. <tt>$0 ? $1 : $2</tt></li>
 <li><b>Ideas</b></li>
@@ -97,11 +97,11 @@
 </li>
 </ul>
 </li>
-<li>To handle the fact that an expression can evaluate to an operator, initiator or terminator instead of an operand, a second stack can hold the current values of the <i>first-non-postfix</i>&nbsp;and <i>last-non-prefix</i>&nbsp;pointers used for disambiguation. If a staging area for operators that pend disambiguation is used, then this should be put on the second stack as well. When an initiator is encountered, a new frame will be pushed on the disambiguation stack whilst the top frame will be popped off the stack when the corresponding terminator is found.</li>
+<li>To handle the fact that an expression can evaluate to an operator, initiator or terminator instead of an operand, a second stack can hold the current values of the <i>first-non-postfix</i> and <i>last-non-prefix</i> pointers used for disambiguation. If a staging area for operators that pend disambiguation is used, then this should be put on the second stack as well. When an initiator is encountered, a new frame will be pushed on the disambiguation stack whilst the top frame will be popped off the stack when the corresponding terminator is found.</li>
 <li>If the parser depends on the token's type to classify it as an operator, operand, etc., then how is an undefined token parsed? (especially inside contexts where new identifiers are defined)</li>
 <li style="list-style-type: none"><ul><li><b>Examples</b></li>
-<li style="list-style-type: none"><ul><li>Why is <i>height</i>&nbsp;an operand to the <i>auto = ;</i>&nbsp;operator in <tt>auto height = 5.2m;</tt>?</li>
-<li>What about <i>x</i>&nbsp;and <i>y</i>&nbsp;in <tt>auto (x,y) = room.center;?</tt></li>
+<li style="list-style-type: none"><ul><li>Why is <i>height</i> an operand to the <i>auto = ;</i> operator in <tt>auto height = 5.2m;</tt>?</li>
+<li>What about <i>x</i> and <i>y</i> in <tt>auto (x,y) = room.center;?</tt></li>
 </ul>
 </li>
 <li>One idea is to start from characters that all have a predefined type and start building tokens. When a token is built it has a type equal to its token type, but gets chance to be "promoted" to another type by searching for its lexeme in the symbol table. Certain operators can suspend this "promotion" inside their scope.</li>
@@ -132,15 +132,15 @@
 </ul>
 </li>
 <li><b>Use Cases</b>:</li>
-<li style="list-style-type: none"><ul><li>Obviate the need for a special operator like <b>op</b>&nbsp;or <b>operator</b>&nbsp;(or something similar) for passing operators as function arguments to other functions.</li>
+<li style="list-style-type: none"><ul><li>Obviate the need for a special operator like <b>op</b> or <b>operator</b> (or something similar) for passing operators as function arguments to other functions.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Make sure <tt>(flag ? x : y) += 5;</tt>&nbsp;is properly supported.</li>
-<li>If I make the membership operator ('.') user-defined, how will I avoid confusion between a field and a variable with the same name? e.g. <tt>y</tt>&nbsp;in <tt>p.y</tt>&nbsp;with a variable <tt>y</tt>.</li>
+<li>Make sure <tt>(flag ? x : y) += 5;</tt> is properly supported.</li>
+<li>If I make the membership operator ('.') user-defined, how will I avoid confusion between a field and a variable with the same name? e.g. <tt>y</tt> in <tt>p.y</tt> with a variable <tt>y</tt>.</li>
 <li style="list-style-type: none">One idea is to take the right hand side argument as an AST, use the name of the argument ("y") and ignore its type and address. That might allow a syntax like OpenCL's .yzxw as well.</li>
-<li>Another idea is to enable operators to define names inside their 'scope'. So e.g. '$' will only be defined inside the brackets in <tt>a[$-1]</tt>&nbsp;and 'yzxw' will only be defined after the '.' in <tt>v.yzxw</tt>.</li>
+<li>Another idea is to enable operators to define names inside their 'scope'. So e.g. '$' will only be defined inside the brackets in <tt>a[$-1]</tt> and 'yzxw' will only be defined after the '.' in <tt>v.yzxw</tt>.</li>
 <li style="list-style-type: none"><ul><li>How would the following compare?</li>
 <li style="list-style-type: none"><ul><li>Support of arbitrary semantic actions in arbitrary positions in a rule.</li>
 <li>Support for manipulating the symbol table at entry/exit to/from operator's scope.</li>
@@ -150,7 +150,7 @@
 </li>
 <li>Confirm my parser supported operators that have simultaneous prefix, infix and postfix status and could parse the expressions that weren't ambiguous. It certainly handled cases where 2 out of the 3 fixities were active at any time.</li>
 <li>Investigate connection with Categorial Grammars. Would forward and backward functional composition reductions be useful in my case? Some classes of categorial grammars have the same expressive power as context-free grammars.</li>
-<li>Look at <a href="http://h14s.p5r.org/2014/10/shiftreduce-expression-parsing-by-douglas-gregor.html">this similar parser</a>&nbsp;more closely.</li>
+<li>Look at <a href="http://h14s.p5r.org/2014/10/shiftreduce-expression-parsing-by-douglas-gregor.html">this similar parser</a> more closely.</li>
 </ul>
 </li>
 </ul>
@@ -204,7 +204,7 @@
 <li><b>Run-time Environment</b></li>
 <li style="list-style-type: none"><ul><li>If a function has escaping closures, its stack frame will be allocated on the heap instead (like in D).</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Select one of the methods to implement static scoping in deeply nested functions (<b>access links</b>&nbsp;or <b>link tables</b>).</li>
+<li style="list-style-type: none"><ul><li>Select one of the methods to implement static scoping in deeply nested functions (<b>access links</b> or <b>link tables</b>).</li>
 <li>How exactly will an escaping closure be handled in a deeply nested function setting?</li>
 </ul>
 </li>
@@ -229,7 +229,7 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Clarify the semantics for "booting" or "bootstrapping" into the initial language. Probably have the internal data structures be initialized by a hard-coded default.</li>
 <li>If the compiler hands off the integer literals to the "substrate" as strings so that they can be converted to numbers, then how will the substrate functions that do the conversion be written?</li>
-<li style="list-style-type: none">Perhaps it can be done with the use of symbols like <tt>int.zero</tt>&nbsp;and <tt>int.one</tt>.</li>
+<li style="list-style-type: none">Perhaps it can be done with the use of symbols like <tt>int.zero</tt> and <tt>int.one</tt>.</li>
 <li>What do I need in order for the compiler to know that n &lt; 0 is always false for n ∈ ℕ. And that while(n &lt; 0) is an infinite loop?</li>
 </ul>
 </li>

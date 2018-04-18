@@ -25,23 +25,23 @@
 <li>Can appear in almost any context including inside and outside of function bodies, in interface and class declarations, etc.</li>
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li>Need to pick one of the following options:</li>
-<li style="list-style-type: none"><ul><li><tt>∀</tt>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>expression</i>&nbsp;<tt>do</tt></li>
-<li><tt>∀</tt>&nbsp;<i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>expression</i>&nbsp;<tt>:</tt></li>
-<li><tt>∀(</tt><i>identifier</i>&nbsp;<tt>in</tt>&nbsp;<i>expression</i><tt>)</tt></li>
-<li><tt>∀</tt>&nbsp;<i>identifier</i>&nbsp;<tt>∈</tt>&nbsp;<i>expression</i>&nbsp;<tt>do</tt></li>
-<li><tt>∀</tt>&nbsp;<i>identifier</i>&nbsp;<tt>∈</tt>&nbsp;<i>expression</i>&nbsp;<tt>:</tt></li>
-<li><tt>∀(</tt><i>identifier</i>&nbsp;<tt>∈</tt>&nbsp;<i>expression</i><tt>)</tt></li>
+<li style="list-style-type: none"><ul><li><tt>∀</tt> <i>identifier</i> <tt>in</tt> <i>expression</i> <tt>do</tt></li>
+<li><tt>∀</tt> <i>identifier</i> <tt>in</tt> <i>expression</i> <tt>:</tt></li>
+<li><tt>∀(</tt><i>identifier</i> <tt>in</tt> <i>expression</i><tt>)</tt></li>
+<li><tt>∀</tt> <i>identifier</i> <tt>∈</tt> <i>expression</i> <tt>do</tt></li>
+<li><tt>∀</tt> <i>identifier</i> <tt>∈</tt> <i>expression</i> <tt>:</tt></li>
+<li><tt>∀(</tt><i>identifier</i> <tt>∈</tt> <i>expression</i><tt>)</tt></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should they be able to simultaneously generate indices and values while iterating a collection, like in D?</li>
-<li>Should it be possible to overload the foreach loop with <i>iteration primitives</i>&nbsp;and <i>internal iteration</i>&nbsp;like in D?</li>
+<li>Should it be possible to overload the foreach loop with <i>iteration primitives</i> and <i>internal iteration</i> like in D?</li>
 <li style="list-style-type: none">Basically what D does isn't operator overload, but expression rewrites and lowering like those of an AST preprocessor!</li>
 <li>How will a static foreach loop that iterates over all members of a tuple/record behave? Will it always unroll?</li>
 <li>If one or more foreach loops generate two or more copies of a function with the same name and signature inside a single scope, should that be an error, or should it be treated as a variable assignment? i.e. the last assignment overwrites existing value. I guess that can depend on whether the assigned variable is declared const...</li>
-<li>Should foreach semantics inside generic class and interface definitions be extended to match iterated ranges and filters so that they can decide whether the loops can generate collisions for <i>any</i>&nbsp;instantiation, without actually instantiating the class/interface nor running the loop? (Similar to the modular type-checking of MorphJ)</li>
+<li>Should foreach semantics inside generic class and interface definitions be extended to match iterated ranges and filters so that they can decide whether the loops can generate collisions for <i>any</i> instantiation, without actually instantiating the class/interface nor running the loop? (Similar to the modular type-checking of MorphJ)</li>
 <li style="list-style-type: none"><ul><li>Same question can arise in other contexts where the loop is lazy, i.e. the iterated set is not known when the loop is first seen.</li>
 </ul>
 </li>
@@ -53,13 +53,13 @@
 <li><b>For</b></li>
 <li style="list-style-type: none"><ul><li>Do I need it?</li>
 <li><b>Syntax</b></li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+for(</tt>&nbsp;<i>expression</i>&nbsp;<tt>)</tt></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+for(</tt> <i>expression</i> <tt>)</tt></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
 </ul>
 </li>
 <tt><li style="list-style-type: none">−for</li>
 <li style="list-style-type: none"></li>
-</tt><li style="list-style-type: none"><tt>+for(</tt>&nbsp;<i>expression</i>&nbsp;<tt>):</tt>&nbsp;<i>identifier</i></li>
+</tt><li style="list-style-type: none"><tt>+for(</tt> <i>expression</i> <tt>):</tt> <i>identifier</i></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
 </ul>
 </li>
@@ -77,10 +77,10 @@
 </tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><i>block</i></li>
 </ul>
 </li>
-<li style="list-style-type: none"><i>natural-number</i><tt>&nbsp;times;</tt></li>
+<li style="list-style-type: none"><i>natural-number</i><tt> times;</tt></li>
 </ul>
 </li>
-<li>Include components that can be combined to create loops similar to Ada's. e.g. <tt>+loop</tt>, −loop, <tt>while(...)</tt>, <tt>until(...)</tt>, etc. With <tt>while</tt>&nbsp;and <tt>until</tt>&nbsp;being placeable at both the beginning or the end of the loop construct after the 'loop' keyword.</li>
+<li>Include components that can be combined to create loops similar to Ada's. e.g. <tt>+loop</tt>, −loop, <tt>while(...)</tt>, <tt>until(...)</tt>, etc. With <tt>while</tt> and <tt>until</tt> being placeable at both the beginning or the end of the loop construct after the 'loop' keyword.</li>
 </ul>
 </li>
 </ul>
@@ -89,10 +89,10 @@
 <li style="list-style-type: none"><ul><li><b>If</b></li>
 </ul>
 </li>
-<li><b>Case</b>&nbsp;/ <b>Switch</b></li>
+<li><b>Case</b> / <b>Switch</b></li>
 <li style="list-style-type: none"><ul><li>The default behaviour when reaching the end of a case block will be to transfer control to the instruction just after the case/switch body.</li>
-<li>Include an optional <tt>default</tt>&nbsp;case.</li>
-<li>Include a <tt>fallthrough</tt>&nbsp;statement for "falling of" to the next case. (to allow behaviour similar to C's)</li>
+<li>Include an optional <tt>default</tt> case.</li>
+<li>Include a <tt>fallthrough</tt> statement for "falling of" to the next case. (to allow behaviour similar to C's)</li>
 </ul>
 </li>
 </ul>
@@ -103,8 +103,8 @@
 <li>How can I avoid errors of the form <tt>for(...);</tt>?</li>
 <li>Perhaps I can lack an empty statement, but instead use a statement that does nothing by convention like <tt>null;</tt>.</li>
 <li>Alternatively I can allow empty statements only where I allow nesting. e.g.</li>
-<li style="list-style-type: none"><ul><li><tt>for i in 1..2:<span style="background-color: #ff99ff">;</span>&nbsp;# illegal</tt></li>
-<li><tt>+for i in 1..2:<span style="background-color: #ff99ff">;</span>&nbsp;# ok, but body is obviously empty</tt></li>
+<li style="list-style-type: none"><ul><li><tt>for i in 1..2:<span style="background-color: #ff99ff">;</span> # illegal</tt></li>
+<li><tt>+for i in 1..2:<span style="background-color: #ff99ff">;</span> # ok, but body is obviously empty</tt></li>
 <li style="list-style-type: none"><tt>−for</tt></li>
 </ul>
 </li>
@@ -115,23 +115,23 @@
 </ul>
 </li>
 <li><b>Labels</b></li>
-<li style="list-style-type: none"><ul><li>Support labelling statements for use with <b>goto</b>, <b>break</b>&nbsp;and <b>continue</b>.</li>
+<li style="list-style-type: none"><ul><li>Support labelling statements for use with <b>goto</b>, <b>break</b> and <b>continue</b>.</li>
 <li>Another (preferable) idea is to only support named blocks and not labelling of arbitrary statements. Instead of labelling a statement, you wrap it in a named block.</li>
 <li>Could allow labelling of block-like versions of control structures too, or just blocks (preferable).</li>
 <li>Labels don't need to be at the line start.</li>
 </ul>
 </li>
 <li><b>Return</b></li>
-<li style="list-style-type: none"><ul><li><tt>return</tt>&nbsp;<i>expression</i><tt>;</tt>&nbsp;will be equivalent to <tt>retval = </tt><i>expression</i><tt>; return;</tt>.</li>
-<li>A <tt>return</tt>&nbsp;statement isn't required if an explicit assignment has been made to <tt>retval</tt>.</li>
+<li style="list-style-type: none"><ul><li><tt>return</tt> <i>expression</i><tt>;</tt> will be equivalent to <tt>retval = </tt><i>expression</i><tt>; return;</tt>.</li>
+<li>A <tt>return</tt> statement isn't required if an explicit assignment has been made to <tt>retval</tt>.</li>
 <li>"Falling off" the end of a function has the same effect as returning.</li>
 </ul>
 </li>
 <li><b>Jump Statements</b></li>
 <li style="list-style-type: none"><ul><li><b>Goto</b></li>
-<li style="list-style-type: none"><ul><li><tt>goto</tt>&nbsp;<b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b>&nbsp;<i>block-name</i></li>
-<li><tt>goto</tt><i>&nbsp;</i><b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b><i>&nbsp;</i><b>[</b><i>nesting-level</i><b>]</b></li>
-<li style="list-style-type: none"><ul><li><i>nesting-level</i>&nbsp;is an integer that defaults to 0. All control and other structures that introduce scopes count towards increasing the nesting-level.</li>
+<li style="list-style-type: none"><ul><li><tt>goto</tt> <b>(</b><tt>begin</tt> <b>|</b> <tt>end</tt><b>)</b> <i>block-name</i></li>
+<li><tt>goto</tt><i> </i><b>(</b><tt>begin</tt> <b>|</b> <tt>end</tt><b>)</b><i> </i><b>[</b><i>nesting-level</i><b>]</b></li>
+<li style="list-style-type: none"><ul><li><i>nesting-level</i> is an integer that defaults to 0. All control and other structures that introduce scopes count towards increasing the nesting-level.</li>
 <li>Can't jump from a for to another that doesn't enclose the first. For that, you need a named block.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Is the level system more likely to lead to errors that are not detectable by the compiler than labels?</li>
@@ -139,7 +139,7 @@
 </li>
 </ul>
 </li>
-<li><tt>goto</tt><i>&nbsp;</i><b>(</b><tt>begin</tt>&nbsp;<b>|</b>&nbsp;<tt>end</tt><b>)</b><i>&nbsp;</i><b>(</b><tt>if</tt>&nbsp;<b>|</b>&nbsp;<tt>for</tt>&nbsp;<b>|</b>&nbsp;<tt>foreach</tt>&nbsp;<b>|</b>&nbsp;<tt>while</tt>&nbsp;<b>|</b>&nbsp;<tt>do</tt>&nbsp;<b>|</b>&nbsp;...<b>)<tt>&nbsp;</tt>[</b><i>nesting-level</i><b>]</b></li>
+<li><tt>goto</tt><i> </i><b>(</b><tt>begin</tt> <b>|</b> <tt>end</tt><b>)</b><i> </i><b>(</b><tt>if</tt> <b>|</b> <tt>for</tt> <b>|</b> <tt>foreach</tt> <b>|</b> <tt>while</tt> <b>|</b> <tt>do</tt> <b>|</b> ...<b>)<tt> </tt>[</b><i>nesting-level</i><b>]</b></li>
 <li style="list-style-type: none"><ul><li>This version only counts nestings of the mentioned control structure towards increasing the nesting-level. So e.g.</li>
 <li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+for // level 1</li>
 </tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+if</li>
@@ -170,14 +170,14 @@
 </li>
 <li><b>Blocks</b></li>
 <li style="list-style-type: none"><ul><li>Blocks can appear in almost any context, including inside and outside of function bodies, in interface and class declarations, etc. In top level, they can serve a function similar to that of namespace definitions.</li>
-<li>Names declared inside a block, are not visible outside the block by default, but the module <tt>import</tt>, <tt>export</tt>&nbsp;and <tt>export import</tt>&nbsp;statements are usable with blocks as well.</li>
+<li>Names declared inside a block, are not visible outside the block by default, but the module <tt>import</tt>, <tt>export</tt> and <tt>export import</tt> statements are usable with blocks as well.</li>
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">Only support named blocks:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt> <i>identifier</i></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
 </ul>
 </li>
-<li style="list-style-type: none"><tt>−block</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><tt>−block</tt> <i>identifier</i></li>
 </ul>
 </li>
 <li style="list-style-type: none">Or both named and nameless versions:</li>
@@ -187,11 +187,11 @@
 </li>
 <li style="list-style-type: none"><tt>−block</tt></li>
 <li style="list-style-type: none"></li>
-<li style="list-style-type: none"><tt>+block:</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><tt>+block:</tt> <i>identifier</i></li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none"><i>statement-sequence</i></li>
 </ul>
 </li>
-<li style="list-style-type: none"><tt>−block:</tt>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><tt>−block:</tt> <i>identifier</i></li>
 </ul>
 </li>
 </ul>
@@ -209,7 +209,7 @@
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>How does this structure compare with D's <b>scope</b>&nbsp;statement or other statements like <b>synchronized</b>?</li>
+<li style="list-style-type: none"><ul><li>How does this structure compare with D's <b>scope</b> statement or other statements like <b>synchronized</b>?</li>
 </ul>
 </li>
 </ul>
@@ -234,13 +234,13 @@
 </li>
 <li><b>With</b></li>
 <li style="list-style-type: none"><ul><li><tt>+with(...), −</tt>with</li>
-<li>Am I interested in <b>with</b>&nbsp;statement that 'opens' a struct/record like the one in Pascal that got copied by D?</li>
-<li>Is <b>with</b>&nbsp;statement implementable from compile-time for and alias declarations?</li>
+<li>Am I interested in <b>with</b> statement that 'opens' a struct/record like the one in Pascal that got copied by D?</li>
+<li>Is <b>with</b> statement implementable from compile-time for and alias declarations?</li>
 </ul>
 </li>
 <li><b>Scope</b></li>
-<li style="list-style-type: none"><ul><li>D's <tt>scope(exit)</tt>&nbsp;should be easily implementable by using a predefined class (with a destructor) and lambda functions.</li>
-<li>But what about <tt>scope(success)</tt>&nbsp;and <tt>scope(failure)</tt>?</li>
+<li style="list-style-type: none"><ul><li>D's <tt>scope(exit)</tt> should be easily implementable by using a predefined class (with a destructor) and lambda functions.</li>
+<li>But what about <tt>scope(success)</tt> and <tt>scope(failure)</tt>?</li>
 </ul>
 </li>
 <li><b>Assert </b>(and <b>static assert</b>)</li>

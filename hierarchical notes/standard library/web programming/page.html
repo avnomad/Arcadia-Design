@@ -37,8 +37,8 @@
 </li>
 <li><b>CGI</b></li>
 <li style="list-style-type: none"><ul><li>Function to parse the query string (<span style="color: #ffa300">?</span><span style="color: #ff0000">key1</span><span style="color: #ffa300">=</span><span style="color: #0000ff">value1</span><span style="color: #ffa300">&amp;</span><span style="color: #ff0000">key2</span><span style="color: #ffa300">=</span><span style="color: #0000ff">value2</span><span style="color: #ffa300">&amp;</span>...) and return a map with the key-value pairs it represents. </li>
-<li style="list-style-type: none"><ul><li>Should work with both <b>post</b>&nbsp;and <b>get</b>&nbsp;methods.</li>
-<li>Should allow iteration of pairs in the order they appear in the original query string. i.e. for a map <tt>input</tt>&nbsp;and string-stream <tt>sout</tt>, <tt>sout '?' (input.pairs[$1].key '=' input.pairs[$1].value]) % '&amp;'; </tt>will yield the original query string.</li>
+<li style="list-style-type: none"><ul><li>Should work with both <b>post</b> and <b>get</b> methods.</li>
+<li>Should allow iteration of pairs in the order they appear in the original query string. i.e. for a map <tt>input</tt> and string-stream <tt>sout</tt>, <tt>sout '?' (input.pairs[$1].key '=' input.pairs[$1].value]) % '&amp;'; </tt>will yield the original query string.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>

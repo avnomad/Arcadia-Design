@@ -7,8 +7,8 @@
 <li style="list-style-type: none"><ul><li>wrap enumeration functions as iterators.</li>
 <li>use one-size-per-instance arrays (VLAs) to automatically allocate returned arrays on the stack.</li>
 <li style="list-style-type: none"><ul><li><b>Examples</b></li>
-<li style="list-style-type: none"><ul><li><span style="color: #800080">UINT</span>&nbsp;block_size = WTInfoW(WTI_INTERFACE,IFC_WINTABID,nullptr);</li>
-<li style="list-style-type: none">unique_ptr<span style="color: #000000">&lt;</span><span style="color: #808000">char</span><span style="color: #000000">[]&gt;</span>&nbsp;block = unique_ptr&lt;char[]&gt;(new char[block_size]);</li>
+<li style="list-style-type: none"><ul><li><span style="color: #800080">UINT</span> block_size = WTInfoW(WTI_INTERFACE,IFC_WINTABID,nullptr);</li>
+<li style="list-style-type: none">unique_ptr<span style="color: #000000">&lt;</span><span style="color: #808000">char</span><span style="color: #000000">[]&gt;</span> block = unique_ptr&lt;char[]&gt;(new char[block_size]);</li>
 <li style="list-style-type: none">WTInfoW(WTI_INTERFACE,IFC_WINTABID,block.get());</li>
 <li>GLint nTextureFormats;</li>
 <li style="list-style-type: none">glGetIntegerv(GL_NUM_COMPRESSED_TEXTURE_FORMATS,&amp;nTextureFormats);</li>
@@ -17,28 +17,28 @@
 <li style="list-style-type: none">glGetIntegerv(GL_COMPRESSED_TEXTURE_FORMATS,textureFormats);</li>
 <li style="list-style-type: none"></li>
 <li style="list-style-type: none">delete[] textureFormats;</li>
-<li>UINT<span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">n</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">=</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000080">0</span><span style="color: #000000">;</span></li>
+<li>UINT<span style="color: #c0c0c0"> </span><span style="color: #000000">n</span><span style="color: #c0c0c0"> </span><span style="color: #000000">=</span><span style="color: #c0c0c0"> </span><span style="color: #000080">0</span><span style="color: #000000">;</span></li>
 <li style="list-style-type: none">GetRawInputDeviceList<span style="color: #000000">(</span>NULL<span style="color: #000000">,&amp;n,</span><span style="color: #808000">sizeof</span><span style="color: #000000">(</span>RAWINPUTDEVICELIST<span style="color: #000000">));</span></li>
 <span style="color: #000000"><li style="list-style-type: none"></li>
-</span><li style="list-style-type: none">RAWINPUTDEVICELIST<span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">*devices</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">=</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #808000">new</span><span style="color: #c0c0c0">&nbsp;</span>RAWINPUTDEVICELIST<span style="color: #000000">[n];</span></li>
-<li style="list-style-type: none"><span style="color: #000000">n</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">=</span><span style="color: #c0c0c0">&nbsp;</span>GetRawInputDeviceList<span style="color: #000000">(devices,&amp;n,</span><span style="color: #808000">sizeof</span><span style="color: #000000">(</span>RAWINPUTDEVICELIST<span style="color: #000000">));</span></li>
+</span><li style="list-style-type: none">RAWINPUTDEVICELIST<span style="color: #c0c0c0"> </span><span style="color: #000000">*devices</span><span style="color: #c0c0c0"> </span><span style="color: #000000">=</span><span style="color: #c0c0c0"> </span><span style="color: #808000">new</span><span style="color: #c0c0c0"> </span>RAWINPUTDEVICELIST<span style="color: #000000">[n];</span></li>
+<li style="list-style-type: none"><span style="color: #000000">n</span><span style="color: #c0c0c0"> </span><span style="color: #000000">=</span><span style="color: #c0c0c0"> </span>GetRawInputDeviceList<span style="color: #000000">(devices,&amp;n,</span><span style="color: #808000">sizeof</span><span style="color: #000000">(</span>RAWINPUTDEVICELIST<span style="color: #000000">));</span></li>
 <li style="list-style-type: none"></li>
-<li style="list-style-type: none"><span style="color: #808000">delete</span><span style="color: #000000">[]</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">devices;</span></li>
-<li>UINT<span style="color: #000000"><span style="color: #c0c0c0">&nbsp;</span>infoSize;</span></li>
+<li style="list-style-type: none"><span style="color: #808000">delete</span><span style="color: #000000">[]</span><span style="color: #c0c0c0"> </span><span style="color: #000000">devices;</span></li>
+<li>UINT<span style="color: #000000"><span style="color: #c0c0c0"> </span>infoSize;</span></li>
 <li style="list-style-type: none">GetRawInputDeviceInfo<span style="color: #000000">(devices[i].</span>hDevice<span style="color: #000000">,</span>RIDI_DEVICENAME<span style="color: #000000">,</span>NULL<span style="color: #000000">,&amp;infoSize);</span><span style="color: #c0c0c0"></span></li>
 <span style="color: #c0c0c0"><li style="list-style-type: none"></li>
-</span><li style="list-style-type: none">TCHAR<span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">*deviceName</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">=</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #808000">new</span><span style="color: #c0c0c0">&nbsp;</span>TCHAR<span style="color: #000000">[infoSize];</span><span style="color: #c0c0c0"></span></li>
+</span><li style="list-style-type: none">TCHAR<span style="color: #c0c0c0"> </span><span style="color: #000000">*deviceName</span><span style="color: #c0c0c0"> </span><span style="color: #000000">=</span><span style="color: #c0c0c0"> </span><span style="color: #808000">new</span><span style="color: #c0c0c0"> </span>TCHAR<span style="color: #000000">[infoSize];</span><span style="color: #c0c0c0"></span></li>
 <li style="list-style-type: none">GetRawInputDeviceInfo<span style="color: #000000">(devices[i].</span>hDevice<span style="color: #000000">,</span>RIDI_DEVICENAME<span style="color: #000000">,deviceName,&amp;infoSize);</span><span style="color: #c0c0c0"></span></li>
 <span style="color: #c0c0c0"><li style="list-style-type: none"></li>
-</span><li style="list-style-type: none"><span style="color: #808000">delete</span><span style="color: #000000">[]</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">deviceName;</span></li>
-<li>UINT<span style="color: #000000"><span style="color: #c0c0c0">&nbsp;</span>size;</span></li>
+</span><li style="list-style-type: none"><span style="color: #808000">delete</span><span style="color: #000000">[]</span><span style="color: #c0c0c0"> </span><span style="color: #000000">deviceName;</span></li>
+<li>UINT<span style="color: #000000"><span style="color: #c0c0c0"> </span>size;</span></li>
 <li style="list-style-type: none">GetRawInputData<span style="color: #000000">((</span>HRAWINPUT<span style="color: #000000">)argL,</span>RID_INPUT<span style="color: #000000">,</span>NULL<span style="color: #000000">,&amp;size,</span><span style="color: #808000">sizeof</span><span style="color: #000000">(</span>RAWINPUTHEADER<span style="color: #000000">));<span style="color: #c0c0c0"></span></span></li>
 <span style="color: #000000"><span style="color: #c0c0c0"><li style="list-style-type: none"></li>
-</span></span><li style="list-style-type: none"><span style="color: #808000">char</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">*data</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">=</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #808000">new</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #808000">char</span><span style="color: #000000">[size];</span><span style="color: #c0c0c0"></span></li>
+</span></span><li style="list-style-type: none"><span style="color: #808000">char</span><span style="color: #c0c0c0"> </span><span style="color: #000000">*data</span><span style="color: #c0c0c0"> </span><span style="color: #000000">=</span><span style="color: #c0c0c0"> </span><span style="color: #808000">new</span><span style="color: #c0c0c0"> </span><span style="color: #808000">char</span><span style="color: #000000">[size];</span><span style="color: #c0c0c0"></span></li>
 <li style="list-style-type: none">GetRawInputData<span style="color: #000000">((</span>HRAWINPUT<span style="color: #000000">)argL,</span>RID_INPUT<span style="color: #000000">,data,&amp;size,</span><span style="color: #808000">sizeof</span><span style="color: #000000">(</span>RAWINPUTHEADER<span style="color: #000000">));<span style="color: #c0c0c0"></span></span></li>
-<li style="list-style-type: none">RAWINPUT<span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">*input</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">=</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">(</span>RAWINPUT<span style="color: #000000">*)data;</span></li>
+<li style="list-style-type: none">RAWINPUT<span style="color: #c0c0c0"> </span><span style="color: #000000">*input</span><span style="color: #c0c0c0"> </span><span style="color: #000000">=</span><span style="color: #c0c0c0"> </span><span style="color: #000000">(</span>RAWINPUT<span style="color: #000000">*)data;</span></li>
 <li style="list-style-type: none"></li>
-<li style="list-style-type: none"><span style="color: #808000">delete</span><span style="color: #000000">[]</span><span style="color: #c0c0c0">&nbsp;</span><span style="color: #000000">data;</span></li>
+<li style="list-style-type: none"><span style="color: #808000">delete</span><span style="color: #000000">[]</span><span style="color: #c0c0c0"> </span><span style="color: #000000">data;</span></li>
 <span style="color: #000000"><li>size_t deviceBufferSize = -1;</li>
 <li style="list-style-type: none">clGetContextInfo(context, CL_CONTEXT_DEVICES, 0, NULL, &amp;deviceBufferSize);</li>
 <li style="list-style-type: none"></li>

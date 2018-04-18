@@ -72,25 +72,25 @@
 </li>
 <li><b>Implementation</b></li>
 <li style="list-style-type: none"><ul><li>May need to define Grammar and Parser objects. Grammar = (Unicode?, Non-terminals, Productions,Initial)</li>
-<li>What should be the type of <i>expression</i>&nbsp;in <tt>console &gt;&gt; expression;</tt>?</li>
+<li>What should be the type of <i>expression</i> in <tt>console &gt;&gt; expression;</tt>?</li>
 <li style="list-style-type: none"><ul><li>Could be (Terminal ∪ Non-terminal)* or RuleRHS that is implicitly converted to Grammar.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do semantic actions need to roll back when backtracking? How does Spirit solve this?</li>
 <li>Will $0, $1, etc. be enough or will I need something like @0, @1, etc. to avoid ambiguities with short lambdas?</li>
-<li>Will something like <tt>with x ∈ container: x</tt>&nbsp;generalize better for arbitrary containers?</li>
+<li>Will something like <tt>with x ∈ container: x</tt> generalize better for arbitrary containers?</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><b>Examples</b></li>
-<li style="list-style-type: none"><ul><li><tt>console &lt;&lt; elements[$0] (", " elements[$0])*</tt>&nbsp;(should print the 'elements' array, but how will the system know that the second instance of $0 should continue from where the first left off?</li>
-<li><tt>console &lt;&lt; elements[$0] % ", "</tt>&nbsp;(same as above, but avoiding the issue)</li>
+<li style="list-style-type: none"><ul><li><tt>console &lt;&lt; elements[$0] (", " elements[$0])*</tt> (should print the 'elements' array, but how will the system know that the second instance of $0 should continue from where the first left off?</li>
+<li><tt>console &lt;&lt; elements[$0] % ", "</tt> (same as above, but avoiding the issue)</li>
 <li><tt>console &gt;&gt; numbers[$0] % ", ";</tt></li>
 <tt><li style="list-style-type: none">sort(numbers);</li>
 </tt><li style="list-style-type: none"><tt>console &lt;&lt; numbers[$0] % ", "; </tt>(reads a comma-separated list of Arcadia numbers and writes them again sorted)</li>
-<li style="list-style-type: none"><tt>console &gt;&gt; (('+'|'-')? [0-9]*)[numbers[$0]] % ", ";</tt>&nbsp;(Same but only decimal numbers are accepted. It assumes an implicit conversion from string to integer is available. But how would one specify that '-' is only to be printed for negative numbers?)</li>
+<li style="list-style-type: none"><tt>console &gt;&gt; (('+'|'-')? [0-9]*)[numbers[$0]] % ", ";</tt> (Same but only decimal numbers are accepted. It assumes an implicit conversion from string to integer is available. But how would one specify that '-' is only to be printed for negative numbers?)</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
@@ -116,7 +116,7 @@
 </ul>
 </li>
 <li><b>Relationship with formatted I/O</b></li>
-<li style="list-style-type: none"><ul><li>For backward compatibility with the syntax for formatted input, variables of a type will be directly usable as parsers of this type (instead of int_, double_, etc.) that will read input into that variable. So <tt>in &gt;&gt; a b c</tt>&nbsp;(or <tt>input a b c</tt>) will work like C++'s <tt>cin &gt;&gt; a &gt;&gt; b &gt;&gt; c</tt>.</li>
+<li style="list-style-type: none"><ul><li>For backward compatibility with the syntax for formatted input, variables of a type will be directly usable as parsers of this type (instead of int_, double_, etc.) that will read input into that variable. So <tt>in &gt;&gt; a b c</tt> (or <tt>input a b c</tt>) will work like C++'s <tt>cin &gt;&gt; a &gt;&gt; b &gt;&gt; c</tt>.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>

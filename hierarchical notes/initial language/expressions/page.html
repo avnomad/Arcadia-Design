@@ -5,7 +5,7 @@
 <title>Expressions</title>
 </head><body><ul><li>Types should be 1st class citizens: they should be usable as function arguments and return values.</li>
 <li>Expressions evaluating to types and values should be mixable.</li>
-<li style="list-style-type: none">e.g. <tt>var x </tt>∈ *int<tt>⁵;</tt>&nbsp;where "*int<tt>⁵</tt>" is a type expression.</li>
+<li style="list-style-type: none">e.g. <tt>var x </tt>∈ *int<tt>⁵;</tt> where "*int<tt>⁵</tt>" is a type expression.</li>
 <li>Could have multiple kinds of expressions:</li>
 <li style="list-style-type: none"><ul><li>value (e.g. <tt>1+2*cos(x)</tt>)</li>
 <li>type (e.g. ℝ×ℝ⟶ℂ)</li>
@@ -23,7 +23,7 @@
 <li style="list-style-type: none"><ul><li>Compound literals will be replaced by a more general and uniform mechanism.</li>
 <li>If I want to present literals as data (quadruples) too, I can use the lexeme as their name. e.g. 123 → ("123", int, 123, temp address). I might need to add source line and column to avoid name classes...</li>
 <li>I'll probably use postfix operators instead of user-defined literals.</li>
-<li>If I do support user-defined literals I'll probably need <i>disambiguators</i>&nbsp;for literals in addition to operators.</li>
+<li>If I do support user-defined literals I'll probably need <i>disambiguators</i> for literals in addition to operators.</li>
 <li>∅ for empty set.</li>
 <li><b>Integer</b></li>
 <li style="list-style-type: none"><ul><li>Support literals of base 2, 8, 10, 16. (Others?)</li>
@@ -54,7 +54,7 @@
 <li>Allow creating sets as subsets of other sets with some property (filter) (e.g. {x ∈ native : x % 2 = 0}).</li>
 </ul>
 </li>
-<li><b>Map</b>&nbsp;(or associative array)</li>
+<li><b>Map</b> (or associative array)</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Literals could have an abstract type.</li>
 </ul>
@@ -86,7 +86,7 @@
 </ul>
 </li>
 <li><b>Conversions</b></li>
-<li style="list-style-type: none"><ul><li>The <i>implicit vs explicit</i>&nbsp;distinction can be orthogonal to the <i>conversion vs reinterpretation</i>n one.</li>
+<li style="list-style-type: none"><ul><li>The <i>implicit vs explicit</i> distinction can be orthogonal to the <i>conversion vs reinterpretation</i>n one.</li>
 <li><b>Implicit</b></li>
 <li style="list-style-type: none"><ul><li>Don't include implicit reinterpretations.</li>
 <li><b>Ideas</b></li>
@@ -96,11 +96,11 @@
 </ul>
 </li>
 <li><b>Explicit</b></li>
-<li style="list-style-type: none"><ul><li><i>Conversion casts</i>&nbsp;should be distinguished from <i>reinterpretation casts</i>. (no relationship with C++'s reinterpret_cast)</li>
+<li style="list-style-type: none"><ul><li><i>Conversion casts</i> should be distinguished from <i>reinterpretation casts</i>. (no relationship with C++'s reinterpret_cast)</li>
 <li><b>Conversion Casts</b></li>
 <li style="list-style-type: none"><ul><li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li>Could be <tt>(</tt><i>type-expression</i><tt>)</tt><i>value-expression</i>.</li>
-<li>Could be <tt>convert</tt>&nbsp;<i>value-expression</i>&nbsp;<tt>to</tt>&nbsp;<i>type-expression</i>.</li>
+<li>Could be <tt>convert</tt> <i>value-expression</i> <tt>to</tt> <i>type-expression</i>.</li>
 </ul>
 </li>
 </ul>
@@ -112,13 +112,13 @@
 </li>
 <li><b>Dynamic casts</b></li>
 <li style="list-style-type: none"><ul><li>Should throw an exception to signal failure instead of returning nullptr. (like C++/CLI's safe_cast)</li>
-<li>Can also provide a complementary <b>as</b>&nbsp;operator that returns <tt>null</tt>&nbsp;to signal failure. (like C# does)</li>
+<li>Can also provide a complementary <b>as</b> operator that returns <tt>null</tt> to signal failure. (like C# does)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>One can think of <b>views</b>&nbsp;as a third option that is different from reinterpretation in that a new object is created in memory and from conversion in that changes to the new object are reflected on the old one.</li>
+<li style="list-style-type: none"><ul><li>One can think of <b>views</b> as a third option that is different from reinterpretation in that a new object is created in memory and from conversion in that changes to the new object are reflected on the old one.</li>
 </ul>
 </li>
 </ul>
@@ -134,7 +134,7 @@
 <li>Unified way to refer to any entity (whether named or not) in any file. (URL? "::", ".", ":"?)</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>The syntax could be: &lt;disambiguator&gt; ::= [&lt;locator&gt;] &lt;identifier&gt; [&lt;selector&gt;] where the &lt;locator&gt; part specifies the module, namespace, block, etc. in which the function is defined, the &lt;selector&gt; part selects a specific function overload, template instance, etc. (may need to include the operator's fixity if I allow overloading of operator fixity) and &lt;identifier&gt; is the name of the function or variable.</li>
-<li>Could use the special <tt>global:</tt>&nbsp;<i>locator</i>&nbsp;to refer to global variables that are hidden by local ones with the same name (like C++'s unary <tt>::</tt>&nbsp;operator).</li>
+<li>Could use the special <tt>global:</tt> <i>locator</i> to refer to global variables that are hidden by local ones with the same name (like C++'s unary <tt>::</tt> operator).</li>
 </ul>
 </li>
 </ul>

@@ -41,10 +41,10 @@
 </li>
 <li><b>Mutability</b></li>
 <li style="list-style-type: none"><ul><li><b>const</b>, <b>mutable</b>, <b>immutable</b></li>
-<li><b>const</b>&nbsp;and <b>immutable</b>&nbsp;will be equivalent in variable definitions, but they can differ in declarations, parameter and pointer types, etc.</li>
-<li><b>const</b>&nbsp;T won't be a type, it will be type T, qualified. <b>const</b>&nbsp;T and T don't represent different value sets! On the other hand, they support different operation sets!</li>
-<li>D's <b>inout</b>&nbsp;wildcard qualifier is nice, but I think I'll prefer my solution with the special named template parameter (some static checkers for Java use a similar approach!) that can be different for the various parts of a type and various function parameters. e.g. <tt>(T) int *(S) fun((T) int *(S) p);</tt></li>
-<li>Imagine a kind of <i>transitive const</i>&nbsp;that, when applied to an object, makes it const and moreover makes the objects pointed to by the object transitive const. That could e.g. be used in a function that accepts the head of a linked list (pointer) and guarantees that no list element will change.</li>
+<li><b>const</b> and <b>immutable</b> will be equivalent in variable definitions, but they can differ in declarations, parameter and pointer types, etc.</li>
+<li><b>const</b> T won't be a type, it will be type T, qualified. <b>const</b> T and T don't represent different value sets! On the other hand, they support different operation sets!</li>
+<li>D's <b>inout</b> wildcard qualifier is nice, but I think I'll prefer my solution with the special named template parameter (some static checkers for Java use a similar approach!) that can be different for the various parts of a type and various function parameters. e.g. <tt>(T) int *(S) fun((T) int *(S) p);</tt></li>
+<li>Imagine a kind of <i>transitive const</i> that, when applied to an object, makes it const and moreover makes the objects pointed to by the object transitive const. That could e.g. be used in a function that accepts the head of a linked list (pointer) and guarantees that no list element will change.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Consider the following example:</li>
 <tt><li style="list-style-type: none">struct T</li>
@@ -57,7 +57,7 @@
 <li style="list-style-type: none"></li>
 <li style="list-style-type: none">const T a;</li>
 <li style="list-style-type: none"></li>
-</tt><li style="list-style-type: none"><tt>a.n</tt>&nbsp;and <tt>a.p</tt>&nbsp;will be <tt>const</tt>&nbsp;but what about <tt>*a.p</tt>? Should it be const or not?</li>
+</tt><li style="list-style-type: none"><tt>a.n</tt> and <tt>a.p</tt> will be <tt>const</tt> but what about <tt>*a.p</tt>? Should it be const or not?</li>
 <li style="list-style-type: none"></li>
 <tt><li style="list-style-type: none">struct T</li>
 <li style="list-style-type: none">{</li>
@@ -89,7 +89,7 @@
 </ul>
 </li>
 <li style="list-style-type: none">};</li>
-</tt><li><tt>Do I need <i>literal</i>&nbsp;and <i>initonly</i>&nbsp;fields from C++/CLI?</tt></li>
+</tt><li><tt>Do I need <i>literal</i> and <i>initonly</i> fields from C++/CLI?</tt></li>
 </ul>
 </li>
 </ul>

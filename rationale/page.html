@@ -16,8 +16,8 @@
 </ul>
 </li>
 <li>The rules for selecting an encoding where selected so that international characters can still be used in systems that don't support a BOM to preceed the #! sequence.</li>
-<li>The form <tt>print "Hello World!\n";</tt>&nbsp;wasn't used because "print" can't be generalized (to streams).</li>
-<li>By using <b>fallthrough</b>&nbsp;I'm not hijacking <b>break</b>&nbsp;and <b>continue</b>.</li>
+<li>The form <tt>print "Hello World!\n";</tt> wasn't used because "print" can't be generalized (to streams).</li>
+<li>By using <b>fallthrough</b> I'm not hijacking <b>break</b> and <b>continue</b>.</li>
 <li>Only arithmetic and geometric progressions are recognized by the sequence operator ( , ,..., ), since there is no point in submitting the readers of the code to an IQ test.</li>
 <li>The distinction between value and reference classes demands a decision up front about how the classes are going to be used (whether they will be inherited etc.) and isn't in line with the language's general principle to let you start writing something and decide about the details as you go.</li>
 <li>No special adaptor that adds deallocation guarantees to containers of pointers to objects was included, since the intended behaviour can be achieved by using containers of smart pointers.</li>
@@ -25,12 +25,12 @@
 <li>Plain text source file format was selected mostly because there weren't enough resources to design and implement a decent editor and to allow programmers to use their existing editor-of-choice.</li>
 <li>One of the reasons for making Arcadia extensible was so that projects like Qt and ODB for C++ wouldn't have to write their own compiler/preprocessor but rather extend the language by writting a library.</li>
 <li><b>Choice of Names</b></li>
-<li style="list-style-type: none"><ul><li>Linear data structures could have a <i>length</i>&nbsp;member, but this name doesn't generalize to trees and graphs. They could have a <i>size</i>&nbsp;member, but this will be used for byte count instead.</li>
+<li style="list-style-type: none"><ul><li>Linear data structures could have a <i>length</i> member, but this name doesn't generalize to trees and graphs. They could have a <i>size</i> member, but this will be used for byte count instead.</li>
 </ul>
 </li>
 <li><b>Choice of Symbols</b></li>
 <li style="list-style-type: none"><ul><li>The ↜ and &lt;~ operators were used for assignment, even though they are harder to write than =, because they don't match any mathematical symbol used elsewhere.</li>
-<li>The <b>|</b>&nbsp;and <b>||</b>&nbsp;operators weren't used for bitwise and logical disjunction respectively because the former was needed for conditional probability and the latter to test whether two lines or vectors were parallel.</li>
+<li>The <b>|</b> and <b>||</b> operators weren't used for bitwise and logical disjunction respectively because the former was needed for conditional probability and the latter to test whether two lines or vectors were parallel.</li>
 <li>Angle brackets weren't used for argument lists because of the ambiguities caused from using the '&lt;' and '&gt;' characters for both the former and comparison (&lt;,&gt;) and shift (&lt;&lt;,&gt;&gt;) operators. Those ambiguities affected both the compiler's speed and complexity and the complexity of defining the language in C++.</li>
 </ul>
 </li>

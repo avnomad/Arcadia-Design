@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Function Call</title>
-</head><body><ul><li>When you bind one or more function parameters to specific arguments, there will be an option to either create an object that stores those arguments until the rest of the arguments become known, or create a specialization of the function for these specific argument values. <i>Partial application</i>&nbsp;vs <i>partial evaluation</i>?</li>
+</head><body><ul><li>When you bind one or more function parameters to specific arguments, there will be an option to either create an object that stores those arguments until the rest of the arguments become known, or create a specialization of the function for these specific argument values. <i>Partial application</i> vs <i>partial evaluation</i>?</li>
 <li><b>Partial Application</b></li>
 <li style="list-style-type: none"><ul><li><b>Currying</b></li>
 <li style="list-style-type: none"><ul><li>One should be able to implement functionality similar to boost::bind from currying and named parameters.</li>
@@ -63,7 +63,7 @@
 <li style="list-style-type: none"><ul><li>The result is parsed using the fixity that was used when declaring the function.</li>
 <li>Examples:</li>
 <li style="list-style-type: none"><ul><li>c = a + b ⟺ c std:= a std:+ b</li>
-<li>d = f(a g b) ⟺ d &lt;(=)&gt; &lt;#f#&gt;(a &lt;|asl:operators:g|&gt; &nbsp;b)</li>
+<li>d = f(a g b) ⟺ d &lt;(=)&gt; &lt;#f#&gt;(a &lt;|asl:operators:g|&gt;  b)</li>
 </ul>
 </li>
 </ul>
@@ -75,7 +75,7 @@
 </li>
 </ul>
 </li>
-<li>I might have to generalize <i>call operator variants</i>&nbsp;(including specification of default variant) to control structures (e.g. if, foreach etc.).</li>
+<li>I might have to generalize <i>call operator variants</i> (including specification of default variant) to control structures (e.g. if, foreach etc.).</li>
 <li style="list-style-type: none">That's because of the interaction between static typing and the branch that is not taken. (see map implementation using SFINAE and foreach(field in class))</li>
 <li>Since I'll support compile-time evaluation of arbitrary functions (using a special operator), I probably won't need <i>constant-expression functions</i>.</li>
 </ul>
@@ -131,12 +131,12 @@
 <li>by value</li>
 <li>2 modes to return a value by reference will be needed:</li>
 <li style="list-style-type: none"><ul><li><b>by external reference</b>: The caller allocates space in the stack for the object to be returned and passes its address to the callee as a hidden argument (the function isn't really returning anything). The constructor for the object to be returned can be called as the last thing before transferring control to the callee or the first thing after that (I'm not sure what's best. Perhaps last thing before transferring control, so that both the constructor and destructor are called from the caller.).</li>
-<li style="list-style-type: none">The above is enough for statements like <tt>g(f(b));</tt>&nbsp;where f returns an object of type T by external reference and g takes an object of type T by reference. But for statements of the form <tt>a = f(b);</tt>&nbsp;where a is of type T and f returns an object of type T by external reference, we want to avoid the creation of a new object and its copy into <tt>a</tt>&nbsp;and instead we'll pass the address of <tt>a</tt>&nbsp;to <tt>f</tt>&nbsp;directly.</li>
+<li style="list-style-type: none">The above is enough for statements like <tt>g(f(b));</tt> where f returns an object of type T by external reference and g takes an object of type T by reference. But for statements of the form <tt>a = f(b);</tt> where a is of type T and f returns an object of type T by external reference, we want to avoid the creation of a new object and its copy into <tt>a</tt> and instead we'll pass the address of <tt>a</tt> to <tt>f</tt> directly.</li>
 <li style="list-style-type: none"><ul><li>This can be thought as explicitly requesting for a Return Value Optimization (RVO).</li>
-<li>Essentially <tt>double[] add(double a[], double [])</tt>&nbsp;becomes <tt>void add(double a[], double b[], double c[])</tt>.</li>
-<li>An older thought (that predated external references) was to declare the function with an explicit extra parameter, then <tt>somehow</tt>&nbsp;bind <tt>retval</tt>&nbsp;with that extra parameter. The compiler would check e.g. that the parameter had the same type as the return value (including the temp qualifier) (or at least the same size?). Then it would allocate space or not using more-or-less the same rules as for external references. There were two options for the binding:</li>
-<li style="list-style-type: none"><ul><li>Using a special statement/directive like <tt>bind retval to <i>identifier</i>;</tt>&nbsp;at the beginning of a function's body.</li>
-<li>Using <b>retval</b>&nbsp;in the parameter list. e.g. <tt>add(a, b, retval=c)</tt>.</li>
+<li>Essentially <tt>double[] add(double a[], double [])</tt> becomes <tt>void add(double a[], double b[], double c[])</tt>.</li>
+<li>An older thought (that predated external references) was to declare the function with an explicit extra parameter, then <tt>somehow</tt> bind <tt>retval</tt> with that extra parameter. The compiler would check e.g. that the parameter had the same type as the return value (including the temp qualifier) (or at least the same size?). Then it would allocate space or not using more-or-less the same rules as for external references. There were two options for the binding:</li>
+<li style="list-style-type: none"><ul><li>Using a special statement/directive like <tt>bind retval to <i>identifier</i>;</tt> at the beginning of a function's body.</li>
+<li>Using <b>retval</b> in the parameter list. e.g. <tt>add(a, b, retval=c)</tt>.</li>
 </ul>
 </li>
 </ul>
@@ -174,8 +174,8 @@
 <li>It might be useful to allow the default argument values to be computed by an arbitrary expression that may contain the values of other parameters of the function. This expression will have to be evaluated in the context of the caller.</li>
 <li style="list-style-type: none">e.g. a function could receive the storage space it will use as an argument and if it doesn't receive it, the function could allocate the space itself.</li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>I could allow passing the keyword <b>default</b>&nbsp;in contexts were I can't just leave a parameter's position empty (e.g. currying), but I still want to use default arguments.</li>
-<li>Should I allow for a default argument for be supplied by a virtual function of the same class? Generally changing default arguments in an function <u>override</u>&nbsp;isn't a good idea, but that way it might work!</li>
+<li style="list-style-type: none"><ul><li>I could allow passing the keyword <b>default</b> in contexts were I can't just leave a parameter's position empty (e.g. currying), but I still want to use default arguments.</li>
+<li>Should I allow for a default argument for be supplied by a virtual function of the same class? Generally changing default arguments in an function <u>override</u> isn't a good idea, but that way it might work!</li>
 </ul>
 </li>
 </ul>
@@ -190,7 +190,7 @@
 <li style="list-style-type: none"><ul><li>How will the type of a variadic function look like?</li>
 <li>How will a function refer to its arguments in a way that ensures static type safety?</li>
 <li>In the context of bootstrapping the language, can variadic functions be defined before defining parentheses as the way to call functions?</li>
-<li>How will a respective writefln function be written? e.g. <tt>(Τ∈TypeClassExpression)… writefln∈(s ∈ string,args ∈ Τ)</tt>&nbsp;or <tt>writefln∈(s ∈ string, args ∈ Τ∈TypeClassExpression…)</tt></li>
+<li>How will a respective writefln function be written? e.g. <tt>(Τ∈TypeClassExpression)… writefln∈(s ∈ string,args ∈ Τ)</tt> or <tt>writefln∈(s ∈ string, args ∈ Τ∈TypeClassExpression…)</tt></li>
 </ul>
 </li>
 </ul>
@@ -220,14 +220,14 @@
 <li style="list-style-type: none"><ul><li><tt>( )</tt></li>
 <li><tt>[ ]</tt></li>
 <li><tt>{ }</tt></li>
-<li><tt>&lt; &gt;</tt>&nbsp;Ambiguity with comparison and shift operators during both scanning and parsing.</li>
+<li><tt>&lt; &gt;</tt> Ambiguity with comparison and shift operators during both scanning and parsing.</li>
 <li><tt>| |</tt></li>
-<li><tt>|| ||</tt>&nbsp;Ambiguity with parallel-to operator when used in the form <tt>$0 || $1 ||</tt>. The form <tt>||$0||</tt>&nbsp;should be fine.</li>
+<li><tt>|| ||</tt> Ambiguity with parallel-to operator when used in the form <tt>$0 || $1 ||</tt>. The form <tt>||$0||</tt> should be fine.</li>
 </ul>
 </li>
 <li>New</li>
 <li style="list-style-type: none"><ul><li><tt>&lt;| |&gt;</tt></li>
-<li><tt>&lt;~ ~&gt;</tt>&nbsp;Ambiguity with the assignment operator when used in the form <tt>$0 &lt;~ $1 ~&gt;</tt>&nbsp;The form <tt>&lt;~$0~&gt;</tt>&nbsp;should be fine.</li>
+<li><tt>&lt;~ ~&gt;</tt> Ambiguity with the assignment operator when used in the form <tt>$0 &lt;~ $1 ~&gt;</tt> The form <tt>&lt;~$0~&gt;</tt> should be fine.</li>
 <li><tt>&lt;% %&gt;</tt></li>
 <li><tt>&lt;# #&gt;</tt></li>
 <li><tt>&lt;( )&gt;</tt></li>
@@ -263,10 +263,10 @@
 </ul>
 </li>
 <li>New with slots</li>
-<li style="list-style-type: none"><ul><li><tt>&lt;c: :&gt;</tt>&nbsp;Ambiguity with comparison and shift operators. e.g. compare <tt>x &lt; &lt;c:max(y,z)</tt>&nbsp;with <tt>x &lt;&lt;c:max(y,z)</tt>&nbsp;that differ only by a space character.</li>
-<li><tt>&lt;i: :&gt;</tt>&nbsp;Same</li>
-<li><tt>&lt;l: :&gt;</tt>&nbsp;Same</li>
-<li><tt>&lt;d: :&gt;</tt>&nbsp;Same</li>
+<li style="list-style-type: none"><ul><li><tt>&lt;c: :&gt;</tt> Ambiguity with comparison and shift operators. e.g. compare <tt>x &lt; &lt;c:max(y,z)</tt> with <tt>x &lt;&lt;c:max(y,z)</tt> that differ only by a space character.</li>
+<li><tt>&lt;i: :&gt;</tt> Same</li>
+<li><tt>&lt;l: :&gt;</tt> Same</li>
+<li><tt>&lt;d: :&gt;</tt> Same</li>
 </ul>
 </li>
 </ul>

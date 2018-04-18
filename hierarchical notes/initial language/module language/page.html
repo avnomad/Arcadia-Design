@@ -19,7 +19,7 @@
 </li>
 </ul>
 </li>
-<li><b>Initialization</b>&nbsp;(and Finalization) <b>Order</b></li>
+<li><b>Initialization</b> (and Finalization) <b>Order</b></li>
 <li style="list-style-type: none"><ul><li>Variables inside the same module are initialized in the order they appear in the conceptual file.</li>
 <li>The module import graph must be a directed acyclic graph. (here a reference to a module's symbol using a qualified name, counts as an import)</li>
 <li>A modules variables are initialized after initialization of the variables of imported modules. (this is the same as for importing shared libraries)</li>
@@ -46,7 +46,7 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should I merge the concepts of namespaces and includes like Java does?</li>
-<li>Should I allow using <i>includes</i>&nbsp;to break large files into smaller ones?</li>
+<li>Should I allow using <i>includes</i> to break large files into smaller ones?</li>
 </ul>
 </li>
 </ul>
@@ -59,8 +59,8 @@
 <li>Allows creation of "master module" files that will import all symbols from a number of smaller modules.</li>
 </ul>
 </li>
-<li>The difference between a using <i>declaration</i>&nbsp;and a using <i>directive</i>, isn't only that the former introduces a single name, while the latter all names, but that the former introduces only currently known names, while the latter introduces future names as well.</li>
-<li>I'll probably not need something like <b>static import</b>&nbsp;(include) because my "includes" are done implicitly.</li>
+<li>The difference between a using <i>declaration</i> and a using <i>directive</i>, isn't only that the former introduces a single name, while the latter all names, but that the former introduces only currently known names, while the latter introduces future names as well.</li>
+<li>I'll probably not need something like <b>static import</b> (include) because my "includes" are done implicitly.</li>
 <li>Allow importing modules (or dlls?) at run-time.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>I can use disambiguators with patterns (like '*' in Java imports) in both imports and exports.</li>
@@ -68,7 +68,7 @@
 </ul>
 </li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Do I need <i>renaming imports</i>&nbsp;(from D), or will simple imports plus aliases suffice?</li>
+<li style="list-style-type: none"><ul><li>Do I need <i>renaming imports</i> (from D), or will simple imports plus aliases suffice?</li>
 <li>Will I need something like C++'s extern "C" to import unmangled names?</li>
 <li>Do I want to decouple the logical packet structure from the physical folder structure? In other words do I want separate "include" and "using" commands?</li>
 </ul>
@@ -76,8 +76,8 @@
 </ul>
 </li>
 <li><b>Exports</b></li>
-<li style="list-style-type: none"><ul><li>Use an <tt>export</tt>&nbsp;keyword instead of <tt>public</tt>&nbsp;to make a class or other entity visible to other modules / compilation units.</li>
-<li>Support both <tt>+export, −export</tt>&nbsp;blocks and <tt>export </tt><i>function_name</i>&nbsp;constructs<tt>?</tt></li>
+<li style="list-style-type: none"><ul><li>Use an <tt>export</tt> keyword instead of <tt>public</tt> to make a class or other entity visible to other modules / compilation units.</li>
+<li>Support both <tt>+export, −export</tt> blocks and <tt>export </tt><i>function_name</i> constructs<tt>?</tt></li>
 </ul>
 </li>
 <li><b>Includes</b></li>
@@ -87,7 +87,7 @@
 <li style="list-style-type: none"><ul><li>Define a standard ABI for communication across module boundaries. e.g. for propagating exceptions.</li>
 <li style="list-style-type: none">Or maybe an automatic translation from exceptions to error codes and back.</li>
 <li>Define a standard name mangling so that modules compiled by different compilers can communicate.</li>
-<li>How will my rules for <i>cross-module overloading</i>&nbsp;look like?</li>
+<li>How will my rules for <i>cross-module overloading</i> look like?</li>
 </ul>
 </li>
 </ul>

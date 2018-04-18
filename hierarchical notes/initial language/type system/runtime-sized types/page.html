@@ -150,7 +150,7 @@
 <li style="list-style-type: none">@ms-1-a = #m<tt>−</tt>0</li>
 <li style="list-style-type: none">@ms-1-a = $ms-1-n</li>
 <li style="list-style-type: none">@ms-1-ret = $ms-1-n</li>
-<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt> #m</li>
 <li style="list-style-type: none">@ms-2-a = $ms-2-n</li>
 <li style="list-style-type: none">@ms-2-ret = $ms-2-n</li>
 <li style="list-style-type: none">@m-0-a = @ms-1-ret</li>
@@ -165,11 +165,11 @@
 <li style="list-style-type: none">@ms-1-a = #m</li>
 <li style="list-style-type: none">$ms-1-n = #m</li>
 <li style="list-style-type: none">@ms-1-ret = #m</li>
-<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt>&nbsp;#m</li>
-<li style="list-style-type: none">$ms-2-n = @ms-0-a <tt>−</tt>&nbsp;#m</li>
-<li style="list-style-type: none">@ms-2-ret = @ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt> #m</li>
+<li style="list-style-type: none">$ms-2-n = @ms-0-a <tt>−</tt> #m</li>
+<li style="list-style-type: none">@ms-2-ret = @ms-0-a <tt>−</tt> #m</li>
 <li style="list-style-type: none">@m-0-a = #m</li>
-<li style="list-style-type: none">@m-0-b = @ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@m-0-b = @ms-0-a <tt>−</tt> #m</li>
 <li style="list-style-type: none">@m-0-ret = @ms-0-a</li>
 </ul>
 </li>
@@ -177,7 +177,7 @@
 <li style="list-style-type: none">The following equations will be kept for code generation:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-ret = @ms-0-a</li>
 <li style="list-style-type: none">@ms-1-a = #m</li>
-<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt>&nbsp;#m</li>
+<li style="list-style-type: none">@ms-2-a = $ms-0-a <tt>−</tt> #m</li>
 </ul>
 </li>
 <li style="list-style-type: none">Only @ms-0-a will be passed as hidden variable. @ms-0-ret is identical.</li>
@@ -207,7 +207,7 @@
 <li style="list-style-type: none">@ms-1-a = #m<tt>−</tt>0</li>
 <li style="list-style-type: none">@ms-1-a = $ms-1-n</li>
 <li style="list-style-type: none">@ms-1-ret = $ms-1-n</li>
-<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt>&nbsp;#m <tt>− </tt>1</li>
+<li style="list-style-type: none">@ms-2-a = @ms-0-a <tt>−</tt> #m <tt>− </tt>1</li>
 <li style="list-style-type: none">@ms-2-a = $ms-2-n</li>
 <li style="list-style-type: none">@ms-2-ret = $ms-2-n</li>
 <li style="list-style-type: none">@m-0-a = @ms-1-ret</li>
@@ -217,7 +217,7 @@
 </ul>
 </li>
 <li style="list-style-type: none">The system has no solutions:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-ret = @ms-0-ret <tt>−</tt>&nbsp;#m <tt>−</tt>&nbsp;1 + #m </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@ms-0-ret = @ms-0-ret <tt>−</tt> #m <tt>−</tt> 1 + #m </li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">or</li>
 </ul>
 </li>
@@ -255,8 +255,8 @@
 </ul>
 </li>
 <li style="list-style-type: none">The system has infinitely many solutions:</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">@sp-0-ret0 = @sp-0-a <tt>−</tt>&nbsp;@sp-0-ret1</li>
-<li style="list-style-type: none">$sp-0-n = @sp-0-a <tt>−</tt>&nbsp;@sp-0-ret1</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">@sp-0-ret0 = @sp-0-a <tt>−</tt> @sp-0-ret1</li>
+<li style="list-style-type: none">$sp-0-n = @sp-0-a <tt>−</tt> @sp-0-ret1</li>
 <li style="list-style-type: none">$sp-0-m = @sp-0-ret1</li>
 </ul>
 </li>
@@ -351,14 +351,14 @@
 </ul>
 </li>
 <li style="list-style-type: none">Only @ad-0-ret is passed as a hidden variable.</li>
-<li style="list-style-type: none">#itoa-0-ret = <tt>floor(log10(n))+1</tt>&nbsp;is inferred as the size of both ascending and retval arrays.</li>
+<li style="list-style-type: none">#itoa-0-ret = <tt>floor(log10(n))+1</tt> is inferred as the size of both ascending and retval arrays.</li>
 <li style="list-style-type: none"></li>
 <li style="list-style-type: none">Additionally the following linear inequalities could have been inferred:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">@ad-0-as &gt; 0</li>
 </ul>
 </li>
 <li style="list-style-type: none">An extension to the system that would flag this as an error could lead us to revise the type of itoa to something that exposes the fact that <tt>∀</tt>n.|itoa(n)|&gt;0.</li>
-<li>If <tt>f ∈ T ⟶ (int[n], uint[n+10])</tt>&nbsp;and <tt>g ∈ (int[m−10], uint[m])</tt>, then g(f(x)) might need to solve the system</li>
+<li>If <tt>f ∈ T ⟶ (int[n], uint[n+10])</tt> and <tt>g ∈ (int[m−10], uint[m])</tt>, then g(f(x)) might need to solve the system</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">l1 = n</li>
 <li style="list-style-type: none">l2 = n+10</li>
 <li style="list-style-type: none">l3 = m<tt>−</tt>10</li>

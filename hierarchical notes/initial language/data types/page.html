@@ -39,9 +39,9 @@
 <li>Support taking slices of arrays that will evaluate to ranges. The syntax for taking slices can stay the same and be generalized so that it works with every container that supports random access iterators.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>What about multidimensional arrays? How will they interact with ranges and slices?</li>
-<li style="list-style-type: none">For all arrays (whether multidimensional or not) <tt>a[2..9][3..5]</tt>&nbsp;should probably mean the same as <tt>b &lt;~ a[2..9], b[3..5]</tt>, that is "make the initial slice even smaller"</li>
+<li style="list-style-type: none">For all arrays (whether multidimensional or not) <tt>a[2..9][3..5]</tt> should probably mean the same as <tt>b &lt;~ a[2..9], b[3..5]</tt>, that is "make the initial slice even smaller"</li>
 <li style="list-style-type: none">In other words, a[2..9] is still an array, so you can take a slice of it. We don't treat sequences of slice expressions any differently.</li>
-<li style="list-style-type: none">I can follow C++/CLI's approach and make <tt>a[11][8]</tt>&nbsp;different from <tt>a[11, 8]</tt>&nbsp;in definitions. Moreover multidimensional arrays of the second kind could support multidimensional slices like <tt>a[2..9, 3..5]</tt>.</li>
+<li style="list-style-type: none">I can follow C++/CLI's approach and make <tt>a[11][8]</tt> different from <tt>a[11, 8]</tt> in definitions. Moreover multidimensional arrays of the second kind could support multidimensional slices like <tt>a[2..9, 3..5]</tt>.</li>
 <li>Should I allow assignment to the array's length member?</li>
 <li>Should there be a type for blocks of memory different than an array of bytes?</li>
 </ul>

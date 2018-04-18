@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Declarations</title>
 </head><body><ul><li>Variables should be declared before they are used.</li>
-<li>In contexts where expression statements are needed I need <b>auto</b>&nbsp;(or <b>var</b>&nbsp;or something similar) to distinguish between declarations/definitions and expression statements. In contexts like global declarations or field declarations it might not be needed, but I may want to maintain uniformity anyway...</li>
+<li>In contexts where expression statements are needed I need <b>auto</b> (or <b>var</b> or something similar) to distinguish between declarations/definitions and expression statements. In contexts like global declarations or field declarations it might not be needed, but I may want to maintain uniformity anyway...</li>
 <li><b>Variables</b></li>
 <li style="list-style-type: none"><ul><li>Also applies to structure field declarations.</li>
 <li><b>Syntax</b></li>
@@ -14,19 +14,19 @@
 <li style="list-style-type: none"><ul><li><tt>t(s), x(m), u(m/s) ∈ ℝ[ieee745];</tt></li>
 </ul>
 </li>
-<li><i>identifier</i>&nbsp;<b>{</b><tt>,</tt>&nbsp;<i>identifier</i><b>}</b>&nbsp;<tt>∈</tt>&nbsp;<i>type-expression</i>&nbsp;<b>[</b><tt>[</tt>&nbsp;<i>implementation</i>&nbsp;<tt>]</tt><b>]</b>&nbsp;<b>[</b><tt>(</tt>&nbsp;<i>unit-expression</i>&nbsp;<tt>)</tt><b>]</b><tt>;</tt></li>
+<li><i>identifier</i> <b>{</b><tt>,</tt> <i>identifier</i><b>}</b> <tt>∈</tt> <i>type-expression</i> <b>[</b><tt>[</tt> <i>implementation</i> <tt>]</tt><b>]</b> <b>[</b><tt>(</tt> <i>unit-expression</i> <tt>)</tt><b>]</b><tt>;</tt></li>
 <li style="list-style-type: none"><ul><li>e.g. <tt>i, j ∈ ℕ;</tt>, <tt>f ∈ ℕ⟶ℝ;</tt></li>
 </ul>
 </li>
-<li><i>identifier</i>&nbsp;<tt>∈</tt>&nbsp;<i>type-expression</i>&nbsp;<tt>:</tt>&nbsp;<i>specification</i>&nbsp;<tt>;</tt></li>
+<li><i>identifier</i> <tt>∈</tt> <i>type-expression</i> <tt>:</tt> <i>specification</i> <tt>;</tt></li>
 <li style="list-style-type: none"><ul><li>e.g. <tt>x ∈ integers:[32bit no overflow];</tt></li>
 </ul>
 </li>
-<li><i>identifier <tt>∈</tt>&nbsp;interface</i>&nbsp;<tt>[</tt><i>unit-expression</i><tt>]</tt>&nbsp;<tt>[</tt><i>implementation</i><tt>];</tt></li>
+<li><i>identifier <tt>∈</tt> interface</i> <tt>[</tt><i>unit-expression</i><tt>]</tt> <tt>[</tt><i>implementation</i><tt>];</tt></li>
 <li style="list-style-type: none"><ul><li>e.g. <tt>n ∈ ℕ[unsigned,64,no exception];</tt></li>
 </ul>
 </li>
-<li><i>identifier</i><tt>&nbsp;<b>{</b>, <i>identifier</i><b>}</b>&nbsp;∈ <i>implementation</i>&nbsp;<b>[</b>∈ </tt><i>interface</i><tt><b>]</b>&nbsp;</tt></li>
+<li><i>identifier</i><tt> <b>{</b>, <i>identifier</i><b>}</b> ∈ <i>implementation</i> <b>[</b>∈ </tt><i>interface</i><tt><b>]</b> </tt></li>
 </ul>
 </li>
 <li><b>Initializers</b></li>
@@ -68,7 +68,7 @@
 </ul>
 </li>
 <li style="list-style-type: none">If needed, the same mechanism used to undeclare operators can be used here too.</li>
-<li>A <tt>mut</tt>&nbsp;attribute can be applied to different parts of a type expression to make that part mutable. e.g.</li>
+<li>A <tt>mut</tt> attribute can be applied to different parts of a type expression to make that part mutable. e.g.</li>
 <li style="list-style-type: none"><ul><li><tt>int mut * mut p;</tt></li>
 </ul>
 </li>
@@ -112,7 +112,7 @@
 <li style="list-style-type: none"><ul><li>Should all variables, or a subset of them (e.g. statics are initialized to 0 in ELF and EXE anyway), be initialized to zero by default?</li>
 <li>Allow specifying types of the form <i>interface</i><tt>[</tt><i>implementation</i><tt>]</tt>. e.g.</li>
 <li style="list-style-type: none"><ul><li><tt>i, j ∈ ℤ[32-bit];</tt></li>
-<li>n<tt>&nbsp;∈ ℕ[native];</tt></li>
+<li>n<tt> ∈ ℕ[native];</tt></li>
 <li><tt>v, u ∈ VectorSpace&lt;ℝ&gt;[Vector&lt;ℝ&gt;];</tt></li>
 </ul>
 </li>
@@ -136,7 +136,7 @@
 <li style="list-style-type: none"><ul><li>Allow type, variable, function, etc. aliases.</li>
 <li>Allow aliases of parametrized types similar to C++11's template typedefs.</li>
 <li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Clarify semantics of <tt>auto aNewName = transmogrify;</tt>&nbsp;in the case where transmogrify is an overloaded function.</li>
+<li style="list-style-type: none"><ul><li>Clarify semantics of <tt>auto aNewName = transmogrify;</tt> in the case where transmogrify is an overloaded function.</li>
 </ul>
 </li>
 </ul>

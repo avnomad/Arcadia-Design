@@ -10,16 +10,16 @@
 </li>
 <li><b>Syntax</b></li>
 <li style="list-style-type: none"><ul><li>Could be one of:</li>
-<li style="list-style-type: none"><ul><li><i>metadata-operator</i>&nbsp;<i>identifier</i></li>
+<li style="list-style-type: none"><ul><li><i>metadata-operator</i> <i>identifier</i></li>
 <li style="list-style-type: none"><ul><li>e.g. <tt>typeof x</tt>, <tt>sizeof x</tt>, <tt>alignof x</tt>, <tt>nameof x</tt>, <tt>attributesof</tt>/<tt>traitsof x</tt></li>
 </ul>
 </li>
-<li><i>metadata-operator</i><tt>&nbsp;(</tt>&nbsp;<i>identifier</i>&nbsp;<tt>)</tt></li>
-<li><i>identifier</i>&nbsp;<tt>:</tt>&nbsp;<i>metadata-name</i></li>
+<li><i>metadata-operator</i><tt> (</tt> <i>identifier</i> <tt>)</tt></li>
+<li><i>identifier</i> <tt>:</tt> <i>metadata-name</i></li>
 <li style="list-style-type: none"><ul><li>e.g. <tt>x:type</tt>, <tt>x:alignment</tt>, <tt>x:name</tt>, <tt>x:attibutes/traits</tt></li>
 </ul>
 </li>
-<li><i>identifier</i>&nbsp;<tt>.</tt>&nbsp;<i>metadata-name</i></li>
+<li><i>identifier</i> <tt>.</tt> <i>metadata-name</i></li>
 </ul>
 </li>
 </ul>
@@ -33,7 +33,7 @@
 <li style="list-style-type: none"><ul><li><b>Use Cases</b>:</li>
 <li style="list-style-type: none"><ul><li>Loops, etc. when you don't refer to a variable or field using its name.</li>
 <li>Printing the variable's name in a way that doesn't break if it changes during refactoring.</li>
-<li style="list-style-type: none"><ul><li>e.g. <tt>cout &lt;&lt; "The height is " &lt;&lt; height;</tt>&nbsp;vs <tt>cout &lt;&lt; "The " &lt;&lt; height:name &lt;&lt; " is " &lt;&lt; height;</tt>&nbsp;when renaming "height" to "width".</li>
+<li style="list-style-type: none"><ul><li>e.g. <tt>cout &lt;&lt; "The height is " &lt;&lt; height;</tt> vs <tt>cout &lt;&lt; "The " &lt;&lt; height:name &lt;&lt; " is " &lt;&lt; height;</tt> when renaming "height" to "width".</li>
 </ul>
 </li>
 </ul>
@@ -177,7 +177,7 @@
 </li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Do I want functions to know if they are being run during compilation time or run time?</li>
-<li>Should functions, types and interfaces have names, or be nameless values like <tt>1</tt>&nbsp;and <tt>"a"</tt>?</li>
+<li>Should functions, types and interfaces have names, or be nameless values like <tt>1</tt> and <tt>"a"</tt>?</li>
 </ul>
 </li>
 </ul>

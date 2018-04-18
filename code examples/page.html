@@ -67,7 +67,9 @@ a..(b-a)<br/>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">+∀j ∈ retval.indices[1]:</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i,j] &lt;~ 0;</li>
 <li style="list-style-type: none">∀k ∈ 0..l-1:</li>
-<li style="list-style-type: none">&nbsp;retval[i,j] +&lt;~ a[i,k] * b[k,j];</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">retval[i,j] +&lt;~ a[i,k] * b[k,j];</li>
+</ul>
+</li>
 </ul>
 </li>
 <li style="list-style-type: none">−∀</li>
@@ -259,7 +261,7 @@ a.subarray(begin,end)<br/>
 <li style="list-style-type: none">+structure Boolean</li>
 </tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">auto value : bool;</li>
 <li style="list-style-type: none"></li>
-</tt><li style="list-style-type: none"><tt>syntax "true"{value </tt>↜<tt>&nbsp;true;} | "false"{value </tt>↜<tt>&nbsp;false;};</tt></li>
+</tt><li style="list-style-type: none"><tt>syntax "true"{value </tt>↜<tt> true;} | "false"{value </tt>↜<tt> false;};</tt></li>
 </ul>
 </li>
 <tt><li style="list-style-type: none">−structure Boolean</li>
@@ -274,8 +276,8 @@ a.subarray(begin,end)<br/>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">auto value : global.String = "";</li>
 <li style="list-style-type: none"></li>
 <li style="list-style-type: none">syntax '"' ((!('"'|'\\') </li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">| "\\\"" ⟷ '"' | "\\\\" ⟷ '\\' | "\\/" ⟷ '/' &nbsp;| "\\b" ⟷ "\b"</li>
-<li style="list-style-type: none">| "\\f" ⟷ '\f' | "\\n" ⟷ '\n' &nbsp;| "\\r" ⟷ '\r' | "\\t" ⟷ '\t'</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">| "\\\"" ⟷ '"' | "\\\\" ⟷ '\\' | "\\/" ⟷ '/'  | "\\b" ⟷ "\b"</li>
+<li style="list-style-type: none">| "\\f" ⟷ '\f' | "\\n" ⟷ '\n'  | "\\r" ⟷ '\r' | "\\t" ⟷ '\t'</li>
 <li style="list-style-type: none">| "\\u" hex * 4 ⟷ ???)[value[$0]])* '"';</li>
 </ul>
 </li>
