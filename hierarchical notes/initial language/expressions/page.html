@@ -133,7 +133,7 @@
 <li>Part of the disambiguator could clarify whether an operator's (e.g. '+') occurrence should be interpreted as data (a function) or as an operator. (and also what function/operator)</li>
 <li>Unified way to refer to any entity (whether named or not) in any file. (URL? "::", ".", ":"?)</li>
 <li><b>Ideas</b></li>
-<li style="list-style-type: none"><ul><li>The syntax could be: &lt;function-id&gt; ::= [&lt;locator&gt;] &lt;identifier&gt; [&lt;disambiguator&gt;] where the &lt;locator&gt; part specifies the module, namespace, block, etc. in which the function is defined, the &lt;disambiguator&gt; part selects a specific function overload, template instance, etc. (may need to include the operator's fixity if I allow overloading of operator fixity) and &lt;identifier&gt; is the name of the function or variable.</li>
+<li style="list-style-type: none"><ul><li>The syntax could be: &lt;disambiguator&gt; ::= [&lt;locator&gt;] &lt;identifier&gt; [&lt;selector&gt;] where the &lt;locator&gt; part specifies the module, namespace, block, etc. in which the function is defined, the &lt;selector&gt; part selects a specific function overload, template instance, etc. (may need to include the operator's fixity if I allow overloading of operator fixity) and &lt;identifier&gt; is the name of the function or variable.</li>
 <li>Could use the special <tt>global:</tt>&nbsp;<i>locator</i>&nbsp;to refer to global variables that are hidden by local ones with the same name (like C++'s unary <tt>::</tt>&nbsp;operator).</li>
 </ul>
 </li>

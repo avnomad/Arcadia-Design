@@ -152,10 +152,10 @@
 <li style="list-style-type: none"></li>
 <li style="list-style-type: none">&#09;'z' -&gt; "--.."</li>
 <li style="list-style-type: none">&#09;rest -&gt; " "</li>
-<li style="list-style-type: none"><ul><li style="list-style-type: none">}</li>
-</ul>
+</tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">}</li>
+</tt></ul>
 </li>
-</tt><li>Include a special syntax for wrapping functions in an optimized way. e.g.</li>
+<li>Include a special syntax for wrapping functions in an optimized way. e.g.</li>
 <li style="list-style-type: none"><ul><tt><li style="list-style-type: none">int head(int x)</li>
 <li style="list-style-type: none">wraps body // body can be a function or function pointer</li>
 <li style="list-style-type: none">{</li>
@@ -167,7 +167,7 @@
 </tt></ul>
 </li>
 <li style="list-style-type: none">Where "head"'s body must end with a call to "body" and the returned types must match. No actual call to "body" will take place, but instead there will be an unconditional jump or a fall through to its code after "head"'s code is over. (see MIPS code for sort/mergeSort and merge1/2 from NTUA project)</li>
-<li style="list-style-type: none"><ul><li>It might be preferable to just support good tail call optimization instead of ad-hoc structures...<tt></tt></li>
+<li style="list-style-type: none"><ul><li>It might be preferable to just support good tail call optimization instead of ad-hoc structures...</li>
 </ul>
 </li>
 </ul>
