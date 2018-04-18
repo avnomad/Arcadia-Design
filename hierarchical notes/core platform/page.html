@@ -55,6 +55,7 @@
 <li style="list-style-type: none"><ul><li>Precedence should be taken into account only if there is ambiguity, otherwise a postfix '+' with higher precedence than the infix one could make 'a+b' fail to parse.</li>
 </ul>
 </li>
+<li>Support confix (or circumfix) operators. (i.e. operators that consist of a prefix and a postfix part. e.g. [...])</li>
 <li>Support distfix operators.</li>
 <li>Support juxtaposition. (like Fortress)</li>
 <li style="list-style-type: none"><ul><li>Juxtaposition will be considered a binary operator and will obey the same rules as other binary operators when it comes to importing it into a scope.</li>
@@ -113,6 +114,16 @@
 </li>
 </ul>
 </li>
+<li><b>Possible Issues</b></li>
+<li style="list-style-type: none"><ul><li>In order for an expression like 2a+b; c; to construct the desired syntax tree ((((2a)+b);)(c;)) it must be priority "" &gt; priority "+" &gt; priority ";" and priority "" &lt; priority ";" which is impossible.</li>
+<li style="list-style-type: none"><ul><li>It should be possible to assign different priorities to different overloads of an operator (overloaded for different argument types).</li>
+<li>At reduction time, the type of both subexpressions should be known and we can also use the type of the first subexpression of a binary operator to filter the possibilities.</li>
+<li>A range of plausible priorities could be maintained.</li>
+<li>But if it's possible to have juxtaposition overloads for E E ⟶ E and S S ⟶ S, wouldn't we be able to use this in place of priorities; e.g. ME * AE ⟶ ME, AE + PE ⟶ AE and ( ME ) ⟶ AE would be equivalent to expressions consisting of *, + and () with priority "*" &gt; priority "+". Would 'priority' be just a shorthand?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should I assign meaning to expressions where one or more operator arguments are missing or should they be syntax errors? And if I assign meaning what would it be? Can the parser support it?</li>
 <li style="list-style-type: none"><ul><li><b>Examples</b>:</li>
@@ -139,6 +150,7 @@
 </li>
 <li>Confirm my parser supported operators that have simultaneous prefix, infix and postfix status and could parse the expressions that weren't ambiguous. It certainly handled cases where 2 out of the 3 fixities were active at any time.</li>
 <li>Investigate connection with Categorial Grammars. Would forward and backward functional composition reductions be useful in my case? Some classes of categorial grammars have the same expressive power as context-free grammars.</li>
+<li>Look at <a href="http://h14s.p5r.org/2014/10/shiftreduce-expression-parsing-by-douglas-gregor.html">this similar parser</a>&nbsp;more closely.</li>
 </ul>
 </li>
 </ul>
