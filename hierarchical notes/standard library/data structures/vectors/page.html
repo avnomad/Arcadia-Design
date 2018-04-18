@@ -33,7 +33,11 @@
 <li style="list-style-type: none"><ul><li>Includes absolute value and Euclidean norms as special cases.</li>
 </ul>
 </li>
-<li>infinite norm </li>
+<li>infinite norm</li>
+<li>Norms that involve root computations should return something that does the computation lazily and can be canceled out by raising to the corresponding power.</li>
+<li style="list-style-type: none"><ul><li>e.g. |(1,2)|² should compute 1²+2², not sqrt(1²+2²)².</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Select syntax. Could be:</li>
 <li style="list-style-type: none"><ul><li>norm&lt;2&gt;(v)</li>

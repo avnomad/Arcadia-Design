@@ -64,6 +64,7 @@
 <li>Allow importing modules (or dlls?) at run-time.</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>I can use disambiguators with patterns (like '*' in Java imports) in both imports and exports.</li>
+<li>It should be possible for a module to import a specific version of another module. Then two modules importing different versions of a third module, should be importable by a forth module. e.g. An application A that is built against libraries B and C that are built against different versions of the standard library should work fine. Since symbols in a module are in a namespace that uses the path to the module file as a prefix, there should be no collisions.</li>
 </ul>
 </li>
 <li><b>Todo</b></li>

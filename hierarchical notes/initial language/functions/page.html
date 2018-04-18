@@ -305,5 +305,18 @@
 <li>Should function names behave as if they were variable names?</li>
 </ul>
 </li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>If I allow separating a function's declaration from its definition, I might be able to use a disambiguator expression to bind the definition to the corresponding declaration. e.g.</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+function solve implements math:linear-algebra:solve(Matrix, Matrix)</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">#...</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−function</tt></li>
+</ul>
+</li>
+<li style="list-style-type: none">Parts of the disambiguator that aren't necessary could be omitted and the compiler would check that there is exactly one function matching the disambiguator. That has the potential of being less verbose than repeating the entire function header as in C. (e.g. for a function with no overloads in the same scope, its name would suffice.)</li>
+</ul>
+</li>
 </ul>
 </body></html>
