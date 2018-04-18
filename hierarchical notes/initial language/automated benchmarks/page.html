@@ -26,6 +26,12 @@
 <li>Perhaps allow reuse of test inputs for benchmarking as well.</li>
 <li>Support multivariate models.</li>
 <li>Also allow configuring parameters like how many measurements to take for a single input point. (default 3)</li>
+<li>Support measuring memory requirements.</li>
+<li style="list-style-type: none"><ul><li>Should be able to show how memory footprint evolves during execution of a program unit as a graph as well as show statistics like max, min and average utilization.</li>
+<li>Should be able to gather statistics for different program segments (like stack, heap, text, etc.) as well as individual variables.</li>
+<li>Could instrument function prologue / epilogue with special instrumentation for functions that have specific attributes like @allocator, @deallocator.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Only support linear approximator?</li>
 <li>Include ways to measure throughput in addition to latency.</li>

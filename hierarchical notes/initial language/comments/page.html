@@ -27,6 +27,12 @@
 </li>
 <li><b>Documentation</b></li>
 <li style="list-style-type: none"><ul><li>Documentation comments should be able to use variables defined in enclosing scopes by possible static if and foreach control structures. This is useful when defining multiple functions in a loop.</li>
+<li>A documentation generator should be able to include the deduced return type of a function in the documentation.</li>
+<li style="list-style-type: none"><ul><li>This is because a keyword like C++'s 'auto' doesn't mean anything to the consumer of the documentation who doesn't have access to the function body.</li>
+<li>The documentation generator could deduce the function's return type itself (exactly under the circumstances the compiler would).</li>
+<li>Or better yet, the compiler could include the deduced type in the compiled module as part of the function's interface and the documentation generator, could read the information from there.</li>
+</ul>
+</li>
 <li><b>Tags</b></li>
 <li style="list-style-type: none"><ul><li>A documentation generator that reads documentation comments should support tags that correspond to sections of cplusplus.com/reference container pages like complexity, iterator validity, data races and exception safety (basic, strong, no-throw).</li>
 </ul>
@@ -34,6 +40,7 @@
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Allow programmatic access to documentation comments?</li>
 <li>Make documentation a constituent of function definition (similar to =test, =precondition, etc.) instead of a comment.</li>
+<li>Support "documented unit tests" like those in D.</li>
 </ul>
 </li>
 </ul>
