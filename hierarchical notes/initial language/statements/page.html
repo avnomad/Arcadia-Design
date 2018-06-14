@@ -87,9 +87,40 @@
 </li>
 <li><b>Conditionals</b></li>
 <li style="list-style-type: none"><ul><li><b>If</b></li>
+<li style="list-style-type: none"><ul><li>static and dynamic variants. Static if will be used by default if condition is evaluable at compile-time.</li>
+<li>Can be combined with inferred function return type for a script-like effect. e.g.</li>
+<li style="list-style-type: none"><ul><li><tt>+function foo : ()⟶auto</tt></li>
+<tt><li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+if(int.size() &gt; 4)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">return 42;</li>
 </ul>
 </li>
-<li><b>Case</b> / <b>Switch</b></li>
+</ul>
+</li>
+</tt></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<tt>=else<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">return "42";</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</tt><tt>−endif</tt><ul><li style="list-style-type: none"><ul><li><b>Case</b> / <b>Switch</b></li>
 <li style="list-style-type: none"><ul><li>The default behaviour when reaching the end of a case block will be to transfer control to the instruction just after the case/switch body.</li>
 <li>Include an optional <tt>default</tt> case.</li>
 <li>Include a <tt>fallthrough</tt> statement for "falling of" to the next case. (to allow behaviour similar to C's)</li>

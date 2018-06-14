@@ -18,6 +18,11 @@
 <li>Removing/adding from/to random places and/or adding beyond the original size of the container could signal an error.</li>
 </ul>
 </li>
+<li>Look at <a href="https://ericniebler.github.io/range-v3/">this</a>&nbsp;C++ range library.</li>
+</ul>
+</li>
+<li><b>Notes</b></li>
+<li style="list-style-type: none"><ul><li>It might be tempting to implement infinite ranges of large objects that change only a little with each increment as "stashing ranges" (i.e. ranges that return references to internally stored objects), but stashing ranges might not qualify as forward ranges. (same for iterators)</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
