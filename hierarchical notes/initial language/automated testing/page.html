@@ -30,6 +30,7 @@
 </ul>
 </li>
 <li style="list-style-type: none"><tt>−</tt>fun</li>
+<li>The produced report (in case of test failures) for parametrized tests like the one above should include the line the failed input/output combination was present in the file, not the line the check was performed.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Learn more about <b>Property-Based Testing</b>.</li>
 <li style="list-style-type: none"><ul><li>Can contracts be used as the properties?</li>
@@ -60,6 +61,7 @@
 <li>I could provide a way to annotate tests as <i>positive</i> and <i>negative</i> and group them accordingly in the statistics output. e.g. 90% of positive and 30% of negative tests passed.</li>
 <li>It might make sense to provide a common framework for combinatorial (exhaustive) and random generators.</li>
 <li>Provide a way to automatically duplicate the environment and capture any console I/O as a way to "sandbox" tests of functions that manipulate global variables and/or log, etc.</li>
+<li>Could include something similar to BOOST_TEST_CHECKPOINT.</li>
 </ul>
 </li>
 </ul>
