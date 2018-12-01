@@ -7,7 +7,7 @@
 <li>Support <i>structured exceptions</i> that can propagate between threads.</li>
 <li>Encapsulate <i>floating point exceptions</i>.</li>
 <li>Exception specifications should be allowed to depend on the exception specifications of other functions. Like C++'s noexcept(expression), but generatlized to work with sets of exceptions? e.g.</li>
-<li style="list-style-type: none">throws((pred.throws <tt>−</tt>  BadAlloc) ∪ FileNotFound)</li>
+<li style="list-style-type: none">throws((pred.throws <tt>−</tt> BadAlloc) ∪ FileNotFound)</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Should the existence of unreachable catch blocks be detected as an error like in D?</li>
 <li>I like the idea of propagating both the primary and secondary exceptions as well as D's approach to use a singly-linked list for it. Efficiency?</li>
