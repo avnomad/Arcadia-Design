@@ -44,6 +44,7 @@
 <li style="list-style-type: none"><ul><li>Am I interested in defining more implicitly-defined constructors like D?</li>
 <li>I'll probably use the good old-fashioned copy constructor and assignment operator combination instead of D's postblit constructor this(this).</li>
 <li>I can have static, dynamic and automatic constructors and the one that matches the storage duration of the variable will be called.</li>
+<li>I could have a statically checked attribute for constructors that tells the caller whether the constructor is guaranteed to initialize all subobjects. If the attribute is missing the constructor may leave some subobjects uninitialized. The check will be transitive.</li>
 </ul>
 </li>
 <li><b>Implicitly-Defined Members</b></li>

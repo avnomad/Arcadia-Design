@@ -48,6 +48,10 @@
 </ul>
 </li>
 <li>Allow initializing with 'nothing' to leave a variable uninitialized. (like D does with <tt>void</tt>)</li>
+<li style="list-style-type: none"><ul><li>Syntactically, I could leave uninitialized if there is no initializer. Default constructors for scalar types would initialize to some default value like in C++. (needed e.g. for Map)</li>
+<li>But what happens if the constructor for a user-defined type leaves some subobject uninitialized? An attribute verifying that all subobjects have been initialized could help.</li>
+</ul>
+</li>
 <li>If a variable declaration has no initializer I can:</li>
 <li style="list-style-type: none"><ul><li>Leave it uninitialized (C, C++).</li>
 <li>Initialize it with some type-dependent default (Java, D, Protobuf).</li>
