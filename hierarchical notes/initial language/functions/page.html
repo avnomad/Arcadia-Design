@@ -203,7 +203,8 @@
 </ul>
 </li>
 <li><b>Overloading</b></li>
-<li style="list-style-type: none"><ul><li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>A function declaration (+function...<tt>−</tt>function) could create a named set of functions (or add the function to the set, if it already exists), while a variable declaration initialized by an anonymous function would create a single function. The function call operator would immediately call a function, but would invoke the overload resolution machinery if confronted with a set of functions.</li>
+<li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should I allow overloading a function for different architectures? e.g.</li>
 <li style="list-style-type: none"><ul><li>unsigned int populationCount(unsigned long long int) @ x86; // implement with architecture optimized code</li>
 <li>unsigned int populationCount(unsigned long long int) @ MIPS; // implement with single machine instruction</li>
@@ -226,6 +227,7 @@
 <li><b>Closures</b></li>
 <li style="list-style-type: none"><ul><li>Lambda functions and closures might need to be stored in arrays.</li>
 <li>Escaping closures (but only them) should cause the enclosing function's frame to be allocated on the garbage-collected heap.</li>
+<li>Lambda capture syntax could resemble the syntax for specifying the memory locations that can be read/written by a function (directly or indirectly or via pointer, etc.).</li>
 </ul>
 </li>
 <li><b>Implicitly Callable Functions</b></li>
@@ -261,6 +263,7 @@
 <li>⟶ and λ functions. x ⟶ f() where x ∈ Identity(A⟶A)</li>
 <li>polymorphic and variadic.</li>
 <li>conversion to function pointer suitable for use as a callback.</li>
+<li>The syntax could be selected to facilitate gradual transformation of code blocks to nested functions to global functions.</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Select syntax. Could be:</li>
 <li style="list-style-type: none"><ul><li>x -&gt; x**2</li>
