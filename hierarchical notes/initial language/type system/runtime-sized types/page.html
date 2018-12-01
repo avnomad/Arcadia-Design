@@ -390,6 +390,10 @@
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Can a structure contain more than one runtime-sized member? Can they appear anywhere, or just at the end?</li>
 <li>How are they defined and used? In particular how is their size parameter tied to the parameters of sub-objects?</li>
+<li>Can/should I use one stack for types of static size and one for types of dynamic size?</li>
+<li style="list-style-type: none"><ul><li>Per thread? Yes so that there is no need for synchronization.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

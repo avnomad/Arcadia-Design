@@ -3,7 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Exception Handling</title>
-</head><body><ul><li>Exception objects will pack enough information to print a stack trace that will at a minimum contain a list of the stack frames that were active at the time the exception was thrown and the point of execution each instance was at the time. (function name, line number)</li>
+</head><body><ul><li>Exceptions are required by constructors and operators.</li>
+<li>The distinction between <i>recoverable</i> and <i>unrecoverable</i> errors seems useful.</li>
+<li>Exception objects will pack enough information to print a stack trace that will at a minimum contain a list of the stack frames that were active at the time the exception was thrown and the point of execution each instance was at the time. (function name, line number)</li>
 <li>Support <i>structured exceptions</i> that can propagate between threads.</li>
 <li>Encapsulate <i>floating point exceptions</i>.</li>
 <li>Exception specifications should be allowed to depend on the exception specifications of other functions. Like C++'s noexcept(expression), but generatlized to work with sets of exceptions? e.g.</li>
