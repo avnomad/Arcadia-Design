@@ -14,6 +14,7 @@
 </ul>
 </li>
 <li>May be able to check ownership semantics of unique and other pointer types statically using a sytem similar to Rust's (and perhaps introducing the same concepts of borrowing and lifetimes).</li>
+<li>In C and C++ casting a pointer to S to a pointer to T can invoke undefined behaviour if S and T are not "compatible" <a href="https://www.ibm.com/support/knowledgecenter/SSGH3R_13.1.2/com.ibm.xlcpp131.aix.doc/language_ref/type_based_aliasing.html">this</a> gives a good example of what can go wrong! (type-based aliasing rule)</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>Should I also include reference versions of the above? e.g. UniqueReference?</li>
 <li>Should I include Java-style references?</li>
