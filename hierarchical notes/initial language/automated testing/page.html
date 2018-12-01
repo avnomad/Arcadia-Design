@@ -31,20 +31,30 @@
 </li>
 <li style="list-style-type: none"><tt>−</tt>fun</li>
 <li>The produced report (in case of test failures) for parametrized tests like the one above should include the line the failed input/output combination was present in the file, not the line the check was performed.</li>
-<li><b>Todo</b></li>
-<li style="list-style-type: none"><ul><li>Learn more about <b>Property-Based Testing</b>.</li>
-<li style="list-style-type: none"><ul><li>Can contracts be used as the properties?</li>
-<li>Do I need properties that are not associated with a specific function or class?</li>
-<li>Can I automatically and recursively build generators by reflecting on constructors?</li>
-<li>Can I include test case shrinking?</li>
+<li><b>Property-based Testing</b></li>
+<li style="list-style-type: none"><ul><li>Use contracts as the properties.</li>
+<li>Whenever random tests cases are generated, it may make sense to save the failing ones to be reused in the next test run.</li>
+<li>QuickCheck can't automatically select and test many different instantiations of a polymorphic function. e.g. To test a function that reverses int lists you may need to write a different property than to test float lists.</li>
+<li style="list-style-type: none"><ul><li>Since Arcadia treats types as any other value, that should carry over to property-based testing. The implementation should collect all known types for which the function can be instantiated and have a generator and test the function for a random subset of them.</li>
 </ul>
 </li>
-<li>Whenever random tests cases are generated, it may make sense to save the failing ones to be reused in the next test run.</li>
+<li>There should be a way to see the tests that were run in case something was wrong with them (e.g. they could be trivial, or not have the desired distribution). QuickCheck provides a way to do that.</li>
+<li style="list-style-type: none"><ul><li>e.g. a property like <tt>isSorted(xs) ==&gt; sort(xs) = xs</tt> could result in only small lists being tested.</li>
+</ul>
+</li>
+<li>QuickCheck may test the same input multiple times. Is it worth it to automatically ensure each test case is unique?</li>
+<li>The distinction between preconditions and postconditions should be enough for properties associated with functions and/or classes, but I may still need something similar to QuickCheck's <tt>==&gt;</tt> for properties describing the interaction between multiple entities.</li>
+<li>Should there be primitives like QuickCheck's <tt>collect</tt> and <tt>classify</tt> in the source code, or should the required functionality be invoked from the command-line?</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li>Do I need properties that are not associated with a specific function or class?</li>
+<li>Can I automatically and recursively build generators by reflecting on constructors?</li>
+<li>Can I include test case shrinking?</li>
 <li>Would it be possible to use the same generators for property-based testing and benchmarking?</li>
 <li style="list-style-type: none"><ul><li>Could use a @generator annotation to let the system pick up the generator functions automatically.</li>
 </ul>
 </li>
 <li>Learn more about <b>Model-Based Testing</b>.</li>
+<li>How does one generate functions to test higher-order functions?</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>
@@ -58,7 +68,16 @@
 </ul>
 </li>
 <li>Since instances are generated recursively, memoization and/or dynamic programming can be used to improve performance, essentially reusing sub-instances either as stand-alone test cases, or as constituents of multiple bigger instances.</li>
-<li>I could provide a way to annotate tests as <i>positive</i> and <i>negative</i> and group them accordingly in the statistics output. e.g. 90% of positive and 30% of negative tests passed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Todo</b></li>
+<li style="list-style-type: none"><ul><li></li>
+</ul>
+</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>I could provide a way to annotate tests as <i>positive</i> and <i>negative</i> and group them accordingly in the statistics output. e.g. 90% of positive and 30% of negative tests passed.</li>
 <li>It might make sense to provide a common framework for combinatorial (exhaustive) and random generators.</li>
 <li>Provide a way to automatically duplicate the environment and capture any console I/O as a way to "sandbox" tests of functions that manipulate global variables and/or log, etc.</li>
 <li>Could include something similar to BOOST_TEST_CHECKPOINT.</li>
