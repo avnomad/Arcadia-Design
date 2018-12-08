@@ -28,6 +28,7 @@
 <li>What you do use, you couldn't hand code any better.</li>
 </ul>
 </li>
+<li>Prefer zero-overhead-by-construction designs in place of high-overhead designs that can be optimized whenever possible.</li>
 </ul>
 </li>
 <li><b>Safety</b></li>
@@ -155,6 +156,17 @@
 <li style="list-style-type: none"><ul><li>Certain patterns commonly used in the latter should be taken into account to make the process as safe and painless as possible.</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><b>Low friction</b></li>
+<li style="list-style-type: none"><ul><li>The programmer shouldn't have to restle against the syntax nor the type system.</li>
+<li>Functional principles should be adhered to by making certain things easy, not other things hard or impossible. e.g.</li>
+<li style="list-style-type: none"><ul><li>It should be trivial to write referentially transparent functions and declare them as such and the compiler should check this declaration. This is different from most contemporary functional programming languages (like ML and Haskell) where mutating code is made hard to write and read but no guarantee is given that a function you call is actually pure.</li>
+<li>Variables should be immutable by default but a keyword away from beign mutable. i.e. mutable variables should not require a completely different syntax to define and/or manipulate (like in Haskell or ML).</li>
+<li>There is no point in making while and other control structures return unit.</li>
+</ul>
+</li>
+<li>Assigning rads to degrees should make the conversion automatically, not result in a compile-time, run-time or logic error.</li>
 </ul>
 </li>
 </ul>

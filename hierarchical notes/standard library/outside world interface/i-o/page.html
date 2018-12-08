@@ -20,6 +20,10 @@
 <li><b>Character I/O</b></li>
 <li><b>Direct I/O</b></li>
 <li style="list-style-type: none"><ul><li>Read/Write blocks of bytes.</li>
+<li>Should include API that abstracts zero-copy (sendfile, splice) and memory-mapped (mmap) I/O.</li>
+<li style="list-style-type: none"><ul><li>Perhaps the copy algorithm can detect ranges that refer to files and act accordingly?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Ideas</b></li>

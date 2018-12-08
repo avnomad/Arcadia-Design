@@ -18,7 +18,7 @@
 </ul>
 </li>
 <li><b>Loops</b></li>
-<li style="list-style-type: none"><ul><li>Support '<b>else</b>' clause in loop statements, like in Python.</li>
+<li style="list-style-type: none"><ul><li>Support '<b>else</b>' clause in loop statements, like in Python. (it is executed when the loop completes normally but not when encountering a break)</li>
 <li><b>Foreach</b></li>
 <li style="list-style-type: none"><ul><li>Should be able to modify elements (by default?).</li>
 <li>Will expect a range to iterate over.</li>
@@ -97,33 +97,63 @@
 </li>
 </ul>
 </li>
-</tt></ul>
-</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">return "42";</li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<tt>=else<ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none">return "42";</li>
-</ul>
-</li>
-</ul>
-</li>
+</tt><li style="list-style-type: none"><tt>−endif</tt></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</tt><tt>−endif</tt><ul><li style="list-style-type: none"><ul><li><b>Case</b> / <b>Switch</b></li>
+<li><b>Case</b> / <b>Switch</b></li>
 <li style="list-style-type: none"><ul><li>The default behaviour when reaching the end of a case block will be to transfer control to the instruction just after the case/switch body.</li>
 <li>Include an optional <tt>default</tt> case.</li>
 <li>Include a <tt>fallthrough</tt> statement for "falling of" to the next case. (to allow behaviour similar to C's)</li>
+<li>Should work with non-integral types as well (e.g. strings), although in such cases the generated code might not differ from that generated for if-elif-else.</li>
+<li>Support pattern matching using deconstructors.</li>
+<li>Include shorthand for testing the runtime type of an object against different interfaces it might implement? e.g. this:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+if error.category() implements system_error:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># do something</li>
+</ul>
+</li>
+<li style="list-style-type: none">=elif error.category() implements io_error</li>
+</tt><li style="list-style-type: none"><ul><tt><li style="list-style-type: none"># do something else</li>
+</tt></ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># do something generic</li>
+</ul>
+</li>
+<tt><li style="list-style-type: none">−endif</li>
+</tt></ul>
+</li>
+<li style="list-style-type: none">might get a shorthand like:</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+case error.category():</li>
+<li style="list-style-type: none">=::: system_error :::</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># do something</li>
+</ul>
+</li>
+<li style="list-style-type: none">=::: io_error :::</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># do something else</li>
+</ul>
+</li>
+<li style="list-style-type: none">=default</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># do something generic</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−case</tt></li>
+</ul>
+</li>
+<li>Do the expressions in different case clauses need to be known at compile time?</li>
+<li><b>Ideas</b></li>
+<li style="list-style-type: none"><ul><li>Could support multiple comparison modes. e.g. binary equality vs operator==</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -225,6 +255,7 @@
 <li style="list-style-type: none"><tt>−block:</tt> <i>identifier</i></li>
 </ul>
 </li>
+<li style="list-style-type: none">If only named blocks are supported syntactically, a 'wildcard' name (like '_' in languages with pattern matching) can be used to allow nameless blocks semantically.</li>
 </ul>
 </li>
 <li><b>Paired Calls</b></li>
@@ -239,8 +270,63 @@
 </li>
 </ul>
 </li>
+<li><b>Advantages</b></li>
+<li style="list-style-type: none"><ul><li>Compared to RAII, paired calls require must less initial investment of development time as a specialized type doesn't have to be defined for each resource.</li>
+<li>Compared to constructs like D's scope and Go's defer, they place cleanup code near the point where it's actually going to get executed leading to clearer control flow and more readable code. e.g.</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>Arcadia</b></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">+[glPushAttrib(GL_POLYGON_BIT|GL_TRANSFORM_BIT)]</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">glPolygonMode(GL_FRONT,GL_FILL);</li>
+<li style="list-style-type: none">glMatrixMode(GL_MODELVIEW);</li>
+</ul>
+</li>
+<li style="list-style-type: none">&#09;&#09;&#09;</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+[glPushMatrix()] // (x,y) -&gt; (y,x)</li>
+</ul>
+</li>
+<li style="list-style-type: none">&#09;glScaled(-1,1,1);</li>
+<li style="list-style-type: none">&#09;glRotated(90,0,0,1); // 90 degrees</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><ul><li style="list-style-type: none"> # read buttonSides from XML configuration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li style="list-style-type: none">&#09;glRectfv(buttonSides);</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">−[glPopMatrix()]</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>−[glPopAttrib()]</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+<b><li style="list-style-type: none">vs</li>
+</b><li style="list-style-type: none"><ul><li style="list-style-type: none"><b>D</b></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">glPushAttrib(GL_POLYGON_BIT|GL_TRANSFORM_BIT);</li>
+<li style="list-style-type: none">scope(exit) glPopAttrib();</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">glPolygonMode(GL_FRONT,GL_FILL);</li>
+<li style="list-style-type: none">glMatrixMode(GL_MODELVIEW);</li>
+<li style="list-style-type: none">&#09;&#09;&#09;</li>
+<li style="list-style-type: none">glPushMatrix(); // (x,y) -&gt; (y,x)</li>
+<li style="list-style-type: none">scope(exit) glPopMatrix();</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">glScaled(-1,1,1);</li>
+<li style="list-style-type: none">glRotated(90,0,0,1); // 90 degrees</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none"># read buttonSides from XML configuration</li>
+</tt><li style="list-style-type: none"><tt>glRectfv(buttonSides);</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How does this structure compare with D's <b>scope</b> statement or other statements like <b>synchronized</b>?</li>
+<li style="list-style-type: none"><ul><li>There is also Go's <b>defer</b> that looks similar to D's scope but always executes at the function exit even if called inside a nested scope.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

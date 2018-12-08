@@ -39,7 +39,16 @@
 </li>
 <li><b>Control Flow</b></li>
 <li style="list-style-type: none"><ul><li><i>noreturn</i> for functions not intended to ever return. Can be useful in warning about dead code.</li>
-<li><i>nothrow</i> for functions that don't throw any exceptions.</li>
+<li><i>likely</i> for statements included in paths of execution that are more likely to be taken.</li>
+<li><i>unlikely</i> for statements included in paths of execution that are less likely to be taken.</li>
+</ul>
+</li>
+<li><b>Exception Safety</b></li>
+<li style="list-style-type: none"><ul><li><i>nothrow</i> for functions that don't throw any exceptions.</li>
+<li><i>throw</i> for functions that throw exceptions (sole exception type).</li>
+<li><i>maythrow</i> for functions that may or may not throw exceptions. (may be useful for interfaces where some implementations may throw). This could be the default if none of these attributes is present.</li>
+<li>Either a conditional structure (e.g. <tt>nothrow(</tt><i>expression</i><tt>)</tt>) or a variable of syntax category same as the above attributes would need to be used to tie the throw nature of a function to that of another.</li>
+<li>Attributes like <i>basic</i> and <i>strong</i> could document the guarantee given, if throwing an exception is a possibility.</li>
 </ul>
 </li>
 <li><b>Mathematical Properties</b></li>
