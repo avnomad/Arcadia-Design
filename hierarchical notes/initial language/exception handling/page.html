@@ -3,16 +3,71 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Exception Handling</title>
-</head><body><ul><li>Exceptions are required by constructors and operators.</li>
+</head><body><ul><li>Use an exception model that can be implemented both by using traditional table- and frame-based implementations and by returning values as described in "Zero-overhead deterministic exceptions : Throwing values" by Herb Sutter.</li>
+<li>The design of C++11 classes like error_code and errc seem to complement this well. (A class like error_code could serve as the sole error type if only one type is allowed)</li>
 <li>The distinction between <i>recoverable</i> and <i>unrecoverable</i> errors seems useful.</li>
+<li style="list-style-type: none"><ul><li>Is arithmetic overflow recoverable? Probably only within the function where it originated.</li>
+<li style="list-style-type: none"><ul><li>Does it make sense to define a kind of "short-range" exceptions that are not allowed to escape the function (and can probably be implemented by just a jump) to represent such errors?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Exception objects will pack enough information to print a stack trace that will at a minimum contain a list of the stack frames that were active at the time the exception was thrown and the point of execution each instance was at the time. (function name, line number)</li>
 <li>Support <i>structured exceptions</i> that can propagate between threads.</li>
 <li>Encapsulate <i>floating point exceptions</i>.</li>
-<li>Exception specifications should be allowed to depend on the exception specifications of other functions. Like C++'s noexcept(expression), but generatlized to work with sets of exceptions? e.g.</li>
+<li>Exception specifications should be allowed to depend on the exception specifications of other functions. Like C++'s noexcept(expression), but generalized to work with sets of exceptions? e.g.</li>
 <li style="list-style-type: none">throws((pred.throws <tt>−</tt> BadAlloc) ∪ FileNotFound)</li>
+<li><b>Motivation</b></li>
+<li style="list-style-type: none"><ul><li>One shouldn't normally need to explain this, but a lot of people don't understand the motivation behind exceptions...</li>
+<li>Exceptions are required by constructors and operators.</li>
+<li>Exceptions keep the "error" flow distinct from "success". (both when raising and when handling)</li>
+<li>Exceptions compose. e.g.</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><b>C</b></li>
+<tt><li style="list-style-type: none">char *p1 = malloc(n1*sizeof(char));</li>
+<li style="list-style-type: none">if(!p1)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">return error;</li>
+<li style="list-style-type: none"></li>
+</ul>
+</li>
+<li style="list-style-type: none">char *p2 = malloc(n2*sizeof(char));</li>
+<li style="list-style-type: none">if(!p2)</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">free(p1);</li>
+<li style="list-style-type: none">return error;</li>
+</ul>
+</li>
+<li style="list-style-type: none">}</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">char *p3 = malloc(n3*sizeof(char));</li>
+<li style="list-style-type: none">if(!p3)</li>
+<li style="list-style-type: none">{</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">free(p2);</li>
+<li style="list-style-type: none">free(p1);</li>
+<li style="list-style-type: none">return error;</li>
+</ul>
+</li>
+</tt><li style="list-style-type: none"><tt>}</tt></li>
+</ul>
+</li>
+<b><li style="list-style-type: none">vs</li>
+</b><li style="list-style-type: none"><ul><li style="list-style-type: none"><b>C++</b></li>
+<li style="list-style-type: none">unique_ptr&lt;char&gt; p1 = new char[n1];</li>
+<li style="list-style-type: none">unique_ptr&lt;char&gt; p2 = new char[n2];</li>
+<li style="list-style-type: none">unique_ptr&lt;char&gt; p3 = new char[n3];</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><b>Ideas</b></li>
 <li style="list-style-type: none"><ul><li>Should the existence of unreachable catch blocks be detected as an error like in D?</li>
-<li>I like the idea of propagating both the primary and secondary exceptions as well as D's approach to use a singly-linked list for it. Efficiency?</li>
+<li>I like the idea of propagating both the primary and collateral exceptions as well as D's approach to use a singly-linked list for it.</li>
+<li style="list-style-type: none"><ul><li>Efficiency?</li>
+<li>Also how would that work in the context of a sole error type that is returned using the return value channel?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>Todo</b></li>
@@ -23,6 +78,11 @@
 <li>What happens with exceptions produced by the system like numeric overflow, bounds violations, memory depletion and contract violation?</li>
 <li>Is an all-or-nothing attribute enough, or are elaborate exception specifications still needed?</li>
 <li>Take a quick look at Rust's Option&lt;T&gt;, Result&lt;T,E&gt;, .unwrap(), .or_else(), etc.</li>
+</ul>
+</li>
+<li><b>Points of Caution</b></li>
+<li style="list-style-type: none"><ul><li>C++ standard library defines a uncaught_exceptions function that may not be zero-overhead (e.g. it may need thread local storage) and may be useful in a few cases. I need to better understand the rational behind it (n4152) and decide whether it's still useful in the presence of slotted blocks.</li>
+<li>Throwing bad_alloc or something similar on heap exhaustion might be unenforceable (e.g. on Linux with overcommit semantics, or large pools of virtual memory). On the other hand it seems to work fine with Linux Mint and ulimit...</li>
 </ul>
 </li>
 </ul>

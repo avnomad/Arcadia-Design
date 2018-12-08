@@ -260,6 +260,192 @@
 </li>
 </ul>
 </li>
+<li><b>Try / Catch / Finally</b></li>
+<li style="list-style-type: none"><ul><li>An exception model with only a single error type can simplify those structures in two ways:</li>
+<li style="list-style-type: none"><ul><li><tt>catch</tt> can just name the variable. The type can be omitted because it's always the same.</li>
+<li>Multiple <tt>catch</tt> handlers are no longer needed since there are no other types to test against.</li>
+</ul>
+</li>
+<li>On the other hand, a versatile error type like error_code could potentially be tested in many different ways and some could deserve their own syntax:</li>
+<li style="list-style-type: none"><ul><li>Testing the whole error code against a list of constants.</li>
+<li>Testing the category against a list of constants.</li>
+<li>Testing whether the category is a subclass of another category.</li>
+<li>Testing the whole error code, its value or category against a list of variables.</li>
+</ul>
+</li>
+<li style="list-style-type: none">Those cases roughly correspond to different variants supported by the <b>case</b> statement.</li>
+<li>Regardless of exception model, nesting could be reduced by eliminating <tt>try</tt> and allowing <tt>catch</tt> and <tt>finally</tt> to appear in any block. e.g.</li>
+<li style="list-style-type: none"><ul><li>+function main :  (arguments : String[]) ⟶ ()</li>
+<li style="list-style-type: none">=attributes  entry  </li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">console &lt;&lt; "Hello World!\n";</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch(e)</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// handle io error</li>
+</ul>
+</li>
+<li style="list-style-type: none">−function main</li>
+<li><tt>+if need_to_open_file:</tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">// try opening file</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=catch e</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// handle error opening file</li>
+</ul>
+</li>
+<li style="list-style-type: none">=elif need_to_open_socket:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// try opening socket</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// handle error opening socket</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// try creating a pipe</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// handle error opening pipe</li>
+</ul>
+</li>
+<li style="list-style-type: none">=finally</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// whether the pipe was created or not</li>
+</ul>
+</li>
+<li style="list-style-type: none">−if</li>
+</tt><li><tt>+while tries</tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">// try sending a packet</li>
+<li style="list-style-type: none">break;</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=catch e</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">log &lt;&lt; e;</li>
+<li style="list-style-type: none">--tries;</li>
+</ul>
+</li>
+<li style="list-style-type: none">=else</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>show_dialog("Couldn't reach remote host!");</tt></li>
+</ul>
+</li>
+<tt><li style="list-style-type: none">−while</li>
+</tt><li><tt>+block _</tt></li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none"># try acquiring lock</li>
+</tt></ul>
+</li>
+<tt><li style="list-style-type: none">=catch e</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">stderr &lt;&lt; e;</li>
+</ul>
+</li>
+<li style="list-style-type: none">=finally</li>
+</tt><li style="list-style-type: none"><ul><li style="list-style-type: none"><tt># clean up</tt></li>
+</ul>
+</li>
+<tt><li style="list-style-type: none">−block _</li>
+</tt></ul>
+</li>
+<li style="list-style-type: none">In this case at most one <tt>=catch</tt> and at most one <tt>=finally</tt> would be allowed to appear within a block and only in that order. Nesting or putting only a subset of statements under catch's supervision would require introducing new blocks like so:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+function main :  </li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">(arguments : String[]) ⟶ ()</li>
+</ul>
+</li>
+<tt><li style="list-style-type: none">=attributes</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">entry  </li>
+</ul>
+</li>
+<li style="list-style-type: none">=code</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+block b1</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e1</li>
+<li style="list-style-type: none">+block b11</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e11</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e11</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e1</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b11</li>
+<li style="list-style-type: none">// throws to e1</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e1</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+block b12</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e12</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e12</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e through b1's finally</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b12</li>
+</ul>
+</li>
+<li style="list-style-type: none">=finally</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b1</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">// throws to e</li>
+<li style="list-style-type: none"></li>
+<li style="list-style-type: none">+block b2</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e2</li>
+<li style="list-style-type: none">+block b21</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e2</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b21</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e2</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e through b2's finally</li>
+</ul>
+</li>
+<li style="list-style-type: none">=finally</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b2</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws outside main</li>
+<li style="list-style-type: none">+block b3</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e3</li>
+<li style="list-style-type: none">+block b31</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e3</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b31</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e3</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">+block b32</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws to e32</li>
+</ul>
+</li>
+<li style="list-style-type: none">=catch e32</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws ouside main through b3's finally</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b32</li>
+</ul>
+</li>
+<li style="list-style-type: none">=finally</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">// throws outside main</li>
+</ul>
+</li>
+<li style="list-style-type: none">−block b3</li>
+</ul>
+</li>
+<li style="list-style-type: none">−function main</li>
+</tt></ul>
+</li>
+<li>+try<tt> and −try</tt> could be defined as synomyms to <tt>+block _</tt> and <tt>−block _</tt> respectively to make nesting more readable.</li>
+<li>If using the shorthand catch isn't desirable, it can be prohibited by a conding standard and the 'try' block aliases would be used instead.</li>
+</ul>
+</li>
 <li><b>Synchronized</b></li>
 <li style="list-style-type: none"><ul><li>Should it be supported?</li>
 </ul>
