@@ -4,17 +4,79 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Module Language</title>
 </head><body><ul><li><b>Model</b></li>
-<li style="list-style-type: none"><ul><li>Perhaps instead of having namespaces, includes and submodules I could do the following: </li>
-<li style="list-style-type: none">One or more source files are given to the compiler and are compiled as if they were a single file comprising the files that were given, in the order they were given, without gaps or additions between them. The result is a single module file and source code will refer to it by using its path/url (that includes the name). </li>
+<li style="list-style-type: none"><ul><li>Suppose the compiler has somehow received a list of module search roots.</li>
+<li style="list-style-type: none"><ul><li>Typically that would include the current directory and one or more library installation directories.</li>
+<li>Typically adding items to this list will be done by command-line arguments to the compiler.</li>
+<li>Larger projects are likely to have multiple module search roots configured in their build configuration to facilitate organizing their source files. e.g. the following are likely to be under different roots:</li>
+<li style="list-style-type: none"><ul><li>module interfaces (equivalent of C's .h files or D's .di files)</li>
+<li>module implementations</li>
+<li>unit tests</li>
+<li>generated code (either stand-alone code or partial classes that are intended to be combined with code in module implementations)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Suppose p is a path to a file that exists under at least one of the module search roots.</li>
+<li style="list-style-type: none"><ul><li>If for all search roots r, r/p is a directory, then p represents a package else p represents a module.</li>
+<li>If p represents a module, then all r/p that are regular files (what if they are not?) and all regular files under all r/p that are directories will be combined into the single module p as if by concatenating their contents.</li>
+<li>Since top level statements are expected to be executed in lexical order, it's likely that the order in which individual files are combined into a single module is important. DFS dictionary order in each of the search roots in the order said search roots are given on the command-line should suffice.</li>
+<li>Clients will refer to this module as p (not r/p). e.g. in <tt>import p;</tt></li>
+</ul>
+</li>
+<li>Module and package declarations won't exist as they are redundant and lead to more work when refactoring.</li>
+<li>The entire hierarchy of packages, modules and their contents will be semantically equivalent to putting everything in a single physical source file and using block statements for grouping.</li>
+<li style="list-style-type: none"><ul><li>That should facilitate refactoring. e.g. when a file with internal organization grows too large and needs to be split into multiple files without breaking clients.</li>
+<li>So e.g. a single file containing</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt> std</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt> colour</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><tt>+block</tt> rgb</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># rgb functions here</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block</tt> rgb</li>
+<li style="list-style-type: none"><tt>+block</tt> hsl</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"># hsl functions here</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block</tt> hsl</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block</tt> colour</li>
+</ul>
+</li>
+<li style="list-style-type: none"><tt>−block</tt> std</li>
+</ul>
+</li>
+<li style="list-style-type: none">should be equivalent to the following hierarchy of files:</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none"><span style="color: #5454ff">std</span><span style="color: #000000"><span style="font-family: monospace"><span style="background-color: #ffffff"> </span></span></span><span style="font-family: monospace"></span></li>
+<span style="font-family: monospace"><li style="list-style-type: none">└── <span style="background-color: #ffffff"><span style="color: #5454ff">colour</span><span style="color: #000000"> </span></span></li>
+<li style="list-style-type: none"> ├── hsl (contains rgb functions)</li>
+</span><li style="list-style-type: none"><span style="font-family: monospace"> └── rgb (contains hsl functions)</span></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>The rest of the code will be able to import the module's symbols, or a subset of them, with an import statement (assuming they have been exported using an export statement first) inside a namespace (global, class, local, etc.). </li>
 <li>It will also be able to qualify names with the path/url of a module, or declared aliases of that path/url, to refer to them directly, without importing them in a namespace. (e.g. to solve name conflicts) In the latter case, the module will be linked to implicitly.</li>
-<li>In general, mutally recursive functions (and structures?) could be in different files, but they must be in the same module. That might mean that changing one causes everyone to be recompiled.</li>
+<li>In general, mutually recursive functions (and structures?) could be in different files, but they must be in the same module. That might mean that changing one causes everyone to be recompiled.</li>
+<li><b>Notes</b></li>
+<li style="list-style-type: none"><ul><li>This model is somewhat similar to D's but:</li>
+<li style="list-style-type: none"><ul><li>It effectively allows splitting a module into as many physical source files as needed.</li>
+<li>It does not require special handling of <a href="https://dlang.org/spec/module.html#package-module">package modules</a>.</li>
+<li>It allows more flexibility into organizing large test suites.</li>
+</ul>
+</li>
+<li>This model should obviate the need for namespaces, includes and submodules.</li>
+<li>There is ample motivation in larger projects to organize files under multiple roots. Even if the language can difference between production and test code and give correct test coverage results, it might be difficult for other tools (that e.g. count lines of code) to do so. It's also conceivable that linters should ignore generated partial classes or that coding standards and/or naming conventions are different for test vs production code. It's easier configuring different policies for different files if they are under different trees.</li>
+</ul>
+</li>
 <li><b>Todo</b></li>
 <li style="list-style-type: none"><ul><li>How will I avoid unnecessary recompilation in cases where there are mutually recursive functions?</li>
 <li style="list-style-type: none"><ul><li>Perhaps I can have cyclic imports of functions and classes... Then according to the above, there must be ways to save compilation time. e.g. a workaround could be to compile a source file in separate header and object, taking care not to change the timestamp of the header if the contents do not change, and write the makefile so that the 2nd module depends only on the 1st module's header.</li>
 <li>On the other hand, it's good to have the guarantee that there are no cyclic dependencies between modules... Perhaps I need to include some kind of submodules or accept that compilation time won't always be the least possible or take measures in the implementation so that cases where compilation time can be saved are identified and addressed properly.</li>
 </ul>
 </li>
+<li>Should there be a way to refer to individual files being concatenated into a module?</li>
 </ul>
 </li>
 </ul>
