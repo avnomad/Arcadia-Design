@@ -44,6 +44,7 @@
 <li>For evaluating a function at compile and run-time. But how do I elect to evaluate an operator at compile-time vs run-time?</li>
 <li>For evaluating a function in a new (or existing?) thread and/or process.</li>
 <li style="list-style-type: none">This can be combined with a few standard "global" variables that hold additional parameters that are needed for starting threads, but you don't want to specify each time. e.g. stack size, start suspended, etc.</li>
+<li style="list-style-type: none">The test harness I developed to evaluate different solutions for the Binomial Coefficient programming challenge can is a good use case for the ability to evaluate a function in new process.</li>
 <li>For calling a function indirectly through a pointer and/or for virtual calls through a pointer to the object?</li>
 <li>For explicitly using static or dynamic dispatch.</li>
 <li>For calling a function from a DLL?</li>
@@ -63,7 +64,7 @@
 <li style="list-style-type: none"><ul><li>The result is parsed using the fixity that was used when declaring the function.</li>
 <li>Examples:</li>
 <li style="list-style-type: none"><ul><li>c = a + b ⟺ c std:= a std:+ b</li>
-<li>d = f(a g b) ⟺ d &lt;(=)&gt; &lt;#f#&gt;(a &lt;|asl:operators:g|&gt;  b)</li>
+<li>d = f(a g b) ⟺ d &lt;(=)&gt; &lt;#f#&gt;(a &lt;|asl:operators:g|&gt; b)</li>
 </ul>
 </li>
 </ul>

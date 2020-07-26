@@ -30,6 +30,16 @@
 <li><b>Lists</b></li>
 <li style="list-style-type: none"><ul><li>Support pattern-matching in definitions and assignments. e.g. [a,b] = [1,2].</li>
 <li>singly &amp; doubly linked variants</li>
+<li style="list-style-type: none"><ul><li>Trick for checking during runtime that no invalidated iterators are used.</li>
+<li style="list-style-type: none"><ul><li>Every time a node is created, it gets a unique serial number.</li>
+<li>During deletion this serial number changes to some invalid value.</li>
+<li>During placement of an iterator on a node, the iterator saves a copy of the serial number.</li>
+<li>Before each operation on an iterator, we check that the saved and actual serial numbers match.</li>
+<li>But what if memory for the node is deallocated, reallocated and new contentets happen to match the old serial number?</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>linear &amp; circular variants</li>
 <li>combinations of the above</li>
 </ul>
